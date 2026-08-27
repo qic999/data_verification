@@ -195,7 +195,7 @@
     elements.errorEmpty.hidden = hasErrors;
     elements.emptyMessage.textContent = dataset.emptyMessage || "当前没有确认错误样本。";
     elements.errorExplainer.textContent = dataset.emptyMessage ||
-      "仅展示已经确认并过滤、排除或删除的错误，不把 review-only 或旧规则 false positive 伪装成错误。";
+      "仅展示已经确认并过滤、排除或删除的错误，不把需要人工确认的样本或旧规则 false positive 伪装成错误。";
 
     document.querySelectorAll(".dataset-tab").forEach((tab) => {
       const active = tab.dataset.dataset === dataset.id;

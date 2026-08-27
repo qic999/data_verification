@@ -39,7 +39,7 @@
             </div>
             <p class="table-note">
               “已过滤错误”是清理过程中确认并排除的历史错误；“当前 Hard”来自清理后的最新全量复审。
-              Review-only 不计作错误。
+              Need Human Verify 不计作错误。
             </p>
           </div>
           <div class="table-wrap">
@@ -48,7 +48,7 @@
                 <tr>
                   <th scope="col">Dataset</th>
                   <th scope="col" class="numeric">当前观测数</th>
-                  <th scope="col" class="numeric">Review-only</th>
+                  <th scope="col" class="numeric">Need Human Verify</th>
                   <th scope="col" class="numeric">已过滤错误</th>
                   <th scope="col" class="numeric">错误占比</th>
                   <th scope="col" class="numeric">当前 Hard</th>
@@ -103,7 +103,7 @@
             <div class="section-count danger"><strong id="error-count">6</strong><span>展示样本</span></div>
           </div>
           <p class="section-explainer" id="error-explainer">
-            仅展示已经确认并过滤、排除或删除的错误，不把 review-only 或旧规则 false positive 伪装成错误。
+            仅展示已经确认并过滤、排除或删除的错误，不把需要人工确认的样本或旧规则 false positive 伪装成错误。
           </p>
           <div class="case-grid" id="error-grid"></div>
           <div class="empty-state" id="error-empty" hidden>
