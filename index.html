@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <meta
+      name="description"
+      content="SpatialEncoder dataset QA: accepted and filtered 2D/3D projection cases."
+    />
+    <title>SpatialEncoder · Dataset QA</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">SPATIALENCODER · DATA QUALITY</p>
+          <h1>Dataset QA Gallery</h1>
+          <p class="hero-description">
+            按数据集查看当前保留的有效样本与已确认的错误样本。所有图均使用同一套颜色约定：
+            <span class="legend-inline legend-2d">2D box</span>
+            <span class="legend-inline legend-3d">projected 3D cuboid</span>
+          </p>
+        </div>
+        <div class="audit-stamp" aria-label="Audit date">
+          <span>FULL RE-AUDIT</span>
+          <strong id="audit-date">2026-08-27</strong>
+          <small>current hard = 0</small>
+        </div>
+      </header>
+
+      <main>
+        <section class="overview-panel" aria-labelledby="overview-title">
+          <div class="section-heading compact">
+            <div>
+              <p class="section-kicker">OVERVIEW</p>
+              <h2 id="overview-title">数据集统计</h2>
+            </div>
+            <p class="table-note">
+              “已过滤错误”是清理过程中确认并排除的历史错误；“当前 Hard”来自清理后的最新全量复审。
+              Review-only 不计作错误。
+            </p>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Dataset</th>
+                  <th scope="col" class="numeric">当前观测数</th>
+                  <th scope="col" class="numeric">Review-only</th>
+                  <th scope="col" class="numeric">已过滤错误</th>
+                  <th scope="col" class="numeric">错误占比</th>
+                  <th scope="col" class="numeric">当前 Hard</th>
+                  <th scope="col" class="numeric">网站展示</th>
+                  <th scope="col">状态</th>
+                </tr>
+              </thead>
+              <tbody id="stats-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <nav class="dataset-nav" aria-label="选择数据集">
+          <div class="nav-label">
+            <span>SELECT DATASET</span>
+            <strong id="dataset-count">7 datasets</strong>
+          </div>
+          <div class="dataset-tabs" id="dataset-tabs" role="tablist"></div>
+        </nav>
+
+        <section class="dataset-header" aria-live="polite">
+          <div>
+            <div class="dataset-title-row">
+              <h2 id="dataset-title">WildDet3D</h2>
+              <span class="status-pill clean">Clean after filtering</span>
+            </div>
+            <p id="dataset-description" class="dataset-description"></p>
+          </div>
+          <div class="dataset-facts" id="dataset-facts"></div>
+        </section>
+
+        <section class="case-section valid-section" aria-labelledby="valid-title">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker valid">ACCEPTED</p>
+              <h2 id="valid-title">有效 / 可用于训练的 case</h2>
+            </div>
+            <div class="section-count"><strong id="valid-count">6</strong><span>展示样本</span></div>
+          </div>
+          <p class="section-explainer">
+            随机保留样本；通过当前数据集专用的几何、投影、尺度与可见性 hard checks。
+          </p>
+          <div class="case-grid" id="valid-grid"></div>
+        </section>
+
+        <section class="case-section error-section" aria-labelledby="error-title">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker error">CONFIRMED ERROR</p>
+              <h2 id="error-title">错误 / 已过滤的 case</h2>
+            </div>
+            <div class="section-count danger"><strong id="error-count">6</strong><span>展示样本</span></div>
+          </div>
+          <p class="section-explainer" id="error-explainer">
+            仅展示已经确认并过滤、排除或删除的错误，不把 review-only 或旧规则 false positive 伪装成错误。
+          </p>
+          <div class="case-grid" id="error-grid"></div>
+          <div class="empty-state" id="error-empty" hidden>
+            <div class="empty-icon">✓</div>
+            <h3>没有确认错误样本</h3>
+            <p id="empty-message"></p>
+          </div>
+        </section>
+
+        <footer>
+          <span>SpatialEncoder dataset QA</span>
+          <span id="generated-at"></span>
+        </footer>
+      </main>
+    </div>
+
+    <dialog id="lightbox" aria-label="Case detail">
+      <button class="close-button" id="close-lightbox" aria-label="关闭">×</button>
+      <div class="lightbox-image-wrap">
+        <img id="lightbox-image" alt="" />
+      </div>
+      <div class="lightbox-copy">
+        <div>
+          <span class="case-tag" id="lightbox-tag"></span>
+          <h2 id="lightbox-title"></h2>
+          <p id="lightbox-subtitle"></p>
+        </div>
+        <dl id="lightbox-metrics"></dl>
+      </div>
+    </dialog>
+
+    <script src="cases-data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
