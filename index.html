@@ -6,10 +6,10 @@
     <meta name="color-scheme" content="dark" />
     <meta
       name="description"
-      content="SpatialEncoder dataset QA: accepted and filtered 2D/3D projection cases."
+      content="SpatialEncoder dataset QA: no-review, human-review, and filtered 2D/3D projection cases."
     />
     <title>SpatialEncoder · Dataset QA</title>
-    <link rel="stylesheet" href="styles.css?v=20260827-4" />
+    <link rel="stylesheet" href="styles.css?v=20260827-5" />
   </head>
   <body>
     <div class="page-shell">
@@ -18,7 +18,7 @@
           <p class="eyebrow" id="hero-eyebrow">SPATIALENCODER · DATA QUALITY</p>
           <h1 id="page-title">Dataset QA Gallery</h1>
           <p class="hero-description">
-            <span id="hero-intro">Browse retained training examples and confirmed errors by dataset. Every visualization uses the same color convention:</span>
+            <span id="hero-intro">Browse no-review, human-review, and filtered cases by dataset. Every visualization uses the same color convention:</span>
             <span class="legend-inline legend-2d" id="legend-2d">2D box</span>
             <span class="legend-inline legend-3d" id="legend-3d">projected 3D cuboid</span>
           </p>
@@ -45,7 +45,7 @@
             </div>
             <p class="table-note" id="table-note">
               “Images / Frames” counts unique training images for image datasets and training frames for video datasets. “Videos” is shown only for video data.
-              Need Human Verify is not counted as an error.
+              Human-review candidates are separated from confirmed filtered errors.
             </p>
           </div>
           <div class="table-wrap">
@@ -60,7 +60,7 @@
                   <th scope="col" class="numeric" id="th-filtered">Filtered errors</th>
                   <th scope="col" class="numeric" id="th-error-rate">Error rate</th>
                   <th scope="col" class="numeric" id="th-current-hard">Current Hard</th>
-                  <th scope="col" class="numeric" id="th-gallery">Gallery</th>
+                  <th scope="col" class="numeric" id="th-gallery">Gallery (No-review / Review / Filtered)</th>
                   <th scope="col" id="th-status">Status</th>
                 </tr>
               </thead>
@@ -91,22 +91,41 @@
         <section class="case-section valid-section" aria-labelledby="valid-title">
           <div class="section-heading">
             <div>
-              <p class="section-kicker valid" id="accepted-kicker">ACCEPTED</p>
-              <h2 id="valid-title">Accepted / training-ready cases</h2>
+              <p class="section-kicker valid" id="accepted-kicker">NO HUMAN REVIEW NEEDED</p>
+              <h2 id="valid-title">Cases ready for use</h2>
             </div>
             <div class="section-count"><strong id="valid-count">6</strong><span id="valid-count-label">cases shown</span></div>
           </div>
           <p class="section-explainer" id="valid-explainer">
-            Random retained examples that pass the current dataset-specific hard checks for geometry, projection, scale, and visibility.
+            Retained examples that pass the current dataset-specific checks without triggering an automatic or manual review concern.
           </p>
           <div class="case-grid" id="valid-grid"></div>
+        </section>
+
+        <section class="case-section review-section" aria-labelledby="review-title">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker review" id="review-kicker">NEEDS HUMAN REVIEW</p>
+              <h2 id="review-title">Ambiguous cases for manual verification</h2>
+            </div>
+            <div class="section-count review"><strong id="review-count">6</strong><span id="review-count-label">cases shown</span></div>
+          </div>
+          <p class="section-explainer" id="review-explainer">
+            Borderline geometry, projection, scale, or visibility candidates are shown separately. They are not counted as confirmed errors unless a reviewer rejects them.
+          </p>
+          <div class="case-grid" id="review-grid"></div>
+          <div class="empty-state" id="review-empty" hidden>
+            <div class="empty-icon">—</div>
+            <h3 id="review-empty-title">No human-review cases</h3>
+            <p id="review-empty-message"></p>
+          </div>
         </section>
 
         <section class="case-section error-section" aria-labelledby="error-title">
           <div class="section-heading">
             <div>
-              <p class="section-kicker error" id="error-kicker">CONFIRMED ERROR</p>
-              <h2 id="error-title">Confirmed / filtered error cases</h2>
+              <p class="section-kicker error" id="error-kicker">FILTERED</p>
+              <h2 id="error-title">Confirmed filtered cases</h2>
             </div>
             <div class="section-count danger"><strong id="error-count">6</strong><span id="error-count-label">cases shown</span></div>
           </div>
@@ -143,7 +162,7 @@
       </div>
     </dialog>
 
-    <script src="cases-data.js?v=20260827-4"></script>
-    <script src="app.js?v=20260827-4"></script>
+    <script src="cases-data.js?v=20260827-5"></script>
+    <script src="app.js?v=20260827-5"></script>
   </body>
 </html>

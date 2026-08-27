@@ -54,6 +54,13 @@
     projected_bbox_overcoverage: "3D 投影框覆盖范围过大",
     visible_bbox_not_contained: "可见框未被完整包含",
     "visible_bbox_not_contained+projected_bbox_overcoverage": "可见框未被包含且 3D 投影框覆盖过大",
+    iou_review: "IoU 边界样本，需人工确认",
+    center_review: "中心偏差边界样本，需人工确认",
+    visible_containment_review: "可见区域包含率边界样本，需人工确认",
+    visible_bbox_containment_review: "可见框包含率边界样本，需人工确认",
+    projected_bbox_overcoverage_review: "3D 投影框覆盖偏大，需人工确认",
+    shape_scale_plausibility_review: "形状 / 尺度合理性需人工确认",
+    human_review: "需要人工确认",
   };
 
   const tagChinese = {
@@ -61,6 +68,7 @@
     filtered: "已过滤",
     deleted: "已删除",
     excluded: "已排除",
+    review: "待人工确认",
   };
 
   const metricChinese = {
@@ -113,6 +121,15 @@
     validCountLabel: document.querySelector("#valid-count-label"),
     validExplainer: document.querySelector("#valid-explainer"),
     validGrid: document.querySelector("#valid-grid"),
+    reviewKicker: document.querySelector("#review-kicker"),
+    reviewTitle: document.querySelector("#review-title"),
+    reviewCountLabel: document.querySelector("#review-count-label"),
+    reviewExplainer: document.querySelector("#review-explainer"),
+    reviewGrid: document.querySelector("#review-grid"),
+    reviewCount: document.querySelector("#review-count"),
+    reviewEmpty: document.querySelector("#review-empty"),
+    reviewEmptyTitle: document.querySelector("#review-empty-title"),
+    reviewEmptyMessage: document.querySelector("#review-empty-message"),
     errorKicker: document.querySelector("#error-kicker"),
     errorTitle: document.querySelector("#error-title"),
     errorCountLabel: document.querySelector("#error-count-label"),
@@ -188,7 +205,10 @@
   }
 
   function localizedReason(reason) {
-    return localized(reason, reasonChinese[reason]);
+    const parts = String(reason).split(", ");
+    if (parts.length === 1) return localized(reason, reasonChinese[reason]);
+    const chinese = parts.map((part) => reasonChinese[part] || part).join("，");
+    return localized(reason, chinese);
   }
 
   function localizedTag(tag) {
@@ -211,7 +231,7 @@
     const staticCopy = [
       [elements.heroEyebrow, "SPATIALENCODER · DATA QUALITY", "SPATIALENCODER · 数据质量"],
       [elements.pageTitle, "Dataset QA Gallery", "数据集质量验证图库"],
-      [elements.heroIntro, "Browse retained training examples and confirmed errors by dataset. Every visualization uses the same color convention:", "按数据集查看保留的训练样本和已确认错误。所有可视化使用相同的颜色约定："],
+      [elements.heroIntro, "Browse no-review, human-review, and filtered cases by dataset. Every visualization uses the same color convention:", "按数据集查看无需人工确认、需要人工确认和已过滤的样本。所有可视化使用相同的颜色约定："],
       [elements.legend2d, "2D box", "2D 框"],
       [elements.legend3d, "projected 3D cuboid", "投影 3D 长方体"],
       [elements.auditLabel, "FULL RE-AUDIT", "全量复审"],
@@ -226,15 +246,20 @@
       [elements.thFiltered, "Filtered errors", "已过滤错误"],
       [elements.thErrorRate, "Error rate", "错误占比"],
       [elements.thCurrentHard, "Current Hard", "当前 Hard"],
-      [elements.thGallery, "Gallery", "网站展示"],
+      [elements.thGallery, "Gallery (No-review / Review / Filtered)", "网站展示（无需复核 / 人工复核 / 已过滤）"],
       [elements.thStatus, "Status", "状态"],
       [elements.navSelectLabel, "SELECT DATASET", "选择数据集"],
-      [elements.acceptedKicker, "ACCEPTED", "已接受"],
-      [elements.validTitle, "Accepted / training-ready cases", "有效 / 可用于训练的 case"],
+      [elements.acceptedKicker, "NO HUMAN REVIEW NEEDED", "无需人工确认"],
+      [elements.validTitle, "Cases ready for use", "可直接使用的 case"],
       [elements.validCountLabel, "cases shown", "展示样本"],
-      [elements.validExplainer, "Random retained examples that pass the current dataset-specific hard checks for geometry, projection, scale, and visibility.", "随机保留样本；通过当前数据集专用的几何、投影、尺度与可见性 hard checks。"],
-      [elements.errorKicker, "CONFIRMED ERROR", "已确认错误"],
-      [elements.errorTitle, "Confirmed / filtered error cases", "确认错误 / 已过滤的 case"],
+      [elements.validExplainer, "Retained examples that pass the current dataset-specific checks without triggering an automatic or manual review concern.", "通过当前数据集专用检查，且未触发自动或人工复核疑点的保留样本。"],
+      [elements.reviewKicker, "NEEDS HUMAN REVIEW", "需要人工确认"],
+      [elements.reviewTitle, "Ambiguous cases for manual verification", "需要人工核验的边界样本"],
+      [elements.reviewCountLabel, "cases shown", "展示样本"],
+      [elements.reviewExplainer, "Borderline geometry, projection, scale, or visibility candidates are shown separately. They are not counted as confirmed errors unless a reviewer rejects them.", "单独展示几何、投影、尺度或可见性方面的边界样本；除非人工拒绝，否则不计为确认错误。"],
+      [elements.reviewEmptyTitle, "No human-review cases", "没有待人工确认样本"],
+      [elements.errorKicker, "FILTERED", "已过滤"],
+      [elements.errorTitle, "Confirmed filtered cases", "已确认并过滤的 case"],
       [elements.errorCountLabel, "cases shown", "展示样本"],
       [elements.emptyTitle, "No confirmed error cases", "没有确认错误样本"],
       [elements.footerLabel, "SpatialEncoder dataset QA", "SpatialEncoder 数据集质量验证"],
@@ -264,8 +289,8 @@
             <td class="numeric">${formatNumber(dataset.filtered)}</td>
             <td class="numeric">${formatRate(dataset.filteredRate)}</td>
             <td class="numeric zero-value">${dataset.currentHard}</td>
-            <td class="numeric">${dataset.validCases.length} / ${dataset.errorCases.length}</td>
-            <td><span class="table-status">${localized("clean", "已清理", true)}</span></td>
+            <td class="numeric">${dataset.validCases.length} / ${dataset.reviewCases.length} / ${dataset.errorCases.length}</td>
+            <td><span class="table-status">${localized("audited", "已审查", true)}</span></td>
           </tr>`,
       )
       .join("");
@@ -336,6 +361,7 @@
     const isVideo = dataset.dataType === "Video";
     elements.facts.innerHTML = [
       [isVideo ? "frames" : "images", isVideo ? "帧数" : "图像数", formatNumber(dataset.samples)],
+      ["needs review", "待人工确认", formatNumber(dataset.review)],
       ["filtered", "已过滤", formatNumber(dataset.filtered)],
       ["current hard", "当前 hard", dataset.currentHard],
     ]
@@ -362,13 +388,23 @@
     const defaultErrorExplainerChinese = "仅展示已经确认并过滤、排除或删除的错误，不把需要人工确认的样本或旧规则 false positive 作为错误展示。";
 
     elements.title.textContent = dataset.name;
-    elements.datasetStatus.innerHTML = localized("Clean after filtering", "过滤后已清理", true);
+    elements.datasetStatus.innerHTML = localized("Audited · review separated", "已审查 · 复核样本已分离", true);
     elements.description.innerHTML = localized(englishDescription, chineseDescription);
     elements.validCount.textContent = dataset.validCases.length;
+    elements.reviewCount.textContent = dataset.reviewCases.length;
     elements.errorCount.textContent = dataset.errorCases.length;
     renderFacts(dataset);
     renderCards(elements.validGrid, dataset.validCases, "valid");
+    renderCards(elements.reviewGrid, dataset.reviewCases, "review");
     renderCards(elements.errorGrid, dataset.errorCases, "error");
+
+    const hasReviewCases = dataset.reviewCases.length > 0;
+    elements.reviewGrid.hidden = !hasReviewCases;
+    elements.reviewEmpty.hidden = hasReviewCases;
+    elements.reviewEmptyMessage.innerHTML = localized(
+      "No cases in the current audit require human verification.",
+      "当前审查中没有需要人工确认的样本。",
+    );
 
     const hasErrors = dataset.errorCases.length > 0;
     elements.errorGrid.hidden = !hasErrors;
@@ -402,6 +438,7 @@
     elements.lightboxImage.alt = `2D and projected 3D box comparison for ${caseData.title}`;
     elements.lightboxTag.innerHTML = localizedTag(caseData.tag);
     elements.lightboxTag.classList.toggle("error", kind === "error");
+    elements.lightboxTag.classList.toggle("review", kind === "review");
     elements.lightboxTitle.textContent = caseData.title;
     elements.lightboxSubtitle.innerHTML = `${caseData.subtitle} · ${localizedReason(caseData.reason)}`;
     elements.lightboxMetrics.innerHTML = visibleMetrics(caseData.metrics)

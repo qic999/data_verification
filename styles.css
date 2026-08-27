@@ -246,6 +246,10 @@ main {
   color: var(--red);
 }
 
+.section-kicker.review {
+  color: var(--amber);
+}
+
 .section-kicker.valid {
   color: var(--mint);
 }
@@ -456,7 +460,7 @@ td:first-child {
 
 .dataset-facts {
   display: grid;
-  grid-template-columns: repeat(3, minmax(90px, 1fr));
+  grid-template-columns: repeat(4, minmax(90px, 1fr));
   gap: 8px;
 }
 
@@ -493,6 +497,10 @@ td:first-child {
   background: linear-gradient(165deg, rgba(41, 25, 24, 0.9), rgba(17, 15, 14, 0.88));
 }
 
+.case-section.review-section {
+  background: linear-gradient(165deg, rgba(44, 36, 20, 0.9), rgba(18, 17, 13, 0.88));
+}
+
 .section-count {
   display: flex;
   align-items: baseline;
@@ -513,6 +521,10 @@ td:first-child {
 
 .section-count.danger {
   color: var(--red);
+}
+
+.section-count.review {
+  color: var(--amber);
 }
 
 .section-explainer {
@@ -550,6 +562,10 @@ td:first-child {
 
 .error-section .case-card:hover {
   border-color: rgba(255, 111, 104, 0.38);
+}
+
+.review-section .case-card:hover {
+  border-color: rgba(255, 200, 103, 0.42);
 }
 
 .case-image-button {
@@ -622,6 +638,12 @@ td:first-child {
 dialog .case-tag.error {
   background: var(--red-soft);
   color: #ffaba6;
+}
+
+.review-section .case-tag,
+dialog .case-tag.review {
+  background: rgba(255, 200, 103, 0.13);
+  color: #ffdda0;
 }
 
 .case-number {
@@ -715,6 +737,17 @@ dialog .case-tag.error {
   color: var(--muted);
   font-size: 13px;
   line-height: 1.65;
+}
+
+.review-section .empty-state {
+  border-color: rgba(255, 200, 103, 0.28);
+  background: rgba(255, 200, 103, 0.035);
+}
+
+.review-section .empty-icon {
+  border-color: rgba(255, 200, 103, 0.32);
+  background: rgba(255, 200, 103, 0.1);
+  color: var(--amber);
 }
 
 footer {
@@ -889,6 +922,7 @@ dialog::backdrop {
 
   .dataset-facts {
     width: 100%;
+    grid-template-columns: repeat(2, minmax(90px, 1fr));
   }
 
   .fact {

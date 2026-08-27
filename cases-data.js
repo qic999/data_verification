@@ -17,27 +17,10 @@ window.DATASET_QA = {
       "filteredRate": 7.379028370478931e-05,
       "validCases": [
         {
-          "id": "obj365_train_000000709536__img000707540 / frame 0",
-          "title": "Case 01 · obj365_train_000000709536__img000707540",
-          "subtitle": "train-json/train_synthetic/obj365_train_000000709536__img000707540.json",
-          "image": "assets/wilddet3d/valid/01.webp",
-          "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
-          "metrics": {
-            "objects": 3,
-            "medianIoU": 0.665,
-            "centerError": 0.0056,
-            "depthRangeM": [
-              5.539475440979004,
-              6.980785846710205
-            ]
-          }
-        },
-        {
           "id": "v3det_train_000000182411__img000164232 / frame 0",
-          "title": "Case 02 · v3det_train_000000182411__img000164232",
+          "title": "Case 01 · v3det_train_000000182411__img000164232",
           "subtitle": "train-json/v3det_synthetic/v3det_train_000000182411__img000164232.json",
-          "image": "assets/wilddet3d/valid/02.webp",
+          "image": "assets/wilddet3d/valid/01.webp",
           "tag": "accepted",
           "reason": "Passed the current dataset-specific hard checks",
           "metrics": {
@@ -51,27 +34,10 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": "obj365_train_000000181290__img000063640 / frame 0",
-          "title": "Case 03 · obj365_train_000000181290__img000063640",
-          "subtitle": "train-json/train_synthetic/obj365_train_000000181290__img000063640.json",
-          "image": "assets/wilddet3d/valid/03.webp",
-          "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
-          "metrics": {
-            "objects": 1,
-            "medianIoU": 0.584,
-            "centerError": 0.0512,
-            "depthRangeM": [
-              3.9418113231658936,
-              3.9418113231658936
-            ]
-          }
-        },
-        {
           "id": "obj365_train_000000318028__img000546644 / frame 0",
-          "title": "Case 04 · obj365_train_000000318028__img000546644",
+          "title": "Case 02 · obj365_train_000000318028__img000546644",
           "subtitle": "train-json/train_synthetic/obj365_train_000000318028__img000546644.json",
-          "image": "assets/wilddet3d/valid/04.webp",
+          "image": "assets/wilddet3d/valid/02.webp",
           "tag": "accepted",
           "reason": "Passed the current dataset-specific hard checks",
           "metrics": {
@@ -86,9 +52,9 @@ window.DATASET_QA = {
         },
         {
           "id": "obj365_train_000000375615__img000508905 / frame 0",
-          "title": "Case 05 · obj365_train_000000375615__img000508905",
+          "title": "Case 03 · obj365_train_000000375615__img000508905",
           "subtitle": "train-json/train_synthetic/obj365_train_000000375615__img000508905.json",
-          "image": "assets/wilddet3d/valid/05.webp",
+          "image": "assets/wilddet3d/valid/03.webp",
           "tag": "accepted",
           "reason": "Passed the current dataset-specific hard checks",
           "metrics": {
@@ -103,9 +69,9 @@ window.DATASET_QA = {
         },
         {
           "id": "obj365_train_000000239142__img000286440 / frame 0",
-          "title": "Case 06 · obj365_train_000000239142__img000286440",
+          "title": "Case 04 · obj365_train_000000239142__img000286440",
           "subtitle": "train-json/train_synthetic/obj365_train_000000239142__img000286440.json",
-          "image": "assets/wilddet3d/valid/06.webp",
+          "image": "assets/wilddet3d/valid/04.webp",
           "tag": "accepted",
           "reason": "Passed the current dataset-specific hard checks",
           "metrics": {
@@ -116,6 +82,119 @@ window.DATASET_QA = {
               9.662752151489258,
               10.044452667236328
             ]
+          }
+        },
+        {
+          "id": "coco_train_000000466742__img000045118 / frame 0",
+          "title": "Case 05 · coco_train_000000466742__img000045118",
+          "subtitle": "train-json/train_human_only/coco_train_000000466742__img000045118.json",
+          "image": "assets/wilddet3d/valid/05.webp",
+          "tag": "accepted",
+          "reason": "Passed the current dataset-specific hard checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.711,
+            "centerError": 0.0192,
+            "depthRangeM": [
+              1.8817307949066162,
+              1.8817307949066162
+            ]
+          }
+        },
+        {
+          "id": "coco_train_000000303236__img000037167 / frame 0",
+          "title": "Case 06 · coco_train_000000303236__img000037167",
+          "subtitle": "train-json/train_human_only/coco_train_000000303236__img000037167.json",
+          "image": "assets/wilddet3d/valid/06.webp",
+          "tag": "accepted",
+          "reason": "Passed the current dataset-specific hard checks",
+          "metrics": {
+            "objects": 3,
+            "medianIoU": 0.752,
+            "centerError": 0.0059,
+            "depthRangeM": [
+              18.345260620117188,
+              29.768905639648438
+            ]
+          }
+        }
+      ],
+      "reviewCases": [
+        {
+          "id": "obj365_train_000000709536__img000707540 / frame 0",
+          "title": "bed · multi-object scene",
+          "subtitle": "train-json/train_synthetic/obj365_train_000000709536__img000707540.json",
+          "image": "assets/wilddet3d/review/01.webp",
+          "tag": "review",
+          "reason": "shape_scale_plausibility_review",
+          "metrics": {
+            "objects": 3,
+            "medianIoU": 0.665,
+            "centerError": 0.0056,
+            "depthRangeM": [
+              5.539475440979004,
+              6.980785846710205
+            ]
+          }
+        },
+        {
+          "id": "ann_956862",
+          "title": "hat · ann 956862",
+          "subtitle": "train_synthetic / image 66574",
+          "image": "assets/wilddet3d/review/02.webp",
+          "tag": "review",
+          "reason": "iou_review",
+          "metrics": {
+            "IoU": 0.295,
+            "centerError": 0.0058
+          }
+        },
+        {
+          "id": "ann_5720681",
+          "title": "hat · ann 5720681",
+          "subtitle": "train_synthetic / image 412264",
+          "image": "assets/wilddet3d/review/03.webp",
+          "tag": "review",
+          "reason": "iou_review",
+          "metrics": {
+            "IoU": 0.376,
+            "centerError": 0.0019
+          }
+        },
+        {
+          "id": "ann_6272747",
+          "title": "telephone · ann 6272747",
+          "subtitle": "train_synthetic / image 452937",
+          "image": "assets/wilddet3d/review/04.webp",
+          "tag": "review",
+          "reason": "iou_review",
+          "metrics": {
+            "IoU": 0.391,
+            "centerError": 0.009
+          }
+        },
+        {
+          "id": "ann_6925545",
+          "title": "person · ann 6925545",
+          "subtitle": "train_synthetic / image 501981",
+          "image": "assets/wilddet3d/review/05.webp",
+          "tag": "review",
+          "reason": "center_review",
+          "metrics": {
+            "IoU": 0.497,
+            "centerError": 0.0624
+          }
+        },
+        {
+          "id": "ann_8950107",
+          "title": "chair · ann 8950107",
+          "subtitle": "train_synthetic / image 649192",
+          "image": "assets/wilddet3d/review/06.webp",
+          "tag": "review",
+          "reason": "center_review",
+          "metrics": {
+            "IoU": 0.628,
+            "centerError": 0.0697
           }
         }
       ],
@@ -312,6 +391,7 @@ window.DATASET_QA = {
           }
         }
       ],
+      "reviewCases": [],
       "errorCases": [
         {
           "id": "ann_636186",
@@ -507,6 +587,80 @@ window.DATASET_QA = {
           }
         }
       ],
+      "reviewCases": [
+        {
+          "id": "pix3d_00219 / frame 0",
+          "title": "bed · ann_219",
+          "subtitle": "train-json/bed/00219.json",
+          "image": "assets/pix3d/review/01.webp",
+          "tag": "review",
+          "reason": "center_review",
+          "metrics": {
+            "IoU": 0.819,
+            "centerError": 0.0583
+          }
+        },
+        {
+          "id": "pix3d_01993 / frame 0",
+          "title": "chair · ann_1993",
+          "subtitle": "train-json/chair/01993.json",
+          "image": "assets/pix3d/review/02.webp",
+          "tag": "review",
+          "reason": "center_review",
+          "metrics": {
+            "IoU": 0.607,
+            "centerError": 0.0595
+          }
+        },
+        {
+          "id": "pix3d_02597 / frame 0",
+          "title": "chair · ann_2597",
+          "subtitle": "train-json/chair/02597.json",
+          "image": "assets/pix3d/review/03.webp",
+          "tag": "review",
+          "reason": "center_review",
+          "metrics": {
+            "IoU": 0.734,
+            "centerError": 0.0614
+          }
+        },
+        {
+          "id": "pix3d_04648 / frame 0",
+          "title": "chair · ann_4648",
+          "subtitle": "train-json/chair/04648.json",
+          "image": "assets/pix3d/review/04.webp",
+          "tag": "review",
+          "reason": "iou_review",
+          "metrics": {
+            "IoU": 0.38,
+            "centerError": 0.0299
+          }
+        },
+        {
+          "id": "pix3d_05384 / frame 0",
+          "title": "desk · ann_5384",
+          "subtitle": "train-json/desk/05384.json",
+          "image": "assets/pix3d/review/05.webp",
+          "tag": "review",
+          "reason": "center_review",
+          "metrics": {
+            "IoU": 0.685,
+            "centerError": 0.0891
+          }
+        },
+        {
+          "id": "pix3d_09425 / frame 0",
+          "title": "table · ann_9425",
+          "subtitle": "train-json/table/09425.json",
+          "image": "assets/pix3d/review/06.webp",
+          "tag": "review",
+          "reason": "center_review",
+          "metrics": {
+            "IoU": 0.55,
+            "centerError": 0.0519
+          }
+        }
+      ],
       "errorCases": [
         {
           "id": "pix3d_01506",
@@ -661,6 +815,92 @@ window.DATASET_QA = {
               1.6194429397583008,
               1.6194429397583008
             ]
+          }
+        }
+      ],
+      "reviewCases": [
+        {
+          "id": "structured3d_scene_00906_room_656084 / frame 1",
+          "title": "window · instance_246",
+          "subtitle": "train-json/scene_00906/room_656084.json",
+          "image": "assets/structured3d/review/01.webp",
+          "tag": "review",
+          "reason": "visible_containment_review",
+          "metrics": {
+            "IoU": 1.0,
+            "centerError": 0.0,
+            "visibleContainment": 0.811,
+            "maskContainment": 0.502
+          }
+        },
+        {
+          "id": "structured3d_scene_00514_room_5961 / frame 4",
+          "title": "window · instance_194",
+          "subtitle": "train-json/scene_00514/room_5961.json",
+          "image": "assets/structured3d/review/02.webp",
+          "tag": "review",
+          "reason": "visible_containment_review",
+          "metrics": {
+            "IoU": 1.0,
+            "centerError": 0.0,
+            "visibleContainment": 0.64,
+            "maskContainment": 0.636
+          }
+        },
+        {
+          "id": "structured3d_scene_00761_room_6895 / frame 0",
+          "title": "lamp · instance_17",
+          "subtitle": "train-json/scene_00761/room_6895.json",
+          "image": "assets/structured3d/review/03.webp",
+          "tag": "review",
+          "reason": "visible_containment_review",
+          "metrics": {
+            "IoU": 1.0,
+            "centerError": 0.0,
+            "visibleContainment": 0.719,
+            "maskContainment": 0.727
+          }
+        },
+        {
+          "id": "structured3d_scene_02064_room_953193 / frame 4",
+          "title": "bed · instance_21",
+          "subtitle": "train-json/scene_02064/room_953193.json",
+          "image": "assets/structured3d/review/04.webp",
+          "tag": "review",
+          "reason": "visible_containment_review",
+          "metrics": {
+            "IoU": 1.0,
+            "centerError": 0.0,
+            "visibleContainment": 0.779,
+            "maskContainment": 0.829
+          }
+        },
+        {
+          "id": "structured3d_scene_02120_room_1452 / frame 0",
+          "title": "door · instance_20",
+          "subtitle": "train-json/scene_02120/room_1452.json",
+          "image": "assets/structured3d/review/05.webp",
+          "tag": "review",
+          "reason": "visible_containment_review",
+          "metrics": {
+            "IoU": 1.0,
+            "centerError": 0.0,
+            "visibleContainment": 0.825,
+            "maskContainment": 0.869
+          }
+        },
+        {
+          "id": "structured3d_scene_01129_room_296 / frame 1",
+          "title": "desk · instance_13",
+          "subtitle": "train-json/scene_01129/room_296.json",
+          "image": "assets/structured3d/review/06.webp",
+          "tag": "review",
+          "reason": "visible_containment_review",
+          "metrics": {
+            "IoU": 1.0,
+            "centerError": 0.0,
+            "visibleContainment": 0.894,
+            "maskContainment": 0.898
           }
         }
       ],
@@ -857,6 +1097,80 @@ window.DATASET_QA = {
           }
         }
       ],
+      "reviewCases": [
+        {
+          "id": "3dfront_41053719-a949-4424-841b-a29c5d6a079a_Bedroom-8345 / frame 0000",
+          "title": "cabinet shelf desk · Cabinet_Shelf_Desk_9b2c3161-c6d7-4090-bcbc-6389e6c44177_2",
+          "subtitle": "train-json/train/41053719-a949-4424-841b-a29c5d6a079a/Bedroom-8345.json",
+          "image": "assets/3dfront/review/01.webp",
+          "tag": "review",
+          "reason": "iou_review",
+          "metrics": {
+            "IoU": 0.388,
+            "centerError": 0.0242
+          }
+        },
+        {
+          "id": "3dfront_5d31ce38-c87f-484b-85d4-952ba06bd13c_SecondBedroom-1435 / frame 0000",
+          "title": "lighting · Lighting_2bcd3a77-71d3-4353-9812-7ade8d6ca625_3",
+          "subtitle": "train-json/train/5d31ce38-c87f-484b-85d4-952ba06bd13c/SecondBedroom-1435.json",
+          "image": "assets/3dfront/review/02.webp",
+          "tag": "review",
+          "reason": "iou_review",
+          "metrics": {
+            "IoU": 0.32,
+            "centerError": 0.0273
+          }
+        },
+        {
+          "id": "3dfront_98643f2f-50e0-4d8a-ba94-2113d1b97a2b_MasterBedroom-514 / frame 0000",
+          "title": "lighting · Lighting_f9829fcd-7995-4c6b-b035-124e26f87e80_3",
+          "subtitle": "train-json/train/98643f2f-50e0-4d8a-ba94-2113d1b97a2b/MasterBedroom-514.json",
+          "image": "assets/3dfront/review/03.webp",
+          "tag": "review",
+          "reason": "center_review",
+          "metrics": {
+            "IoU": 0.466,
+            "centerError": 0.0559
+          }
+        },
+        {
+          "id": "3dfront_bb13762a-67b3-4957-be4e-f1b0878c9f87_Library-19691 / frame 0000",
+          "title": "cabinet shelf desk · Cabinet_Shelf_Desk_bbd0f2af-7e6f-4a2a-bff5-0eb73c2fc7bd_1",
+          "subtitle": "train-json/train/bb13762a-67b3-4957-be4e-f1b0878c9f87/Library-19691.json",
+          "image": "assets/3dfront/review/04.webp",
+          "tag": "review",
+          "reason": "center_review",
+          "metrics": {
+            "IoU": 0.622,
+            "centerError": 0.0727
+          }
+        },
+        {
+          "id": "3dfront_c78845fd-ca3d-4984-a96f-9e7d33d9ae14_LivingRoom-10060 / frame 0000",
+          "title": "lighting · Lighting_f4865079-ed33-416b-9fa6-fab44c46658a_1",
+          "subtitle": "train-json/train/c78845fd-ca3d-4984-a96f-9e7d33d9ae14/LivingRoom-10060.json",
+          "image": "assets/3dfront/review/05.webp",
+          "tag": "review",
+          "reason": "iou_review",
+          "metrics": {
+            "IoU": 0.348,
+            "centerError": 0.0387
+          }
+        },
+        {
+          "id": "3dfront_d4016070-45f4-45f1-800c-b6147def05b4_SecondBedroom-1110 / frame 0000",
+          "title": "others · Others_4d4d646d-db1a-44e9-a33d-bcd531324e42_5",
+          "subtitle": "train-json/train/d4016070-45f4-45f1-800c-b6147def05b4/SecondBedroom-1110.json",
+          "image": "assets/3dfront/review/06.webp",
+          "tag": "review",
+          "reason": "iou_review",
+          "metrics": {
+            "IoU": 0.387,
+            "centerError": 0.0171
+          }
+        }
+      ],
       "errorCases": [],
       "emptyMessage": "No hard errors were confirmed in the current audit, so no fabricated error examples are shown."
     },
@@ -977,6 +1291,7 @@ window.DATASET_QA = {
           }
         }
       ],
+      "reviewCases": [],
       "errorCases": [],
       "emptyMessage": "The current audit has zero confirmed errors. All 4,596 candidates flagged by the old rule passed instance-mask and exact-projection verification and are valid data."
     },
@@ -1094,6 +1409,80 @@ window.DATASET_QA = {
               9.489777565002441,
               9.489777565002441
             ]
+          }
+        }
+      ],
+      "reviewCases": [
+        {
+          "id": "1-43511-11635 / frame 0192",
+          "title": "tape sticky cloth or paper · 1-43511-11635",
+          "subtitle": "before cleanup vs current clean geometry",
+          "image": "assets/uco3d/review/01.webp",
+          "tag": "review",
+          "reason": "visible_bbox_containment_review",
+          "metrics": {
+            "containment": 0.672,
+            "projectedPrecision": 1.0
+          }
+        },
+        {
+          "id": "128-44047-77125 / frame 0180",
+          "title": "toothbrush · 128-44047-77125",
+          "subtitle": "before cleanup vs current clean geometry",
+          "image": "assets/uco3d/review/02.webp",
+          "tag": "review",
+          "reason": "visible_bbox_containment_review",
+          "metrics": {
+            "containment": 0.886,
+            "projectedPrecision": 0.718
+          }
+        },
+        {
+          "id": "13-67867-14914 / frame 0074",
+          "title": "houseboat · 13-67867-14914",
+          "subtitle": "before cleanup vs current clean geometry",
+          "image": "assets/uco3d/review/03.webp",
+          "tag": "review",
+          "reason": "projected_bbox_overcoverage_review",
+          "metrics": {
+            "containment": 0.984,
+            "projectedPrecision": 0.408
+          }
+        },
+        {
+          "id": "2954-35588-59828 / frame 0080",
+          "title": "motorcycle · 2954-35588-59828",
+          "subtitle": "before cleanup vs current clean geometry",
+          "image": "assets/uco3d/review/04.webp",
+          "tag": "review",
+          "reason": "visible_bbox_containment_review",
+          "metrics": {
+            "containment": 0.75,
+            "projectedPrecision": 0.677
+          }
+        },
+        {
+          "id": "30789-56119-2497 / frame 0179",
+          "title": "carrot · 30789-56119-2497",
+          "subtitle": "before cleanup vs current clean geometry",
+          "image": "assets/uco3d/review/05.webp",
+          "tag": "review",
+          "reason": "visible_bbox_containment_review",
+          "metrics": {
+            "containment": 0.761,
+            "projectedPrecision": 1.0
+          }
+        },
+        {
+          "id": "42-63323-90699 / frame 0008",
+          "title": "shower head · 42-63323-90699",
+          "subtitle": "before cleanup vs current clean geometry",
+          "image": "assets/uco3d/review/06.webp",
+          "tag": "review",
+          "reason": "visible_bbox_containment_review",
+          "metrics": {
+            "containment": 0.88,
+            "projectedPrecision": 0.572
           }
         }
       ],
