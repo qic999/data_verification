@@ -19,4 +19,5 @@ old Kubric generic-rule candidates are intentionally not shown as errors because
 the mask and exact-projection recheck proved them valid.
 
 This repository contains only static website files and web-optimized QA images.
-Pushes to `main` are deployed automatically through GitHub Pages.
+Pushes to `main` are mirrored automatically to the GitHub Pages `gh-pages`
+branch.
