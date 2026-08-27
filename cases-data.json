@@ -1,10 +1,71 @@
 {
   "generatedAt": "2026-08-27",
   "auditDate": "2026-08-27",
-  "wilddet3dLoader": {
-    "source": "sam3/train/data/object_detection_dataset.py",
-    "sha256": "8099639f9d375dad51ce2d73e8bd5ada0b2610b16ad5aeeb36e2973423107421",
-    "visualizationsGeneratedAt": "2026-08-27T22:12:27.708939+00:00"
+  "assetVersion": "cdf0ac82af79",
+  "loaderProvenance": {
+    "wilddet3d": {
+      "loader": "ObjectDetectionDataset._load_frames",
+      "sources": [
+        "sam3/train/data/object_detection_dataset.py",
+        "sam3/train/data/ca1m_dataset.py"
+      ],
+      "sha256": "c6473a6a127b40835fd5ee64d387af5929a7510d5dbe154bd1ecab177cc7f10f",
+      "visualizationsGeneratedAt": "2026-08-27T22:44:33.765989+00:00"
+    },
+    "omni3d": {
+      "loader": "ObjectDetectionDataset._load_frames",
+      "sources": [
+        "sam3/train/data/object_detection_dataset.py",
+        "sam3/train/data/ca1m_dataset.py"
+      ],
+      "sha256": "c6473a6a127b40835fd5ee64d387af5929a7510d5dbe154bd1ecab177cc7f10f",
+      "visualizationsGeneratedAt": "2026-08-27T22:42:49.647389+00:00"
+    },
+    "pix3d": {
+      "loader": "ObjectDetectionDataset._load_frames",
+      "sources": [
+        "sam3/train/data/object_detection_dataset.py",
+        "sam3/train/data/ca1m_dataset.py"
+      ],
+      "sha256": "c6473a6a127b40835fd5ee64d387af5929a7510d5dbe154bd1ecab177cc7f10f",
+      "visualizationsGeneratedAt": "2026-08-27T22:43:10.616889+00:00"
+    },
+    "structured3d": {
+      "loader": "ObjectDetectionDataset._load_frames",
+      "sources": [
+        "sam3/train/data/object_detection_dataset.py",
+        "sam3/train/data/ca1m_dataset.py"
+      ],
+      "sha256": "c6473a6a127b40835fd5ee64d387af5929a7510d5dbe154bd1ecab177cc7f10f",
+      "visualizationsGeneratedAt": "2026-08-27T22:43:36.307183+00:00"
+    },
+    "3dfront": {
+      "loader": "ObjectDetectionDataset._load_frames",
+      "sources": [
+        "sam3/train/data/object_detection_dataset.py",
+        "sam3/train/data/ca1m_dataset.py"
+      ],
+      "sha256": "c6473a6a127b40835fd5ee64d387af5929a7510d5dbe154bd1ecab177cc7f10f",
+      "visualizationsGeneratedAt": "2026-08-27T22:42:05.937866+00:00"
+    },
+    "kubric": {
+      "loader": "ObjectDetectionDataset._load_frames",
+      "sources": [
+        "sam3/train/data/object_detection_dataset.py",
+        "sam3/train/data/ca1m_dataset.py"
+      ],
+      "sha256": "c6473a6a127b40835fd5ee64d387af5929a7510d5dbe154bd1ecab177cc7f10f",
+      "visualizationsGeneratedAt": "2026-08-27T22:42:35.725205+00:00"
+    },
+    "uco3d": {
+      "loader": "UCO3DDetectionDataset._load_clip",
+      "sources": [
+        "sam3/train/data/uco3d_dataset.py",
+        "sam3/train/data/ca1m_dataset.py"
+      ],
+      "sha256": "6d3d89bc9375f2475f56af68b2476fe26f98ffe6f018b2fafe001db2c9765171",
+      "visualizationsGeneratedAt": "2026-08-27T22:46:25.040133+00:00"
+    }
   },
   "datasets": [
     {
@@ -226,119 +287,6 @@
               0.8394914865493774
             ]
           }
-        },
-        {
-          "id": "coco_train_000000466742__img000045118 / frame 0",
-          "title": "Case 05 · coco_train_000000466742__img000045118",
-          "subtitle": "train-json/train_human_only/coco_train_000000466742__img000045118.json",
-          "image": "assets/wilddet3d/valid/05.webp",
-          "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
-          "metrics": {
-            "objects": 1,
-            "medianIoU": 0.711,
-            "centerError": 0.0192,
-            "depthRangeM": [
-              1.8817307949066162,
-              1.8817307949066162
-            ]
-          }
-        },
-        {
-          "id": "coco_train_000000303236__img000037167 / frame 0",
-          "title": "Case 06 · coco_train_000000303236__img000037167",
-          "subtitle": "train-json/train_human_only/coco_train_000000303236__img000037167.json",
-          "image": "assets/wilddet3d/valid/06.webp",
-          "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
-          "metrics": {
-            "objects": 3,
-            "medianIoU": 0.752,
-            "centerError": 0.0059,
-            "depthRangeM": [
-              18.345260620117188,
-              29.768905639648438
-            ]
-          }
-        }
-      ],
-      "reviewCases": [
-        {
-          "id": "obj365_train_000000709536__img000707540 / frame 0",
-          "title": "bed · multi-object scene",
-          "subtitle": "train-json/train_synthetic/obj365_train_000000709536__img000707540.json",
-          "image": "assets/wilddet3d/review/01.webp",
-          "tag": "review",
-          "reason": "shape_scale_plausibility_review",
-          "metrics": {
-            "objects": 3,
-            "medianIoU": 0.665,
-            "centerError": 0.0056,
-            "depthRangeM": [
-              5.539475440979004,
-              6.980785846710205
-            ]
-          }
-        },
-        {
-          "id": "ann_956862",
-          "title": "hat · ann 956862",
-          "subtitle": "train_synthetic / image 66574",
-          "image": "assets/wilddet3d/review/02.webp",
-          "tag": "review",
-          "reason": "iou_review",
-          "metrics": {
-            "IoU": 0.295,
-            "centerError": 0.0058
-          }
-        },
-        {
-          "id": "ann_5720681",
-          "title": "hat · ann 5720681",
-          "subtitle": "train_synthetic / image 412264",
-          "image": "assets/wilddet3d/review/03.webp",
-          "tag": "review",
-          "reason": "iou_review",
-          "metrics": {
-            "IoU": 0.376,
-            "centerError": 0.0019
-          }
-        },
-        {
-          "id": "ann_6272747",
-          "title": "telephone · ann 6272747",
-          "subtitle": "train_synthetic / image 452937",
-          "image": "assets/wilddet3d/review/04.webp",
-          "tag": "review",
-          "reason": "iou_review",
-          "metrics": {
-            "IoU": 0.391,
-            "centerError": 0.009
-          }
-        },
-        {
-          "id": "ann_6925545",
-          "title": "person · ann 6925545",
-          "subtitle": "train_synthetic / image 501981",
-          "image": "assets/wilddet3d/review/05.webp",
-          "tag": "review",
-          "reason": "center_review",
-          "metrics": {
-            "IoU": 0.497,
-            "centerError": 0.0624
-          }
-        },
-        {
-          "id": "ann_8950107",
-          "title": "chair · ann 8950107",
-          "subtitle": "train_synthetic / image 649192",
-          "image": "assets/wilddet3d/review/06.webp",
-          "tag": "review",
-          "reason": "center_review",
-          "metrics": {
-            "IoU": 0.628,
-            "centerError": 0.0697
-          }
         }
       ],
       "errorCases": [
@@ -432,84 +380,16 @@
       "filteredRate": 0.000145772777414158,
       "validCases": [
         {
-          "id": "000000164185 / frame 0",
-          "title": "Case 01 · 000000164185",
-          "subtitle": "train-json/SUNRGBD_train/000000164185.json",
+          "id": "000000073032 / frame 0",
+          "title": "Case 01 · 000000073032",
+          "subtitle": "train-json/Objectron_train/000000073032.json",
           "image": "assets/omni3d/valid/01.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
-          "metrics": {
-            "objects": 3,
-            "medianIoU": 0.429,
-            "centerError": 0.076,
-            "depthRangeM": [
-              1.3756364583969116,
-              3.187941074371338
-            ]
-          }
-        },
-        {
-          "id": "000000101164 / frame 0",
-          "title": "Case 02 · 000000101164",
-          "subtitle": "train-json/Hypersim_train/000000101164.json",
-          "image": "assets/omni3d/valid/02.webp",
-          "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
-          "metrics": {
-            "objects": 5,
-            "medianIoU": 0.387,
-            "centerError": 0.0281,
-            "depthRangeM": [
-              2.6385319232940674,
-              4.914353847503662
-            ]
-          }
-        },
-        {
-          "id": "000000069327 / frame 0",
-          "title": "Case 03 · 000000069327",
-          "subtitle": "train-json/Objectron_val/000000069327.json",
-          "image": "assets/omni3d/valid/03.webp",
-          "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 1,
-            "medianIoU": 0.705,
-            "centerError": 0.1055,
-            "depthRangeM": [
-              0.6068242788314819,
-              0.6068242788314819
-            ]
-          }
-        },
-        {
-          "id": "000000144266 / frame 0",
-          "title": "Case 04 · 000000144266",
-          "subtitle": "train-json/Hypersim_train/000000144266.json",
-          "image": "assets/omni3d/valid/04.webp",
-          "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
-          "metrics": {
-            "objects": 10,
-            "medianIoU": 0.5,
-            "centerError": 0.0241,
-            "depthRangeM": [
-              1.9145164489746094,
-              11.383858680725098
-            ]
-          }
-        },
-        {
-          "id": "000000073032 / frame 0",
-          "title": "Case 05 · 000000073032",
-          "subtitle": "train-json/Objectron_train/000000073032.json",
-          "image": "assets/omni3d/valid/05.webp",
-          "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
-          "metrics": {
-            "objects": 1,
-            "medianIoU": 0.684,
-            "centerError": 0.0072,
+            "medianIoU": 0.985,
+            "centerError": 0.0012,
             "depthRangeM": [
               1.045230507850647,
               1.045230507850647
@@ -517,19 +397,87 @@
           }
         },
         {
-          "id": "000000111002 / frame 0",
-          "title": "Case 06 · 000000111002",
-          "subtitle": "train-json/Hypersim_train/000000111002.json",
-          "image": "assets/omni3d/valid/06.webp",
+          "id": "000000220592 / frame 0",
+          "title": "Case 02 · 000000220592",
+          "subtitle": "train-json/ARKitScenes_train/000000220592.json",
+          "image": "assets/omni3d/valid/02.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 1,
-            "medianIoU": 0.031,
-            "centerError": 0.1272,
+            "medianIoU": 0.708,
+            "centerError": 0.014,
             "depthRangeM": [
-              3.066688060760498,
-              3.066688060760498
+              5.152228355407715,
+              5.152228355407715
+            ]
+          }
+        },
+        {
+          "id": "000000221979 / frame 0",
+          "title": "Case 03 · 000000221979",
+          "subtitle": "train-json/ARKitScenes_train/000000221979.json",
+          "image": "assets/omni3d/valid/03.webp",
+          "tag": "accepted",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.999,
+            "centerError": 0.0002,
+            "depthRangeM": [
+              1.9551739692687988,
+              1.9551739692687988
+            ]
+          }
+        },
+        {
+          "id": "000000008257 / frame 0",
+          "title": "Case 04 · 000000008257",
+          "subtitle": "train-json/nuScenes_train/000000008257.json",
+          "image": "assets/omni3d/valid/04.webp",
+          "tag": "accepted",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
+          "metrics": {
+            "objects": 4,
+            "medianIoU": 0.988,
+            "centerError": 0.0001,
+            "depthRangeM": [
+              19.659847259521484,
+              19.962377548217773
+            ]
+          }
+        },
+        {
+          "id": "000000204268 / frame 0",
+          "title": "Case 05 · 000000204268",
+          "subtitle": "train-json/ARKitScenes_train/000000204268.json",
+          "image": "assets/omni3d/valid/05.webp",
+          "tag": "accepted",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.994,
+            "centerError": 0.0002,
+            "depthRangeM": [
+              5.365348815917969,
+              5.365348815917969
+            ]
+          }
+        },
+        {
+          "id": "000000020963 / frame 0",
+          "title": "Case 06 · 000000020963",
+          "subtitle": "train-json/nuScenes_train/000000020963.json",
+          "image": "assets/omni3d/valid/06.webp",
+          "tag": "accepted",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
+          "metrics": {
+            "objects": 7,
+            "medianIoU": 0.988,
+            "centerError": 0.0001,
+            "depthRangeM": [
+              16.028663635253906,
+              33.33323287963867
             ]
           }
         }
@@ -633,7 +581,7 @@
           "subtitle": "train-json/bed/00684.json",
           "image": "assets/pix3d/valid/01.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 1,
             "medianIoU": 0.953,
@@ -650,7 +598,7 @@
           "subtitle": "train-json/table/09174.json",
           "image": "assets/pix3d/valid/02.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 1,
             "medianIoU": 0.869,
@@ -667,7 +615,7 @@
           "subtitle": "train-json/chair/01628.json",
           "image": "assets/pix3d/valid/03.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 1,
             "medianIoU": 0.858,
@@ -684,7 +632,7 @@
           "subtitle": "train-json/chair/02551.json",
           "image": "assets/pix3d/valid/04.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 1,
             "medianIoU": 0.857,
@@ -696,29 +644,12 @@
           }
         },
         {
-          "id": "08810 / frame 0",
-          "title": "Case 05 · 08810",
-          "subtitle": "train-json/table/08810.json",
+          "id": "08080 / frame 0",
+          "title": "Case 05 · 08080",
+          "subtitle": "train-json/table/08080.json",
           "image": "assets/pix3d/valid/05.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
-          "metrics": {
-            "objects": 1,
-            "medianIoU": 0.804,
-            "centerError": 0.0603,
-            "depthRangeM": [
-              1.7630702257156372,
-              1.7630702257156372
-            ]
-          }
-        },
-        {
-          "id": "08080 / frame 0",
-          "title": "Case 06 · 08080",
-          "subtitle": "train-json/table/08080.json",
-          "image": "assets/pix3d/valid/06.webp",
-          "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 1,
             "medianIoU": 0.985,
@@ -728,79 +659,126 @@
               4.498253345489502
             ]
           }
+        },
+        {
+          "id": "00608 / frame 0",
+          "title": "Case 06 · 00608",
+          "subtitle": "train-json/bed/00608.json",
+          "image": "assets/pix3d/valid/06.webp",
+          "tag": "accepted",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.897,
+            "centerError": 0.0125,
+            "depthRangeM": [
+              3.128694534301758,
+              3.128694534301758
+            ]
+          }
         }
       ],
       "reviewCases": [
         {
-          "id": "pix3d_00219 / frame 0",
+          "id": "00219 / frame 0",
           "title": "bed · ann_219",
           "subtitle": "train-json/bed/00219.json",
           "image": "assets/pix3d/review/01.webp",
           "tag": "review",
           "reason": "center_review",
           "metrics": {
+            "objects": 1,
             "IoU": 0.819,
-            "centerError": 0.0583
+            "centerError": 0.0688,
+            "depthRangeM": [
+              2.442176103591919,
+              2.442176103591919
+            ]
           }
         },
         {
-          "id": "pix3d_01993 / frame 0",
-          "title": "chair · ann_1993",
-          "subtitle": "train-json/chair/01993.json",
+          "id": "00253 / frame 0",
+          "title": "bed · ann_253",
+          "subtitle": "train-json/bed/00253.json",
           "image": "assets/pix3d/review/02.webp",
           "tag": "review",
           "reason": "center_review",
           "metrics": {
-            "IoU": 0.607,
-            "centerError": 0.0595
+            "objects": 1,
+            "IoU": 0.769,
+            "centerError": 0.065,
+            "depthRangeM": [
+              2.0900630950927734,
+              2.0900630950927734
+            ]
           }
         },
         {
-          "id": "pix3d_02597 / frame 0",
-          "title": "chair · ann_2597",
-          "subtitle": "train-json/chair/02597.json",
+          "id": "00270 / frame 0",
+          "title": "bed · ann_270",
+          "subtitle": "train-json/bed/00270.json",
           "image": "assets/pix3d/review/03.webp",
           "tag": "review",
           "reason": "center_review",
           "metrics": {
-            "IoU": 0.734,
-            "centerError": 0.0614
+            "objects": 1,
+            "IoU": 0.7,
+            "centerError": 0.1326,
+            "depthRangeM": [
+              1.8124480247497559,
+              1.8124480247497559
+            ]
           }
         },
         {
-          "id": "pix3d_04648 / frame 0",
-          "title": "chair · ann_4648",
-          "subtitle": "train-json/chair/04648.json",
+          "id": "00286 / frame 0",
+          "title": "bed · ann_286",
+          "subtitle": "train-json/bed/00286.json",
           "image": "assets/pix3d/review/04.webp",
           "tag": "review",
-          "reason": "iou_review",
+          "reason": "center_review",
           "metrics": {
-            "IoU": 0.38,
-            "centerError": 0.0299
+            "objects": 1,
+            "IoU": 0.728,
+            "centerError": 0.0792,
+            "depthRangeM": [
+              2.0843007564544678,
+              2.0843007564544678
+            ]
           }
         },
         {
-          "id": "pix3d_05384 / frame 0",
-          "title": "desk · ann_5384",
-          "subtitle": "train-json/desk/05384.json",
+          "id": "00388 / frame 0",
+          "title": "bed · ann_388",
+          "subtitle": "train-json/bed/00388.json",
           "image": "assets/pix3d/review/05.webp",
           "tag": "review",
           "reason": "center_review",
           "metrics": {
-            "IoU": 0.685,
-            "centerError": 0.0891
+            "objects": 1,
+            "IoU": 0.347,
+            "centerError": 0.2669,
+            "depthRangeM": [
+              1.7839901447296143,
+              1.7839901447296143
+            ]
           }
         },
         {
-          "id": "pix3d_09425 / frame 0",
-          "title": "table · ann_9425",
-          "subtitle": "train-json/table/09425.json",
+          "id": "00521 / frame 0",
+          "title": "bed · ann_521",
+          "subtitle": "train-json/bed/00521.json",
           "image": "assets/pix3d/review/06.webp",
           "tag": "review",
           "reason": "center_review",
           "metrics": {
-            "IoU": 0.55,
-            "centerError": 0.0519
+            "objects": 1,
+            "IoU": 0.324,
+            "centerError": 0.18,
+            "depthRangeM": [
+              2.6538233757019043,
+              2.6538233757019043
+            ]
           }
         }
       ],
@@ -859,33 +837,16 @@
       "filteredRate": 0.0003248463912339013,
       "validCases": [
         {
-          "id": "room_7109 / frame 1",
-          "title": "Case 01 · room_7109",
-          "subtitle": "train-json/scene_00790/room_7109.json",
+          "id": "room_1413026372 / frame 2",
+          "title": "Case 01 · room_1413026372",
+          "subtitle": "train-json/scene_00355/room_1413026372.json",
           "image": "assets/structured3d/valid/01.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
-          "metrics": {
-            "objects": 1,
-            "medianIoU": 0.44,
-            "centerError": 0.0542,
-            "depthRangeM": [
-              2.4684078693389893,
-              2.4684078693389893
-            ]
-          }
-        },
-        {
-          "id": "room_1413026372 / frame 2",
-          "title": "Case 02 · room_1413026372",
-          "subtitle": "train-json/scene_00355/room_1413026372.json",
-          "image": "assets/structured3d/valid/02.webp",
-          "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 2,
-            "medianIoU": 0.771,
-            "centerError": 0.0026,
+            "medianIoU": 0.77,
+            "centerError": 0.0034,
             "depthRangeM": [
               2.9463376998901367,
               3.394118547439575
@@ -893,157 +854,192 @@
           }
         },
         {
-          "id": "room_236 / frame 2",
-          "title": "Case 03 · room_236",
-          "subtitle": "train-json/scene_00100/room_236.json",
+          "id": "room_369189 / frame 0",
+          "title": "Case 02 · room_369189",
+          "subtitle": "train-json/scene_00044/room_369189.json",
+          "image": "assets/structured3d/valid/02.webp",
+          "tag": "accepted",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
+          "metrics": {
+            "objects": 3,
+            "medianIoU": 0.812,
+            "centerError": 0.0136,
+            "depthRangeM": [
+              2.5739617347717285,
+              3.2470836639404297
+            ]
+          }
+        },
+        {
+          "id": "room_1687 / frame 2",
+          "title": "Case 03 · room_1687",
+          "subtitle": "train-json/scene_03234/room_1687.json",
           "image": "assets/structured3d/valid/03.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
-          "metrics": {
-            "objects": 2,
-            "medianIoU": 0.617,
-            "centerError": 0.099,
-            "depthRangeM": [
-              2.3463594913482666,
-              3.12369704246521
-            ]
-          }
-        },
-        {
-          "id": "room_875421 / frame 0",
-          "title": "Case 04 · room_875421",
-          "subtitle": "train-json/scene_01079/room_875421.json",
-          "image": "assets/structured3d/valid/04.webp",
-          "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
-          "metrics": {
-            "objects": 2,
-            "medianIoU": 0.631,
-            "centerError": 0.0465,
-            "depthRangeM": [
-              2.014836072921753,
-              4.073915481567383
-            ]
-          }
-        },
-        {
-          "id": "room_401703 / frame 1",
-          "title": "Case 05 · room_401703",
-          "subtitle": "train-json/scene_02810/room_401703.json",
-          "image": "assets/structured3d/valid/05.webp",
-          "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
-          "metrics": {
-            "objects": 2,
-            "medianIoU": 0.54,
-            "centerError": 0.1456,
-            "depthRangeM": [
-              2.6264524459838867,
-              3.292895555496216
-            ]
-          }
-        },
-        {
-          "id": "room_796547 / frame 4",
-          "title": "Case 06 · room_796547",
-          "subtitle": "train-json/scene_02372/room_796547.json",
-          "image": "assets/structured3d/valid/06.webp",
-          "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 1,
-            "medianIoU": 0.304,
-            "centerError": 0.2806,
+            "medianIoU": 0.902,
+            "centerError": 0.0031,
             "depthRangeM": [
-              1.6194429397583008,
-              1.6194429397583008
+              4.8965253829956055,
+              4.8965253829956055
+            ]
+          }
+        },
+        {
+          "id": "room_449237 / frame 0",
+          "title": "Case 04 · room_449237",
+          "subtitle": "train-json/scene_02885/room_449237.json",
+          "image": "assets/structured3d/valid/04.webp",
+          "tag": "accepted",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.876,
+            "centerError": 0.01,
+            "depthRangeM": [
+              1.4239654541015625,
+              1.4239654541015625
+            ]
+          }
+        },
+        {
+          "id": "room_373118 / frame 4",
+          "title": "Case 05 · room_373118",
+          "subtitle": "train-json/scene_03129/room_373118.json",
+          "image": "assets/structured3d/valid/05.webp",
+          "tag": "accepted",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
+          "metrics": {
+            "objects": 3,
+            "medianIoU": 0.791,
+            "centerError": 0.0124,
+            "depthRangeM": [
+              2.381521701812744,
+              4.156519889831543
+            ]
+          }
+        },
+        {
+          "id": "room_1295 / frame 4",
+          "title": "Case 06 · room_1295",
+          "subtitle": "train-json/scene_01880/room_1295.json",
+          "image": "assets/structured3d/valid/06.webp",
+          "tag": "accepted",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.947,
+            "centerError": 0.0038,
+            "depthRangeM": [
+              4.928798675537109,
+              4.928798675537109
             ]
           }
         }
       ],
       "reviewCases": [
         {
-          "id": "structured3d_scene_00906_room_656084 / frame 1",
-          "title": "window · instance_246",
-          "subtitle": "train-json/scene_00906/room_656084.json",
+          "id": "room_532 / frame 0",
+          "title": "cabinet · instance_69",
+          "subtitle": "train-json/scene_00153/room_532.json",
           "image": "assets/structured3d/review/01.webp",
           "tag": "review",
           "reason": "visible_containment_review",
           "metrics": {
-            "IoU": 1.0,
-            "centerError": 0.0,
-            "visibleContainment": 0.811,
-            "maskContainment": 0.502
+            "objects": 15,
+            "IoU": 0.527,
+            "centerError": 0.0336,
+            "depthRangeM": [
+              0.8663973808288574,
+              5.75596284866333
+            ]
           }
         },
         {
-          "id": "structured3d_scene_00514_room_5961 / frame 4",
-          "title": "window · instance_194",
-          "subtitle": "train-json/scene_00514/room_5961.json",
+          "id": "room_534 / frame 2",
+          "title": "window · instance_53",
+          "subtitle": "train-json/scene_00169/room_534.json",
           "image": "assets/structured3d/review/02.webp",
           "tag": "review",
           "reason": "visible_containment_review",
           "metrics": {
-            "IoU": 1.0,
-            "centerError": 0.0,
-            "visibleContainment": 0.64,
-            "maskContainment": 0.636
+            "objects": 1,
+            "IoU": 0.427,
+            "centerError": 0.0355,
+            "depthRangeM": [
+              4.220220565795898,
+              4.220220565795898
+            ]
           }
         },
         {
-          "id": "structured3d_scene_00761_room_6895 / frame 0",
-          "title": "lamp · instance_17",
-          "subtitle": "train-json/scene_00761/room_6895.json",
+          "id": "room_436 / frame 0",
+          "title": "otherprop · instance_189",
+          "subtitle": "train-json/scene_00214/room_436.json",
           "image": "assets/structured3d/review/03.webp",
           "tag": "review",
           "reason": "visible_containment_review",
           "metrics": {
-            "IoU": 1.0,
-            "centerError": 0.0,
-            "visibleContainment": 0.719,
-            "maskContainment": 0.727
+            "objects": 2,
+            "IoU": 0.725,
+            "centerError": 0.0121,
+            "depthRangeM": [
+              1.0289283990859985,
+              1.332613229751587
+            ]
           }
         },
         {
-          "id": "structured3d_scene_02064_room_953193 / frame 4",
-          "title": "bed · instance_21",
-          "subtitle": "train-json/scene_02064/room_953193.json",
+          "id": "room_12995 / frame 2",
+          "title": "window · instance_90",
+          "subtitle": "train-json/scene_00230/room_12995.json",
           "image": "assets/structured3d/review/04.webp",
           "tag": "review",
           "reason": "visible_containment_review",
           "metrics": {
-            "IoU": 1.0,
-            "centerError": 0.0,
-            "visibleContainment": 0.779,
-            "maskContainment": 0.829
+            "objects": 4,
+            "IoU": 0.849,
+            "centerError": 0.0029,
+            "depthRangeM": [
+              2.993022918701172,
+              3.7855286598205566
+            ]
           }
         },
         {
-          "id": "structured3d_scene_02120_room_1452 / frame 0",
-          "title": "door · instance_20",
-          "subtitle": "train-json/scene_02120/room_1452.json",
+          "id": "room_367652 / frame 0",
+          "title": "door · instance_208",
+          "subtitle": "train-json/scene_00248/room_367652.json",
           "image": "assets/structured3d/review/05.webp",
           "tag": "review",
           "reason": "visible_containment_review",
           "metrics": {
-            "IoU": 1.0,
-            "centerError": 0.0,
-            "visibleContainment": 0.825,
-            "maskContainment": 0.869
+            "objects": 15,
+            "IoU": 0.485,
+            "centerError": 0.0076,
+            "depthRangeM": [
+              1.332465648651123,
+              8.242705345153809
+            ]
           }
         },
         {
-          "id": "structured3d_scene_01129_room_296 / frame 1",
-          "title": "desk · instance_13",
-          "subtitle": "train-json/scene_01129/room_296.json",
+          "id": "room_928855 / frame 2",
+          "title": "chair · instance_82",
+          "subtitle": "train-json/scene_00258/room_928855.json",
           "image": "assets/structured3d/review/06.webp",
           "tag": "review",
           "reason": "visible_containment_review",
           "metrics": {
-            "IoU": 1.0,
-            "centerError": 0.0,
-            "visibleContainment": 0.894,
-            "maskContainment": 0.898
+            "objects": 6,
+            "IoU": 0.57,
+            "centerError": 0.0047,
+            "depthRangeM": [
+              4.6940131187438965,
+              9.764144897460938
+            ]
           }
         }
       ],
@@ -1143,7 +1139,7 @@
           "subtitle": "train-json/val/f8c4e5e9-8ba5-4694-8ac1-4823082e99d8/LivingRoom-13648.json",
           "image": "assets/3dfront/valid/01.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 4,
             "medianIoU": 0.97,
@@ -1160,7 +1156,7 @@
           "subtitle": "train-json/train/da1c0014-f0bd-4b1c-beaa-c9d34490efbb/Bedroom-197.json",
           "image": "assets/3dfront/valid/02.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 3,
             "medianIoU": 0.939,
@@ -1177,7 +1173,7 @@
           "subtitle": "train-json/val/f8c4e5e9-8ba5-4694-8ac1-4823082e99d8/MasterBedroom-11619.json",
           "image": "assets/3dfront/valid/03.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 3,
             "medianIoU": 0.941,
@@ -1194,7 +1190,7 @@
           "subtitle": "train-json/train/ce427ceb-7eb7-423e-b68b-d01cf1fa516a/SecondBedroom-32238.json",
           "image": "assets/3dfront/valid/04.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 5,
             "medianIoU": 0.976,
@@ -1211,7 +1207,7 @@
           "subtitle": "train-json/train/856c1df0-c383-4960-819e-e9caddd88631/MasterBedroom-193.json",
           "image": "assets/3dfront/valid/05.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 3,
             "medianIoU": 0.848,
@@ -1228,7 +1224,7 @@
           "subtitle": "train-json/val/ea7e0a92-a291-446c-b428-75aafe1db99a/SecondBedroom-31150.json",
           "image": "assets/3dfront/valid/06.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 2,
             "medianIoU": 0.959,
@@ -1242,75 +1238,105 @@
       ],
       "reviewCases": [
         {
-          "id": "3dfront_41053719-a949-4424-841b-a29c5d6a079a_Bedroom-8345 / frame 0000",
-          "title": "cabinet shelf desk · Cabinet_Shelf_Desk_9b2c3161-c6d7-4090-bcbc-6389e6c44177_2",
-          "subtitle": "train-json/train/41053719-a949-4424-841b-a29c5d6a079a/Bedroom-8345.json",
+          "id": "MasterBedroom-8348 / frame 0000",
+          "title": "cabinet shelf desk · Cabinet_Shelf_Desk_bb2af2f5-b2b5-4541-b553-7157415e39ac_1",
+          "subtitle": "train-json/train/01832fd4-ab39-461a-8ba7-7a65e7e5fef8/MasterBedroom-8348.json",
           "image": "assets/3dfront/review/01.webp",
           "tag": "review",
-          "reason": "iou_review",
+          "reason": "iou_review, center_review",
           "metrics": {
-            "IoU": 0.388,
-            "centerError": 0.0242
+            "objects": 4,
+            "IoU": 0.363,
+            "centerError": 0.0791,
+            "depthRangeM": [
+              2.635666847229004,
+              4.239563941955566
+            ]
           }
         },
         {
-          "id": "3dfront_5d31ce38-c87f-484b-85d4-952ba06bd13c_SecondBedroom-1435 / frame 0000",
-          "title": "lighting · Lighting_2bcd3a77-71d3-4353-9812-7ade8d6ca625_3",
-          "subtitle": "train-json/train/5d31ce38-c87f-484b-85d4-952ba06bd13c/SecondBedroom-1435.json",
+          "id": "Bedroom-2872 / frame 0000",
+          "title": "cabinet shelf desk · Cabinet_Shelf_Desk_6cce85c1-50b5-49fb-9b4b-c3a7aa3baa73_3",
+          "subtitle": "train-json/train/01ba1742-4fa5-4d1e-8ba4-2f807fe6b283/Bedroom-2872.json",
           "image": "assets/3dfront/review/02.webp",
           "tag": "review",
           "reason": "iou_review",
           "metrics": {
-            "IoU": 0.32,
-            "centerError": 0.0273
+            "objects": 2,
+            "IoU": 0.35,
+            "centerError": 0.0327,
+            "depthRangeM": [
+              3.1746907234191895,
+              3.9182848930358887
+            ]
           }
         },
         {
-          "id": "3dfront_98643f2f-50e0-4d8a-ba94-2113d1b97a2b_MasterBedroom-514 / frame 0000",
-          "title": "lighting · Lighting_f9829fcd-7995-4c6b-b035-124e26f87e80_3",
-          "subtitle": "train-json/train/98643f2f-50e0-4d8a-ba94-2113d1b97a2b/MasterBedroom-514.json",
+          "id": "Bedroom-44231 / frame 0000",
+          "title": "cabinet shelf desk · Cabinet_Shelf_Desk_6e16ad24-712f-4d40-abe6-93ecdf10bcb9_3",
+          "subtitle": "train-json/train/01df4fc6-be42-4c30-ab7f-0add3ec82213/Bedroom-44231.json",
           "image": "assets/3dfront/review/03.webp",
           "tag": "review",
-          "reason": "center_review",
+          "reason": "iou_review, center_review",
           "metrics": {
-            "IoU": 0.466,
-            "centerError": 0.0559
+            "objects": 5,
+            "IoU": 0.362,
+            "centerError": 0.0553,
+            "depthRangeM": [
+              3.1502275466918945,
+              4.322166442871094
+            ]
           }
         },
         {
-          "id": "3dfront_bb13762a-67b3-4957-be4e-f1b0878c9f87_Library-19691 / frame 0000",
-          "title": "cabinet shelf desk · Cabinet_Shelf_Desk_bbd0f2af-7e6f-4a2a-bff5-0eb73c2fc7bd_1",
-          "subtitle": "train-json/train/bb13762a-67b3-4957-be4e-f1b0878c9f87/Library-19691.json",
+          "id": "Bedroom-118 / frame 0000",
+          "title": "cabinet shelf desk · Cabinet_Shelf_Desk_0eafbc4c-760e-4f66-b149-78fb144fa9e7_3",
+          "subtitle": "train-json/train/026d9b2e-f9e3-4754-b234-32e25b1974e5/Bedroom-118.json",
           "image": "assets/3dfront/review/04.webp",
           "tag": "review",
-          "reason": "center_review",
+          "reason": "iou_review",
           "metrics": {
-            "IoU": 0.622,
-            "centerError": 0.0727
+            "objects": 3,
+            "IoU": 0.393,
+            "centerError": 0.0209,
+            "depthRangeM": [
+              3.1981019973754883,
+              4.297469615936279
+            ]
           }
         },
         {
-          "id": "3dfront_c78845fd-ca3d-4984-a96f-9e7d33d9ae14_LivingRoom-10060 / frame 0000",
-          "title": "lighting · Lighting_f4865079-ed33-416b-9fa6-fab44c46658a_1",
-          "subtitle": "train-json/train/c78845fd-ca3d-4984-a96f-9e7d33d9ae14/LivingRoom-10060.json",
+          "id": "Library-245 / frame 0000",
+          "title": "cabinet shelf desk · Cabinet_Shelf_Desk_a35ba93a-a794-41db-b36c-989981a0f148_1",
+          "subtitle": "train-json/train/02861dfe-ed53-41f1-b554-b02d0c170c61/Library-245.json",
           "image": "assets/3dfront/review/05.webp",
           "tag": "review",
           "reason": "iou_review",
           "metrics": {
-            "IoU": 0.348,
-            "centerError": 0.0387
+            "objects": 5,
+            "IoU": 0.386,
+            "centerError": 0.0269,
+            "depthRangeM": [
+              2.75459885597229,
+              3.724942684173584
+            ]
           }
         },
         {
-          "id": "3dfront_d4016070-45f4-45f1-800c-b6147def05b4_SecondBedroom-1110 / frame 0000",
-          "title": "others · Others_4d4d646d-db1a-44e9-a33d-bcd531324e42_5",
-          "subtitle": "train-json/train/d4016070-45f4-45f1-800c-b6147def05b4/SecondBedroom-1110.json",
+          "id": "MasterBedroom-25712 / frame 0000",
+          "title": "bed · Bed_5d0f5f8f-333f-49fe-91f8-26748c1419a9_1",
+          "subtitle": "train-json/train/02b90cf0-5313-425d-961e-3151b633c729/MasterBedroom-25712.json",
           "image": "assets/3dfront/review/06.webp",
           "tag": "review",
-          "reason": "iou_review",
+          "reason": "iou_review, center_review",
           "metrics": {
-            "IoU": 0.387,
-            "centerError": 0.0171
+            "objects": 4,
+            "IoU": 0.34,
+            "centerError": 0.0563,
+            "depthRangeM": [
+              2.6760146617889404,
+              4.2730536460876465
+            ]
           }
         }
       ],
@@ -1332,29 +1358,12 @@
       "filteredRate": 0.0,
       "validCases": [
         {
-          "id": "004_198 / frame 0020",
-          "title": "Case 01 · 004_198",
-          "subtitle": "train-json/movi_f/train/00272-of-01024/004_198.json",
+          "id": "002_5010 / frame 0010",
+          "title": "Case 01 · 002_5010",
+          "subtitle": "train-json/movi_c/train/00271-of-01024/002_5010.json",
           "image": "assets/kubric/valid/01.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
-          "metrics": {
-            "objects": 3,
-            "medianIoU": 0.536,
-            "centerError": 0.0464,
-            "depthRangeM": [
-              5.583044052124023,
-              10.275022506713867
-            ]
-          }
-        },
-        {
-          "id": "002_5010 / frame 0010",
-          "title": "Case 02 · 002_5010",
-          "subtitle": "train-json/movi_c/train/00271-of-01024/002_5010.json",
-          "image": "assets/kubric/valid/02.webp",
-          "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 2,
             "medianIoU": 0.912,
@@ -1367,11 +1376,11 @@
         },
         {
           "id": "006_8300 / frame 0005",
-          "title": "Case 03 · 006_8300",
+          "title": "Case 02 · 006_8300",
           "subtitle": "train-json/movi_b/train/00899-of-01024/006_8300.json",
-          "image": "assets/kubric/valid/03.webp",
+          "image": "assets/kubric/valid/02.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 7,
             "medianIoU": 0.599,
@@ -1384,11 +1393,11 @@
         },
         {
           "id": "008_9405 / frame 0001",
-          "title": "Case 04 · 008_9405",
+          "title": "Case 03 · 008_9405",
           "subtitle": "train-json/movi_d/train/00065-of-01024/008_9405.json",
-          "image": "assets/kubric/valid/04.webp",
+          "image": "assets/kubric/valid/03.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 5,
             "medianIoU": 0.658,
@@ -1401,11 +1410,11 @@
         },
         {
           "id": "003_8215 / frame 0001",
-          "title": "Case 05 · 003_8215",
+          "title": "Case 04 · 003_8215",
           "subtitle": "train-json/movi_b/train/00454-of-01024/003_8215.json",
-          "image": "assets/kubric/valid/05.webp",
+          "image": "assets/kubric/valid/04.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 4,
             "medianIoU": 0.534,
@@ -1417,19 +1426,36 @@
           }
         },
         {
-          "id": "008_9607 / frame 0000",
-          "title": "Case 06 · 008_9607",
-          "subtitle": "train-json/movi_d/train/00530-of-01024/008_9607.json",
+          "id": "001_44 / frame 0013",
+          "title": "Case 05 · 001_44",
+          "subtitle": "train-json/movi_f/train/00779-of-01024/001_44.json",
+          "image": "assets/kubric/valid/05.webp",
+          "tag": "accepted",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
+          "metrics": {
+            "objects": 7,
+            "medianIoU": 0.53,
+            "centerError": 0.013,
+            "depthRangeM": [
+              6.073604106903076,
+              13.75079345703125
+            ]
+          }
+        },
+        {
+          "id": "003_8698 / frame 0010",
+          "title": "Case 06 · 003_8698",
+          "subtitle": "train-json/movi_a/train/00134-of-01024/003_8698.json",
           "image": "assets/kubric/valid/06.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
-            "objects": 6,
-            "medianIoU": 0.618,
-            "centerError": 0.0081,
+            "objects": 4,
+            "medianIoU": 0.855,
+            "centerError": 0.0028,
             "depthRangeM": [
-              6.185780048370361,
-              10.066465377807617
+              8.977447509765625,
+              12.148386001586914
             ]
           }
         }
@@ -1458,7 +1484,7 @@
           "subtitle": "32-55714-58471",
           "image": "assets/uco3d/valid/01.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 1,
             "medianIoU": 0.63,
@@ -1470,29 +1496,12 @@
           }
         },
         {
-          "id": "91-4659-48115 / frame 0026",
-          "title": "Case 02 · 91-4659-48115",
-          "subtitle": "91-4659-48115",
+          "id": "1-48714-88940 / frame 0048",
+          "title": "Case 02 · 1-48714-88940",
+          "subtitle": "1-48714-88940",
           "image": "assets/uco3d/valid/02.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
-          "metrics": {
-            "objects": 1,
-            "medianIoU": 0.46,
-            "centerError": 0.0964,
-            "depthRangeM": [
-              6.909976959228516,
-              6.909976959228516
-            ]
-          }
-        },
-        {
-          "id": "1-48714-88940 / frame 0048",
-          "title": "Case 03 · 1-48714-88940",
-          "subtitle": "1-48714-88940",
-          "image": "assets/uco3d/valid/03.webp",
-          "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 1,
             "medianIoU": 0.874,
@@ -1505,11 +1514,11 @@
         },
         {
           "id": "9-68540-80544 / frame 0152",
-          "title": "Case 04 · 9-68540-80544",
+          "title": "Case 03 · 9-68540-80544",
           "subtitle": "9-68540-80544",
-          "image": "assets/uco3d/valid/04.webp",
+          "image": "assets/uco3d/valid/03.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 1,
             "medianIoU": 0.644,
@@ -1522,11 +1531,11 @@
         },
         {
           "id": "580-63758-36784 / frame 0040",
-          "title": "Case 05 · 580-63758-36784",
+          "title": "Case 04 · 580-63758-36784",
           "subtitle": "580-63758-36784",
-          "image": "assets/uco3d/valid/05.webp",
+          "image": "assets/uco3d/valid/04.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 1,
             "medianIoU": 0.748,
@@ -1539,11 +1548,11 @@
         },
         {
           "id": "31340-33907-52632 / frame 0046",
-          "title": "Case 06 · 31340-33907-52632",
+          "title": "Case 05 · 31340-33907-52632",
           "subtitle": "31340-33907-52632",
-          "image": "assets/uco3d/valid/06.webp",
+          "image": "assets/uco3d/valid/05.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 1,
             "medianIoU": 0.834,
@@ -1553,79 +1562,138 @@
               9.489777565002441
             ]
           }
+        },
+        {
+          "id": "1-10021-15453 / frame 0077",
+          "title": "Case 06 · 1-10021-15453",
+          "subtitle": "1-10021-15453",
+          "image": "assets/uco3d/valid/06.webp",
+          "tag": "accepted",
+          "reason": "All current-loader objects pass the dataset-specific review checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.571,
+            "centerError": 0.0248,
+            "depthRangeM": [
+              10.245766639709473,
+              10.245766639709473
+            ]
+          }
         }
       ],
       "reviewCases": [
         {
           "id": "1-43511-11635 / frame 0192",
-          "title": "tape sticky cloth or paper · 1-43511-11635",
-          "subtitle": "before cleanup vs current clean geometry",
+          "title": "tape sticky cloth or paper · target",
+          "subtitle": "1-43511-11635",
           "image": "assets/uco3d/review/01.webp",
           "tag": "review",
-          "reason": "visible_bbox_containment_review",
+          "reason": "visible_containment_or_overcoverage_review",
           "metrics": {
-            "containment": 0.672,
-            "projectedPrecision": 1.0
+            "objects": 1,
+            "IoU": 0.672,
+            "centerError": 0.0249,
+            "visibleContainment": 0.672,
+            "projectedPrecision": 1.0,
+            "depthRangeM": [
+              4.489002227783203,
+              4.489002227783203
+            ]
           }
         },
         {
           "id": "128-44047-77125 / frame 0180",
-          "title": "toothbrush · 128-44047-77125",
-          "subtitle": "before cleanup vs current clean geometry",
+          "title": "toothbrush · target",
+          "subtitle": "128-44047-77125",
           "image": "assets/uco3d/review/02.webp",
           "tag": "review",
-          "reason": "visible_bbox_containment_review",
+          "reason": "visible_containment_or_overcoverage_review",
           "metrics": {
-            "containment": 0.886,
-            "projectedPrecision": 0.718
+            "objects": 1,
+            "IoU": 0.655,
+            "centerError": 0.024,
+            "visibleContainment": 0.884,
+            "projectedPrecision": 0.717,
+            "depthRangeM": [
+              1.9112194776535034,
+              1.9112194776535034
+            ]
           }
         },
         {
           "id": "13-67867-14914 / frame 0074",
-          "title": "houseboat · 13-67867-14914",
-          "subtitle": "before cleanup vs current clean geometry",
+          "title": "houseboat · target",
+          "subtitle": "13-67867-14914",
           "image": "assets/uco3d/review/03.webp",
           "tag": "review",
-          "reason": "projected_bbox_overcoverage_review",
+          "reason": "visible_containment_or_overcoverage_review",
           "metrics": {
-            "containment": 0.984,
-            "projectedPrecision": 0.408
+            "objects": 1,
+            "IoU": 0.405,
+            "centerError": 0.0688,
+            "visibleContainment": 0.984,
+            "projectedPrecision": 0.408,
+            "depthRangeM": [
+              0.933632493019104,
+              0.933632493019104
+            ]
+          }
+        },
+        {
+          "id": "289-29763-1408 / frame 0079",
+          "title": "toothbrush · target",
+          "subtitle": "289-29763-1408",
+          "image": "assets/uco3d/review/04.webp",
+          "tag": "review",
+          "reason": "visible_containment_or_overcoverage_review",
+          "metrics": {
+            "objects": 1,
+            "IoU": 0.128,
+            "centerError": 0.2666,
+            "visibleContainment": 0.554,
+            "projectedPrecision": 0.143,
+            "depthRangeM": [
+              2.1227855682373047,
+              2.1227855682373047
+            ]
           }
         },
         {
           "id": "2954-35588-59828 / frame 0080",
-          "title": "motorcycle · 2954-35588-59828",
-          "subtitle": "before cleanup vs current clean geometry",
-          "image": "assets/uco3d/review/04.webp",
+          "title": "motorcycle · target",
+          "subtitle": "2954-35588-59828",
+          "image": "assets/uco3d/review/05.webp",
           "tag": "review",
-          "reason": "visible_bbox_containment_review",
+          "reason": "visible_containment_or_overcoverage_review",
           "metrics": {
-            "containment": 0.75,
-            "projectedPrecision": 0.677
+            "objects": 1,
+            "IoU": 0.153,
+            "centerError": 0.8215,
+            "visibleContainment": 0.748,
+            "projectedPrecision": 0.161,
+            "depthRangeM": [
+              2.7003092765808105,
+              2.7003092765808105
+            ]
           }
         },
         {
           "id": "30789-56119-2497 / frame 0179",
-          "title": "carrot · 30789-56119-2497",
-          "subtitle": "before cleanup vs current clean geometry",
-          "image": "assets/uco3d/review/05.webp",
-          "tag": "review",
-          "reason": "visible_bbox_containment_review",
-          "metrics": {
-            "containment": 0.761,
-            "projectedPrecision": 1.0
-          }
-        },
-        {
-          "id": "42-63323-90699 / frame 0008",
-          "title": "shower head · 42-63323-90699",
-          "subtitle": "before cleanup vs current clean geometry",
+          "title": "carrot · target",
+          "subtitle": "30789-56119-2497",
           "image": "assets/uco3d/review/06.webp",
           "tag": "review",
-          "reason": "visible_bbox_containment_review",
+          "reason": "visible_containment_or_overcoverage_review",
           "metrics": {
-            "containment": 0.88,
-            "projectedPrecision": 0.572
+            "objects": 1,
+            "IoU": 0.761,
+            "centerError": 0.0019,
+            "visibleContainment": 0.761,
+            "projectedPrecision": 1.0,
+            "depthRangeM": [
+              5.818353652954102,
+              5.818353652954102
+            ]
           }
         }
       ],

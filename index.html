@@ -9,7 +9,7 @@
       content="SpatialEncoder dataset QA: no-review, human-review, and filtered 2D/3D projection cases."
     />
     <title>SpatialEncoder · Dataset QA</title>
-    <link rel="stylesheet" href="styles.css?v=20260827-5" />
+    <link rel="stylesheet" href="styles.css?v=20260827-6" />
   </head>
   <body>
     <div class="page-shell">
@@ -18,7 +18,7 @@
           <p class="eyebrow" id="hero-eyebrow">SPATIALENCODER · DATA QUALITY</p>
           <h1 id="page-title">Dataset QA Gallery</h1>
           <p class="hero-description">
-            <span id="hero-intro">Browse no-review, human-review, and filtered cases by dataset. Every visualization uses the same color convention:</span>
+            <span id="hero-intro">No-review and human-review cases are rendered through the current training loaders. Filtered cases preserve pre-removal audit evidence. Every visualization uses the same color convention:</span>
             <span class="legend-inline legend-2d" id="legend-2d">2D box</span>
             <span class="legend-inline legend-3d" id="legend-3d">projected 3D cuboid</span>
           </p>
@@ -130,7 +130,7 @@
             <div class="section-count danger"><strong id="error-count">6</strong><span id="error-count-label">cases shown</span></div>
           </div>
           <p class="section-explainer" id="error-explainer">
-            Only confirmed, filtered, excluded, or deleted errors are shown. Cases needing human verification and false positives from older rules are not presented as errors.
+            These are archival audit visualizations retained before confirmed errors were filtered, excluded, or physically deleted. Cases needing human verification and false positives from older rules are not presented as errors.
           </p>
           <div class="case-grid" id="error-grid"></div>
           <div class="empty-state" id="error-empty" hidden>
@@ -162,7 +162,7 @@
       </div>
     </dialog>
 
-    <script src="cases-data.js?v=20260827-5"></script>
-    <script src="app.js?v=20260827-5"></script>
+    <script src="cases-data.js?v=20260827-6"></script>
+    <script src="app.js?v=20260827-6"></script>
   </body>
 </html>

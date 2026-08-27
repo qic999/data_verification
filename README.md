@@ -22,6 +22,13 @@ only three error examples because only three cases were confirmed irreparable.
 generic-rule candidates are intentionally not shown as errors because the mask
 and exact-projection recheck proved them valid.
 
+The **No human review needed** and **Needs human review** figures are generated
+through the current training loaders. Their loader source files, combined
+SHA-256, and generation time are recorded in `cases-data.json`; the site builder
+refuses to publish them after those loader sources change. The **Filtered**
+figures are deletion-time audit evidence because the rejected source cases are
+no longer loadable from the cleaned training datasets.
+
 Rebuild the generated images and data after an audit update:
 
 ```bash

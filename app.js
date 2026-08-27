@@ -6,6 +6,12 @@
     document.body.innerHTML = "<p style='padding:2rem'>Missing cases-data.js</p>";
     return;
   }
+  const assetVersion = data.assetVersion || data.generatedAt || "current";
+
+  function versionedAsset(path) {
+    if (!path) return path;
+    return `${path}${path.includes("?") ? "&" : "?"}v=${encodeURIComponent(assetVersion)}`;
+  }
 
   const datasetChinese = {
     wilddet3d: {
@@ -231,7 +237,7 @@
     const staticCopy = [
       [elements.heroEyebrow, "SPATIALENCODER · DATA QUALITY", "SPATIALENCODER · 数据质量"],
       [elements.pageTitle, "Dataset QA Gallery", "数据集质量验证图库"],
-      [elements.heroIntro, "Browse no-review, human-review, and filtered cases by dataset. Every visualization uses the same color convention:", "按数据集查看无需人工确认、需要人工确认和已过滤的样本。所有可视化使用相同的颜色约定："],
+      [elements.heroIntro, "No-review and human-review cases are rendered through the current training loaders. Filtered cases preserve pre-removal audit evidence. Every visualization uses the same color convention:", "无需人工确认和需要人工确认的样本均由当前训练 loader 生成；已过滤样本保留删除前的审计证据。所有可视化使用相同的颜色约定："],
       [elements.legend2d, "2D box", "2D 框"],
       [elements.legend3d, "projected 3D cuboid", "投影 3D 长方体"],
       [elements.auditLabel, "FULL RE-AUDIT", "全量复审"],
@@ -335,7 +341,7 @@
     return `
       <article class="case-card">
         <button class="case-image-button" data-kind="${kind}" data-index="${index}" aria-label="Enlarge ${caseData.title}">
-          <img src="${caseData.image}" alt="2D and projected 3D box comparison for ${caseData.title}" loading="lazy" />
+          <img src="${versionedAsset(caseData.image)}" alt="2D and projected 3D box comparison for ${caseData.title}" loading="lazy" />
         </button>
         <div class="case-copy">
           <div class="case-topline">
@@ -384,8 +390,8 @@
     const chinese = datasetChinese[dataset.id] || {};
     const englishDescription = `${dataset.description} ${dataset.statusDetail}`;
     const chineseDescription = [chinese.description, chinese.statusDetail].filter(Boolean).join(" ");
-    const defaultErrorExplainer = "Only confirmed, filtered, excluded, or deleted errors are shown. Cases needing human verification and false positives from older rules are not presented as errors.";
-    const defaultErrorExplainerChinese = "仅展示已经确认并过滤、排除或删除的错误，不把需要人工确认的样本或旧规则 false positive 作为错误展示。";
+    const defaultErrorExplainer = "These are archival audit visualizations retained before confirmed errors were filtered, excluded, or physically deleted. Cases needing human verification and false positives from older rules are not presented as errors.";
+    const defaultErrorExplainerChinese = "这些是确认错误在被过滤、排除或物理删除前保留的审计可视化；需要人工确认的样本和旧规则 false positive 不会作为错误展示。";
 
     elements.title.textContent = dataset.name;
     elements.datasetStatus.innerHTML = localized("Audited · review separated", "已审查 · 复核样本已分离", true);
@@ -434,7 +440,7 @@
     const caseData = dataset[`${kind}Cases`][index];
     if (!caseData) return;
 
-    elements.lightboxImage.src = caseData.image;
+    elements.lightboxImage.src = versionedAsset(caseData.image);
     elements.lightboxImage.alt = `2D and projected 3D box comparison for ${caseData.title}`;
     elements.lightboxTag.innerHTML = localizedTag(caseData.tag);
     elements.lightboxTag.classList.toggle("error", kind === "error");
