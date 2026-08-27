@@ -1,6 +1,11 @@
 {
   "generatedAt": "2026-08-27",
   "auditDate": "2026-08-27",
+  "wilddet3dLoader": {
+    "source": "sam3/train/data/object_detection_dataset.py",
+    "sha256": "8099639f9d375dad51ce2d73e8bd5ada0b2610b16ad5aeeb36e2973423107421",
+    "visualizationsGeneratedAt": "2026-08-27T22:12:27.708939+00:00"
+  },
   "datasets": [
     {
       "id": "wilddet3d",
@@ -17,33 +22,16 @@
       "filteredRate": 7.379028370478931e-05,
       "validCases": [
         {
-          "id": "v3det_train_000000182411__img000164232 / frame 0",
-          "title": "Case 01 · v3det_train_000000182411__img000164232",
-          "subtitle": "train-json/v3det_synthetic/v3det_train_000000182411__img000164232.json",
+          "id": "obj365_train_000000318028__img000546644 / frame 0",
+          "title": "Case 01 · obj365_train_000000318028__img000546644",
+          "subtitle": "train-json/train_synthetic/obj365_train_000000318028__img000546644.json",
           "image": "assets/wilddet3d/valid/01.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
-          "metrics": {
-            "objects": 2,
-            "medianIoU": 0.649,
-            "centerError": 0.0183,
-            "depthRangeM": [
-              5.366083145141602,
-              5.5077009201049805
-            ]
-          }
-        },
-        {
-          "id": "obj365_train_000000318028__img000546644 / frame 0",
-          "title": "Case 02 · obj365_train_000000318028__img000546644",
-          "subtitle": "train-json/train_synthetic/obj365_train_000000318028__img000546644.json",
-          "image": "assets/wilddet3d/valid/02.webp",
-          "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All loader-retained objects pass the current projection checks after the WildDet3D axis adaptation",
           "metrics": {
             "objects": 3,
-            "medianIoU": 0.464,
-            "centerError": 0.0069,
+            "medianIoU": 0.749,
+            "centerError": 0.0114,
             "depthRangeM": [
               3.9672634601593018,
               5.305595397949219
@@ -51,36 +39,191 @@
           }
         },
         {
-          "id": "obj365_train_000000375615__img000508905 / frame 0",
-          "title": "Case 03 · obj365_train_000000375615__img000508905",
-          "subtitle": "train-json/train_synthetic/obj365_train_000000375615__img000508905.json",
-          "image": "assets/wilddet3d/valid/03.webp",
+          "id": "obj365_train_000000709536__img000707540 / frame 0",
+          "title": "Case 02 · obj365_train_000000709536__img000707540",
+          "subtitle": "train-json/train_synthetic/obj365_train_000000709536__img000707540.json",
+          "image": "assets/wilddet3d/valid/02.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All loader-retained objects pass the current projection checks after the WildDet3D axis adaptation",
           "metrics": {
-            "objects": 5,
-            "medianIoU": 0.655,
-            "centerError": 0.0018,
+            "objects": 3,
+            "medianIoU": 0.71,
+            "centerError": 0.0037,
             "depthRangeM": [
-              11.642049789428711,
-              14.452801704406738
+              5.539475440979004,
+              6.980785846710205
             ]
           }
         },
         {
-          "id": "obj365_train_000000239142__img000286440 / frame 0",
-          "title": "Case 04 · obj365_train_000000239142__img000286440",
-          "subtitle": "train-json/train_synthetic/obj365_train_000000239142__img000286440.json",
+          "id": "v3det_train_000000068996__img000058076 / frame 0",
+          "title": "Case 03 · v3det_train_000000068996__img000058076",
+          "subtitle": "train-json/v3det_synthetic/v3det_train_000000068996__img000058076.json",
+          "image": "assets/wilddet3d/valid/03.webp",
+          "tag": "accepted",
+          "reason": "All loader-retained objects pass the current projection checks",
+          "metrics": {
+            "objects": 5,
+            "medianIoU": 0.624,
+            "centerError": 0.0148,
+            "depthRangeM": [
+              2.4094347953796387,
+              6.342728614807129
+            ]
+          }
+        },
+        {
+          "id": "obj365_train_000000234580__img000130925 / frame 0",
+          "title": "Case 04 · obj365_train_000000234580__img000130925",
+          "subtitle": "train-json/train_synthetic/obj365_train_000000234580__img000130925.json",
           "image": "assets/wilddet3d/valid/04.webp",
           "tag": "accepted",
-          "reason": "Passed the current dataset-specific hard checks",
+          "reason": "All loader-retained objects pass the current projection checks",
           "metrics": {
             "objects": 2,
-            "medianIoU": 0.648,
+            "medianIoU": 0.732,
+            "centerError": 0.0078,
+            "depthRangeM": [
+              5.287174701690674,
+              5.547533988952637
+            ]
+          }
+        },
+        {
+          "id": "obj365_train_000000671547__img000561998 / frame 0",
+          "title": "Case 05 · obj365_train_000000671547__img000561998",
+          "subtitle": "train-json/train_synthetic/obj365_train_000000671547__img000561998.json",
+          "image": "assets/wilddet3d/valid/05.webp",
+          "tag": "accepted",
+          "reason": "All loader-retained objects pass the current projection checks",
+          "metrics": {
+            "objects": 9,
+            "medianIoU": 0.743,
+            "centerError": 0.0054,
+            "depthRangeM": [
+              4.448734283447266,
+              5.61116886138916
+            ]
+          }
+        },
+        {
+          "id": "obj365_train_000000727360__img000721279 / frame 0",
+          "title": "Case 06 · obj365_train_000000727360__img000721279",
+          "subtitle": "train-json/train_synthetic/obj365_train_000000727360__img000721279.json",
+          "image": "assets/wilddet3d/valid/06.webp",
+          "tag": "accepted",
+          "reason": "All loader-retained objects pass the current projection checks",
+          "metrics": {
+            "objects": 2,
+            "medianIoU": 0.664,
             "centerError": 0.0061,
             "depthRangeM": [
-              9.662752151489258,
-              10.044452667236328
+              5.342090606689453,
+              7.1440324783325195
+            ]
+          }
+        }
+      ],
+      "reviewCases": [
+        {
+          "id": "obj365_train_000000355953__img000000002 / frame 0",
+          "title": "slide · ann_72",
+          "subtitle": "train-json/train_synthetic/obj365_train_000000355953__img000000002.json",
+          "image": "assets/wilddet3d/review/01.webp",
+          "tag": "review",
+          "reason": "center_review",
+          "metrics": {
+            "objects": 1,
+            "IoU": 0.507,
+            "centerError": 0.0688,
+            "depthRangeM": [
+              2.468874454498291,
+              2.468874454498291
+            ]
+          }
+        },
+        {
+          "id": "obj365_train_000000669447__img000501981 / frame 0",
+          "title": "person · ann_6925545",
+          "subtitle": "train-json/train_synthetic/obj365_train_000000669447__img000501981.json",
+          "image": "assets/wilddet3d/review/02.webp",
+          "tag": "review",
+          "reason": "center_review",
+          "metrics": {
+            "objects": 3,
+            "IoU": 0.497,
+            "centerError": 0.0736,
+            "depthRangeM": [
+              2.6184844970703125,
+              3.6215126514434814
+            ]
+          }
+        },
+        {
+          "id": "obj365_train_000000139608__img000649192 / frame 0",
+          "title": "chair · ann_8950107",
+          "subtitle": "train-json/train_synthetic/obj365_train_000000139608__img000649192.json",
+          "image": "assets/wilddet3d/review/03.webp",
+          "tag": "review",
+          "reason": "center_review",
+          "metrics": {
+            "objects": 1,
+            "IoU": 0.628,
+            "centerError": 0.0722,
+            "depthRangeM": [
+              3.0725197792053223,
+              3.0725197792053223
+            ]
+          }
+        },
+        {
+          "id": "obj365_train_000000727163__img000721119 / frame 0",
+          "title": "car · ann_10011908",
+          "subtitle": "train-json/train_synthetic/obj365_train_000000727163__img000721119.json",
+          "image": "assets/wilddet3d/review/04.webp",
+          "tag": "review",
+          "reason": "center_review",
+          "metrics": {
+            "objects": 4,
+            "IoU": 0.687,
+            "centerError": 0.0506,
+            "depthRangeM": [
+              4.17218017578125,
+              22.401443481445312
+            ]
+          }
+        },
+        {
+          "id": "v3det_train_000000020708__img000003764 / frame 0",
+          "title": "Wakame · ann_20019",
+          "subtitle": "train-json/v3det_human_only/v3det_train_000000020708__img000003764.json",
+          "image": "assets/wilddet3d/review/05.webp",
+          "tag": "review",
+          "reason": "center_review",
+          "metrics": {
+            "objects": 1,
+            "IoU": 0.541,
+            "centerError": 0.0946,
+            "depthRangeM": [
+              2.64909029006958,
+              2.64909029006958
+            ]
+          }
+        },
+        {
+          "id": "v3det_train_000000166934__img000149823 / frame 0",
+          "title": "browntail · ann_1053641",
+          "subtitle": "train-json/v3det_synthetic/v3det_train_000000166934__img000149823.json",
+          "image": "assets/wilddet3d/review/06.webp",
+          "tag": "review",
+          "reason": "center_review",
+          "metrics": {
+            "objects": 1,
+            "IoU": 0.721,
+            "centerError": 0.0745,
+            "depthRangeM": [
+              0.8394914865493774,
+              0.8394914865493774
             ]
           }
         },
@@ -212,10 +355,22 @@
           }
         },
         {
-          "id": "ann_134122",
-          "title": "cabinet/shelf · ann 134122",
-          "subtitle": "train_synthetic / image 9194",
+          "id": "ann_1994272",
+          "title": "person · ann 1994272",
+          "subtitle": "train_synthetic / image 139863",
           "image": "assets/wilddet3d/error/02.webp",
+          "tag": "filtered",
+          "reason": "iou_catastrophic, center_catastrophic, joint_iou_center",
+          "metrics": {
+            "IoU": 0.0,
+            "centerError": 0.2296
+          }
+        },
+        {
+          "id": "ann_4260106",
+          "title": "train · ann 4260106",
+          "subtitle": "train_synthetic / image 304833",
+          "image": "assets/wilddet3d/error/03.webp",
           "tag": "filtered",
           "reason": "invalid_geometry",
           "metrics": {
@@ -224,51 +379,39 @@
           }
         },
         {
-          "id": "ann_2998",
-          "title": "firecracker · ann 2998",
-          "subtitle": "v3det_human_only / image 545",
-          "image": "assets/wilddet3d/error/03.webp",
-          "tag": "filtered",
-          "reason": "center_catastrophic",
-          "metrics": {
-            "IoU": 0.453,
-            "centerError": 0.2153
-          }
-        },
-        {
-          "id": "ann_291646",
-          "title": "trifolium subterraneum · ann 291646",
-          "subtitle": "v3det_synthetic / image 40906",
+          "id": "ann_8787375",
+          "title": "bracelet · ann 8787375",
+          "subtitle": "train_synthetic / image 637542",
           "image": "assets/wilddet3d/error/04.webp",
           "tag": "filtered",
           "reason": "iou_catastrophic",
           "metrics": {
-            "IoU": 0.112,
-            "centerError": 0.0202
+            "IoU": 0.004,
+            "centerError": 0.0571
           }
         },
         {
-          "id": "ann_57041",
-          "title": "bus_(vehicle) · ann 57041",
-          "subtitle": "train_human_only / image 3364",
+          "id": "ann_524673",
+          "title": "window · ann 524673",
+          "subtitle": "v3det_synthetic / image 72304",
           "image": "assets/wilddet3d/error/05.webp",
           "tag": "filtered",
-          "reason": "joint_iou_center",
+          "reason": "iou_catastrophic",
           "metrics": {
-            "IoU": 0.235,
-            "centerError": 0.1129
+            "IoU": 0.094,
+            "centerError": 0.021
           }
         },
         {
-          "id": "ann_111012",
-          "title": "dog · ann 111012",
-          "subtitle": "train_human_only / image 6508",
+          "id": "ann_936133",
+          "title": "leather · ann 936133",
+          "subtitle": "v3det_synthetic / image 128589",
           "image": "assets/wilddet3d/error/06.webp",
           "tag": "filtered",
           "reason": "center_catastrophic",
           "metrics": {
-            "IoU": 0.385,
-            "centerError": 0.2187
+            "IoU": 0.529,
+            "centerError": 0.2535
           }
         }
       ],
