@@ -7,22 +7,122 @@
     return;
   }
 
+  const datasetChinese = {
+    wilddet3d: {
+      description: "自然场景真实图像，包含物体级 2D 框和米制 3D 长方体。",
+      statusDetail: "已过滤 274 个确认的源标注错误；当前训练数据不存在 hard error。",
+    },
+    omni3d: {
+      description: "将多个室内与室外米制 3D 检测数据源统一到同一种加载格式。",
+      statusDetail: "已过滤 349 个无效或不一致的标注；当前训练数据不存在 hard error。",
+    },
+    pix3d: {
+      description: "按照伪米制训练约定校准的单视图物体图像。",
+      statusDetail: "三个无法可靠修复的椅子 case 已被物理删除，也是 Pix3D 仅有的确认错误。",
+      emptyMessage: "Pix3D 只有 3 个确认错误，且均已被物理删除。",
+    },
+    structured3d: {
+      description: "具有米制场景几何、相机参数和实例标注的合成室内视图。",
+      statusDetail: "已过滤 82 个可见 mask 与 3D 框包含关系失败的 case；当前训练数据不存在 hard error。",
+    },
+    "3dfront": {
+      description: "具有米制物体几何和已知相机参数的渲染室内场景。",
+      statusDetail: "按照当前数据集专用审查规则，没有确认的 hard error。",
+      emptyMessage: "当前审查没有确认的 hard error，因此不展示伪造的错误样本。",
+    },
+    kubric: {
+      description: "具有精确相机、位姿、米制几何和实例 mask 的合成视频帧。",
+      statusDetail: "旧通用规则命中的 4,596 个候选均已确认是有效的 false positive，没有数据被删除。",
+      emptyMessage: "当前审查为 0 个确认错误。旧规则命中的 4,596 个候选已通过实例 mask 和精确投影复核，属于有效数据。",
+    },
+    uco3d: {
+      description: "具有逐帧相机和重建 3D 框的以物体为中心的真实视频序列。",
+      statusDetail: "clean-data 构建排除了 483,970 个失败帧标注；当前训练观测中不存在 hard error。",
+    },
+  };
+
+  const reasonChinese = {
+    "Passed the current dataset-specific hard checks": "通过当前数据集专用的 hard checks",
+    iou_catastrophic: "IoU 严重不匹配",
+    invalid_geometry: "几何无效",
+    center_catastrophic: "中心偏差严重",
+    joint_iou_center: "IoU 与中心偏差联合失败",
+    axis_fit_error: "坐标轴拟合错误",
+    projection_center_error: "投影中心错误",
+    projection_iou: "投影 IoU 错误",
+    visible_box_not_contained: "可见框未被 3D 投影框包含",
+    projected_bbox_overcoverage: "3D 投影框覆盖范围过大",
+    visible_bbox_not_contained: "可见框未被完整包含",
+    "visible_bbox_not_contained+projected_bbox_overcoverage": "可见框未被包含且 3D 投影框覆盖过大",
+  };
+
+  const tagChinese = {
+    accepted: "已接受",
+    filtered: "已过滤",
+    deleted: "已删除",
+    excluded: "已排除",
+  };
+
+  const metricChinese = {
+    objects: "物体数",
+    medianIoU: "中位 IoU",
+    centerError: "中心偏差 / 对角线",
+    depthRangeM: "深度（米）",
+    IoU: "IoU",
+    axisFitError: "坐标轴拟合",
+    projectionIoU: "投影 IoU",
+    projectionCenterError: "投影中心偏差",
+    maskContainment: "mask 包含率",
+    visibleContainment: "可见框包含率",
+    containment: "包含率",
+    projectedPrecision: "投影框精度",
+  };
+
   const elements = {
+    heroEyebrow: document.querySelector("#hero-eyebrow"),
+    pageTitle: document.querySelector("#page-title"),
+    heroIntro: document.querySelector("#hero-intro"),
+    legend2d: document.querySelector("#legend-2d"),
+    legend3d: document.querySelector("#legend-3d"),
+    auditLabel: document.querySelector("#audit-label"),
     auditDate: document.querySelector("#audit-date"),
+    auditStatus: document.querySelector("#audit-status"),
+    overviewKicker: document.querySelector("#overview-kicker"),
+    overviewTitle: document.querySelector("#overview-title"),
+    tableNote: document.querySelector("#table-note"),
+    thObservations: document.querySelector("#th-observations"),
+    thReview: document.querySelector("#th-review"),
+    thFiltered: document.querySelector("#th-filtered"),
+    thErrorRate: document.querySelector("#th-error-rate"),
+    thCurrentHard: document.querySelector("#th-current-hard"),
+    thGallery: document.querySelector("#th-gallery"),
+    thStatus: document.querySelector("#th-status"),
+    navSelectLabel: document.querySelector("#nav-select-label"),
     generatedAt: document.querySelector("#generated-at"),
     statsBody: document.querySelector("#stats-body"),
     tabs: document.querySelector("#dataset-tabs"),
     datasetCount: document.querySelector("#dataset-count"),
     title: document.querySelector("#dataset-title"),
+    datasetStatus: document.querySelector("#dataset-status"),
     description: document.querySelector("#dataset-description"),
     facts: document.querySelector("#dataset-facts"),
+    acceptedKicker: document.querySelector("#accepted-kicker"),
+    validTitle: document.querySelector("#valid-title"),
+    validCountLabel: document.querySelector("#valid-count-label"),
+    validExplainer: document.querySelector("#valid-explainer"),
     validGrid: document.querySelector("#valid-grid"),
+    errorKicker: document.querySelector("#error-kicker"),
+    errorTitle: document.querySelector("#error-title"),
+    errorCountLabel: document.querySelector("#error-count-label"),
     errorGrid: document.querySelector("#error-grid"),
     validCount: document.querySelector("#valid-count"),
     errorCount: document.querySelector("#error-count"),
     errorEmpty: document.querySelector("#error-empty"),
+    emptyTitle: document.querySelector("#empty-title"),
     emptyMessage: document.querySelector("#empty-message"),
     errorExplainer: document.querySelector("#error-explainer"),
+    footerLabel: document.querySelector("#footer-label"),
+    languageButtons: document.querySelectorAll("[data-language]"),
     lightbox: document.querySelector("#lightbox"),
     lightboxImage: document.querySelector("#lightbox-image"),
     lightboxTag: document.querySelector("#lightbox-tag"),
@@ -34,19 +134,35 @@
 
   const numberFormatter = new Intl.NumberFormat("en-US");
   let currentDatasetId = location.hash.replace(/^#/, "") || data.datasets[0].id;
+  let currentLanguage = "en";
+  try {
+    if (localStorage.getItem("datasetQaLanguage") === "bilingual") currentLanguage = "bilingual";
+  } catch (_error) {
+    currentLanguage = "en";
+  }
   if (!data.datasets.some((dataset) => dataset.id === currentDatasetId)) {
     currentDatasetId = data.datasets[0].id;
   }
 
+  function isBilingual() {
+    return currentLanguage === "bilingual";
+  }
+
+  function localized(english, chinese, inline = false) {
+    if (!isBilingual() || !chinese) return english;
+    const className = inline ? "i18n-inline" : "i18n-zh";
+    const separator = inline ? " / " : "";
+    return `${english}${separator}<span class="${className}">${chinese}</span>`;
+  }
+
   function formatNumber(value) {
-    return numberFormatter.format(value ?? 0);
+    return numberFormatter.format(value == null ? 0 : value);
   }
 
   function formatRate(value) {
     if (!value) return "0%";
     const percentage = value * 100;
     if (percentage < 0.01) return `${percentage.toFixed(3)}%`;
-    if (percentage < 0.1) return `${percentage.toFixed(2)}%`;
     return `${percentage.toFixed(2)}%`;
   }
 
@@ -65,7 +181,16 @@
       containment: "containment",
       projectedPrecision: "proj. precision",
     };
-    return labels[key] || key.replace(/([A-Z])/g, " $1").toLowerCase();
+    const english = labels[key] || key.replace(/([A-Z])/g, " $1").toLowerCase();
+    return localized(english, metricChinese[key], true);
+  }
+
+  function localizedReason(reason) {
+    return localized(reason, reasonChinese[reason]);
+  }
+
+  function localizedTag(tag) {
+    return localized(tag, tagChinese[tag], true);
   }
 
   function formatMetricValue(value) {
@@ -80,11 +205,53 @@
     return Object.entries(metrics).filter(([, value]) => value !== null && value !== undefined && value !== "");
   }
 
+  function renderStaticLanguage() {
+    const staticCopy = [
+      [elements.heroEyebrow, "SPATIALENCODER · DATA QUALITY", "SPATIALENCODER · 数据质量"],
+      [elements.pageTitle, "Dataset QA Gallery", "数据集质量验证图库"],
+      [elements.heroIntro, "Browse retained training examples and confirmed errors by dataset. Every visualization uses the same color convention:", "按数据集查看保留的训练样本和已确认错误。所有可视化使用相同的颜色约定："],
+      [elements.legend2d, "2D box", "2D 框"],
+      [elements.legend3d, "projected 3D cuboid", "投影 3D 长方体"],
+      [elements.auditLabel, "FULL RE-AUDIT", "全量复审"],
+      [elements.auditStatus, "current hard = 0", "当前 hard = 0"],
+      [elements.overviewKicker, "OVERVIEW", "总览"],
+      [elements.overviewTitle, "Dataset statistics", "数据集统计"],
+      [elements.tableNote, "“Filtered errors” are historically confirmed cases excluded during cleanup. “Current Hard” comes from the latest full post-cleanup audit. Need Human Verify is not counted as an error.", "“已过滤错误”是在清理过程中确认并排除的历史错误；“当前 Hard”来自清理后的最新全量复审。Need Human Verify 不计作错误。"],
+      [elements.thObservations, "Current observations", "当前观测数"],
+      [elements.thReview, "Need Human Verify", "需要人工确认"],
+      [elements.thFiltered, "Filtered errors", "已过滤错误"],
+      [elements.thErrorRate, "Error rate", "错误占比"],
+      [elements.thCurrentHard, "Current Hard", "当前 Hard"],
+      [elements.thGallery, "Gallery", "网站展示"],
+      [elements.thStatus, "Status", "状态"],
+      [elements.navSelectLabel, "SELECT DATASET", "选择数据集"],
+      [elements.acceptedKicker, "ACCEPTED", "已接受"],
+      [elements.validTitle, "Accepted / training-ready cases", "有效 / 可用于训练的 case"],
+      [elements.validCountLabel, "cases shown", "展示样本"],
+      [elements.validExplainer, "Random retained examples that pass the current dataset-specific hard checks for geometry, projection, scale, and visibility.", "随机保留样本；通过当前数据集专用的几何、投影、尺度与可见性 hard checks。"],
+      [elements.errorKicker, "CONFIRMED ERROR", "已确认错误"],
+      [elements.errorTitle, "Confirmed / filtered error cases", "确认错误 / 已过滤的 case"],
+      [elements.errorCountLabel, "cases shown", "展示样本"],
+      [elements.emptyTitle, "No confirmed error cases", "没有确认错误样本"],
+      [elements.footerLabel, "SpatialEncoder dataset QA", "SpatialEncoder 数据集质量验证"],
+    ];
+    staticCopy.forEach(([element, english, chinese]) => {
+      element.innerHTML = localized(english, chinese);
+    });
+    elements.datasetCount.innerHTML = localized(`${data.datasets.length} datasets`, `${data.datasets.length} 个数据集`, true);
+    elements.generatedAt.innerHTML = localized(`generated ${data.generatedAt}`, `生成于 ${data.generatedAt}`, true);
+    elements.languageButtons.forEach((button) => {
+      const active = button.dataset.language === currentLanguage;
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-pressed", String(active));
+    });
+  }
+
   function renderStats() {
     elements.statsBody.innerHTML = data.datasets
       .map(
         (dataset) => `
-          <tr data-dataset="${dataset.id}" tabindex="0" aria-label="查看 ${dataset.name}">
+          <tr data-dataset="${dataset.id}" tabindex="0" aria-label="View ${dataset.name}">
             <td>${dataset.name}</td>
             <td class="numeric">${formatNumber(dataset.observations)}</td>
             <td class="numeric">${formatNumber(dataset.review)}</td>
@@ -92,7 +259,7 @@
             <td class="numeric">${formatRate(dataset.filteredRate)}</td>
             <td class="numeric zero-value">${dataset.currentHard}</td>
             <td class="numeric">${dataset.validCases.length} / ${dataset.errorCases.length}</td>
-            <td><span class="table-status">clean</span></td>
+            <td><span class="table-status">${localized("clean", "已清理", true)}</span></td>
           </tr>`,
       )
       .join("");
@@ -128,8 +295,7 @@
   }
 
   function cardTemplate(caseData, index, kind) {
-    const metrics = visibleMetrics(caseData.metrics);
-    const chips = metrics
+    const chips = visibleMetrics(caseData.metrics)
       .map(
         ([key, value]) =>
           `<span class="metric-chip"><span>${labelForMetric(key)}</span><strong>${formatMetricValue(value)}</strong></span>`,
@@ -137,17 +303,17 @@
       .join("");
     return `
       <article class="case-card">
-        <button class="case-image-button" data-kind="${kind}" data-index="${index}" aria-label="放大 ${caseData.title}">
-          <img src="${caseData.image}" alt="${caseData.title} 的 2D / 3D box 投影对照" loading="lazy" />
+        <button class="case-image-button" data-kind="${kind}" data-index="${index}" aria-label="Enlarge ${caseData.title}">
+          <img src="${caseData.image}" alt="2D and projected 3D box comparison for ${caseData.title}" loading="lazy" />
         </button>
         <div class="case-copy">
           <div class="case-topline">
-            <span class="case-tag">${caseData.tag}</span>
+            <span class="case-tag">${localizedTag(caseData.tag)}</span>
             <span class="case-number">${String(index + 1).padStart(2, "0")}</span>
           </div>
           <h3 title="${caseData.title}">${caseData.title}</h3>
           <p class="case-subtitle" title="${caseData.subtitle}">${caseData.subtitle}</p>
-          <p class="case-reason">${caseData.reason}</p>
+          <p class="case-reason">${localizedReason(caseData.reason)}</p>
           <div class="metric-list">${chips}</div>
         </div>
       </article>`;
@@ -162,14 +328,14 @@
 
   function renderFacts(dataset) {
     elements.facts.innerHTML = [
-      ["observations", formatNumber(dataset.observations)],
-      ["filtered", formatNumber(dataset.filtered)],
-      ["current hard", dataset.currentHard],
+      ["observations", "观测数", formatNumber(dataset.observations)],
+      ["filtered", "已过滤", formatNumber(dataset.filtered)],
+      ["current hard", "当前 hard", dataset.currentHard],
     ]
       .map(
-        ([label, value]) => `
+        ([english, chinese, value]) => `
           <div class="fact">
-            <span>${label}</span>
+            <span>${localized(english, chinese)}</span>
             <strong>${value}</strong>
           </div>`,
       )
@@ -182,8 +348,15 @@
     currentDatasetId = dataset.id;
     history.replaceState(null, "", `#${dataset.id}`);
 
+    const chinese = datasetChinese[dataset.id] || {};
+    const englishDescription = `${dataset.description} ${dataset.statusDetail}`;
+    const chineseDescription = [chinese.description, chinese.statusDetail].filter(Boolean).join(" ");
+    const defaultErrorExplainer = "Only confirmed, filtered, excluded, or deleted errors are shown. Cases needing human verification and false positives from older rules are not presented as errors.";
+    const defaultErrorExplainerChinese = "仅展示已经确认并过滤、排除或删除的错误，不把需要人工确认的样本或旧规则 false positive 作为错误展示。";
+
     elements.title.textContent = dataset.name;
-    elements.description.textContent = `${dataset.description} ${dataset.statusDetail}`;
+    elements.datasetStatus.innerHTML = localized("Clean after filtering", "过滤后已清理", true);
+    elements.description.innerHTML = localized(englishDescription, chineseDescription);
     elements.validCount.textContent = dataset.validCases.length;
     elements.errorCount.textContent = dataset.errorCases.length;
     renderFacts(dataset);
@@ -193,9 +366,10 @@
     const hasErrors = dataset.errorCases.length > 0;
     elements.errorGrid.hidden = !hasErrors;
     elements.errorEmpty.hidden = hasErrors;
-    elements.emptyMessage.textContent = dataset.emptyMessage || "当前没有确认错误样本。";
-    elements.errorExplainer.textContent = dataset.emptyMessage ||
-      "仅展示已经确认并过滤、排除或删除的错误，不把需要人工确认的样本或旧规则 false positive 伪装成错误。";
+    elements.emptyMessage.innerHTML = localized(dataset.emptyMessage || "No confirmed error cases in the current audit.", chinese.emptyMessage || "当前审查没有确认错误样本。");
+    elements.errorExplainer.innerHTML = dataset.emptyMessage
+      ? localized(dataset.emptyMessage, chinese.emptyMessage)
+      : localized(defaultErrorExplainer, defaultErrorExplainerChinese);
 
     document.querySelectorAll(".dataset-tab").forEach((tab) => {
       const active = tab.dataset.dataset === dataset.id;
@@ -218,11 +392,11 @@
     if (!caseData) return;
 
     elements.lightboxImage.src = caseData.image;
-    elements.lightboxImage.alt = `${caseData.title} 的 2D / 3D box 投影对照`;
-    elements.lightboxTag.textContent = caseData.tag;
+    elements.lightboxImage.alt = `2D and projected 3D box comparison for ${caseData.title}`;
+    elements.lightboxTag.innerHTML = localizedTag(caseData.tag);
     elements.lightboxTag.classList.toggle("error", kind === "error");
     elements.lightboxTitle.textContent = caseData.title;
-    elements.lightboxSubtitle.textContent = `${caseData.subtitle} · ${caseData.reason}`;
+    elements.lightboxSubtitle.innerHTML = `${caseData.subtitle} · ${localizedReason(caseData.reason)}`;
     elements.lightboxMetrics.innerHTML = visibleMetrics(caseData.metrics)
       .map(
         ([key, value]) => `
@@ -240,15 +414,27 @@
     elements.lightboxImage.removeAttribute("src");
   }
 
+  function setLanguage(language) {
+    currentLanguage = language === "bilingual" ? "bilingual" : "en";
+    try {
+      localStorage.setItem("datasetQaLanguage", currentLanguage);
+    } catch (_error) {
+      // The static site still works when storage is unavailable.
+    }
+    renderStaticLanguage();
+    renderStats();
+    selectDataset(currentDatasetId);
+  }
+
+  elements.languageButtons.forEach((button) => {
+    button.addEventListener("click", () => setLanguage(button.dataset.language));
+  });
   elements.closeLightbox.addEventListener("click", closeLightbox);
   elements.lightbox.addEventListener("click", (event) => {
     if (event.target === elements.lightbox) closeLightbox();
   });
 
   elements.auditDate.textContent = data.auditDate;
-  elements.generatedAt.textContent = `generated ${data.generatedAt}`;
-  elements.datasetCount.textContent = `${data.datasets.length} datasets`;
-  renderStats();
   renderTabs();
-  selectDataset(currentDatasetId);
+  setLanguage(currentLanguage);
 })();

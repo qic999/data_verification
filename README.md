@@ -8,6 +8,7 @@ Live site: <https://qic999.github.io/data_verification/>
 The site presents:
 
 - a top-level audit statistics table;
+- an English-only / English-and-Chinese display toggle;
 - six accepted training examples per dataset;
 - up to six confirmed filtered/error examples per dataset;
 - an explicit empty state when the current audit has no confirmed error;

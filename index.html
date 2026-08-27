@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,18 +15,24 @@
     <div class="page-shell">
       <header class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">SPATIALENCODER · DATA QUALITY</p>
-          <h1>Dataset QA Gallery</h1>
+          <p class="eyebrow" id="hero-eyebrow">SPATIALENCODER · DATA QUALITY</p>
+          <h1 id="page-title">Dataset QA Gallery</h1>
           <p class="hero-description">
-            按数据集查看当前保留的有效样本与已确认的错误样本。所有图均使用同一套颜色约定：
-            <span class="legend-inline legend-2d">2D box</span>
-            <span class="legend-inline legend-3d">projected 3D cuboid</span>
+            <span id="hero-intro">Browse retained training examples and confirmed errors by dataset. Every visualization uses the same color convention:</span>
+            <span class="legend-inline legend-2d" id="legend-2d">2D box</span>
+            <span class="legend-inline legend-3d" id="legend-3d">projected 3D cuboid</span>
           </p>
         </div>
-        <div class="audit-stamp" aria-label="Audit date">
-          <span>FULL RE-AUDIT</span>
-          <strong id="audit-date">2026-08-27</strong>
-          <small>current hard = 0</small>
+        <div class="hero-actions">
+          <div class="language-switch" aria-label="Language mode">
+            <button type="button" data-language="en">English</button>
+            <button type="button" data-language="bilingual">Bilingual</button>
+          </div>
+          <div class="audit-stamp" aria-label="Audit date">
+            <span id="audit-label">FULL RE-AUDIT</span>
+            <strong id="audit-date">2026-08-27</strong>
+            <small id="audit-status">current hard = 0</small>
+          </div>
         </div>
       </header>
 
@@ -34,12 +40,12 @@
         <section class="overview-panel" aria-labelledby="overview-title">
           <div class="section-heading compact">
             <div>
-              <p class="section-kicker">OVERVIEW</p>
-              <h2 id="overview-title">数据集统计</h2>
+              <p class="section-kicker" id="overview-kicker">OVERVIEW</p>
+              <h2 id="overview-title">Dataset statistics</h2>
             </div>
-            <p class="table-note">
-              “已过滤错误”是清理过程中确认并排除的历史错误；“当前 Hard”来自清理后的最新全量复审。
-              Need Human Verify 不计作错误。
+            <p class="table-note" id="table-note">
+              “Filtered errors” are historically confirmed cases excluded during cleanup. “Current Hard” comes from the latest full post-cleanup audit.
+              Need Human Verify is not counted as an error.
             </p>
           </div>
           <div class="table-wrap">
@@ -47,13 +53,13 @@
               <thead>
                 <tr>
                   <th scope="col">Dataset</th>
-                  <th scope="col" class="numeric">当前观测数</th>
-                  <th scope="col" class="numeric">Need Human Verify</th>
-                  <th scope="col" class="numeric">已过滤错误</th>
-                  <th scope="col" class="numeric">错误占比</th>
-                  <th scope="col" class="numeric">当前 Hard</th>
-                  <th scope="col" class="numeric">网站展示</th>
-                  <th scope="col">状态</th>
+                  <th scope="col" class="numeric" id="th-observations">Current observations</th>
+                  <th scope="col" class="numeric" id="th-review">Need Human Verify</th>
+                  <th scope="col" class="numeric" id="th-filtered">Filtered errors</th>
+                  <th scope="col" class="numeric" id="th-error-rate">Error rate</th>
+                  <th scope="col" class="numeric" id="th-current-hard">Current Hard</th>
+                  <th scope="col" class="numeric" id="th-gallery">Gallery</th>
+                  <th scope="col" id="th-status">Status</th>
                 </tr>
               </thead>
               <tbody id="stats-body"></tbody>
@@ -61,9 +67,9 @@
           </div>
         </section>
 
-        <nav class="dataset-nav" aria-label="选择数据集">
+        <nav class="dataset-nav" aria-label="Select dataset">
           <div class="nav-label">
-            <span>SELECT DATASET</span>
+            <span id="nav-select-label">SELECT DATASET</span>
             <strong id="dataset-count">7 datasets</strong>
           </div>
           <div class="dataset-tabs" id="dataset-tabs" role="tablist"></div>
@@ -73,7 +79,7 @@
           <div>
             <div class="dataset-title-row">
               <h2 id="dataset-title">WildDet3D</h2>
-              <span class="status-pill clean">Clean after filtering</span>
+              <span class="status-pill clean" id="dataset-status">Clean after filtering</span>
             </div>
             <p id="dataset-description" class="dataset-description"></p>
           </div>
@@ -83,13 +89,13 @@
         <section class="case-section valid-section" aria-labelledby="valid-title">
           <div class="section-heading">
             <div>
-              <p class="section-kicker valid">ACCEPTED</p>
-              <h2 id="valid-title">有效 / 可用于训练的 case</h2>
+              <p class="section-kicker valid" id="accepted-kicker">ACCEPTED</p>
+              <h2 id="valid-title">Accepted / training-ready cases</h2>
             </div>
-            <div class="section-count"><strong id="valid-count">6</strong><span>展示样本</span></div>
+            <div class="section-count"><strong id="valid-count">6</strong><span id="valid-count-label">cases shown</span></div>
           </div>
-          <p class="section-explainer">
-            随机保留样本；通过当前数据集专用的几何、投影、尺度与可见性 hard checks。
+          <p class="section-explainer" id="valid-explainer">
+            Random retained examples that pass the current dataset-specific hard checks for geometry, projection, scale, and visibility.
           </p>
           <div class="case-grid" id="valid-grid"></div>
         </section>
@@ -97,31 +103,31 @@
         <section class="case-section error-section" aria-labelledby="error-title">
           <div class="section-heading">
             <div>
-              <p class="section-kicker error">CONFIRMED ERROR</p>
-              <h2 id="error-title">错误 / 已过滤的 case</h2>
+              <p class="section-kicker error" id="error-kicker">CONFIRMED ERROR</p>
+              <h2 id="error-title">Confirmed / filtered error cases</h2>
             </div>
-            <div class="section-count danger"><strong id="error-count">6</strong><span>展示样本</span></div>
+            <div class="section-count danger"><strong id="error-count">6</strong><span id="error-count-label">cases shown</span></div>
           </div>
           <p class="section-explainer" id="error-explainer">
-            仅展示已经确认并过滤、排除或删除的错误，不把需要人工确认的样本或旧规则 false positive 伪装成错误。
+            Only confirmed, filtered, excluded, or deleted errors are shown. Cases needing human verification and false positives from older rules are not presented as errors.
           </p>
           <div class="case-grid" id="error-grid"></div>
           <div class="empty-state" id="error-empty" hidden>
             <div class="empty-icon">✓</div>
-            <h3>没有确认错误样本</h3>
+            <h3 id="empty-title">No confirmed error cases</h3>
             <p id="empty-message"></p>
           </div>
         </section>
 
         <footer>
-          <span>SpatialEncoder dataset QA</span>
+          <span id="footer-label">SpatialEncoder dataset QA</span>
           <span id="generated-at"></span>
         </footer>
       </main>
     </div>
 
     <dialog id="lightbox" aria-label="Case detail">
-      <button class="close-button" id="close-lightbox" aria-label="关闭">×</button>
+      <button class="close-button" id="close-lightbox" aria-label="Close">×</button>
       <div class="lightbox-image-wrap">
         <img id="lightbox-image" alt="" />
       </div>

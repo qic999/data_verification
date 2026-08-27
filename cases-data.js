@@ -536,7 +536,7 @@ window.DATASET_QA = {
           }
         }
       ],
-      "emptyMessage": "Pix3D 只有 3 个确认错误；这 3 个均已物理删除。"
+      "emptyMessage": "Only three confirmed Pix3D errors exist; all three were physically deleted."
     },
     {
       "id": "structured3d",
@@ -843,7 +843,7 @@ window.DATASET_QA = {
         }
       ],
       "errorCases": [],
-      "emptyMessage": "当前审查没有确认的 hard error，因此不展示伪造的错误样本。"
+      "emptyMessage": "No hard errors were confirmed in the current audit, so no fabricated error examples are shown."
     },
     {
       "id": "kubric",
@@ -960,7 +960,7 @@ window.DATASET_QA = {
         }
       ],
       "errorCases": [],
-      "emptyMessage": "当前审查为 0 个确认错误。旧规则命中的 4,596 个候选均已通过实例 mask 和精确投影复核，属于有效数据。"
+      "emptyMessage": "The current audit has zero confirmed errors. All 4,596 candidates flagged by the old rule passed instance-mask and exact-projection verification and are valid data."
     },
     {
       "id": "uco3d",
