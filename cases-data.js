@@ -5,6 +5,9 @@ window.DATASET_QA = {
     {
       "id": "wilddet3d",
       "name": "WildDet3D",
+      "samples": 776563,
+      "dataType": "Single image",
+      "videos": null,
       "observations": 3712952,
       "review": 65188,
       "filtered": 274,
@@ -195,6 +198,9 @@ window.DATASET_QA = {
     {
       "id": "omni3d",
       "name": "Omni3D",
+      "samples": 181068,
+      "dataType": "Single image",
+      "videos": null,
       "observations": 2393788,
       "review": 0,
       "filtered": 349,
@@ -387,6 +393,9 @@ window.DATASET_QA = {
     {
       "id": "pix3d",
       "name": "Pix3D",
+      "samples": 9372,
+      "dataType": "Single image",
+      "videos": null,
       "observations": 9372,
       "review": 530,
       "filtered": 3,
@@ -541,6 +550,9 @@ window.DATASET_QA = {
     {
       "id": "structured3d",
       "name": "Structured3D",
+      "samples": 62040,
+      "dataType": "Single image",
+      "videos": null,
       "observations": 252345,
       "review": 265,
       "filtered": 82,
@@ -731,6 +743,9 @@ window.DATASET_QA = {
     {
       "id": "3dfront",
       "name": "3D-FRONT",
+      "samples": 7938,
+      "dataType": "Single image",
+      "videos": null,
       "observations": 24704,
       "review": 386,
       "filtered": 0,
@@ -848,6 +863,9 @@ window.DATASET_QA = {
     {
       "id": "kubric",
       "name": "Kubric",
+      "samples": 1266071,
+      "dataType": "Video",
+      "videos": 54270,
       "observations": 4910681,
       "review": 0,
       "filtered": 0,
@@ -965,6 +983,9 @@ window.DATASET_QA = {
     {
       "id": "uco3d",
       "name": "uCO3D",
+      "samples": 32650233,
+      "dataType": "Video",
+      "videos": 165646,
       "observations": 32650233,
       "review": 5580291,
       "filtered": 483970,

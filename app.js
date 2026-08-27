@@ -90,7 +90,9 @@
     overviewKicker: document.querySelector("#overview-kicker"),
     overviewTitle: document.querySelector("#overview-title"),
     tableNote: document.querySelector("#table-note"),
-    thObservations: document.querySelector("#th-observations"),
+    thDataType: document.querySelector("#th-data-type"),
+    thSamples: document.querySelector("#th-samples"),
+    thVideos: document.querySelector("#th-videos"),
     thReview: document.querySelector("#th-review"),
     thFiltered: document.querySelector("#th-filtered"),
     thErrorRate: document.querySelector("#th-error-rate"),
@@ -216,8 +218,10 @@
       [elements.auditStatus, "current hard = 0", "当前 hard = 0"],
       [elements.overviewKicker, "OVERVIEW", "总览"],
       [elements.overviewTitle, "Dataset statistics", "数据集统计"],
-      [elements.tableNote, "“Filtered errors” are historically confirmed cases excluded during cleanup. “Current Hard” comes from the latest full post-cleanup audit. Need Human Verify is not counted as an error.", "“已过滤错误”是在清理过程中确认并排除的历史错误；“当前 Hard”来自清理后的最新全量复审。Need Human Verify 不计作错误。"],
-      [elements.thObservations, "Current observations", "当前观测数"],
+      [elements.tableNote, "“Images / Frames” counts unique training images for image datasets and training frames for video datasets. “Videos” is shown only for video data. Need Human Verify and Filtered errors are audit-case counts, not image counts.", "“图像 / 帧数”表示图像数据集的去重训练图像数，或视频数据集的训练帧数；“视频数”仅适用于视频数据。Need Human Verify 和已过滤错误是审查 case 数，不是图像数。"],
+      [elements.thDataType, "Data type", "数据类型"],
+      [elements.thSamples, "Images / Frames", "图像 / 帧数"],
+      [elements.thVideos, "Videos", "视频数"],
       [elements.thReview, "Need Human Verify", "需要人工确认"],
       [elements.thFiltered, "Filtered errors", "已过滤错误"],
       [elements.thErrorRate, "Error rate", "错误占比"],
@@ -253,7 +257,9 @@
         (dataset) => `
           <tr data-dataset="${dataset.id}" tabindex="0" aria-label="View ${dataset.name}">
             <td>${dataset.name}</td>
-            <td class="numeric">${formatNumber(dataset.observations)}</td>
+            <td>${localized(dataset.dataType, dataset.dataType === "Video" ? "视频" : "单图像", true)}</td>
+            <td class="numeric">${formatNumber(dataset.samples)}</td>
+            <td class="numeric">${dataset.videos == null ? "—" : formatNumber(dataset.videos)}</td>
             <td class="numeric">${formatNumber(dataset.review)}</td>
             <td class="numeric">${formatNumber(dataset.filtered)}</td>
             <td class="numeric">${formatRate(dataset.filteredRate)}</td>
@@ -327,8 +333,9 @@
   }
 
   function renderFacts(dataset) {
+    const isVideo = dataset.dataType === "Video";
     elements.facts.innerHTML = [
-      ["observations", "观测数", formatNumber(dataset.observations)],
+      [isVideo ? "frames" : "images", isVideo ? "帧数" : "图像数", formatNumber(dataset.samples)],
       ["filtered", "已过滤", formatNumber(dataset.filtered)],
       ["current hard", "当前 hard", dataset.currentHard],
     ]

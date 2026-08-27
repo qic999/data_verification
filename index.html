@@ -44,7 +44,7 @@
               <h2 id="overview-title">Dataset statistics</h2>
             </div>
             <p class="table-note" id="table-note">
-              “Filtered errors” are historically confirmed cases excluded during cleanup. “Current Hard” comes from the latest full post-cleanup audit.
+              “Images / Frames” counts unique training images for image datasets and training frames for video datasets. “Videos” is shown only for video data.
               Need Human Verify is not counted as an error.
             </p>
           </div>
@@ -53,7 +53,9 @@
               <thead>
                 <tr>
                   <th scope="col">Dataset</th>
-                  <th scope="col" class="numeric" id="th-observations">Current observations</th>
+                  <th scope="col" id="th-data-type">Data type</th>
+                  <th scope="col" class="numeric" id="th-samples">Images / Frames</th>
+                  <th scope="col" class="numeric" id="th-videos">Videos</th>
                   <th scope="col" class="numeric" id="th-review">Need Human Verify</th>
                   <th scope="col" class="numeric" id="th-filtered">Filtered errors</th>
                   <th scope="col" class="numeric" id="th-error-rate">Error rate</th>
