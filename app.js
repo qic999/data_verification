@@ -221,6 +221,15 @@
     return localized(tag, tagChinese[tag], true);
   }
 
+  function diagnosticCopy(caseData, kind) {
+    if (kind === "valid") return localizedReason(caseData.reason);
+    const label = kind === "review" ? "Why ambiguous" : "Confirmed issue";
+    const labelZh = kind === "review" ? "为何需要人工确认" : "已确认问题";
+    const explanation = caseData.issue || caseData.reason;
+    const explanationZh = caseData.issueZh || reasonChinese[caseData.reason];
+    return `<strong>${localized(label, labelZh, true)}:</strong> ${localized(explanation, explanationZh)}`;
+  }
+
   function formatMetricValue(value) {
     if (Array.isArray(value)) {
       return value.map((part) => Number(part).toFixed(2)).join("–");
@@ -350,7 +359,7 @@
           </div>
           <h3 title="${caseData.title}">${caseData.title}</h3>
           <p class="case-subtitle" title="${caseData.subtitle}">${caseData.subtitle}</p>
-          <p class="case-reason">${localizedReason(caseData.reason)}</p>
+          <p class="case-reason">${diagnosticCopy(caseData, kind)}</p>
           <div class="metric-list">${chips}</div>
         </div>
       </article>`;
@@ -446,7 +455,7 @@
     elements.lightboxTag.classList.toggle("error", kind === "error");
     elements.lightboxTag.classList.toggle("review", kind === "review");
     elements.lightboxTitle.textContent = caseData.title;
-    elements.lightboxSubtitle.innerHTML = `${caseData.subtitle} · ${localizedReason(caseData.reason)}`;
+    elements.lightboxSubtitle.innerHTML = `${caseData.subtitle}<br>${diagnosticCopy(caseData, kind)}`;
     elements.lightboxMetrics.innerHTML = visibleMetrics(caseData.metrics)
       .map(
         ([key, value]) => `

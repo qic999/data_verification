@@ -12,6 +12,8 @@ It presents the seven adapted datasets with:
 - up to six examples that need no human review per dataset;
 - up to six ambiguous examples that still need human review per dataset;
 - up to six confirmed filtered/error examples per dataset;
+- a per-case explanation of why a review case is ambiguous or why a filtered
+  case was confirmed erroneous, including the relevant measured values;
 - explicit empty states when a dataset has no review or filtered examples;
 - click-to-enlarge case images and per-case projection metrics.
 

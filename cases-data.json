@@ -201,7 +201,9 @@
               2.468874454498291,
               2.468874454498291
             ]
-          }
+          },
+          "issue": "Their centers differ by 6.88% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "两者中心相差图像对角线的 6.88%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
         },
         {
           "id": "obj365_train_000000669447__img000501981 / frame 0",
@@ -218,7 +220,9 @@
               2.6184844970703125,
               3.6215126514434814
             ]
-          }
+          },
+          "issue": "Their centers differ by 7.36% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "两者中心相差图像对角线的 7.36%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
         },
         {
           "id": "obj365_train_000000139608__img000649192 / frame 0",
@@ -235,7 +239,9 @@
               3.0725197792053223,
               3.0725197792053223
             ]
-          }
+          },
+          "issue": "Their centers differ by 7.22% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "两者中心相差图像对角线的 7.22%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
         },
         {
           "id": "obj365_train_000000727163__img000721119 / frame 0",
@@ -252,7 +258,9 @@
               4.17218017578125,
               22.401443481445312
             ]
-          }
+          },
+          "issue": "Their centers differ by 5.06% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "两者中心相差图像对角线的 5.06%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
         },
         {
           "id": "v3det_train_000000020708__img000003764 / frame 0",
@@ -269,7 +277,9 @@
               2.64909029006958,
               2.64909029006958
             ]
-          }
+          },
+          "issue": "Their centers differ by 9.46% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "两者中心相差图像对角线的 9.46%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
         },
         {
           "id": "v3det_train_000000166934__img000149823 / frame 0",
@@ -286,7 +296,9 @@
               0.8394914865493774,
               0.8394914865493774
             ]
-          }
+          },
+          "issue": "Their centers differ by 7.45% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "两者中心相差图像对角线的 7.45%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
         }
       ],
       "errorCases": [
@@ -300,7 +312,9 @@
           "metrics": {
             "IoU": 0.02,
             "centerError": 0.033
-          }
+          },
+          "issue": "The projected cuboid envelope has catastrophic overlap with the loader 2D box (IoU=0.020).",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度严重异常（IoU=0.020）。"
         },
         {
           "id": "ann_1994272",
@@ -312,7 +326,9 @@
           "metrics": {
             "IoU": 0.0,
             "centerError": 0.2296
-          }
+          },
+          "issue": "The projected cuboid envelope has catastrophic overlap with the loader 2D box (IoU=0.000); the projected and reference box centers differ by 22.96% of the image diagonal.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度严重异常（IoU=0.000）；投影框与参考框中心相差图像对角线的 22.96%。"
         },
         {
           "id": "ann_4260106",
@@ -324,7 +340,9 @@
           "metrics": {
             "IoU": null,
             "centerError": null
-          }
+          },
+          "issue": "The stored dimensions, pose, or projection are invalid, so no reliable cuboid can be produced.",
+          "issueZh": "存储的尺寸、位姿或投影无效，无法生成可信的 3D 框。"
         },
         {
           "id": "ann_8787375",
@@ -336,7 +354,9 @@
           "metrics": {
             "IoU": 0.004,
             "centerError": 0.0571
-          }
+          },
+          "issue": "The projected cuboid envelope has catastrophic overlap with the loader 2D box (IoU=0.004).",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度严重异常（IoU=0.004）。"
         },
         {
           "id": "ann_524673",
@@ -348,7 +368,9 @@
           "metrics": {
             "IoU": 0.094,
             "centerError": 0.021
-          }
+          },
+          "issue": "The projected cuboid envelope has catastrophic overlap with the loader 2D box (IoU=0.094).",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度严重异常（IoU=0.094）。"
         },
         {
           "id": "ann_936133",
@@ -360,7 +382,9 @@
           "metrics": {
             "IoU": 0.529,
             "centerError": 0.2535
-          }
+          },
+          "issue": "The projected and reference box centers differ by 25.35% of the image diagonal.",
+          "issueZh": "投影框与参考框中心相差图像对角线的 25.35%。"
         }
       ],
       "emptyMessage": ""
@@ -495,7 +519,9 @@
             "axisFitError": 0.1209,
             "projectionIoU": 0.76,
             "centerError": 0.0021
-          }
+          },
+          "issue": "The cuboid axes and dimensions cannot be reconciled reliably (axis-fit error=0.1209).",
+          "issueZh": "3D 框坐标轴与尺寸无法可靠对应（axis-fit error=0.1209）。"
         },
         {
           "id": "ann_477358",
@@ -504,7 +530,9 @@
           "image": "assets/omni3d/error/02.webp",
           "tag": "filtered",
           "reason": "invalid_geometry",
-          "metrics": {}
+          "metrics": {},
+          "issue": "The stored dimensions, pose, or projection are invalid, so no reliable cuboid can be produced.",
+          "issueZh": "存储的尺寸、位姿或投影无效，无法生成可信的 3D 框。"
         },
         {
           "id": "ann_407735",
@@ -517,7 +545,9 @@
             "axisFitError": 0.0553,
             "projectionIoU": 0.808,
             "centerError": 0.0529
-          }
+          },
+          "issue": "The projected and reference box centers differ by 5.29% of the image diagonal.",
+          "issueZh": "投影框与参考框中心相差图像对角线的 5.29%。"
         },
         {
           "id": "ann_590624",
@@ -530,7 +560,9 @@
             "axisFitError": 0.0,
             "projectionIoU": 0.0,
             "centerError": 0.0
-          }
+          },
+          "issue": "The projected cuboid envelope has catastrophic overlap with the reference 2D box (IoU=0.000).",
+          "issueZh": "投影 3D 包络与参考 2D 框的重合度严重异常（IoU=0.000）。"
         },
         {
           "id": "ann_636191",
@@ -543,7 +575,9 @@
             "axisFitError": 0.122,
             "projectionIoU": 0.766,
             "centerError": 0.0005
-          }
+          },
+          "issue": "The cuboid axes and dimensions cannot be reconciled reliably (axis-fit error=0.1220).",
+          "issueZh": "3D 框坐标轴与尺寸无法可靠对应（axis-fit error=0.1220）。"
         },
         {
           "id": "ann_406973",
@@ -556,7 +590,9 @@
             "axisFitError": 0.1031,
             "projectionIoU": 0.837,
             "centerError": 0.0241
-          }
+          },
+          "issue": "The cuboid axes and dimensions cannot be reconciled reliably (axis-fit error=0.1031).",
+          "issueZh": "3D 框坐标轴与尺寸无法可靠对应（axis-fit error=0.1031）。"
         }
       ],
       "emptyMessage": ""
@@ -694,7 +730,9 @@
               2.442176103591919,
               2.442176103591919
             ]
-          }
+          },
+          "issue": "Their centers differ by 6.88% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "两者中心相差图像对角线的 6.88%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
         },
         {
           "id": "00253 / frame 0",
@@ -711,7 +749,9 @@
               2.0900630950927734,
               2.0900630950927734
             ]
-          }
+          },
+          "issue": "Their centers differ by 6.50% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "两者中心相差图像对角线的 6.50%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
         },
         {
           "id": "00270 / frame 0",
@@ -728,7 +768,9 @@
               1.8124480247497559,
               1.8124480247497559
             ]
-          }
+          },
+          "issue": "Their centers differ by 13.26% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "两者中心相差图像对角线的 13.26%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
         },
         {
           "id": "00286 / frame 0",
@@ -745,7 +787,9 @@
               2.0843007564544678,
               2.0843007564544678
             ]
-          }
+          },
+          "issue": "Their centers differ by 7.92% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "两者中心相差图像对角线的 7.92%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
         },
         {
           "id": "00388 / frame 0",
@@ -762,7 +806,9 @@
               1.7839901447296143,
               1.7839901447296143
             ]
-          }
+          },
+          "issue": "Their centers differ by 26.69% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "两者中心相差图像对角线的 26.69%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
         },
         {
           "id": "00521 / frame 0",
@@ -779,7 +825,9 @@
               2.6538233757019043,
               2.6538233757019043
             ]
-          }
+          },
+          "issue": "Their centers differ by 18.00% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "两者中心相差图像对角线的 18.00%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
         }
       ],
       "errorCases": [
@@ -793,7 +841,9 @@
           "metrics": {
             "IoU": 0.391,
             "centerError": 0.2197
-          }
+          },
+          "issue": "The projected and reference box centers differ by 21.97% of the image diagonal.",
+          "issueZh": "投影框与参考框中心相差图像对角线的 21.97%。"
         },
         {
           "id": "pix3d_03017",
@@ -805,7 +855,9 @@
           "metrics": {
             "IoU": 0.203,
             "centerError": 0.211
-          }
+          },
+          "issue": "The projected and reference box centers differ by 21.10% of the image diagonal.",
+          "issueZh": "投影框与参考框中心相差图像对角线的 21.10%。"
         },
         {
           "id": "pix3d_03018",
@@ -817,7 +869,9 @@
           "metrics": {
             "IoU": 0.224,
             "centerError": 0.2762
-          }
+          },
+          "issue": "The projected and reference box centers differ by 27.62% of the image diagonal.",
+          "issueZh": "投影框与参考框中心相差图像对角线的 27.62%。"
         }
       ],
       "emptyMessage": "Only three confirmed Pix3D errors exist; all three were physically deleted."
@@ -955,7 +1009,9 @@
               0.8663973808288574,
               5.75596284866333
             ]
-          }
+          },
+          "issue": "The earlier visibility audit marked the target object's visible extent as borderline relative to its projected cuboid. The current loader projection has IoU=0.527 and a center offset of 3.36% of the image diagonal; verify occlusion, truncation, or box extent visually.",
+          "issueZh": "此前的可见性审查认为目标物体的可见范围与 3D 投影包络处于边界状态。当前 loader 投影为 IoU=0.527，中心偏差为图像对角线的 3.36%；需要人工确认遮挡、截断或框范围是否合理。"
         },
         {
           "id": "room_534 / frame 2",
@@ -972,7 +1028,9 @@
               4.220220565795898,
               4.220220565795898
             ]
-          }
+          },
+          "issue": "The earlier visibility audit marked the target object's visible extent as borderline relative to its projected cuboid. The current loader projection has IoU=0.427 and a center offset of 3.55% of the image diagonal; verify occlusion, truncation, or box extent visually.",
+          "issueZh": "此前的可见性审查认为目标物体的可见范围与 3D 投影包络处于边界状态。当前 loader 投影为 IoU=0.427，中心偏差为图像对角线的 3.55%；需要人工确认遮挡、截断或框范围是否合理。"
         },
         {
           "id": "room_436 / frame 0",
@@ -989,7 +1047,9 @@
               1.0289283990859985,
               1.332613229751587
             ]
-          }
+          },
+          "issue": "The earlier visibility audit marked the target object's visible extent as borderline relative to its projected cuboid. The current loader projection has IoU=0.725 and a center offset of 1.21% of the image diagonal; verify occlusion, truncation, or box extent visually.",
+          "issueZh": "此前的可见性审查认为目标物体的可见范围与 3D 投影包络处于边界状态。当前 loader 投影为 IoU=0.725，中心偏差为图像对角线的 1.21%；需要人工确认遮挡、截断或框范围是否合理。"
         },
         {
           "id": "room_12995 / frame 2",
@@ -1006,7 +1066,9 @@
               2.993022918701172,
               3.7855286598205566
             ]
-          }
+          },
+          "issue": "The earlier visibility audit marked the target object's visible extent as borderline relative to its projected cuboid. The current loader projection has IoU=0.849 and a center offset of 0.29% of the image diagonal; verify occlusion, truncation, or box extent visually.",
+          "issueZh": "此前的可见性审查认为目标物体的可见范围与 3D 投影包络处于边界状态。当前 loader 投影为 IoU=0.849，中心偏差为图像对角线的 0.29%；需要人工确认遮挡、截断或框范围是否合理。"
         },
         {
           "id": "room_367652 / frame 0",
@@ -1023,7 +1085,9 @@
               1.332465648651123,
               8.242705345153809
             ]
-          }
+          },
+          "issue": "The earlier visibility audit marked the target object's visible extent as borderline relative to its projected cuboid. The current loader projection has IoU=0.485 and a center offset of 0.76% of the image diagonal; verify occlusion, truncation, or box extent visually.",
+          "issueZh": "此前的可见性审查认为目标物体的可见范围与 3D 投影包络处于边界状态。当前 loader 投影为 IoU=0.485，中心偏差为图像对角线的 0.76%；需要人工确认遮挡、截断或框范围是否合理。"
         },
         {
           "id": "room_928855 / frame 2",
@@ -1040,7 +1104,9 @@
               4.6940131187438965,
               9.764144897460938
             ]
-          }
+          },
+          "issue": "The earlier visibility audit marked the target object's visible extent as borderline relative to its projected cuboid. The current loader projection has IoU=0.570 and a center offset of 0.47% of the image diagonal; verify occlusion, truncation, or box extent visually.",
+          "issueZh": "此前的可见性审查认为目标物体的可见范围与 3D 投影包络处于边界状态。当前 loader 投影为 IoU=0.570，中心偏差为图像对角线的 0.47%；需要人工确认遮挡、截断或框范围是否合理。"
         }
       ],
       "errorCases": [
@@ -1054,7 +1120,9 @@
           "metrics": {
             "maskContainment": null,
             "visibleContainment": 0.0
-          }
+          },
+          "issue": "The projected cuboid envelope contains only 0.0% of the visible 2D box.",
+          "issueZh": "投影 3D 包络仅包含可见 2D 框的 0.0%。"
         },
         {
           "id": "structured3d_scene_00819_room_212 / frame 4",
@@ -1066,7 +1134,9 @@
           "metrics": {
             "maskContainment": null,
             "visibleContainment": 0.0
-          }
+          },
+          "issue": "The projected cuboid envelope contains only 0.0% of the visible 2D box.",
+          "issueZh": "投影 3D 包络仅包含可见 2D 框的 0.0%。"
         },
         {
           "id": "structured3d_scene_02102_room_395 / frame 1",
@@ -1078,7 +1148,9 @@
           "metrics": {
             "maskContainment": null,
             "visibleContainment": 0.72
-          }
+          },
+          "issue": "The projected cuboid envelope contains only 72.0% of the visible 2D box.",
+          "issueZh": "投影 3D 包络仅包含可见 2D 框的 72.0%。"
         },
         {
           "id": "structured3d_scene_02603_room_1348 / frame 3",
@@ -1090,7 +1162,9 @@
           "metrics": {
             "maskContainment": null,
             "visibleContainment": 0.278
-          }
+          },
+          "issue": "The projected cuboid envelope contains only 27.8% of the visible 2D box.",
+          "issueZh": "投影 3D 包络仅包含可见 2D 框的 27.8%。"
         },
         {
           "id": "structured3d_scene_03008_room_686 / frame 0",
@@ -1102,7 +1176,9 @@
           "metrics": {
             "maskContainment": null,
             "visibleContainment": 0.0
-          }
+          },
+          "issue": "The projected cuboid envelope contains only 0.0% of the visible 2D box.",
+          "issueZh": "投影 3D 包络仅包含可见 2D 框的 0.0%。"
         },
         {
           "id": "structured3d_scene_03497_room_966196 / frame 2",
@@ -1114,7 +1190,9 @@
           "metrics": {
             "maskContainment": null,
             "visibleContainment": 0.44
-          }
+          },
+          "issue": "The projected cuboid envelope contains only 44.0% of the visible 2D box.",
+          "issueZh": "投影 3D 包络仅包含可见 2D 框的 44.0%。"
         }
       ],
       "emptyMessage": ""
@@ -1252,7 +1330,9 @@
               2.635666847229004,
               4.239563941955566
             ]
-          }
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.363); their centers differ by 7.91% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.363）；两者中心相差图像对角线的 7.91%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
         },
         {
           "id": "Bedroom-2872 / frame 0000",
@@ -1269,7 +1349,9 @@
               3.1746907234191895,
               3.9182848930358887
             ]
-          }
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.350). This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.350）。这一筛查信号不足以直接自动删除，因此需要人工确认。"
         },
         {
           "id": "Bedroom-44231 / frame 0000",
@@ -1286,7 +1368,9 @@
               3.1502275466918945,
               4.322166442871094
             ]
-          }
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.362); their centers differ by 5.53% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.362）；两者中心相差图像对角线的 5.53%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
         },
         {
           "id": "Bedroom-118 / frame 0000",
@@ -1303,7 +1387,9 @@
               3.1981019973754883,
               4.297469615936279
             ]
-          }
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.393). This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.393）。这一筛查信号不足以直接自动删除，因此需要人工确认。"
         },
         {
           "id": "Library-245 / frame 0000",
@@ -1320,7 +1406,9 @@
               2.75459885597229,
               3.724942684173584
             ]
-          }
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.386). This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.386）。这一筛查信号不足以直接自动删除，因此需要人工确认。"
         },
         {
           "id": "MasterBedroom-25712 / frame 0000",
@@ -1337,7 +1425,9 @@
               2.6760146617889404,
               4.2730536460876465
             ]
-          }
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.340); their centers differ by 5.63% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.340）；两者中心相差图像对角线的 5.63%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
         }
       ],
       "errorCases": [],
@@ -1599,7 +1689,9 @@
               4.489002227783203,
               4.489002227783203
             ]
-          }
+          },
+          "issue": "Only 67.2% of the loader 2D box is covered by the projected cuboid envelope. Occlusion or truncation can make this valid, so human verification is required.",
+          "issueZh": "投影 3D 包络仅覆盖 loader 2D 框的 67.2%。遮挡或截断也可能造成这种现象，因此需要人工确认。"
         },
         {
           "id": "128-44047-77125 / frame 0180",
@@ -1618,7 +1710,9 @@
               1.9112194776535034,
               1.9112194776535034
             ]
-          }
+          },
+          "issue": "Only 88.4% of the loader 2D box is covered by the projected cuboid envelope. Occlusion or truncation can make this valid, so human verification is required.",
+          "issueZh": "投影 3D 包络仅覆盖 loader 2D 框的 88.4%。遮挡或截断也可能造成这种现象，因此需要人工确认。"
         },
         {
           "id": "13-67867-14914 / frame 0074",
@@ -1637,7 +1731,9 @@
               0.933632493019104,
               0.933632493019104
             ]
-          }
+          },
+          "issue": "Only 40.8% of the projected envelope overlaps the loader 2D box, suggesting overcoverage. Occlusion or truncation can make this valid, so human verification is required.",
+          "issueZh": "投影包络只有 40.8% 与 loader 2D 框重合，可能覆盖过大。遮挡或截断也可能造成这种现象，因此需要人工确认。"
         },
         {
           "id": "289-29763-1408 / frame 0079",
@@ -1656,7 +1752,9 @@
               2.1227855682373047,
               2.1227855682373047
             ]
-          }
+          },
+          "issue": "Only 55.4% of the loader 2D box is covered by the projected cuboid envelope; only 14.3% of the projected envelope overlaps the loader 2D box, suggesting overcoverage. Occlusion or truncation can make this valid, so human verification is required.",
+          "issueZh": "投影 3D 包络仅覆盖 loader 2D 框的 55.4%；投影包络只有 14.3% 与 loader 2D 框重合，可能覆盖过大。遮挡或截断也可能造成这种现象，因此需要人工确认。"
         },
         {
           "id": "2954-35588-59828 / frame 0080",
@@ -1675,7 +1773,9 @@
               2.7003092765808105,
               2.7003092765808105
             ]
-          }
+          },
+          "issue": "Only 74.8% of the loader 2D box is covered by the projected cuboid envelope; only 16.1% of the projected envelope overlaps the loader 2D box, suggesting overcoverage. Occlusion or truncation can make this valid, so human verification is required.",
+          "issueZh": "投影 3D 包络仅覆盖 loader 2D 框的 74.8%；投影包络只有 16.1% 与 loader 2D 框重合，可能覆盖过大。遮挡或截断也可能造成这种现象，因此需要人工确认。"
         },
         {
           "id": "30789-56119-2497 / frame 0179",
@@ -1694,7 +1794,9 @@
               5.818353652954102,
               5.818353652954102
             ]
-          }
+          },
+          "issue": "Only 76.1% of the loader 2D box is covered by the projected cuboid envelope. Occlusion or truncation can make this valid, so human verification is required.",
+          "issueZh": "投影 3D 包络仅覆盖 loader 2D 框的 76.1%。遮挡或截断也可能造成这种现象，因此需要人工确认。"
         }
       ],
       "errorCases": [
@@ -1708,7 +1810,9 @@
           "metrics": {
             "containment": null,
             "projectedPrecision": null
-          }
+          },
+          "issue": "The stored dimensions, pose, or projection are invalid, so no reliable cuboid can be produced.",
+          "issueZh": "存储的尺寸、位姿或投影无效，无法生成可信的 3D 框。"
         },
         {
           "id": "41108-37307-42201 / frame 0018",
@@ -1720,7 +1824,9 @@
           "metrics": {
             "containment": null,
             "projectedPrecision": null
-          }
+          },
+          "issue": "The stored dimensions, pose, or projection are invalid, so no reliable cuboid can be produced.",
+          "issueZh": "存储的尺寸、位姿或投影无效，无法生成可信的 3D 框。"
         },
         {
           "id": "113-2231-52560 / frame 0020",
@@ -1732,7 +1838,9 @@
           "metrics": {
             "containment": 1.0,
             "projectedPrecision": 0.034
-          }
+          },
+          "issue": "Only 3.4% of the projected envelope overlaps the visible 2D box, so the 3D box is severely oversized or displaced.",
+          "issueZh": "投影包络只有 3.4% 与可见 2D 框重合，说明 3D 框严重过大或发生偏移。"
         },
         {
           "id": "12814-31358-19358 / frame 0121",
@@ -1744,7 +1852,9 @@
           "metrics": {
             "containment": 0.659,
             "projectedPrecision": 0.045
-          }
+          },
+          "issue": "Only 4.5% of the projected envelope overlaps the visible 2D box, so the 3D box is severely oversized or displaced.",
+          "issueZh": "投影包络只有 4.5% 与可见 2D 框重合，说明 3D 框严重过大或发生偏移。"
         },
         {
           "id": "16-24533-89253 / frame 0135",
@@ -1756,7 +1866,9 @@
           "metrics": {
             "containment": 0.064,
             "projectedPrecision": 1.0
-          }
+          },
+          "issue": "The projected cuboid envelope contains only 6.4% of the visible 2D box.",
+          "issueZh": "投影 3D 包络仅包含可见 2D 框的 6.4%。"
         },
         {
           "id": "1-16691-26786 / frame 0056",
@@ -1768,7 +1880,9 @@
           "metrics": {
             "containment": 0.0,
             "projectedPrecision": 0.0
-          }
+          },
+          "issue": "The projected cuboid envelope contains only 0.0% of the visible 2D box; only 0.0% of the projected envelope overlaps the visible 2D box, so the 3D box is severely oversized or displaced.",
+          "issueZh": "投影 3D 包络仅包含可见 2D 框的 0.0%；投影包络只有 0.0% 与可见 2D 框重合，说明 3D 框严重过大或发生偏移。"
         }
       ],
       "emptyMessage": ""
