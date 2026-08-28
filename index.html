@@ -4,14 +4,29 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
     <meta
       name="description"
       content="SpatialEncoder dataset QA: no-review, human-review, and filtered 2D/3D projection cases."
     />
     <title>SpatialEncoder · Dataset QA</title>
-    <link rel="stylesheet" href="styles.css?v=20260827-10" />
+    <script>document.documentElement.classList.add("auth-locked");</script>
+    <link rel="stylesheet" href="styles.css?v=20260827-11" />
   </head>
   <body>
+    <div class="auth-gate" id="auth-gate" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+      <form class="auth-card" id="auth-form">
+        <p class="auth-eyebrow">SPATIALENCODER · PRIVATE QA</p>
+        <h1 id="auth-title">Password required</h1>
+        <p>This dataset verification gallery is temporarily access-controlled.</p>
+        <label for="auth-password">Password</label>
+        <div class="auth-input-row">
+          <input id="auth-password" name="password" type="password" autocomplete="current-password" required />
+          <button type="submit">Continue</button>
+        </div>
+        <p class="auth-error" id="auth-error" role="alert" aria-live="polite"></p>
+      </form>
+    </div>
     <div class="page-shell">
       <header class="hero">
         <div class="hero-copy">
@@ -302,7 +317,8 @@
       </div>
     </dialog>
 
-    <script src="cases-data.js?v=20260827-10"></script>
-    <script src="app.js?v=20260827-10"></script>
+    <script src="cases-data.js?v=20260827-11"></script>
+    <script src="app.js?v=20260827-11"></script>
+    <script src="auth.js?v=20260827-11"></script>
   </body>
 </html>

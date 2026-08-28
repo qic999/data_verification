@@ -2,8 +2,13 @@
 
 Live site: <https://qic999.github.io/data_verification/>
 
-Open `index.html` directly in a browser. The site is fully static and does not
-require a web server.
+The deployed gallery has a temporary client-side password gate. Successful
+authentication is remembered only for the current browser session. Because
+GitHub Pages is static hosting, this is suitable for casual access control but
+does not make the public repository or its static asset URLs private.
+
+Open `index.html` directly in a browser when developing locally. The site is
+fully static and does not require a web server.
 
 It presents ten audited datasets (WildDet3D, Omni3D, Pix3D, Structured3D,
 3D-FRONT, Kubric, uCO3D, CA-1M, HyperSim, and ADT) with:
@@ -46,5 +51,5 @@ The builder refreshes `assets/`, `cases-data.js`, and `cases-data.json` from the
 recorded audit artifacts. It converts the source visualizations to web-sized
 WebP files while preserving the original source figures.
 
-The public website is published from the repository's `main` branch via GitHub
-Pages.
+The public website is published from the repository's `gh-pages` branch via
+GitHub Pages; `main` is kept at the same release commit.

@@ -18,6 +18,127 @@
   --shadow: 0 22px 70px rgba(0, 0, 0, 0.28);
 }
 
+html.auth-locked {
+  overflow: hidden;
+}
+
+html.auth-locked .page-shell {
+  visibility: hidden;
+}
+
+.auth-gate[hidden] {
+  display: none;
+}
+
+.auth-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(44, 196, 147, 0.18), transparent 32%),
+    radial-gradient(circle at 85% 85%, rgba(56, 189, 248, 0.11), transparent 30%),
+    #050b0a;
+}
+
+.auth-card {
+  width: min(520px, 100%);
+  padding: clamp(28px, 5vw, 48px);
+  border: 1px solid rgba(110, 231, 183, 0.25);
+  border-radius: 24px;
+  background: rgba(9, 24, 20, 0.96);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.48);
+}
+
+.auth-eyebrow {
+  margin: 0 0 12px;
+  color: #6ee7b7;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.auth-card h1 {
+  margin: 0 0 12px;
+  font-size: clamp(32px, 7vw, 48px);
+  line-height: 1.05;
+}
+
+.auth-card > p:not(.auth-eyebrow, .auth-error) {
+  margin: 0 0 28px;
+  color: #a7bdb6;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.auth-card label {
+  display: block;
+  margin-bottom: 9px;
+  color: #d9f6eb;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.auth-input-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+}
+
+.auth-input-row input,
+.auth-input-row button {
+  min-height: 52px;
+  border-radius: 12px;
+  font: inherit;
+}
+
+.auth-input-row input {
+  min-width: 0;
+  padding: 0 16px;
+  border: 1px solid #315249;
+  outline: none;
+  color: #ecfdf5;
+  background: #07130f;
+}
+
+.auth-input-row input:focus {
+  border-color: #6ee7b7;
+  box-shadow: 0 0 0 3px rgba(110, 231, 183, 0.15);
+}
+
+.auth-input-row button {
+  padding: 0 22px;
+  border: 0;
+  color: #032018;
+  background: #6ee7b7;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.auth-input-row button:hover {
+  background: #a7f3d0;
+}
+
+.auth-error {
+  min-height: 22px;
+  margin: 12px 0 0;
+  color: #fda4af;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.auth-failed .auth-input-row input {
+  border-color: #fb7185;
+}
+
+@media (max-width: 560px) {
+  .auth-input-row {
+    grid-template-columns: 1fr;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
