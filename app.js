@@ -475,6 +475,7 @@
 
   function setLanguage(language) {
     currentLanguage = language === "bilingual" ? "bilingual" : "en";
+    document.documentElement.dataset.language = currentLanguage;
     try {
       localStorage.setItem("datasetQaLanguage", currentLanguage);
     } catch (_error) {

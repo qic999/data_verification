@@ -7,6 +7,8 @@ require a web server.
 
 It presents the seven adapted datasets with:
 
+- the exact general and dataset-specific filtering/review rules before the
+  dataset statistics and galleries;
 - a top-level audit statistics table;
 - an English-only / English-and-Chinese display toggle;
 - up to six examples that need no human review per dataset;

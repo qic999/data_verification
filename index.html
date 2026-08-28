@@ -9,7 +9,7 @@
       content="SpatialEncoder dataset QA: no-review, human-review, and filtered 2D/3D projection cases."
     />
     <title>SpatialEncoder · Dataset QA</title>
-    <link rel="stylesheet" href="styles.css?v=20260827-8" />
+    <link rel="stylesheet" href="styles.css?v=20260827-9" />
   </head>
   <body>
     <div class="page-shell">
@@ -37,6 +37,125 @@
       </header>
 
       <main>
+        <section class="rules-panel" aria-labelledby="rules-title">
+          <div class="rules-heading">
+            <div>
+              <p class="section-kicker">FILTERING POLICY</p>
+              <h2 id="rules-title">Data filtering rules</h2>
+              <span class="rule-zh">数据过滤规则</span>
+            </div>
+            <p class="rules-intro">
+              Known format, coordinate-axis, and scale conventions are corrected first. Only residual cases that meet a dataset-specific hard rule are filtered; borderline cases remain in the data and are sent to human review.
+              <span class="rule-zh">首先修正已知的数据格式、坐标轴和尺度约定。只有修正后仍满足数据集专用 hard rule 的样本才会被过滤；边界样本继续保留，并进入人工复核。</span>
+            </p>
+          </div>
+
+          <div class="rule-flow" aria-label="Filtering decision flow">
+            <article class="rule-step">
+              <span class="rule-index">01</span>
+              <h3>Normalize and repair</h3>
+              <span class="rule-zh">标准化并修正</span>
+              <p>Load with the current training loader, convert boxes to the camera frame, apply known axis/handedness fixes, and verify finite positive geometry.</p>
+              <span class="rule-zh">使用当前训练 loader，将框转换到相机坐标系，应用已知的坐标轴和手性修正，并检查几何量有限且为正。</span>
+            </article>
+            <article class="rule-step">
+              <span class="rule-index">02</span>
+              <h3>Measure projection consistency</h3>
+              <span class="rule-zh">计算投影一致性</span>
+              <p>Project the 3D cuboid with the loader intrinsics, clip at the image boundary, then compare it with the reference 2D box or visible mask.</p>
+              <span class="rule-zh">使用 loader 内参投影 3D 框，在图像边界裁剪后，与参考 2D 框或可见 mask 比较。</span>
+            </article>
+            <article class="rule-step filtered-step">
+              <span class="rule-index">03</span>
+              <h3>Hard failure → Filtered</h3>
+              <span class="rule-zh">严重错误 → 过滤</span>
+              <p>Invalid geometry or a metric beyond a hard threshold is excluded from training and recorded in the deletion/filter manifest.</p>
+              <span class="rule-zh">无效几何或超过 hard threshold 的样本不再参与训练，并记录到删除或过滤清单。</span>
+            </article>
+            <article class="rule-step review-step">
+              <span class="rule-index">04</span>
+              <h3>Borderline → Human review</h3>
+              <span class="rule-zh">边界样本 → 人工复核</span>
+              <p>A review threshold is a screening signal only. The sample is not deleted unless visual inspection confirms an annotation error.</p>
+              <span class="rule-zh">review threshold 只用于筛查。除非可视化人工确认标注错误，否则样本不会被删除。</span>
+            </article>
+          </div>
+
+          <div class="rules-table-wrap">
+            <table class="rules-table">
+              <thead>
+                <tr>
+                  <th scope="col">Scope <span class="rule-zh">适用范围</span></th>
+                  <th scope="col">Filtered / hard rule <span class="rule-zh">过滤规则</span></th>
+                  <th scope="col">Human-review rule or exception <span class="rule-zh">人工复核规则或例外</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>WildDet3D, Pix3D, 3D-FRONT</strong><span class="rule-zh">通用 2D/3D 投影规则</span></td>
+                  <td>
+                    Invalid geometry; <code>IoU &lt; 0.15</code> with a ≥0.05 normalized box-diagonal size guard; <code>center &gt; 0.20</code>; or jointly <code>IoU &lt; 0.25</code> and <code>center &gt; 0.10</code>. Pix3D/3D-FRONT additionally filter stored-vs-recomputed projection error <code>&gt; 1 px</code>.
+                    <span class="rule-zh">无效几何；在归一化框对角线至少为 0.05 时 <code>IoU &lt; 0.15</code>；<code>中心偏差 &gt; 0.20</code>；或同时满足 <code>IoU &lt; 0.25</code> 与 <code>中心偏差 &gt; 0.10</code>。Pix3D/3D-FRONT 还会过滤存储投影与重算投影误差 <code>&gt; 1 px</code> 的样本。</span>
+                  </td>
+                  <td>
+                    If not hard-filtered: <code>IoU &lt; 0.40</code> or <code>center &gt; 0.05</code>.
+                    <span class="rule-zh">未达到 hard rule 时，<code>IoU &lt; 0.40</code> 或 <code>中心偏差 &gt; 0.05</code> 进入人工复核。</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Omni3D</strong><span class="rule-zh">OBB 拟合与源投影一致性</span></td>
+                  <td>
+                    Invalid geometry; <code>axis-fit error &gt; 0.10</code>; fitted-vs-released clipped projection <code>IoU &lt; 0.75</code>; or normalized projected-center error <code>&gt; 0.05</code>.
+                    <span class="rule-zh">无效几何；<code>axis-fit error &gt; 0.10</code>；拟合 OBB 与源 3D 角点的裁剪投影 <code>IoU &lt; 0.75</code>；或归一化投影中心偏差 <code>&gt; 0.05</code>。</span>
+                  </td>
+                  <td>
+                    Retained annotations pass all four geometry checks; no current review-only set remains.
+                    <span class="rule-zh">保留标注均通过四项几何检查，目前没有仅需人工复核的集合。</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Structured3D</strong><span class="rule-zh">可见实例 mask 与 amodal 3D 框</span></td>
+                  <td>
+                    Invalid geometry or visible instance-mask containment by the projected cuboid <code>&lt; 0.50</code>.
+                    <span class="rule-zh">无效几何，或投影 3D 框对可见实例 mask 的包含率 <code>&lt; 0.50</code>。</span>
+                  </td>
+                  <td>
+                    <code>0.50 ≤ mask containment &lt; 0.90</code>. Symmetric 2D/3D IoU is diagnostic only because the 2D mask is visible while the cuboid is amodal.
+                    <span class="rule-zh"><code>0.50 ≤ mask 包含率 &lt; 0.90</code>。由于 2D mask 是可见框而 3D 框是 amodal，双向 IoU 只作为诊断指标。</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>uCO3D</strong><span class="rule-zh">双向覆盖检查</span></td>
+                  <td>
+                    Invalid geometry; visible-box containment <code>&lt; 0.50</code>; or projected-envelope precision <code>&lt; 0.25</code>. Residual hard frames are excluded after sequence-box repair.
+                    <span class="rule-zh">无效几何；可见框包含率 <code>&lt; 0.50</code>；或投影包络 precision <code>&lt; 0.25</code>。序列 3D 框修正后仍失败的帧会被排除。</span>
+                  </td>
+                  <td>
+                    If not hard-filtered: containment <code>&lt; 0.90</code> or projected precision <code>&lt; 0.50</code>.
+                    <span class="rule-zh">未达到 hard rule 时，包含率 <code>&lt; 0.90</code> 或投影 precision <code>&lt; 0.50</code> 进入人工复核。</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Kubric</strong><span class="rule-zh">精确合成数据例外</span></td>
+                  <td>
+                    Invalid geometry; stored-vs-recomputed projection error <code>&gt; 1 px</code>; or released object-origin projection error <code>&gt; 2 px</code>.
+                    <span class="rule-zh">无效几何；存储投影与重算投影误差 <code>&gt; 1 px</code>；或官方物体原点投影误差 <code>&gt; 2 px</code>。</span>
+                  </td>
+                  <td>
+                    Visible-mask 2D box versus amodal-cuboid IoU is not used for filtering. The 4,596 old generic-rule candidates were rechecked and confirmed valid.
+                    <span class="rule-zh">可见 mask 的 2D 框与 amodal 3D 框之间的 IoU 不用于过滤。旧通用规则命中的 4,596 个候选已复核并确认有效。</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="rule-definitions">
+            <strong>Metric definitions:</strong> <code>IoU</code> compares the clipped reference 2D box with the clipped projected-3D envelope; <code>center</code> is their center distance divided by the image diagonal; <code>containment = intersection / visible area</code>; <code>projected precision = intersection / projected area</code>.
+            <span class="rule-zh"><strong>指标定义：</strong><code>IoU</code> 比较裁剪后的参考 2D 框和 3D 投影包络；<code>中心偏差</code>为两者中心距离除以图像对角线；<code>包含率 = 交集 / 可见区域</code>；<code>投影 precision = 交集 / 投影区域</code>。</span>
+          </p>
+        </section>
+
         <section class="overview-panel" aria-labelledby="overview-title">
           <div class="section-heading compact">
             <div>
@@ -162,7 +281,7 @@
       </div>
     </dialog>
 
-    <script src="cases-data.js?v=20260827-7"></script>
-    <script src="app.js?v=20260827-7"></script>
+    <script src="cases-data.js?v=20260827-9"></script>
+    <script src="app.js?v=20260827-9"></script>
   </body>
 </html>
