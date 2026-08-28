@@ -154,7 +154,7 @@ h1 {
   background: transparent;
   color: var(--muted);
   cursor: pointer;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 760;
   transition: 160ms ease;
 }
@@ -283,7 +283,7 @@ td {
 
 th {
   color: var(--muted);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -291,7 +291,7 @@ th {
 
 td {
   color: var(--muted-strong);
-  font-size: 13px;
+  font-size: 15px;
   font-variant-numeric: tabular-nums;
 }
 
@@ -333,7 +333,7 @@ td:first-child {
   align-items: center;
   gap: 7px;
   color: #aef2ce;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
 }
 
@@ -371,12 +371,12 @@ td:first-child {
 .nav-label span {
   display: block;
   margin-bottom: 3px;
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .nav-label strong {
   color: var(--muted-strong);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .dataset-tabs {
@@ -400,7 +400,7 @@ td:first-child {
   background: transparent;
   color: var(--muted);
   cursor: pointer;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 680;
   transition: 160ms ease;
 }
@@ -445,7 +445,7 @@ td:first-child {
   border-radius: 99px;
   background: var(--mint-soft);
   color: #aef2ce;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -476,14 +476,14 @@ td:first-child {
   display: block;
   margin-bottom: 5px;
   color: var(--muted);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .fact strong {
-  font-size: 17px;
+  font-size: 19px;
   font-variant-numeric: tabular-nums;
 }
 
@@ -515,7 +515,7 @@ td:first-child {
 
 .section-count span {
   color: var(--muted);
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
 }
 
@@ -531,7 +531,7 @@ td:first-child {
   max-width: 900px;
   margin: -6px 28px 24px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.6;
 }
 
@@ -588,7 +588,7 @@ td:first-child {
   background: rgba(2, 8, 7, 0.76);
   color: white;
   content: "↗  OPEN";
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.08em;
   opacity: 0;
@@ -611,7 +611,7 @@ td:first-child {
 }
 
 .case-copy {
-  padding: 16px 17px 17px;
+  padding: 19px 20px 20px;
 }
 
 .case-topline {
@@ -628,7 +628,7 @@ td:first-child {
   border-radius: 7px;
   background: var(--mint-soft);
   color: #9df0c4;
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 850;
   letter-spacing: 0.09em;
   text-transform: uppercase;
@@ -648,14 +648,14 @@ dialog .case-tag.review {
 
 .case-number {
   color: var(--muted);
-  font-size: 10px;
+  font-size: 12px;
   font-variant-numeric: tabular-nums;
 }
 
 .case-copy h3 {
   overflow: hidden;
   margin-bottom: 5px;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 690;
   line-height: 1.35;
   text-overflow: ellipsis;
@@ -667,18 +667,28 @@ dialog .case-tag.review {
   margin-bottom: 12px;
   color: var(--muted);
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.5;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .case-reason {
-  min-height: 34px;
-  margin-bottom: 13px;
+  min-height: 44px;
+  margin-bottom: 16px;
   color: var(--muted-strong);
-  font-size: 11px;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.case-reason strong {
+  color: var(--text);
+  font-size: 15px;
+}
+
+.case-reason .i18n-zh {
+  margin-top: 7px;
+  font-size: 0.95em;
 }
 
 .metric-list {
@@ -695,7 +705,7 @@ dialog .case-tag.review {
   border: 1px solid var(--line);
   border-radius: 7px;
   color: var(--muted);
-  font-size: 9px;
+  font-size: 11px;
   font-variant-numeric: tabular-nums;
 }
 
@@ -821,14 +831,15 @@ dialog::backdrop {
 
 .lightbox-copy h2 {
   margin: 8px 0 4px;
-  font-size: 22px;
+  font-size: 25px;
 }
 
 .lightbox-copy p {
   margin-bottom: 0;
   color: var(--muted);
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 11px;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .lightbox-copy dl {
@@ -848,7 +859,7 @@ dialog::backdrop {
 
 .lightbox-copy dt {
   color: var(--muted);
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -856,7 +867,7 @@ dialog::backdrop {
 
 .lightbox-copy dd {
   margin: 4px 0 0;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
 }
 
