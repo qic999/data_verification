@@ -5,7 +5,8 @@ Live site: <https://qic999.github.io/data_verification/>
 Open `index.html` directly in a browser. The site is fully static and does not
 require a web server.
 
-It presents the seven adapted datasets with:
+It presents ten audited datasets (WildDet3D, Omni3D, Pix3D, Structured3D,
+3D-FRONT, Kubric, uCO3D, CA-1M, HyperSim, and ADT) with:
 
 - the exact general and dataset-specific filtering/review rules before the
   dataset statistics and galleries;
@@ -30,8 +31,9 @@ The **No human review needed** and **Needs human review** figures are generated
 through the current training loaders. Their loader source files, combined
 SHA-256, and generation time are recorded in `cases-data.json`; the site builder
 refuses to publish them after those loader sources change. The **Filtered**
-figures are deletion-time audit evidence because the rejected source cases are
-no longer loadable from the cleaned training datasets.
+figures are either deletion-time evidence or loader-exclusion evidence. CA-1M
+uses exact `(scene, frame, object)` exclusions, while HyperSim's 34 fully
+offscreen observations are rejected by the current loader validity filter.
 
 Rebuild the generated images and data after an audit update:
 

@@ -45,6 +45,19 @@
       description: "具有逐帧相机和重建 3D 框的以物体为中心的真实视频序列。",
       statusDetail: "clean-data 构建排除了 483,970 个失败帧标注；当前训练观测中不存在 hard error。",
     },
+    ca1m: {
+      description: "具有逐帧相机几何、深度和物体 3D 框的大规模米制第一视角视频。",
+      statusDetail: "审查覆盖当前训练与验证 loader 范围。31 个确认失败的物体帧由默认 loader 清单排除；38,345 个边界观测保留并等待人工确认。",
+    },
+    hypersim: {
+      description: "具有米制几何和精确相机参数的高真实感合成室内相机轨迹。",
+      statusDetail: "审查覆盖当前训练与验证 loader 范围。34 个完全位于画面外的物体观测会被 loader 有效性过滤；所有 loader 可用观测均通过。",
+    },
+    adt: {
+      description: "具有米制物体几何和官方逐帧相机标定的 Aria Digital Twin 序列。",
+      statusDetail: "7,027,584 个物体帧观测全部通过当前 loader 对齐的几何与投影检查。",
+      emptyMessage: "ADT 当前审查没有需要人工确认或已过滤的样本。",
+    },
   };
 
   const reasonChinese = {
@@ -66,6 +79,9 @@
     visible_bbox_containment_review: "可见框包含率边界样本，需人工确认",
     projected_bbox_overcoverage_review: "3D 投影框覆盖偏大，需人工确认",
     shape_scale_plausibility_review: "形状 / 尺度合理性需人工确认",
+    severe_truncation_review: "严重截断 / 遮挡，需人工确认",
+    fully_outside_image: "物体完全位于画面外",
+    "Passed the current loader-aligned geometry and projection checks": "通过当前 loader 对齐的几何与投影检查",
     human_review: "需要人工确认",
   };
 
@@ -90,6 +106,9 @@
     visibleContainment: "可见框包含率",
     containment: "包含率",
     projectedPrecision: "投影框精度",
+    envelopeErrorPx: "包络误差（像素）",
+    clippedWidthPx: "裁剪后宽度（像素）",
+    clippedHeightPx: "裁剪后高度（像素）",
   };
 
   const elements = {
@@ -205,6 +224,9 @@
       visibleContainment: "visible contain.",
       containment: "containment",
       projectedPrecision: "proj. precision",
+      envelopeErrorPx: "envelope err. (px)",
+      clippedWidthPx: "clipped width (px)",
+      clippedHeightPx: "clipped height (px)",
     };
     const english = labels[key] || key.replace(/([A-Z])/g, " $1").toLowerCase();
     return localized(english, metricChinese[key], true);
@@ -253,7 +275,7 @@
       [elements.auditStatus, "current hard = 0", "当前 hard = 0"],
       [elements.overviewKicker, "OVERVIEW", "总览"],
       [elements.overviewTitle, "Dataset statistics", "数据集统计"],
-      [elements.tableNote, "“Images / Frames” counts unique training images for image datasets and training frames for video datasets. “Videos” is shown only for video data. Need Human Verify and Filtered errors are audit-case counts, not image counts.", "“图像 / 帧数”表示图像数据集的去重训练图像数，或视频数据集的训练帧数；“视频数”仅适用于视频数据。Need Human Verify 和已过滤错误是审查 case 数，不是图像数。"],
+      [elements.tableNote, "“Images / Frames” counts unique audited images or frames in the reported loader scope. CA-1M and HyperSim include train and validation; the other rows report their audited training scope. “Videos” is shown only for video data. Need Human Verify and Filtered errors are audit-case counts, not image counts.", "“图像 / 帧数”表示报告的 loader 范围内去重审查的图像或帧；CA-1M 与 HyperSim 包含训练集和验证集，其他数据集使用已审查的训练范围。“视频数”仅适用于视频数据。Need Human Verify 和已过滤错误是审查 case 数，不是图像数。"],
       [elements.thDataType, "Data type", "数据类型"],
       [elements.thSamples, "Images / Frames", "图像 / 帧数"],
       [elements.thVideos, "Videos", "视频数"],

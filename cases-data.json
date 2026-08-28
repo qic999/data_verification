@@ -1,7 +1,7 @@
 {
   "generatedAt": "2026-08-27",
   "auditDate": "2026-08-27",
-  "assetVersion": "cdf0ac82af79",
+  "assetVersion": "9862185a084f",
   "loaderProvenance": {
     "wilddet3d": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -9,8 +9,8 @@
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "c6473a6a127b40835fd5ee64d387af5929a7510d5dbe154bd1ecab177cc7f10f",
-      "visualizationsGeneratedAt": "2026-08-27T22:44:33.765989+00:00"
+      "sha256": "af68eaeefcd574c99271267698f099f804b580e0ffcde620c4a7a471f763b720",
+      "visualizationsGeneratedAt": "2026-08-28T03:35:34.720650+00:00"
     },
     "omni3d": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -18,8 +18,8 @@
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "c6473a6a127b40835fd5ee64d387af5929a7510d5dbe154bd1ecab177cc7f10f",
-      "visualizationsGeneratedAt": "2026-08-27T22:42:49.647389+00:00"
+      "sha256": "af68eaeefcd574c99271267698f099f804b580e0ffcde620c4a7a471f763b720",
+      "visualizationsGeneratedAt": "2026-08-28T03:35:21.920036+00:00"
     },
     "pix3d": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -27,8 +27,8 @@
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "c6473a6a127b40835fd5ee64d387af5929a7510d5dbe154bd1ecab177cc7f10f",
-      "visualizationsGeneratedAt": "2026-08-27T22:43:10.616889+00:00"
+      "sha256": "af68eaeefcd574c99271267698f099f804b580e0ffcde620c4a7a471f763b720",
+      "visualizationsGeneratedAt": "2026-08-28T03:35:29.213020+00:00"
     },
     "structured3d": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -36,8 +36,8 @@
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "c6473a6a127b40835fd5ee64d387af5929a7510d5dbe154bd1ecab177cc7f10f",
-      "visualizationsGeneratedAt": "2026-08-27T22:43:36.307183+00:00"
+      "sha256": "af68eaeefcd574c99271267698f099f804b580e0ffcde620c4a7a471f763b720",
+      "visualizationsGeneratedAt": "2026-08-28T03:35:33.506463+00:00"
     },
     "3dfront": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -45,8 +45,8 @@
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "c6473a6a127b40835fd5ee64d387af5929a7510d5dbe154bd1ecab177cc7f10f",
-      "visualizationsGeneratedAt": "2026-08-27T22:42:05.937866+00:00"
+      "sha256": "af68eaeefcd574c99271267698f099f804b580e0ffcde620c4a7a471f763b720",
+      "visualizationsGeneratedAt": "2026-08-28T03:37:18.005058+00:00"
     },
     "kubric": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -54,8 +54,8 @@
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "c6473a6a127b40835fd5ee64d387af5929a7510d5dbe154bd1ecab177cc7f10f",
-      "visualizationsGeneratedAt": "2026-08-27T22:42:35.725205+00:00"
+      "sha256": "af68eaeefcd574c99271267698f099f804b580e0ffcde620c4a7a471f763b720",
+      "visualizationsGeneratedAt": "2026-08-28T03:35:21.255381+00:00"
     },
     "uco3d": {
       "loader": "UCO3DDetectionDataset._load_clip",
@@ -63,8 +63,36 @@
         "sam3/train/data/uco3d_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "6d3d89bc9375f2475f56af68b2476fe26f98ffe6f018b2fafe001db2c9765171",
-      "visualizationsGeneratedAt": "2026-08-27T22:46:25.040133+00:00"
+      "sha256": "4608b96ff02bca9a0e8bcf9187a706c3cd54168fc76bfb3ce5e3c35f18307f40",
+      "visualizationsGeneratedAt": "2026-08-28T03:36:20.217123+00:00"
+    },
+    "ca1m": {
+      "loader": "CA1MTrainIterableDataset",
+      "sources": [
+        "sam3/train/data/ca1m_dataset.py",
+        "sam3/train/data/sam3_image_dataset.py",
+        "sam3/train/data/filters/ca1m_hard_observations_20260827.jsonl"
+      ],
+      "sha256": "57ee49058ec0e34d4bc8bf5760ac6092c65d6fc4bf083a0b686b607d7415d90b",
+      "visualizationsGeneratedAt": "2026-08-28T03:28:16.307236+00:00"
+    },
+    "hypersim": {
+      "loader": "ObjectDetectionDataset",
+      "sources": [
+        "sam3/train/data/object_detection_dataset.py",
+        "sam3/train/data/ca1m_dataset.py"
+      ],
+      "sha256": "af68eaeefcd574c99271267698f099f804b580e0ffcde620c4a7a471f763b720",
+      "visualizationsGeneratedAt": "2026-08-28T03:26:46.633607+00:00"
+    },
+    "adt": {
+      "loader": "ObjectDetectionDataset._load_frames",
+      "sources": [
+        "sam3/train/data/object_detection_dataset.py",
+        "sam3/train/data/ca1m_dataset.py"
+      ],
+      "sha256": "af68eaeefcd574c99271267698f099f804b580e0ffcde620c4a7a471f763b720",
+      "visualizationsGeneratedAt": "2026-08-28T03:32:52.742093+00:00"
     }
   },
   "datasets": [
@@ -93,6 +121,7 @@
             "objects": 3,
             "medianIoU": 0.749,
             "centerError": 0.0114,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               3.9672634601593018,
               5.305595397949219
@@ -110,6 +139,7 @@
             "objects": 3,
             "medianIoU": 0.71,
             "centerError": 0.0037,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               5.539475440979004,
               6.980785846710205
@@ -127,6 +157,7 @@
             "objects": 5,
             "medianIoU": 0.624,
             "centerError": 0.0148,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               2.4094347953796387,
               6.342728614807129
@@ -144,6 +175,7 @@
             "objects": 2,
             "medianIoU": 0.732,
             "centerError": 0.0078,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               5.287174701690674,
               5.547533988952637
@@ -161,6 +193,7 @@
             "objects": 9,
             "medianIoU": 0.743,
             "centerError": 0.0054,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               4.448734283447266,
               5.61116886138916
@@ -178,6 +211,7 @@
             "objects": 2,
             "medianIoU": 0.664,
             "centerError": 0.0061,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               5.342090606689453,
               7.1440324783325195
@@ -414,6 +448,7 @@
             "objects": 1,
             "medianIoU": 0.985,
             "centerError": 0.0012,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               1.045230507850647,
               1.045230507850647
@@ -431,6 +466,7 @@
             "objects": 1,
             "medianIoU": 0.708,
             "centerError": 0.014,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               5.152228355407715,
               5.152228355407715
@@ -448,6 +484,7 @@
             "objects": 1,
             "medianIoU": 0.999,
             "centerError": 0.0002,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               1.9551739692687988,
               1.9551739692687988
@@ -465,6 +502,7 @@
             "objects": 4,
             "medianIoU": 0.988,
             "centerError": 0.0001,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               19.659847259521484,
               19.962377548217773
@@ -482,6 +520,7 @@
             "objects": 1,
             "medianIoU": 0.994,
             "centerError": 0.0002,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               5.365348815917969,
               5.365348815917969
@@ -499,6 +538,7 @@
             "objects": 7,
             "medianIoU": 0.988,
             "centerError": 0.0001,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               16.028663635253906,
               33.33323287963867
@@ -622,6 +662,7 @@
             "objects": 1,
             "medianIoU": 0.953,
             "centerError": 0.0045,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               5.490584850311279,
               5.490584850311279
@@ -639,6 +680,7 @@
             "objects": 1,
             "medianIoU": 0.869,
             "centerError": 0.0262,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               3.766566753387451,
               3.766566753387451
@@ -656,6 +698,7 @@
             "objects": 1,
             "medianIoU": 0.858,
             "centerError": 0.0096,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               2.549496650695801,
               2.549496650695801
@@ -673,6 +716,7 @@
             "objects": 1,
             "medianIoU": 0.857,
             "centerError": 0.0044,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               1.7337161302566528,
               1.7337161302566528
@@ -690,6 +734,7 @@
             "objects": 1,
             "medianIoU": 0.985,
             "centerError": 0.0019,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               4.498253345489502,
               4.498253345489502
@@ -707,6 +752,7 @@
             "objects": 1,
             "medianIoU": 0.897,
             "centerError": 0.0125,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               3.128694534301758,
               3.128694534301758
@@ -901,6 +947,7 @@
             "objects": 2,
             "medianIoU": 0.77,
             "centerError": 0.0034,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               2.9463376998901367,
               3.394118547439575
@@ -918,6 +965,7 @@
             "objects": 3,
             "medianIoU": 0.812,
             "centerError": 0.0136,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               2.5739617347717285,
               3.2470836639404297
@@ -935,6 +983,7 @@
             "objects": 1,
             "medianIoU": 0.902,
             "centerError": 0.0031,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               4.8965253829956055,
               4.8965253829956055
@@ -952,6 +1001,7 @@
             "objects": 1,
             "medianIoU": 0.876,
             "centerError": 0.01,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               1.4239654541015625,
               1.4239654541015625
@@ -969,6 +1019,7 @@
             "objects": 3,
             "medianIoU": 0.791,
             "centerError": 0.0124,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               2.381521701812744,
               4.156519889831543
@@ -986,6 +1037,7 @@
             "objects": 1,
             "medianIoU": 0.947,
             "centerError": 0.0038,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               4.928798675537109,
               4.928798675537109
@@ -1222,6 +1274,7 @@
             "objects": 4,
             "medianIoU": 0.97,
             "centerError": 0.0007,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               2.7155137062072754,
               3.565491199493408
@@ -1239,6 +1292,7 @@
             "objects": 3,
             "medianIoU": 0.939,
             "centerError": 0.0014,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               3.2338027954101562,
               3.544332504272461
@@ -1256,6 +1310,7 @@
             "objects": 3,
             "medianIoU": 0.941,
             "centerError": 0.0041,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               2.826923131942749,
               3.6897311210632324
@@ -1273,6 +1328,7 @@
             "objects": 5,
             "medianIoU": 0.976,
             "centerError": 0.0015,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               2.6311898231506348,
               4.290844440460205
@@ -1290,6 +1346,7 @@
             "objects": 3,
             "medianIoU": 0.848,
             "centerError": 0.0041,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               3.3093676567077637,
               4.249427795410156
@@ -1307,6 +1364,7 @@
             "objects": 2,
             "medianIoU": 0.959,
             "centerError": 0.0054,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               2.7556748390197754,
               3.7491559982299805
@@ -1458,6 +1516,7 @@
             "objects": 2,
             "medianIoU": 0.912,
             "centerError": 0.0027,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               6.482629299163818,
               7.808774948120117
@@ -1475,6 +1534,7 @@
             "objects": 7,
             "medianIoU": 0.599,
             "centerError": 0.0072,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               5.22325325012207,
               9.160016059875488
@@ -1492,6 +1552,7 @@
             "objects": 5,
             "medianIoU": 0.658,
             "centerError": 0.0124,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               5.551218509674072,
               9.235618591308594
@@ -1509,6 +1570,7 @@
             "objects": 4,
             "medianIoU": 0.534,
             "centerError": 0.0138,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               3.6030631065368652,
               9.88226318359375
@@ -1526,6 +1588,7 @@
             "objects": 7,
             "medianIoU": 0.53,
             "centerError": 0.013,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               6.073604106903076,
               13.75079345703125
@@ -1543,6 +1606,7 @@
             "objects": 4,
             "medianIoU": 0.855,
             "centerError": 0.0028,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               8.977447509765625,
               12.148386001586914
@@ -1579,6 +1643,7 @@
             "objects": 1,
             "medianIoU": 0.63,
             "centerError": 0.0334,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               7.315342426300049,
               7.315342426300049
@@ -1596,6 +1661,7 @@
             "objects": 1,
             "medianIoU": 0.874,
             "centerError": 0.0059,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               16.169076919555664,
               16.169076919555664
@@ -1613,6 +1679,7 @@
             "objects": 1,
             "medianIoU": 0.644,
             "centerError": 0.0532,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               8.788138389587402,
               8.788138389587402
@@ -1630,6 +1697,7 @@
             "objects": 1,
             "medianIoU": 0.748,
             "centerError": 0.0013,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               30.174150466918945,
               30.174150466918945
@@ -1647,6 +1715,7 @@
             "objects": 1,
             "medianIoU": 0.834,
             "centerError": 0.0109,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               9.489777565002441,
               9.489777565002441
@@ -1664,6 +1733,7 @@
             "objects": 1,
             "medianIoU": 0.571,
             "centerError": 0.0248,
+            "envelopeErrorPx": null,
             "depthRangeM": [
               10.245766639709473,
               10.245766639709473
@@ -1886,6 +1956,588 @@
         }
       ],
       "emptyMessage": ""
+    },
+    {
+      "id": "ca1m",
+      "name": "CA-1M",
+      "samples": 2051838,
+      "dataType": "Video",
+      "videos": 3072,
+      "observations": 24935871,
+      "review": 38345,
+      "filtered": 31,
+      "description": "Large-scale metric egocentric video with per-frame camera geometry, depth, and object cuboids.",
+      "statusDetail": "The audit covers the current train/validation loader scope. Thirty-one confirmed object-frame failures are excluded by the default loader manifest; 38,345 borderline observations remain for human verification.",
+      "currentHard": 0,
+      "filteredRate": 1.243187433123534e-06,
+      "validCases": [
+        {
+          "id": "image / frame 299248360966666",
+          "title": "Case 01 · image",
+          "subtitle": "47430514/299248360966666.wide/image.png",
+          "image": "assets/ca1m/valid/01.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 5,
+            "medianIoU": 0.956,
+            "centerError": 0.002,
+            "envelopeErrorPx": 6.331,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": "image / frame 65717381014083",
+          "title": "Case 02 · image",
+          "subtitle": "47430818/65717381014083.wide/image.png",
+          "image": "assets/ca1m/valid/02.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.933,
+            "centerError": 0.0047,
+            "envelopeErrorPx": 74.823,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": "image / frame 102479402758833",
+          "title": "Case 03 · image",
+          "subtitle": "42444887/102479402758833.wide/image.png",
+          "image": "assets/ca1m/valid/03.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 3,
+            "medianIoU": 0.97,
+            "centerError": 0.0039,
+            "envelopeErrorPx": 87.621,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": "image / frame 14978773816291",
+          "title": "Case 04 · image",
+          "subtitle": "47204303/14978773816291.wide/image.png",
+          "image": "assets/ca1m/valid/04.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 9,
+            "medianIoU": 0.892,
+            "centerError": 0.009,
+            "envelopeErrorPx": 99.366,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": "image / frame 32887630395082",
+          "title": "Case 05 · image",
+          "subtitle": "47670038/32887630395082.wide/image.png",
+          "image": "assets/ca1m/valid/05.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 12,
+            "medianIoU": 0.939,
+            "centerError": 0.0019,
+            "envelopeErrorPx": 8.617,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": "image / frame 43434730502458",
+          "title": "Case 06 · image",
+          "subtitle": "45261507/43434730502458.wide/image.png",
+          "image": "assets/ca1m/valid/06.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 12,
+            "medianIoU": 0.942,
+            "centerError": 0.004,
+            "envelopeErrorPx": 9.145,
+            "depthRangeM": null
+          }
+        }
+      ],
+      "reviewCases": [
+        {
+          "id": "42445691 / frame 57494185895875",
+          "title": "Object track c91188ff-36b0-47ee-aead-48e2c110944f",
+          "subtitle": "train / scene 42445691",
+          "image": "assets/ca1m/review/01.webp",
+          "tag": "review",
+          "reason": "center_review",
+          "metrics": {
+            "IoU": 0.541,
+            "centerError": 0.0995
+          },
+          "issue": "Their centers differ by 9.95% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "两者中心相差图像对角线的 9.95%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        },
+        {
+          "id": "47204747 / frame 25243888751416",
+          "title": "Object track e461b101-3532-406c-bd9c-9369822e58cb",
+          "subtitle": "train / scene 47204747",
+          "image": "assets/ca1m/review/02.webp",
+          "tag": "review",
+          "reason": "iou_review",
+          "metrics": {
+            "IoU": 0.343,
+            "centerError": 0.0124
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.343). This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.343）。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        },
+        {
+          "id": "42897967 / frame 216278326966125",
+          "title": "Object track 01e811a6-526a-42b0-b030-69e35c1ab684",
+          "subtitle": "train / scene 42897967",
+          "image": "assets/ca1m/review/03.webp",
+          "tag": "review",
+          "reason": "iou_review, center_review",
+          "metrics": {
+            "IoU": 0.359,
+            "centerError": 0.0989
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.359); their centers differ by 9.89% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.359）；两者中心相差图像对角线的 9.89%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        },
+        {
+          "id": "48018345 / frame 388672321176458",
+          "title": "Object track 0cea82c5-0071-4305-b66f-731016a35c79",
+          "subtitle": "val / scene 48018345",
+          "image": "assets/ca1m/review/04.webp",
+          "tag": "review",
+          "reason": "joint_iou_center, severe_truncation_review, iou_review, center_review",
+          "metrics": {
+            "IoU": 0.158,
+            "centerError": 0.1147
+          },
+          "issue": "The visible loader 2D box retains less than half of the stored amodal projection area. Severe truncation or occlusion can explain the weak 2D/3D overlap, so the observation is retained for human verification instead of being automatically filtered.",
+          "issueZh": "loader 可见 2D 框保留的面积不足存储 amodal 投影面积的一半。严重截断或遮挡可能解释较弱的 2D/3D 重合，因此该观测被保留并交由人工确认，而不是自动过滤。"
+        },
+        {
+          "id": "47895279 / frame 79210312770416",
+          "title": "Object track 54e5a3b0-3c97-460a-8c4e-e0507bb2e20f",
+          "subtitle": "train / scene 47895279",
+          "image": "assets/ca1m/review/05.webp",
+          "tag": "review",
+          "reason": "center_review",
+          "metrics": {
+            "IoU": 0.531,
+            "centerError": 0.1013
+          },
+          "issue": "Their centers differ by 10.13% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "两者中心相差图像对角线的 10.13%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        },
+        {
+          "id": "42897599 / frame 476340196360708",
+          "title": "Object track d2a12282-a9a2-4f28-85fa-469de277b7f1",
+          "subtitle": "val / scene 42897599",
+          "image": "assets/ca1m/review/06.webp",
+          "tag": "review",
+          "reason": "center_review",
+          "metrics": {
+            "IoU": 0.686,
+            "centerError": 0.0895
+          },
+          "issue": "Their centers differ by 8.95% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "两者中心相差图像对角线的 8.95%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        }
+      ],
+      "errorCases": [
+        {
+          "id": "47333370 / frame 34605437511750",
+          "title": "Object track 874cd790-8394-41e0-a8a0-bb6de40293a4",
+          "subtitle": "train / scene 47333370",
+          "image": "assets/ca1m/error/01.webp",
+          "tag": "filtered",
+          "reason": "iou_catastrophic",
+          "metrics": {
+            "IoU": 0.0,
+            "centerError": 0.0917
+          },
+          "issue": "The projected cuboid envelope has catastrophic overlap with the loader 2D box (IoU=0.000).",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度严重异常（IoU=0.000）。"
+        },
+        {
+          "id": "47333370 / frame 34637924325916",
+          "title": "Object track 000c0ec2-1b2a-4798-ac90-a57529478e19",
+          "subtitle": "train / scene 47333370",
+          "image": "assets/ca1m/error/02.webp",
+          "tag": "filtered",
+          "reason": "iou_catastrophic",
+          "metrics": {
+            "IoU": 0.0,
+            "centerError": 0.0846
+          },
+          "issue": "The projected cuboid envelope has catastrophic overlap with the loader 2D box (IoU=0.000).",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度严重异常（IoU=0.000）。"
+        },
+        {
+          "id": "47334543 / frame 66394683902624",
+          "title": "Object track 2c2aaa8c-bfd9-4c26-8b0a-8715d4e4e16b",
+          "subtitle": "train / scene 47334543",
+          "image": "assets/ca1m/error/03.webp",
+          "tag": "filtered",
+          "reason": "joint_iou_center",
+          "metrics": {
+            "IoU": 0.212,
+            "centerError": 0.1128
+          },
+          "issue": "The case failed a confirmed dataset-specific geometry check.",
+          "issueZh": "该样本未通过已经确认的数据集专用几何检查。"
+        },
+        {
+          "id": "47334543 / frame 66391585167250",
+          "title": "Object track 6a64fa97-6f0e-49ee-a177-014f41b0bfc7",
+          "subtitle": "train / scene 47334543",
+          "image": "assets/ca1m/error/04.webp",
+          "tag": "filtered",
+          "reason": "iou_catastrophic, joint_iou_center",
+          "metrics": {
+            "IoU": 0.056,
+            "centerError": 0.141
+          },
+          "issue": "The projected cuboid envelope has catastrophic overlap with the loader 2D box (IoU=0.056).",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度严重异常（IoU=0.056）。"
+        },
+        {
+          "id": "47334543 / frame 66391485208290",
+          "title": "Object track 539d681c-a38e-446e-bd76-401b47a75899",
+          "subtitle": "train / scene 47334543",
+          "image": "assets/ca1m/error/05.webp",
+          "tag": "filtered",
+          "reason": "iou_catastrophic, joint_iou_center",
+          "metrics": {
+            "IoU": 0.111,
+            "centerError": 0.1139
+          },
+          "issue": "The projected cuboid envelope has catastrophic overlap with the loader 2D box (IoU=0.111).",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度严重异常（IoU=0.111）。"
+        },
+        {
+          "id": "47334543 / frame 66394783861791",
+          "title": "Object track 539d681c-a38e-446e-bd76-401b47a75899",
+          "subtitle": "train / scene 47334543",
+          "image": "assets/ca1m/error/06.webp",
+          "tag": "filtered",
+          "reason": "iou_catastrophic, joint_iou_center",
+          "metrics": {
+            "IoU": 0.086,
+            "centerError": 0.1347
+          },
+          "issue": "The projected cuboid envelope has catastrophic overlap with the loader 2D box (IoU=0.086).",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度严重异常（IoU=0.086）。"
+        }
+      ],
+      "emptyMessage": ""
+    },
+    {
+      "id": "hypersim",
+      "name": "HyperSim",
+      "samples": 59602,
+      "dataType": "Video",
+      "videos": 635,
+      "observations": 1740669,
+      "review": 0,
+      "filtered": 34,
+      "description": "Photorealistic synthetic indoor camera trajectories with metric geometry and exact cameras.",
+      "statusDetail": "The audit covers the current train/validation loader scope. Thirty-four fully offscreen object observations are rejected by the loader object-validity filter; all loader-eligible observations pass.",
+      "currentHard": 0,
+      "filteredRate": 1.9532338371336178e-05,
+      "validCases": [
+        {
+          "id": "ai_010_002_cam_00 / frame 0043",
+          "title": "Case 01 · ai_010_002_cam_00",
+          "subtitle": "train-json/ai_010_002_cam_00.json",
+          "image": "assets/hypersim/valid/01.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 5,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": 5.347,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": "ai_050_001_cam_04 / frame 0006",
+          "title": "Case 02 · ai_050_001_cam_04",
+          "subtitle": "train-json/ai_050_001_cam_04.json",
+          "image": "assets/hypersim/valid/02.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 9,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": 121.227,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": "ai_043_002_cam_00 / frame 0007",
+          "title": "Case 03 · ai_043_002_cam_00",
+          "subtitle": "train-json/ai_043_002_cam_00.json",
+          "image": "assets/hypersim/valid/03.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 8,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": 28.326,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": "ai_036_010_cam_00 / frame 0094",
+          "title": "Case 04 · ai_036_010_cam_00",
+          "subtitle": "train-json/ai_036_010_cam_00.json",
+          "image": "assets/hypersim/valid/04.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 4,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": 0.168,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": "ai_031_004_cam_00 / frame 0017",
+          "title": "Case 05 · ai_031_004_cam_00",
+          "subtitle": "val-json/ai_031_004_cam_00.json",
+          "image": "assets/hypersim/valid/05.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 8,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": 2.325,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": "ai_050_003_cam_03 / frame 0093",
+          "title": "Case 06 · ai_050_003_cam_03",
+          "subtitle": "train-json/ai_050_003_cam_03.json",
+          "image": "assets/hypersim/valid/06.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 9,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": 0.184,
+            "depthRangeM": null
+          }
+        }
+      ],
+      "reviewCases": [],
+      "errorCases": [
+        {
+          "id": "ai_001_004_cam_00 / frame 0024",
+          "title": "object · 2002601.969136668__split00",
+          "subtitle": "train / ai_001_004_cam_00",
+          "image": "assets/hypersim/error/01.webp",
+          "tag": "filtered",
+          "reason": "fully_outside_image",
+          "metrics": {
+            "clippedWidthPx": 0.0,
+            "clippedHeightPx": 79.592
+          },
+          "issue": "The object projects completely outside the image, leaving a zero-width or zero-height visible 2D box; the current loader therefore rejects it before training.",
+          "issueZh": "物体投影完全位于图像之外，可见 2D 框宽度或高度为零，因此当前 loader 会在训练前将其拒绝。"
+        },
+        {
+          "id": "ai_009_003_cam_00 / frame 0095",
+          "title": "object · 3613598.379736759__split00",
+          "subtitle": "train / ai_009_003_cam_00",
+          "image": "assets/hypersim/error/02.webp",
+          "tag": "filtered",
+          "reason": "fully_outside_image",
+          "metrics": {
+            "clippedWidthPx": 247.945,
+            "clippedHeightPx": 0.0
+          },
+          "issue": "The object projects completely outside the image, leaving a zero-width or zero-height visible 2D box; the current loader therefore rejects it before training.",
+          "issueZh": "物体投影完全位于图像之外，可见 2D 框宽度或高度为零，因此当前 loader 会在训练前将其拒绝。"
+        },
+        {
+          "id": "ai_016_003_cam_01 / frame 0048",
+          "title": "object · 2110541.7127900515",
+          "subtitle": "train / ai_016_003_cam_01",
+          "image": "assets/hypersim/error/03.webp",
+          "tag": "filtered",
+          "reason": "fully_outside_image",
+          "metrics": {
+            "clippedWidthPx": 0.0,
+            "clippedHeightPx": 43.567
+          },
+          "issue": "The object projects completely outside the image, leaving a zero-width or zero-height visible 2D box; the current loader therefore rejects it before training.",
+          "issueZh": "物体投影完全位于图像之外，可见 2D 框宽度或高度为零，因此当前 loader 会在训练前将其拒绝。"
+        },
+        {
+          "id": "ai_018_007_cam_00 / frame 0031",
+          "title": "object · 1807905.628507149",
+          "subtitle": "train / ai_018_007_cam_00",
+          "image": "assets/hypersim/error/04.webp",
+          "tag": "filtered",
+          "reason": "fully_outside_image",
+          "metrics": {
+            "clippedWidthPx": 267.619,
+            "clippedHeightPx": 0.0
+          },
+          "issue": "The object projects completely outside the image, leaving a zero-width or zero-height visible 2D box; the current loader therefore rejects it before training.",
+          "issueZh": "物体投影完全位于图像之外，可见 2D 框宽度或高度为零，因此当前 loader 会在训练前将其拒绝。"
+        },
+        {
+          "id": "ai_029_001_cam_01 / frame 0000",
+          "title": "object · 1610982.879552237",
+          "subtitle": "train / ai_029_001_cam_01",
+          "image": "assets/hypersim/error/05.webp",
+          "tag": "filtered",
+          "reason": "fully_outside_image",
+          "metrics": {
+            "clippedWidthPx": 0.0,
+            "clippedHeightPx": 133.957
+          },
+          "issue": "The object projects completely outside the image, leaving a zero-width or zero-height visible 2D box; the current loader therefore rejects it before training.",
+          "issueZh": "物体投影完全位于图像之外，可见 2D 框宽度或高度为零，因此当前 loader 会在训练前将其拒绝。"
+        },
+        {
+          "id": "ai_033_008_cam_00 / frame 0028",
+          "title": "object · 2319622.040029218__split02",
+          "subtitle": "train / ai_033_008_cam_00",
+          "image": "assets/hypersim/error/06.webp",
+          "tag": "filtered",
+          "reason": "fully_outside_image",
+          "metrics": {
+            "clippedWidthPx": 0.0,
+            "clippedHeightPx": 52.297
+          },
+          "issue": "The object projects completely outside the image, leaving a zero-width or zero-height visible 2D box; the current loader therefore rejects it before training.",
+          "issueZh": "物体投影完全位于图像之外，可见 2D 框宽度或高度为零，因此当前 loader 会在训练前将其拒绝。"
+        }
+      ],
+      "emptyMessage": ""
+    },
+    {
+      "id": "adt",
+      "name": "ADT",
+      "samples": 140109,
+      "dataType": "Video",
+      "videos": 64,
+      "observations": 7027584,
+      "review": 0,
+      "filtered": 0,
+      "description": "Aria Digital Twin sequences with metric object geometry and shipped per-frame camera calibration.",
+      "statusDetail": "All 7,027,584 audited object-frame observations pass the current loader-aligned geometry and projection checks.",
+      "currentHard": 0,
+      "filteredRate": 0.0,
+      "validCases": [
+        {
+          "id": "Apartment_release_multiuser_meal_seq132_M1292 / frame 12154170888287",
+          "title": "Case 01 · Apartment_release_multiuser_meal_seq132_M1292",
+          "subtitle": "aria_digital_twin/train-json/Apartment_release_multiuser_meal_seq132_M1292.json",
+          "image": "assets/adt/valid/01.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 11,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": 0.136,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": "Apartment_release_multiskeleton_party_seq114_71292 / frame 2738149266162",
+          "title": "Case 02 · Apartment_release_multiskeleton_party_seq114_71292",
+          "subtitle": "aria_digital_twin/train-json/Apartment_release_multiskeleton_party_seq114_71292.json",
+          "image": "assets/adt/valid/02.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 19,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": 0.136,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": "Lite_release_recognition_ChoppingBoard_seq033_61283 / frame 158571825827200",
+          "title": "Case 03 · Lite_release_recognition_ChoppingBoard_seq033_61283",
+          "subtitle": "aria_digital_twin/train-json/Lite_release_recognition_ChoppingBoard_seq033_61283.json",
+          "image": "assets/adt/valid/03.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": 0.136,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": "Apartment_release_multiuser_meal_seq136_M1292 / frame 12880457310500",
+          "title": "Case 04 · Apartment_release_multiuser_meal_seq136_M1292",
+          "subtitle": "aria_digital_twin/train-json/Apartment_release_multiuser_meal_seq136_M1292.json",
+          "image": "assets/adt/valid/04.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 23,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": 0.136,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": "Lite_release_recognition_ChoppingBoard_seq031_61283 / frame 158364252520575",
+          "title": "Case 05 · Lite_release_recognition_ChoppingBoard_seq031_61283",
+          "subtitle": "aria_digital_twin/train-json/Lite_release_recognition_ChoppingBoard_seq031_61283.json",
+          "image": "assets/adt/valid/05.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 2,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": 0.136,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": "Apartment_release_multiskeleton_party_seq103_71292 / frame 2053295960687",
+          "title": "Case 06 · Apartment_release_multiskeleton_party_seq103_71292",
+          "subtitle": "aria_digital_twin/train-json/Apartment_release_multiskeleton_party_seq103_71292.json",
+          "image": "assets/adt/valid/06.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 13,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": 0.136,
+            "depthRangeM": null
+          }
+        }
+      ],
+      "reviewCases": [],
+      "errorCases": [],
+      "emptyMessage": "All audited ADT observations pass the current loader-aligned checks, so there are no review or filtered examples."
     }
   ]
 }

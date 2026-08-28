@@ -9,7 +9,7 @@
       content="SpatialEncoder dataset QA: no-review, human-review, and filtered 2D/3D projection cases."
     />
     <title>SpatialEncoder · Dataset QA</title>
-    <link rel="stylesheet" href="styles.css?v=20260827-9" />
+    <link rel="stylesheet" href="styles.css?v=20260827-10" />
   </head>
   <body>
     <div class="page-shell">
@@ -103,6 +103,28 @@
                   </td>
                 </tr>
                 <tr>
+                  <td><strong>CA-1M</strong><span class="rule-zh">当前 loader 的视频观测规则</span></td>
+                  <td>
+                    Invalid/non-finite geometry or a cuboid corner behind the camera; <code>IoU &lt; 0.15</code> with a ≥0.05 normalized size guard; <code>center &gt; 0.20</code>; or jointly <code>IoU &lt; 0.25</code> and <code>center &gt; 0.10</code>. Confirmed failures are excluded by exact <code>(scene, frame, object)</code> loader manifest entries.
+                    <span class="rule-zh">无效或非有限几何、3D 框角点位于相机后方；在归一化尺寸至少为 0.05 时 <code>IoU &lt; 0.15</code>；<code>中心偏差 &gt; 0.20</code>；或同时满足 <code>IoU &lt; 0.25</code> 与 <code>中心偏差 &gt; 0.10</code>。确认错误通过精确的 <code>(scene, frame, object)</code> loader 清单排除。</span>
+                  </td>
+                  <td>
+                    If not hard-filtered: <code>IoU &lt; 0.40</code> or <code>center &gt; 0.05</code>. A hard projection candidate with visible-to-amodal retained area <code>&lt; 0.50</code> is downgraded to review because severe truncation/occlusion is plausible. Legacy stored-projection error is diagnostic only.
+                    <span class="rule-zh">未达到 hard rule 时，<code>IoU &lt; 0.40</code> 或 <code>中心偏差 &gt; 0.05</code> 进入人工复核。若 hard 投影候选的可见面积与 amodal 面积比 <code>&lt; 0.50</code>，由于可能存在严重截断或遮挡，将其降级为人工复核；旧版存储投影误差只作为诊断。</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>HyperSim, ADT</strong><span class="rule-zh">精确 loader 投影一致性</span></td>
+                  <td>
+                    The same invalid-geometry, IoU, and normalized-center hard rules apply, plus stored-vs-recomputed projection error <code>&gt; 1 px</code>. Fully clipped boxes with zero visible width or height are rejected by the loader object-validity filter.
+                    <span class="rule-zh">使用相同的无效几何、IoU 和归一化中心偏差 hard rules，并额外检查存储投影与重算投影误差 <code>&gt; 1 px</code>。裁剪后可见宽度或高度为零的画外框会被 loader 物体有效性过滤。</span>
+                  </td>
+                  <td>
+                    If not hard-filtered: <code>IoU &lt; 0.40</code> or <code>center &gt; 0.05</code>. The current eligible subsets contain no HyperSim or ADT review candidates.
+                    <span class="rule-zh">未达到 hard rule 时，<code>IoU &lt; 0.40</code> 或 <code>中心偏差 &gt; 0.05</code> 进入人工复核。当前 loader 可用子集中，HyperSim 和 ADT 均没有人工复核候选。</span>
+                  </td>
+                </tr>
+                <tr>
                   <td><strong>Omni3D</strong><span class="rule-zh">OBB 拟合与源投影一致性</span></td>
                   <td>
                     Invalid geometry; <code>axis-fit error &gt; 0.10</code>; fitted-vs-released clipped projection <code>IoU &lt; 0.75</code>; or normalized projected-center error <code>&gt; 0.05</code>.
@@ -163,8 +185,7 @@
               <h2 id="overview-title">Dataset statistics</h2>
             </div>
             <p class="table-note" id="table-note">
-              “Images / Frames” counts unique training images for image datasets and training frames for video datasets. “Videos” is shown only for video data.
-              Human-review candidates are separated from confirmed filtered errors.
+              “Images / Frames” counts unique audited images or frames in the reported loader scope. CA-1M and HyperSim include train and validation; the other rows report their audited training scope. “Videos” is shown only for video data. Human-review candidates are separated from confirmed filtered errors.
             </p>
           </div>
           <div class="table-wrap">
@@ -191,7 +212,7 @@
         <nav class="dataset-nav" aria-label="Select dataset">
           <div class="nav-label">
             <span id="nav-select-label">SELECT DATASET</span>
-            <strong id="dataset-count">7 datasets</strong>
+            <strong id="dataset-count">10 datasets</strong>
           </div>
           <div class="dataset-tabs" id="dataset-tabs" role="tablist"></div>
         </nav>
@@ -281,7 +302,7 @@
       </div>
     </dialog>
 
-    <script src="cases-data.js?v=20260827-9"></script>
-    <script src="app.js?v=20260827-9"></script>
+    <script src="cases-data.js?v=20260827-10"></script>
+    <script src="app.js?v=20260827-10"></script>
   </body>
 </html>
