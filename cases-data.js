@@ -1,7 +1,7 @@
 window.DATASET_QA = {
-  "generatedAt": "2026-08-27",
-  "auditDate": "2026-08-27",
-  "assetVersion": "9862185a084f",
+  "generatedAt": "2026-08-28",
+  "auditDate": "2026-08-28",
+  "assetVersion": "fff856a095f8",
   "loaderProvenance": {
     "wilddet3d": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -9,8 +9,8 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "af68eaeefcd574c99271267698f099f804b580e0ffcde620c4a7a471f763b720",
-      "visualizationsGeneratedAt": "2026-08-28T03:35:34.720650+00:00"
+      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "visualizationsGeneratedAt": "2026-08-29T00:07:17.577276+00:00"
     },
     "omni3d": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -18,8 +18,8 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "af68eaeefcd574c99271267698f099f804b580e0ffcde620c4a7a471f763b720",
-      "visualizationsGeneratedAt": "2026-08-28T03:35:21.920036+00:00"
+      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "visualizationsGeneratedAt": "2026-08-29T00:07:47.926828+00:00"
     },
     "pix3d": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -27,8 +27,8 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "af68eaeefcd574c99271267698f099f804b580e0ffcde620c4a7a471f763b720",
-      "visualizationsGeneratedAt": "2026-08-28T03:35:29.213020+00:00"
+      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "visualizationsGeneratedAt": "2026-08-29T00:08:31.972616+00:00"
     },
     "structured3d": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -36,8 +36,8 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "af68eaeefcd574c99271267698f099f804b580e0ffcde620c4a7a471f763b720",
-      "visualizationsGeneratedAt": "2026-08-28T03:35:33.506463+00:00"
+      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "visualizationsGeneratedAt": "2026-08-29T00:09:23.107669+00:00"
     },
     "3dfront": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -45,8 +45,8 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "af68eaeefcd574c99271267698f099f804b580e0ffcde620c4a7a471f763b720",
-      "visualizationsGeneratedAt": "2026-08-28T03:37:18.005058+00:00"
+      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "visualizationsGeneratedAt": "2026-08-29T00:10:10.648627+00:00"
     },
     "kubric": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -54,8 +54,8 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "af68eaeefcd574c99271267698f099f804b580e0ffcde620c4a7a471f763b720",
-      "visualizationsGeneratedAt": "2026-08-28T03:35:21.255381+00:00"
+      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "visualizationsGeneratedAt": "2026-08-29T00:10:42.504670+00:00"
     },
     "uco3d": {
       "loader": "UCO3DDetectionDataset._load_clip",
@@ -64,7 +64,7 @@ window.DATASET_QA = {
         "sam3/train/data/ca1m_dataset.py"
       ],
       "sha256": "4608b96ff02bca9a0e8bcf9187a706c3cd54168fc76bfb3ce5e3c35f18307f40",
-      "visualizationsGeneratedAt": "2026-08-28T03:36:20.217123+00:00"
+      "visualizationsGeneratedAt": "2026-08-29T00:12:52.543763+00:00"
     },
     "ca1m": {
       "loader": "CA1MTrainIterableDataset",
@@ -74,7 +74,7 @@ window.DATASET_QA = {
         "sam3/train/data/filters/ca1m_hard_observations_20260827.jsonl"
       ],
       "sha256": "57ee49058ec0e34d4bc8bf5760ac6092c65d6fc4bf083a0b686b607d7415d90b",
-      "visualizationsGeneratedAt": "2026-08-28T03:28:16.307236+00:00"
+      "visualizationsGeneratedAt": "2026-08-29T00:23:21.949409+00:00"
     },
     "hypersim": {
       "loader": "ObjectDetectionDataset",
@@ -82,8 +82,8 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "af68eaeefcd574c99271267698f099f804b580e0ffcde620c4a7a471f763b720",
-      "visualizationsGeneratedAt": "2026-08-28T03:26:46.633607+00:00"
+      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "visualizationsGeneratedAt": "2026-08-29T00:26:40.664585+00:00"
     },
     "adt": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -91,8 +91,44 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "af68eaeefcd574c99271267698f099f804b580e0ffcde620c4a7a471f763b720",
-      "visualizationsGeneratedAt": "2026-08-28T03:32:52.742093+00:00"
+      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "visualizationsGeneratedAt": "2026-08-29T00:37:36.346864+00:00"
+    },
+    "hssd": {
+      "loader": "ObjectDetectionDataset._load_frames",
+      "sources": [
+        "sam3/train/data/object_detection_dataset.py",
+        "sam3/train/data/ca1m_dataset.py"
+      ],
+      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "visualizationsGeneratedAt": "2026-08-29T00:04:08.823011+00:00"
+    },
+    "abo": {
+      "loader": "ObjectDetectionDataset._load_frames",
+      "sources": [
+        "sam3/train/data/object_detection_dataset.py",
+        "sam3/train/data/ca1m_dataset.py"
+      ],
+      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "visualizationsGeneratedAt": "2026-08-29T00:04:32.706548+00:00"
+    },
+    "shapenet": {
+      "loader": "ObjectDetectionDataset._load_frames",
+      "sources": [
+        "sam3/train/data/object_detection_dataset.py",
+        "sam3/train/data/ca1m_dataset.py"
+      ],
+      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "visualizationsGeneratedAt": "2026-08-29T00:04:57.928505+00:00"
+    },
+    "replica": {
+      "loader": "ObjectDetectionDataset._load_frames",
+      "sources": [
+        "sam3/train/data/object_detection_dataset.py",
+        "sam3/train/data/ca1m_dataset.py"
+      ],
+      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "visualizationsGeneratedAt": "2026-08-29T00:14:58.140383+00:00"
     }
   },
   "datasets": [
@@ -192,7 +228,7 @@ window.DATASET_QA = {
           "metrics": {
             "objects": 9,
             "medianIoU": 0.743,
-            "centerError": 0.0054,
+            "centerError": 0.0052,
             "envelopeErrorPx": null,
             "depthRangeM": [
               4.448734283447266,
@@ -267,15 +303,15 @@ window.DATASET_QA = {
           "reason": "center_review",
           "metrics": {
             "objects": 1,
-            "IoU": 0.628,
-            "centerError": 0.0722,
+            "IoU": 0.658,
+            "centerError": 0.0634,
             "depthRangeM": [
               3.0725197792053223,
               3.0725197792053223
             ]
           },
-          "issue": "Their centers differ by 7.22% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
-          "issueZh": "两者中心相差图像对角线的 7.22%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+          "issue": "Their centers differ by 6.34% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "两者中心相差图像对角线的 6.34%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
         },
         {
           "id": "obj365_train_000000727163__img000721119 / frame 0",
@@ -464,8 +500,8 @@ window.DATASET_QA = {
           "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 1,
-            "medianIoU": 0.708,
-            "centerError": 0.014,
+            "medianIoU": 0.77,
+            "centerError": 0.0053,
             "envelopeErrorPx": null,
             "depthRangeM": [
               5.152228355407715,
@@ -750,8 +786,8 @@ window.DATASET_QA = {
           "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 1,
-            "medianIoU": 0.897,
-            "centerError": 0.0125,
+            "medianIoU": 0.958,
+            "centerError": 0.0065,
             "envelopeErrorPx": null,
             "depthRangeM": [
               3.128694534301758,
@@ -846,15 +882,15 @@ window.DATASET_QA = {
           "reason": "center_review",
           "metrics": {
             "objects": 1,
-            "IoU": 0.347,
-            "centerError": 0.2669,
+            "IoU": 0.819,
+            "centerError": 0.0641,
             "depthRangeM": [
               1.7839901447296143,
               1.7839901447296143
             ]
           },
-          "issue": "Their centers differ by 26.69% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
-          "issueZh": "两者中心相差图像对角线的 26.69%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+          "issue": "Their centers differ by 6.41% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "两者中心相差图像对角线的 6.41%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
         },
         {
           "id": "00521 / frame 0",
@@ -865,15 +901,15 @@ window.DATASET_QA = {
           "reason": "center_review",
           "metrics": {
             "objects": 1,
-            "IoU": 0.324,
-            "centerError": 0.18,
+            "IoU": 0.739,
+            "centerError": 0.0859,
             "depthRangeM": [
               2.6538233757019043,
               2.6538233757019043
             ]
           },
-          "issue": "Their centers differ by 18.00% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
-          "issueZh": "两者中心相差图像对角线的 18.00%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+          "issue": "Their centers differ by 8.59% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "两者中心相差图像对角线的 8.59%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
         }
       ],
       "errorCases": [
@@ -964,7 +1000,7 @@ window.DATASET_QA = {
           "metrics": {
             "objects": 3,
             "medianIoU": 0.812,
-            "centerError": 0.0136,
+            "centerError": 0.0027,
             "envelopeErrorPx": null,
             "depthRangeM": [
               2.5739617347717285,
@@ -1018,7 +1054,7 @@ window.DATASET_QA = {
           "metrics": {
             "objects": 3,
             "medianIoU": 0.791,
-            "centerError": 0.0124,
+            "centerError": 0.0094,
             "envelopeErrorPx": null,
             "depthRangeM": [
               2.381521701812744,
@@ -1055,15 +1091,15 @@ window.DATASET_QA = {
           "reason": "visible_containment_review",
           "metrics": {
             "objects": 15,
-            "IoU": 0.527,
-            "centerError": 0.0336,
+            "IoU": 0.767,
+            "centerError": 0.0105,
             "depthRangeM": [
               0.8663973808288574,
               5.75596284866333
             ]
           },
-          "issue": "The earlier visibility audit marked the target object's visible extent as borderline relative to its projected cuboid. The current loader projection has IoU=0.527 and a center offset of 3.36% of the image diagonal; verify occlusion, truncation, or box extent visually.",
-          "issueZh": "此前的可见性审查认为目标物体的可见范围与 3D 投影包络处于边界状态。当前 loader 投影为 IoU=0.527，中心偏差为图像对角线的 3.36%；需要人工确认遮挡、截断或框范围是否合理。"
+          "issue": "The earlier visibility audit marked the target object's visible extent as borderline relative to its projected cuboid. The current loader projection has IoU=0.767 and a center offset of 1.05% of the image diagonal; verify occlusion, truncation, or box extent visually.",
+          "issueZh": "此前的可见性审查认为目标物体的可见范围与 3D 投影包络处于边界状态。当前 loader 投影为 IoU=0.767，中心偏差为图像对角线的 1.05%；需要人工确认遮挡、截断或框范围是否合理。"
         },
         {
           "id": "room_534 / frame 2",
@@ -1362,8 +1398,8 @@ window.DATASET_QA = {
           "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 2,
-            "medianIoU": 0.959,
-            "centerError": 0.0054,
+            "medianIoU": 0.974,
+            "centerError": 0.0016,
             "envelopeErrorPx": null,
             "depthRangeM": [
               2.7556748390197754,
@@ -1532,7 +1568,7 @@ window.DATASET_QA = {
           "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 7,
-            "medianIoU": 0.599,
+            "medianIoU": 0.718,
             "centerError": 0.0072,
             "envelopeErrorPx": null,
             "depthRangeM": [
@@ -1551,7 +1587,7 @@ window.DATASET_QA = {
           "metrics": {
             "objects": 5,
             "medianIoU": 0.658,
-            "centerError": 0.0124,
+            "centerError": 0.0102,
             "envelopeErrorPx": null,
             "depthRangeM": [
               5.551218509674072,
@@ -1568,7 +1604,7 @@ window.DATASET_QA = {
           "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 4,
-            "medianIoU": 0.534,
+            "medianIoU": 0.629,
             "centerError": 0.0138,
             "envelopeErrorPx": null,
             "depthRangeM": [
@@ -1586,8 +1622,8 @@ window.DATASET_QA = {
           "reason": "All current-loader objects pass the dataset-specific review checks",
           "metrics": {
             "objects": 7,
-            "medianIoU": 0.53,
-            "centerError": 0.013,
+            "medianIoU": 0.555,
+            "centerError": 0.012,
             "envelopeErrorPx": null,
             "depthRangeM": [
               6.073604106903076,
@@ -1835,8 +1871,8 @@ window.DATASET_QA = {
           "reason": "visible_containment_or_overcoverage_review",
           "metrics": {
             "objects": 1,
-            "IoU": 0.153,
-            "centerError": 0.8215,
+            "IoU": 0.553,
+            "centerError": 0.0906,
             "visibleContainment": 0.748,
             "projectedPrecision": 0.161,
             "depthRangeM": [
@@ -2538,6 +2574,947 @@ window.DATASET_QA = {
       "reviewCases": [],
       "errorCases": [],
       "emptyMessage": "All audited ADT observations pass the current loader-aligned checks, so there are no review or filtered examples."
+    },
+    {
+      "id": "hssd",
+      "name": "HSSD",
+      "samples": 1002,
+      "dataType": "Video",
+      "videos": 167,
+      "observations": 20475,
+      "review": 0,
+      "filtered": 379,
+      "filteredRate": 0.01851037851037851,
+      "description": "Synthetic indoor sequences with metric object geometry, depth, and known cameras.",
+      "statusDetail": "379 invalid-geometry or projection-metadata observations are excluded; none is eligible under the current training loader.",
+      "currentHard": 0,
+      "validCases": [
+        {
+          "id": "102344022 / frame 000000",
+          "title": "Case 01 · 102344022",
+          "subtitle": "train-json/102344022.json",
+          "image": "assets/hssd/valid/01.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry, projection, and visible-containment checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.909,
+            "centerError": 0.0199,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              1.2698111534118652,
+              1.2698111534118652
+            ]
+          }
+        },
+        {
+          "id": "103997799_171031002 / frame 000005",
+          "title": "Case 02 · 103997799_171031002",
+          "subtitle": "train-json/103997799_171031002.json",
+          "image": "assets/hssd/valid/02.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry, projection, and visible-containment checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.739,
+            "centerError": 0.008,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              1.5299763679504395,
+              1.5299763679504395
+            ]
+          }
+        },
+        {
+          "id": "102817200 / frame 000003",
+          "title": "Case 03 · 102817200",
+          "subtitle": "train-json/102817200.json",
+          "image": "assets/hssd/valid/03.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry, projection, and visible-containment checks",
+          "metrics": {
+            "objects": 2,
+            "medianIoU": 0.968,
+            "centerError": 0.001,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              3.084017753601074,
+              3.163764476776123
+            ]
+          }
+        },
+        {
+          "id": "107734479_176000442 / frame 000005",
+          "title": "Case 04 · 107734479_176000442",
+          "subtitle": "train-json/107734479_176000442.json",
+          "image": "assets/hssd/valid/04.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry, projection, and visible-containment checks",
+          "metrics": {
+            "objects": 14,
+            "medianIoU": 0.916,
+            "centerError": 0.0024,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              2.0896172523498535,
+              3.6362056732177734
+            ]
+          }
+        },
+        {
+          "id": "106878945_174887058 / frame 000000",
+          "title": "Case 05 · 106878945_174887058",
+          "subtitle": "train-json/106878945_174887058.json",
+          "image": "assets/hssd/valid/05.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry, projection, and visible-containment checks",
+          "metrics": {
+            "objects": 2,
+            "medianIoU": 0.504,
+            "centerError": 0.0149,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              3.145517110824585,
+              3.1537203788757324
+            ]
+          }
+        },
+        {
+          "id": "106366248_174226527 / frame 000004",
+          "title": "Case 06 · 106366248_174226527",
+          "subtitle": "train-json/106366248_174226527.json",
+          "image": "assets/hssd/valid/06.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry, projection, and visible-containment checks",
+          "metrics": {
+            "objects": 8,
+            "medianIoU": 0.892,
+            "centerError": 0.0045,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              1.7830592393875122,
+              7.319638252258301
+            ]
+          }
+        }
+      ],
+      "reviewCases": [],
+      "errorCases": [
+        {
+          "id": "hssd_102343992 / frame 000001 / obj_0051",
+          "title": "object · obj_0051",
+          "subtitle": "train-json/102343992.json",
+          "image": "assets/hssd/error/01.webp",
+          "tag": "filtered",
+          "reason": "projection_metadata_mismatch",
+          "metrics": {
+            "IoU": 0.962,
+            "centerError": 0.0118,
+            "visibleContainment": 1.0,
+            "envelopeErrorPx": 47343.88
+          },
+          "issue": "The stored cuboid envelope disagrees with the projection recomputed from the released geometry (47343.88 px).",
+          "issueZh": "存储的 3D 框包络与依据发布几何重算的投影不一致（47343.88 px）。"
+        },
+        {
+          "id": "hssd_102343992 / frame 000002 / obj_0233",
+          "title": "Kitchen Conlay · obj_0233",
+          "subtitle": "train-json/102343992.json",
+          "image": "assets/hssd/error/02.webp",
+          "tag": "filtered",
+          "reason": "invalid_geometry",
+          "metrics": {},
+          "issue": "The stored dimensions, pose, or projection are invalid, so no reliable cuboid can be produced.",
+          "issueZh": "存储的尺寸、位姿或投影无效，无法生成可信的 3D 框。"
+        },
+        {
+          "id": "hssd_102343992 / frame 000003 / obj_0136",
+          "title": "Charmant 8-seater Dining Set · obj_0136",
+          "subtitle": "train-json/102343992.json",
+          "image": "assets/hssd/error/03.webp",
+          "tag": "filtered",
+          "reason": "invalid_geometry",
+          "metrics": {},
+          "issue": "The stored dimensions, pose, or projection are invalid, so no reliable cuboid can be produced.",
+          "issueZh": "存储的尺寸、位姿或投影无效，无法生成可信的 3D 框。"
+        },
+        {
+          "id": "hssd_102344022 / frame 000003 / obj_0168",
+          "title": "Midas Touch Replica Christmas Garland · obj_0168",
+          "subtitle": "train-json/102344022.json",
+          "image": "assets/hssd/error/04.webp",
+          "tag": "filtered",
+          "reason": "invalid_geometry",
+          "metrics": {},
+          "issue": "The stored dimensions, pose, or projection are invalid, so no reliable cuboid can be produced.",
+          "issueZh": "存储的尺寸、位姿或投影无效，无法生成可信的 3D 框。"
+        },
+        {
+          "id": "hssd_102344049 / frame 000000 / obj_0012",
+          "title": "object · obj_0012",
+          "subtitle": "train-json/102344049.json",
+          "image": "assets/hssd/error/05.webp",
+          "tag": "filtered",
+          "reason": "invalid_geometry",
+          "metrics": {},
+          "issue": "The stored dimensions, pose, or projection are invalid, so no reliable cuboid can be produced.",
+          "issueZh": "存储的尺寸、位姿或投影无效，无法生成可信的 3D 框。"
+        },
+        {
+          "id": "hssd_102344094 / frame 000003 / obj_0071",
+          "title": "plant · obj_0071",
+          "subtitle": "train-json/102344094.json",
+          "image": "assets/hssd/error/06.webp",
+          "tag": "filtered",
+          "reason": "invalid_geometry",
+          "metrics": {},
+          "issue": "The stored dimensions, pose, or projection are invalid, so no reliable cuboid can be produced.",
+          "issueZh": "存储的尺寸、位姿或投影无效，无法生成可信的 3D 框。"
+        }
+      ],
+      "emptyMessage": ""
+    },
+    {
+      "id": "abo",
+      "name": "ABO",
+      "samples": 47718,
+      "dataType": "Single image",
+      "videos": null,
+      "observations": 47718,
+      "review": 0,
+      "filtered": 2944,
+      "filteredRate": 0.06169579613563016,
+      "description": "Multi-view product renders with normalized object geometry and known cameras.",
+      "statusDetail": "154 automatic hard rejects and 2,790 visually adjudicated review observations are confirmed errors; all 2,944 are ineligible under the current training loader.",
+      "currentHard": 0,
+      "validCases": [
+        {
+          "id": "B07TZRLNFV / frame 1",
+          "title": "Case 01 · B07TZRLNFV",
+          "subtitle": "train-json/B07TZRLNFV.json",
+          "image": "assets/abo/valid/01.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry, projection, and visible-containment checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.764,
+            "centerError": 0.0365,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              1.5,
+              1.5
+            ]
+          }
+        },
+        {
+          "id": "B079V39VFW / frame 0",
+          "title": "Case 02 · B079V39VFW",
+          "subtitle": "train-json/B079V39VFW.json",
+          "image": "assets/abo/valid/02.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry, projection, and visible-containment checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.693,
+            "centerError": 0.0004,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              1.5,
+              1.5
+            ]
+          }
+        },
+        {
+          "id": "B07QHL81RH / frame 3",
+          "title": "Case 03 · B07QHL81RH",
+          "subtitle": "train-json/B07QHL81RH.json",
+          "image": "assets/abo/valid/03.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry, projection, and visible-containment checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.781,
+            "centerError": 0.0005,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              1.5,
+              1.5
+            ]
+          }
+        },
+        {
+          "id": "B07DTLKL7L / frame 0",
+          "title": "Case 04 · B07DTLKL7L",
+          "subtitle": "train-json/B07DTLKL7L.json",
+          "image": "assets/abo/valid/04.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry, projection, and visible-containment checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.725,
+            "centerError": 0.0011,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              1.5,
+              1.5
+            ]
+          }
+        },
+        {
+          "id": "B075X4PTBG / frame 0",
+          "title": "Case 05 · B075X4PTBG",
+          "subtitle": "train-json/B075X4PTBG.json",
+          "image": "assets/abo/valid/05.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry, projection, and visible-containment checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.855,
+            "centerError": 0.0048,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              1.5,
+              1.5
+            ]
+          }
+        },
+        {
+          "id": "B078JM52VN / frame 4",
+          "title": "Case 06 · B078JM52VN",
+          "subtitle": "train-json/B078JM52VN.json",
+          "image": "assets/abo/valid/06.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry, projection, and visible-containment checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.952,
+            "centerError": 0.0018,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              1.5,
+              1.5
+            ]
+          }
+        }
+      ],
+      "reviewCases": [],
+      "errorCases": [
+        {
+          "id": "ABO_B0719STM8K / frame 0 / obj_0",
+          "title": "object · obj_0",
+          "subtitle": "train-json/B0719STM8K.json",
+          "image": "assets/abo/error/01.webp",
+          "tag": "excluded",
+          "reason": "visible_mask_not_contained",
+          "metrics": {
+            "IoU": 0.256,
+            "centerError": 0.0009,
+            "visibleContainment": 0.345,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope contains only 34.5% of the visible 2D box.",
+          "issueZh": "投影 3D 包络仅包含可见 2D 框的 34.5%。"
+        },
+        {
+          "id": "ABO_B06X19FLTC / frame 0 / obj_0",
+          "title": "object · obj_0",
+          "subtitle": "train-json/B06X19FLTC.json",
+          "image": "assets/abo/error/02.webp",
+          "tag": "excluded",
+          "reason": "visible_containment_review",
+          "metrics": {
+            "IoU": 0.401,
+            "centerError": 0.0006,
+            "visibleContainment": 0.702,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope contains only 70.2% of the visible 2D box.",
+          "issueZh": "投影 3D 包络仅包含可见 2D 框的 70.2%。"
+        },
+        {
+          "id": "ABO_B0719STM8K / frame 1 / obj_0",
+          "title": "object · obj_0",
+          "subtitle": "train-json/B0719STM8K.json",
+          "image": "assets/abo/error/03.webp",
+          "tag": "excluded",
+          "reason": "visible_mask_not_contained",
+          "metrics": {
+            "IoU": 0.276,
+            "centerError": 0.0013,
+            "visibleContainment": 0.383,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope contains only 38.3% of the visible 2D box.",
+          "issueZh": "投影 3D 包络仅包含可见 2D 框的 38.3%。"
+        },
+        {
+          "id": "ABO_B071J4VYN7 / frame 0 / obj_0",
+          "title": "object · obj_0",
+          "subtitle": "train-json/B071J4VYN7.json",
+          "image": "assets/abo/error/04.webp",
+          "tag": "excluded",
+          "reason": "visible_mask_not_contained",
+          "metrics": {
+            "IoU": 0.313,
+            "centerError": 0.0006,
+            "visibleContainment": 0.456,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope contains only 45.6% of the visible 2D box.",
+          "issueZh": "投影 3D 包络仅包含可见 2D 框的 45.6%。"
+        },
+        {
+          "id": "ABO_B071ZJ3X28 / frame 0 / obj_0",
+          "title": "object · obj_0",
+          "subtitle": "train-json/B071ZJ3X28.json",
+          "image": "assets/abo/error/05.webp",
+          "tag": "excluded",
+          "reason": "visible_mask_not_contained",
+          "metrics": {
+            "IoU": 0.297,
+            "centerError": 0.0009,
+            "visibleContainment": 0.428,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope contains only 42.8% of the visible 2D box.",
+          "issueZh": "投影 3D 包络仅包含可见 2D 框的 42.8%。"
+        },
+        {
+          "id": "ABO_B071ZJ6BGN / frame 0 / obj_0",
+          "title": "object · obj_0",
+          "subtitle": "train-json/B071ZJ6BGN.json",
+          "image": "assets/abo/error/06.webp",
+          "tag": "excluded",
+          "reason": "visible_mask_not_contained",
+          "metrics": {
+            "IoU": 0.292,
+            "centerError": 0.0009,
+            "visibleContainment": 0.412,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope contains only 41.2% of the visible 2D box.",
+          "issueZh": "投影 3D 包络仅包含可见 2D 框的 41.2%。"
+        }
+      ],
+      "emptyMessage": ""
+    },
+    {
+      "id": "shapenet",
+      "name": "ShapeNet",
+      "samples": 314832,
+      "dataType": "Single image",
+      "videos": null,
+      "observations": 314832,
+      "review": 0,
+      "filtered": 14,
+      "filteredRate": 4.446816079686944e-05,
+      "description": "Rendered object views with normalized ShapeNet geometry and known cameras.",
+      "statusDetail": "All 14 automated review observations were visually confirmed as errors and excluded; none is eligible under the current training loader.",
+      "currentHard": 0,
+      "validCases": [
+        {
+          "id": "76005568c6a76385c8f56abbf37ac61c / frame 1",
+          "title": "Case 01 · 76005568c6a76385c8f56abbf37ac61c",
+          "subtitle": "train-json/76005568c6a76385c8f56abbf37ac61c.json",
+          "image": "assets/shapenet/valid/01.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry, projection, and visible-containment checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.897,
+            "centerError": 0.0144,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              1.5,
+              1.5
+            ]
+          }
+        },
+        {
+          "id": "25c736b7ca26bcb7bfccc00eb137e6ec / frame 0",
+          "title": "Case 02 · 25c736b7ca26bcb7bfccc00eb137e6ec",
+          "subtitle": "train-json/25c736b7ca26bcb7bfccc00eb137e6ec.json",
+          "image": "assets/shapenet/valid/02.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry, projection, and visible-containment checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.889,
+            "centerError": 0.007,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              1.5,
+              1.5
+            ]
+          }
+        },
+        {
+          "id": "229af4d0700b3fab29f2e5c9212b176c / frame 5",
+          "title": "Case 03 · 229af4d0700b3fab29f2e5c9212b176c",
+          "subtitle": "train-json/229af4d0700b3fab29f2e5c9212b176c.json",
+          "image": "assets/shapenet/valid/03.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry, projection, and visible-containment checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.957,
+            "centerError": 0.0028,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              1.5,
+              1.5
+            ]
+          }
+        },
+        {
+          "id": "b45e5b92bb4623ff151f2df200a24ac / frame 0",
+          "title": "Case 04 · b45e5b92bb4623ff151f2df200a24ac",
+          "subtitle": "train-json/b45e5b92bb4623ff151f2df200a24ac.json",
+          "image": "assets/shapenet/valid/04.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry, projection, and visible-containment checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.49,
+            "centerError": 0.0096,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              1.5,
+              1.5
+            ]
+          }
+        },
+        {
+          "id": "6aae683be40c3a9610c2a68437007d6 / frame 0",
+          "title": "Case 05 · 6aae683be40c3a9610c2a68437007d6",
+          "subtitle": "train-json/6aae683be40c3a9610c2a68437007d6.json",
+          "image": "assets/shapenet/valid/05.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry, projection, and visible-containment checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.978,
+            "centerError": 0.0019,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              1.5,
+              1.5
+            ]
+          }
+        },
+        {
+          "id": "a3d3ce1084c2dc3457cd4ef590dc070 / frame 2",
+          "title": "Case 06 · a3d3ce1084c2dc3457cd4ef590dc070",
+          "subtitle": "train-json/a3d3ce1084c2dc3457cd4ef590dc070.json",
+          "image": "assets/shapenet/valid/06.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry, projection, and visible-containment checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.661,
+            "centerError": 0.0228,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              1.5,
+              1.5
+            ]
+          }
+        }
+      ],
+      "reviewCases": [],
+      "errorCases": [
+        {
+          "id": "ShapeNet_37cbf8e368b06b655e43a6efcaa57d09 / frame 0 / obj_0",
+          "title": "04090263 · obj_0",
+          "subtitle": "train-json/37cbf8e368b06b655e43a6efcaa57d09.json",
+          "image": "assets/shapenet/error/01.webp",
+          "tag": "excluded",
+          "reason": "visible_containment_review",
+          "metrics": {
+            "IoU": 0.697,
+            "centerError": 0.0063,
+            "visibleContainment": 0.886,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope contains only 88.6% of the visible 2D box.",
+          "issueZh": "投影 3D 包络仅包含可见 2D 框的 88.6%。"
+        },
+        {
+          "id": "ShapeNet_37cbf8e368b06b655e43a6efcaa57d09 / frame 1 / obj_0",
+          "title": "04090263 · obj_0",
+          "subtitle": "train-json/37cbf8e368b06b655e43a6efcaa57d09.json",
+          "image": "assets/shapenet/error/02.webp",
+          "tag": "excluded",
+          "reason": "visible_containment_review",
+          "metrics": {
+            "IoU": 0.66,
+            "centerError": 0.007,
+            "visibleContainment": 0.858,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope contains only 85.8% of the visible 2D box.",
+          "issueZh": "投影 3D 包络仅包含可见 2D 框的 85.8%。"
+        },
+        {
+          "id": "ShapeNet_55f0e38a64ba2c2d813b65629a36678 / frame 0 / obj_0",
+          "title": "04225987 · obj_0",
+          "subtitle": "train-json/55f0e38a64ba2c2d813b65629a36678.json",
+          "image": "assets/shapenet/error/03.webp",
+          "tag": "excluded",
+          "reason": "visible_containment_review",
+          "metrics": {
+            "IoU": 0.673,
+            "centerError": 0.002,
+            "visibleContainment": 0.845,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope contains only 84.5% of the visible 2D box.",
+          "issueZh": "投影 3D 包络仅包含可见 2D 框的 84.5%。"
+        },
+        {
+          "id": "ShapeNet_6cbd981e310a0f09a8107a4c74d58321 / frame 4 / obj_0",
+          "title": "03085013 · obj_0",
+          "subtitle": "train-json/6cbd981e310a0f09a8107a4c74d58321.json",
+          "image": "assets/shapenet/error/04.webp",
+          "tag": "excluded",
+          "reason": "visible_containment_review",
+          "metrics": {
+            "IoU": 0.727,
+            "centerError": 0.0013,
+            "visibleContainment": 0.893,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope contains only 89.3% of the visible 2D box.",
+          "issueZh": "投影 3D 包络仅包含可见 2D 框的 89.3%。"
+        },
+        {
+          "id": "ShapeNet_7e78c9080d79e7d3c0177b7521e73828 / frame 0 / obj_0",
+          "title": "03467517 · obj_0",
+          "subtitle": "train-json/7e78c9080d79e7d3c0177b7521e73828.json",
+          "image": "assets/shapenet/error/05.webp",
+          "tag": "excluded",
+          "reason": "visible_containment_review",
+          "metrics": {
+            "IoU": 0.827,
+            "centerError": 0.0013,
+            "visibleContainment": 0.899,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope contains only 89.9% of the visible 2D box.",
+          "issueZh": "投影 3D 包络仅包含可见 2D 框的 89.9%。"
+        },
+        {
+          "id": "ShapeNet_8c6c169c326e61df67b9bb226efd81df / frame 0 / obj_0",
+          "title": "04090263 · obj_0",
+          "subtitle": "train-json/8c6c169c326e61df67b9bb226efd81df.json",
+          "image": "assets/shapenet/error/06.webp",
+          "tag": "excluded",
+          "reason": "visible_containment_review",
+          "metrics": {
+            "IoU": 0.776,
+            "centerError": 0.0081,
+            "visibleContainment": 0.894,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope contains only 89.4% of the visible 2D box.",
+          "issueZh": "投影 3D 包络仅包含可见 2D 框的 89.4%。"
+        }
+      ],
+      "emptyMessage": ""
+    },
+    {
+      "id": "replica",
+      "name": "Replica",
+      "samples": 18,
+      "dataType": "Single image",
+      "videos": null,
+      "observations": 313,
+      "review": 29,
+      "filtered": 0,
+      "filteredRate": 0.0,
+      "currentHard": 5,
+      "description": "The HF v2 package contains one metric RGB/depth view per Replica scene with camera-frame 3D cuboids.",
+      "statusDetail": "Of 313 current-loader-eligible object observations, 279 pass, 29 require human verification, and 5 remain hard rejects that have not yet been removed.",
+      "validCases": [
+        {
+          "id": "frl_apartment_4 / frame 0",
+          "title": "Case 01 · frl_apartment_4",
+          "subtitle": "train-json/frl_apartment_4.json",
+          "image": "assets/replica/valid/01.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry, projection, and visible-containment checks",
+          "metrics": {
+            "objects": 31,
+            "medianIoU": 0.844,
+            "centerError": 0.0019,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              4.8347063064575195,
+              11.893146514892578
+            ]
+          }
+        },
+        {
+          "id": "apartment_0 / frame 0",
+          "title": "Case 02 · apartment_0",
+          "subtitle": "train-json/apartment_0.json",
+          "image": "assets/replica/valid/02.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry, projection, and visible-containment checks",
+          "metrics": {
+            "objects": 27,
+            "medianIoU": 0.795,
+            "centerError": 0.0034,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              5.310802936553955,
+              12.507246017456055
+            ]
+          }
+        },
+        {
+          "id": "office_4 / frame 0",
+          "title": "Case 03 · office_4",
+          "subtitle": "train-json/office_4.json",
+          "image": "assets/replica/valid/03.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry, projection, and visible-containment checks",
+          "metrics": {
+            "objects": 9,
+            "medianIoU": 0.819,
+            "centerError": 0.0032,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              4.232586860656738,
+              7.435872554779053
+            ]
+          }
+        },
+        {
+          "id": "apartment_1 / frame 0",
+          "title": "Case 04 · apartment_1",
+          "subtitle": "train-json/apartment_1.json",
+          "image": "assets/replica/valid/04.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry, projection, and visible-containment checks",
+          "metrics": {
+            "objects": 11,
+            "medianIoU": 0.739,
+            "centerError": 0.0046,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              2.571608543395996,
+              8.040143013000488
+            ]
+          }
+        }
+      ],
+      "reviewCases": [
+        {
+          "id": "office_1 / frame 0",
+          "title": "pillow · obj_11",
+          "subtitle": "train-json/office_1.json",
+          "image": "assets/replica/review/01.webp",
+          "tag": "review",
+          "reason": "visible_iou_review",
+          "metrics": {
+            "objects": 12,
+            "IoU": 0.536,
+            "centerError": 0.0461,
+            "visibleContainment": 1.0,
+            "projectedPrecision": 0.458,
+            "depthRangeM": [
+              2.6225380897521973,
+              5.319589614868164
+            ]
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.536). This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.536）。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        },
+        {
+          "id": "frl_apartment_3 / frame 0",
+          "title": "sofa · obj_16",
+          "subtitle": "train-json/frl_apartment_3.json",
+          "image": "assets/replica/review/02.webp",
+          "tag": "review",
+          "reason": "visible_iou_review",
+          "metrics": {
+            "objects": 23,
+            "IoU": 0.139,
+            "centerError": 0.1162,
+            "visibleContainment": 1.0,
+            "projectedPrecision": 0.139,
+            "depthRangeM": [
+              4.207833290100098,
+              13.828035354614258
+            ]
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.139). This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.139）。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        },
+        {
+          "id": "frl_apartment_1 / frame 0",
+          "title": "bike · obj_26",
+          "subtitle": "train-json/frl_apartment_1.json",
+          "image": "assets/replica/review/03.webp",
+          "tag": "review",
+          "reason": "visible_iou_review",
+          "metrics": {
+            "objects": 22,
+            "IoU": 0.39,
+            "centerError": 0.0024,
+            "visibleContainment": 1.0,
+            "projectedPrecision": 0.39,
+            "depthRangeM": [
+              1.9181272983551025,
+              13.883079528808594
+            ]
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.390). This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.390）。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        },
+        {
+          "id": "room_1 / frame 0",
+          "title": "blanket · obj_14",
+          "subtitle": "train-json/room_1.json",
+          "image": "assets/replica/review/04.webp",
+          "tag": "review",
+          "reason": "visible_iou_review",
+          "metrics": {
+            "objects": 17,
+            "IoU": 0.307,
+            "centerError": 0.0554,
+            "visibleContainment": 1.0,
+            "projectedPrecision": 0.307,
+            "depthRangeM": [
+              2.7565531730651855,
+              7.123777389526367
+            ]
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.307). This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.307）。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        },
+        {
+          "id": "hotel_0 / frame 0",
+          "title": "towel · obj_7",
+          "subtitle": "train-json/hotel_0.json",
+          "image": "assets/replica/review/05.webp",
+          "tag": "review",
+          "reason": "visible_iou_review",
+          "metrics": {
+            "objects": 8,
+            "IoU": 0.315,
+            "centerError": 0.0342,
+            "visibleContainment": 1.0,
+            "projectedPrecision": 0.205,
+            "depthRangeM": [
+              2.6606173515319824,
+              9.399299621582031
+            ]
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.315). This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.315）。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        },
+        {
+          "id": "office_2 / frame 0",
+          "title": "sofa · obj_19",
+          "subtitle": "train-json/office_2.json",
+          "image": "assets/replica/review/06.webp",
+          "tag": "review",
+          "reason": "visible_iou_review",
+          "metrics": {
+            "objects": 12,
+            "IoU": 0.643,
+            "centerError": 0.0508,
+            "visibleContainment": 1.0,
+            "projectedPrecision": 0.643,
+            "depthRangeM": [
+              4.273891448974609,
+              7.719592571258545
+            ]
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.643). This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.643）。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        }
+      ],
+      "errorCases": [
+        {
+          "id": "apartment_2 / frame 0 / obj_20",
+          "title": "table · obj_20",
+          "subtitle": "train-json/apartment_2.json",
+          "image": "assets/replica/error/01.webp",
+          "tag": "hard reject",
+          "reason": "visible_iou_catastrophic",
+          "metrics": {
+            "IoU": 0.126,
+            "centerError": 0.0579,
+            "visibleContainment": 1.0
+          },
+          "issue": "The projected cuboid envelope has catastrophic overlap with the loader 2D box (IoU=0.126).",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度严重异常（IoU=0.126）。"
+        },
+        {
+          "id": "frl_apartment_0 / frame 0 / obj_6",
+          "title": "table · obj_6",
+          "subtitle": "train-json/frl_apartment_0.json",
+          "image": "assets/replica/error/02.webp",
+          "tag": "hard reject",
+          "reason": "visible_iou_catastrophic",
+          "metrics": {
+            "IoU": 0.143,
+            "centerError": 0.0114,
+            "visibleContainment": 1.0
+          },
+          "issue": "The projected cuboid envelope has catastrophic overlap with the loader 2D box (IoU=0.143).",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度严重异常（IoU=0.143）。"
+        },
+        {
+          "id": "office_0 / frame 0 / obj_0",
+          "title": "tv-screen · obj_0",
+          "subtitle": "train-json/office_0.json",
+          "image": "assets/replica/error/03.webp",
+          "tag": "hard reject",
+          "reason": "visible_joint_iou_center",
+          "metrics": {
+            "IoU": 0.202,
+            "centerError": 0.1172,
+            "visibleContainment": 1.0
+          },
+          "issue": "The projected and reference box centers differ by 11.72% of the image diagonal.",
+          "issueZh": "投影框与参考框中心相差图像对角线的 11.72%。"
+        },
+        {
+          "id": "room_0 / frame 0 / obj_4",
+          "title": "blanket · obj_4",
+          "subtitle": "train-json/room_0.json",
+          "image": "assets/replica/error/04.webp",
+          "tag": "hard reject",
+          "reason": "visible_iou_catastrophic",
+          "metrics": {
+            "IoU": 0.134,
+            "centerError": 0.0269,
+            "visibleContainment": 1.0
+          },
+          "issue": "The projected cuboid envelope has catastrophic overlap with the loader 2D box (IoU=0.134).",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度严重异常（IoU=0.134）。"
+        },
+        {
+          "id": "room_0 / frame 0 / obj_14",
+          "title": "lamp · obj_14",
+          "subtitle": "train-json/room_0.json",
+          "image": "assets/replica/error/05.webp",
+          "tag": "hard reject",
+          "reason": "visible_iou_catastrophic, visible_joint_iou_center",
+          "metrics": {
+            "IoU": 0.023,
+            "centerError": 0.1131,
+            "visibleContainment": 1.0
+          },
+          "issue": "The projected cuboid envelope has catastrophic overlap with the loader 2D box (IoU=0.023); the projected and reference box centers differ by 11.31% of the image diagonal.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度严重异常（IoU=0.023）；投影框与参考框中心相差图像对角线的 11.31%。"
+        }
+      ],
+      "emptyMessage": ""
     }
   ]
 };

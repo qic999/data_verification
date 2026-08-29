@@ -58,6 +58,22 @@
       statusDetail: "7,027,584 个物体帧观测全部通过当前 loader 对齐的几何与投影检查。",
       emptyMessage: "ADT 当前审查没有需要人工确认或已过滤的样本。",
     },
+    hssd: {
+      description: "具有米制物体几何、深度和已知相机的合成室内序列。",
+      statusDetail: "379 个无效几何或投影 metadata 观测已被排除；这些观测均不满足当前训练 loader 的使用条件。",
+    },
+    abo: {
+      description: "具有归一化物体几何和已知相机的多视角商品渲染图像。",
+      statusDetail: "154 个自动 hard reject 和 2,790 个经人工确认的 review 观测均为错误；全部 2,944 个观测均不满足当前训练 loader 的使用条件。",
+    },
+    shapenet: {
+      description: "具有归一化 ShapeNet 几何和已知相机的物体渲染视图。",
+      statusDetail: "14 个自动 review 观测均经人工确认为错误并被排除；它们均不满足当前训练 loader 的使用条件。",
+    },
+    replica: {
+      description: "HF v2 包含每个 Replica 场景的一张米制 RGB/depth 图像及相机坐标系 3D 框。",
+      statusDetail: "当前 loader 可用的 313 个物体观测中，279 个通过、29 个需人工确认，另有 5 个尚未移除的 hard reject。",
+    },
   };
 
   const reasonChinese = {
@@ -81,6 +97,12 @@
     shape_scale_plausibility_review: "形状 / 尺度合理性需人工确认",
     severe_truncation_review: "严重截断 / 遮挡，需人工确认",
     fully_outside_image: "物体完全位于画面外",
+    projection_metadata_mismatch: "存储投影与依据发布几何重算的投影不一致",
+    visible_mask_not_contained: "可见区域没有被 3D 投影框充分包含",
+    visible_iou_catastrophic: "可见 2D 框与 3D 投影框的 IoU 严重异常",
+    visible_iou_review: "可见 2D 框与 3D 投影框的 IoU 需要人工确认",
+    visible_center_review: "可见框与投影框的中心偏差需要人工确认",
+    visible_joint_iou_center: "可见框与投影框同时存在 IoU 和中心偏差问题",
     "Passed the current loader-aligned geometry and projection checks": "通过当前 loader 对齐的几何与投影检查",
     human_review: "需要人工确认",
   };
@@ -91,6 +113,7 @@
     deleted: "已删除",
     excluded: "已排除",
     review: "待人工确认",
+    "hard reject": "确认 hard reject",
   };
 
   const metricChinese = {
@@ -268,11 +291,11 @@
     const staticCopy = [
       [elements.heroEyebrow, "SPATIALENCODER · DATA QUALITY", "SPATIALENCODER · 数据质量"],
       [elements.pageTitle, "Dataset QA Gallery", "数据集质量验证图库"],
-      [elements.heroIntro, "No-review and human-review cases are rendered through the current training loaders. Filtered cases preserve pre-removal audit evidence. Every visualization uses the same color convention:", "无需人工确认和需要人工确认的样本均由当前训练 loader 生成；已过滤样本保留删除前的审计证据。所有可视化使用相同的颜色约定："],
+      [elements.heroIntro, "No-review and human-review cases are rendered through the current training loaders. Filtered and current hard-reject cases preserve audit evidence. Every visualization uses the same color convention:", "无需人工确认和需要人工确认的样本均由当前训练 loader 生成；已过滤和当前 hard-reject 样本保留审计证据。所有可视化使用相同的颜色约定："],
       [elements.legend2d, "2D box", "2D 框"],
       [elements.legend3d, "projected 3D cuboid", "投影 3D 长方体"],
       [elements.auditLabel, "FULL RE-AUDIT", "全量复审"],
-      [elements.auditStatus, "current hard = 0", "当前 hard = 0"],
+      [elements.auditStatus, `current hard = ${data.datasets.reduce((total, dataset) => total + (dataset.currentHard || 0), 0)}`, `当前 hard = ${data.datasets.reduce((total, dataset) => total + (dataset.currentHard || 0), 0)}`],
       [elements.overviewKicker, "OVERVIEW", "总览"],
       [elements.overviewTitle, "Dataset statistics", "数据集统计"],
       [elements.tableNote, "“Images / Frames” counts unique audited images or frames in the reported loader scope. CA-1M and HyperSim include train and validation; the other rows report their audited training scope. “Videos” is shown only for video data. Need Human Verify and Filtered errors are audit-case counts, not image counts.", "“图像 / 帧数”表示报告的 loader 范围内去重审查的图像或帧；CA-1M 与 HyperSim 包含训练集和验证集，其他数据集使用已审查的训练范围。“视频数”仅适用于视频数据。Need Human Verify 和已过滤错误是审查 case 数，不是图像数。"],
@@ -283,7 +306,7 @@
       [elements.thFiltered, "Filtered errors", "已过滤错误"],
       [elements.thErrorRate, "Error rate", "错误占比"],
       [elements.thCurrentHard, "Current Hard", "当前 Hard"],
-      [elements.thGallery, "Gallery (No-review / Review / Filtered)", "网站展示（无需复核 / 人工复核 / 已过滤）"],
+      [elements.thGallery, "Gallery (No-review / Review / Filtered or hard)", "网站展示（无需复核 / 人工复核 / 已过滤或 hard）"],
       [elements.thStatus, "Status", "状态"],
       [elements.navSelectLabel, "SELECT DATASET", "选择数据集"],
       [elements.acceptedKicker, "NO HUMAN REVIEW NEEDED", "无需人工确认"],
@@ -423,6 +446,13 @@
     const chineseDescription = [chinese.description, chinese.statusDetail].filter(Boolean).join(" ");
     const defaultErrorExplainer = "These are archival audit visualizations retained before confirmed errors were filtered, excluded, or physically deleted. Cases needing human verification and false positives from older rules are not presented as errors.";
     const defaultErrorExplainerChinese = "这些是确认错误在被过滤、排除或物理删除前保留的审计可视化；需要人工确认的样本和旧规则 false positive 不会作为错误展示。";
+    const hasCurrentHard = Number(dataset.currentHard || 0) > 0;
+    elements.errorKicker.innerHTML = hasCurrentHard
+      ? localized("HARD REJECT", "确认 HARD REJECT")
+      : localized("FILTERED", "已过滤");
+    elements.errorTitle.innerHTML = hasCurrentHard
+      ? localized("Confirmed hard-reject cases", "已确认的 hard-reject case")
+      : localized("Confirmed filtered cases", "已确认并过滤的 case");
 
     elements.title.textContent = dataset.name;
     elements.datasetStatus.innerHTML = localized("Audited · review separated", "已审查 · 复核样本已分离", true);
@@ -449,7 +479,12 @@
     elements.emptyMessage.innerHTML = localized(dataset.emptyMessage || "No confirmed error cases in the current audit.", chinese.emptyMessage || "当前审查没有确认错误样本。");
     elements.errorExplainer.innerHTML = dataset.emptyMessage
       ? localized(dataset.emptyMessage, chinese.emptyMessage)
-      : localized(defaultErrorExplainer, defaultErrorExplainerChinese);
+      : hasCurrentHard
+        ? localized(
+            "These cases fail the latest hard rules but are still present in the current source package. They must be excluded before the dataset is declared clean.",
+            "这些 case 未通过最新 hard 规则，但仍存在于当前源数据包中；在数据集被视为干净版本前必须将其排除。",
+          )
+        : localized(defaultErrorExplainer, defaultErrorExplainerChinese);
 
     document.querySelectorAll(".dataset-tab").forEach((tab) => {
       const active = tab.dataset.dataset === dataset.id;
