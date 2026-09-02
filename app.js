@@ -162,6 +162,10 @@
       visible: { source: "official mask box / projected fallback", sourceZh: "官方 mask 框 / 投影 fallback", coverage: 206263, review: 74469, hard: 7978, availability: "mixed" },
       projected: { source: "official / recomputed projection", sourceZh: "官方 / 重算投影", coverage: 206263, review: 0, hard: 0, known: 0, hideKnownErrors: true },
     },
+    hope: {
+      visible: { source: "not available", sourceZh: "未提供", coverage: 0, review: null, hard: null, availability: "missing" },
+      projected: { source: "derived from metric CAD + pose", sourceZh: "由 metric CAD + 位姿派生", coverage: 13864, review: 0, hard: 0 },
+    },
     objectron: {
       visible: { source: "not available", sourceZh: "未提供", coverage: 0, review: null, hard: null, availability: "missing" },
       projected: { source: "official projected keypoints", sourceZh: "官方投影顶点", coverage: 962458, review: 0, hard: 0 },
@@ -250,6 +254,11 @@
     hoi4d: {
       description: "具有米制物体位姿、3D 框、mask 和相机标定的第一视角 RGB-D 视频。",
       statusDetail: "使用可见 2D 框时，74,469 个物体帧需要复核，7,978 个被包含率规则拒绝；使用由 3D 框计算的 2D 框时，206,263 个物体帧均通过投影一致性检查。",
+    },
+    hope: {
+      description: "HOPE Image 和 HOPE Video 使用 metric evaluation CAD、官方物体位姿、相机、RGB 和深度。",
+      statusDetail: "13,864 个物体图像 / 帧全部通过当前投影框几何检查；该数据集没有单独的可见 2D 框。",
+      emptyMessage: "HOPE Image 和 HOPE Video 全部通过投影框检查，没有待复核或被规则拒绝的样本。",
     },
     objectron: {
       description: "具有官方米制 3D 框、相机位姿和投影顶点的物体中心视频。",
@@ -804,7 +813,7 @@
         return `
           <tr data-dataset="${dataset.id}" tabindex="0" aria-label="View ${dataset.name}">
             <td>${dataset.name}</td>
-            <td>${localized(dataset.dataType, dataset.dataType === "Video" ? "视频" : "单图像", true)}</td>
+            <td>${localized(dataset.dataType, dataset.dataType === "Video" ? "视频" : dataset.dataType === "Image + Video" ? "图像 + 视频" : "单图像", true)}</td>
             <td class="numeric">${formatNumber(dataset.samples)}</td>
             <td class="numeric">${dataset.videos == null ? "—" : formatNumber(dataset.videos)}</td>
             <td class="target-source">${localized(stats.source, stats.sourceZh, true)}</td>
@@ -893,8 +902,9 @@
 
   function renderFacts(dataset, stats) {
     const isVideo = dataset.dataType === "Video";
+    const isMixedMedia = dataset.dataType === "Image + Video";
     elements.facts.innerHTML = [
-      [isVideo ? "frames" : "images", isVideo ? "帧数" : "图像数", formatNumber(dataset.samples)],
+      [isMixedMedia ? "images / frames" : isVideo ? "frames" : "images", isMixedMedia ? "图像 / 帧数" : isVideo ? "帧数" : "图像数", formatNumber(dataset.samples)],
       ["2D box source", "2D 框来源", localized(stats.source, stats.sourceZh, true)],
       ["images / frames with box", "有 2D 框的图像 / 帧", `${formatNumber(stats.coverage)} / ${formatNumber(dataset.observations)}`],
       ["need human review", "需要人工复核", stats.review == null ? "—" : formatNumber(stats.review)],

@@ -1,7 +1,7 @@
 {
   "generatedAt": "2026-09-02",
   "auditDate": "2026-08-28",
-  "assetVersion": "a30f1350c69a",
+  "assetVersion": "ef361c32fa9b",
   "loaderProvenance": {
     "wilddet3d": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -138,6 +138,15 @@
       ],
       "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
       "visualizationsGeneratedAt": "2026-08-29T06:04:05.434471+00:00"
+    },
+    "hope": {
+      "loader": "ObjectDetectionDataset._load_frames",
+      "sources": [
+        "sam3/train/data/object_detection_dataset.py",
+        "sam3/train/data/ca1m_dataset.py"
+      ],
+      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "visualizationsGeneratedAt": "2026-09-02T04:50:26.468251+00:00"
     },
     "objectron": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -3863,6 +3872,115 @@
         }
       ],
       "emptyMessage": ""
+    },
+    {
+      "id": "hope",
+      "name": "HOPE",
+      "samples": 2088,
+      "dataType": "Image + Video",
+      "videos": 10,
+      "observations": 13864,
+      "review": 0,
+      "filtered": 0,
+      "filteredRate": 0.0,
+      "description": "HOPE Image and HOPE Video use metric evaluation CAD models with released object poses, cameras, RGB, and depth.",
+      "statusDetail": "All 13,864 audited object cases pass the current projected-box geometry checks. The package has no separate visible 2D box.",
+      "currentHard": 0,
+      "validCases": [
+        {
+          "id": " MacaroniAndCheese_00 / frame 000000",
+          "title": "HOPE Image · MacaroniAndCheese · MacaroniAndCheese_00",
+          "subtitle": "scene_0000_0003 / MacaroniAndCheese_00",
+          "image": "assets/hope/valid/01.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " PeasAndCarrots_01 / frame 000000",
+          "title": "HOPE Image · PeasAndCarrots · PeasAndCarrots_01",
+          "subtitle": "scene_0001_0000 / PeasAndCarrots_01",
+          "image": "assets/hope/valid/02.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " CreamCheese_00 / frame 000000",
+          "title": "HOPE Image · CreamCheese · CreamCheese_00",
+          "subtitle": "scene_0001_0001 / CreamCheese_00",
+          "image": "assets/hope/valid/03.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " OrangeJuice_00 / frame 000299",
+          "title": "HOPE Video · OrangeJuice · OrangeJuice_00",
+          "subtitle": "scene_0000 / OrangeJuice_00",
+          "image": "assets/hope/valid/04.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " Parmesan_00 / frame 000136",
+          "title": "HOPE Video · Parmesan · Parmesan_00",
+          "subtitle": "scene_0001 / Parmesan_00",
+          "image": "assets/hope/valid/05.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " Mayo_00 / frame 000188",
+          "title": "HOPE Video · Mayo · Mayo_00",
+          "subtitle": "scene_0002 / Mayo_00",
+          "image": "assets/hope/valid/06.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        }
+      ],
+      "reviewCases": [],
+      "errorCases": [],
+      "emptyMessage": "All audited HOPE Image and HOPE Video object cases pass the projected-box checks; there are no review or rejected cases."
     },
     {
       "id": "objectron",

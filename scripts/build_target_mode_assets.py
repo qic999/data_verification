@@ -17,7 +17,7 @@ def main() -> None:
 
     count = 0
     total_bytes = 0
-    three_panel_datasets = {"hoi4d", "sceneversepp", "sunrgbd", "synscapes"}
+    three_panel_datasets = {"hoi4d", "hope", "sceneversepp", "sunrgbd", "synscapes"}
     for source in sorted(args.input_root.rglob("*.webp")):
         destination = args.output_root / source.relative_to(args.input_root)
         destination.parent.mkdir(parents=True, exist_ok=True)

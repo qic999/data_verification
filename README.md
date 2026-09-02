@@ -10,9 +10,9 @@ does not make the public repository or its static asset URLs private.
 Open `index.html` directly in a browser when developing locally. The site is
 fully static and does not require a web server.
 
-It presents nineteen audited datasets (WildDet3D, Omni3D, Pix3D, Structured3D,
+It presents twenty audited datasets (WildDet3D, Omni3D, Pix3D, Structured3D,
 3D-FRONT, Kubric, uCO3D, CA-1M, HyperSim, ADT, HSSD, ABO, ShapeNet, and
-Replica, HOI4D, Objectron, SceneVerse++, SUN RGB-D, and Synscapes) with:
+Replica, HOI4D, HOPE, Objectron, SceneVerse++, SUN RGB-D, and Synscapes) with:
 
 - the exact general and dataset-specific filtering/review rules before the
   dataset statistics and galleries;
@@ -55,6 +55,8 @@ shown as errors because the mask and exact-projection recheck proved them valid.
 Objectron and SceneVerse++ have no separate visible 2D boxes. Objectron's full
 statistics are included, but its visualization source directory was unavailable
 when this release was built, so the site does not show placeholder images.
+HOPE also has no separate visible 2D box; its combined HOPE Image and HOPE Video
+entry contains 13,864 accepted projected-box cases and six current-loader examples.
 
 The **No human review needed** and **Needs human review** figures are generated
 through the current training loaders. Their loader source files, combined
