@@ -158,6 +158,26 @@
       visible: { source: "derived from semantic render", sourceZh: "由语义渲染派生", coverage: 313, review: 29, hard: 5 },
       projected: { source: "derived from metric cuboid", sourceZh: "由 metric 3D 框派生", coverage: 313, review: 0, hard: 0 },
     },
+    hoi4d: {
+      visible: { source: "official mask box / projected fallback", sourceZh: "官方 mask 框 / 投影 fallback", coverage: 206263, review: 74469, hard: 7978, availability: "mixed" },
+      projected: { source: "official / recomputed projection", sourceZh: "官方 / 重算投影", coverage: 206263, review: 0, hard: 0, known: 0, hideKnownErrors: true },
+    },
+    objectron: {
+      visible: { source: "not available", sourceZh: "未提供", coverage: 0, review: null, hard: null, availability: "missing" },
+      projected: { source: "official projected keypoints", sourceZh: "官方投影顶点", coverage: 962458, review: 0, hard: 0 },
+    },
+    sceneversepp: {
+      visible: { source: "not available", sourceZh: "未提供", coverage: 0, review: null, hard: null, availability: "missing" },
+      projected: { source: "derived from metric 3D boxes", sourceZh: "由 metric 3D 框派生", coverage: 408969, review: 0, hard: 0 },
+    },
+    sunrgbd: {
+      visible: { source: "official visible box", sourceZh: "官方可见框", coverage: 10605, review: 2129, hard: 436 },
+      projected: { source: "recomputed from metric 3D boxes", sourceZh: "由 metric 3D 框重算", coverage: 10605, review: 0, hard: 0, known: 0, hideKnownErrors: true },
+    },
+    synscapes: {
+      visible: { source: "official visible box", sourceZh: "官方可见框", coverage: 326756, review: 26346, hard: 2782 },
+      projected: { source: "recomputed from metric 3D boxes", sourceZh: "由 metric 3D 框重算", coverage: 326756, review: 0, hard: 0, known: 0, hideKnownErrors: true },
+    },
   };
 
 
@@ -226,6 +246,28 @@
     replica: {
       description: "HF v2 包含每个 Replica 场景的一张米制 RGB/depth 图像及相机坐标系 3D 框。",
       statusDetail: "当前 loader 可用的 313 个物体图像中，279 个通过、29 个需人工确认，另有 5 个尚未移除的 hard reject。",
+    },
+    hoi4d: {
+      description: "具有米制物体位姿、3D 框、mask 和相机标定的第一视角 RGB-D 视频。",
+      statusDetail: "使用可见 2D 框时，74,469 个物体帧需要复核，7,978 个被包含率规则拒绝；使用由 3D 框计算的 2D 框时，206,263 个物体帧均通过投影一致性检查。",
+    },
+    objectron: {
+      description: "具有官方米制 3D 框、相机位姿和投影顶点的物体中心视频。",
+      statusDetail: "962,458 个物体帧全部通过投影框几何检查；该数据集没有单独的可见 2D 框。",
+      emptyMessage: "所有 Objectron 物体帧均通过投影框检查，没有待复核或被规则拒绝的样本。",
+    },
+    sceneversepp: {
+      description: "具有米制重建几何、物体框和官方相机的室内场景视图。",
+      statusDetail: "408,969 个物体帧全部通过投影框几何检查；该数据集没有单独的可见 2D 框。",
+      emptyMessage: "所有 SceneVerse++ 物体帧均通过投影框检查，没有待复核或被规则拒绝的样本。",
+    },
+    sunrgbd: {
+      description: "具有官方可见 2D 框、米制 3D 框和相机标定的室内 RGB-D 图像。",
+      statusDetail: "使用可见 2D 框时，2,129 个物体需要复核，436 个被包含率规则拒绝；由 3D 框重算的投影在内部保持一致。",
+    },
+    synscapes: {
+      description: "具有官方可见 2D 框和米制 3D 框的合成驾驶图像。",
+      statusDetail: "使用可见 2D 框时，26,346 个物体需要复核，2,782 个被可见框规则拒绝；投影 2D 框与 3D 框在内部保持一致。",
     },
   };
 
@@ -448,6 +490,9 @@
   }
 
   function knownErrorCount(dataset) {
+    const profiles = targetModeDatasetStats[dataset.id];
+    const modeStats = profiles && profiles[currentTargetMode];
+    if (modeStats && modeStats.known != null) return Number(modeStats.known);
     return Number(dataset.filtered || 0) + Number(dataset.currentHard || 0);
   }
 
@@ -529,7 +574,9 @@
     return {
       valid: [...retained, ...promoted].slice(0, 6),
       review: [],
-      error: dataset.errorCases.map(projectedKnownErrorCase),
+      error: stats.hideKnownErrors
+        ? []
+        : dataset.errorCases.map(projectedKnownErrorCase),
     };
   }
 
@@ -651,7 +698,7 @@
       [elements.targetCoverageLabel, "images / video frames with this 2D box", "具有这种 2D 框的图像 / 视频帧"],
       [elements.targetReviewLabel, "need human review", "需要人工复核"],
       [elements.targetHardLabel, "rejected by rule", "被规则拒绝"],
-      [elements.targetKnownLabel, "confirmed 3D / data errors", "已确认的 3D / 数据错误"],
+      [elements.targetKnownLabel, "known errors / rule rejects", "已知错误 / 规则拒绝"],
       [elements.overviewKicker, "OVERVIEW", "总览"],
       [elements.overviewTitle, "Dataset statistics", "数据集统计"],
       [elements.tableNote, "“Images / Frames” counts unique audited images or frames in the reported loader scope. CA-1M and HyperSim include train and validation; the other rows report their audited training scope. “Videos” is shown only for video data. Need Human Verify and Filtered errors are audit-case counts, not image counts.", "“图像 / 帧数”表示报告的 loader 范围内去重审查的图像或帧；CA-1M 与 HyperSim 包含训练集和验证集，其他数据集使用已审查的训练范围。“视频数”仅适用于视频数据。Need Human Verify 和已过滤错误是审查 case 数，不是图像数。"],
@@ -662,8 +709,8 @@
       [elements.thReview, "Need human review", "需要人工复核"],
       [elements.thFiltered, "Rejected by rule", "被规则拒绝"],
       [elements.thErrorRate, "Review / reject rate", "复核 / 拒绝占比"],
-      [elements.thCurrentHard, "Confirmed 3D / data errors", "已确认的 3D / 数据错误"],
-      [elements.thGallery, "Gallery (Pass / Review / Known error)", "网站展示（通过 / 复核 / 已知错误）"],
+      [elements.thCurrentHard, "Known errors / rule rejects", "已知错误 / 规则拒绝"],
+      [elements.thGallery, "Gallery (Pass / Review / Rejected)", "网站展示（通过 / 复核 / 已拒绝）"],
       [elements.thStatus, "Policy outcome", "策略结果"],
       [elements.navSelectLabel, "SELECT DATASET", "选择数据集"],
       [elements.acceptedKicker, "NO HUMAN REVIEW NEEDED", "无需人工确认"],
@@ -852,7 +899,7 @@
       ["images / frames with box", "有 2D 框的图像 / 帧", `${formatNumber(stats.coverage)} / ${formatNumber(dataset.observations)}`],
       ["need human review", "需要人工复核", stats.review == null ? "—" : formatNumber(stats.review)],
       ["rejected by rule", "被规则拒绝", stats.hard == null ? "—" : formatNumber(stats.hard)],
-      ["known errors", "已知错误", formatNumber(knownErrorCount(dataset))],
+      ["known errors / rule rejects", "已知错误 / 规则拒绝", formatNumber(knownErrorCount(dataset))],
     ]
       .map(
         ([english, chinese, value]) => `
@@ -878,8 +925,8 @@
     const chineseDescription = [chinese.description, `这里使用的 2D 框：${stats.sourceZh}。`, chinese.statusDetail].filter(Boolean).join(" ");
     const defaultErrorExplainer = "These are archival audit visualizations retained before confirmed errors were filtered, excluded, or physically deleted. Cases needing human verification and false positives from older rules are not presented as errors.";
     const defaultErrorExplainerChinese = "这些是确认错误在被过滤、排除或物理删除前保留的审计可视化；需要人工确认的样本和旧规则 false positive 不会作为错误展示。";
-    elements.errorKicker.innerHTML = localized("KNOWN ERROR EVIDENCE", "已知错误证据");
-    elements.errorTitle.innerHTML = localized("Known 3D / source-label error cases", "已知 3D / 源标注错误 case");
+    elements.errorKicker.innerHTML = localized("FILTERED / REJECTED", "已过滤 / 已拒绝");
+    elements.errorTitle.innerHTML = localized("Filtered or rule-rejected cases", "已过滤或被规则拒绝的 case");
 
     elements.title.textContent = dataset.name;
     elements.datasetStatus.className = `status-pill ${status.className}`;
@@ -918,10 +965,17 @@
     elements.validGrid.hidden = !hasValidCases;
     elements.validEmpty.hidden = hasValidCases;
     elements.validEmptyTitle.innerHTML = localized("No matching 2D box examples", "没有匹配的 2D 框样本");
-    elements.validEmptyMessage.innerHTML = localized(
-      `${dataset.name} has no separate visible 2D box in the current files. A visible-box-only setup needs a new box or mask source.`,
-      `${dataset.name} 当前文件没有单独的可见 2D 框。若只使用可见框，需要补充新的框或 mask 来源。`,
-    );
+    if (dataset.galleryUnavailable && currentTargetMode === "projected") {
+      elements.validEmptyMessage.innerHTML = localized(
+        `${dataset.name} statistics are included, but its visualization source folder is currently unavailable. No placeholder image is shown.`,
+        `${dataset.name} 的统计已加入，但可视化源目录当前不可用，因此不展示占位图片。`,
+      );
+    } else {
+      elements.validEmptyMessage.innerHTML = localized(
+        `${dataset.name} has no separate visible 2D box in the current files. A visible-box-only setup needs a new box or mask source.`,
+        `${dataset.name} 当前文件没有单独的可见 2D 框。若只使用可见框，需要补充新的框或 mask 来源。`,
+      );
+    }
 
     const hasReviewCases = modeCases.review.length > 0;
     elements.reviewGrid.hidden = !hasReviewCases;

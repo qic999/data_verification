@@ -81,7 +81,7 @@
               <div class="target-summary-item"><strong id="target-coverage-value">—</strong><span id="target-coverage-label">images / video frames with this 2D box</span></div>
               <div class="target-summary-item"><strong id="target-review-value">—</strong><span id="target-review-label">need human review</span></div>
               <div class="target-summary-item"><strong id="target-hard-value">—</strong><span id="target-hard-label">rejected by rule</span></div>
-              <div class="target-summary-item"><strong id="target-known-value">—</strong><span id="target-known-label">confirmed 3D / data errors</span></div>
+              <div class="target-summary-item"><strong id="target-known-value">—</strong><span id="target-known-label">known errors / rule rejects</span></div>
             </div>
           </div>
 
@@ -199,8 +199,8 @@
                     <span class="rule-zh">逐图像或视频帧判断后再应用阈值。与存储 3D 投影相差不超过 2 px 的 2D 框视为由 3D 计算；来自 render 或 mask 的框视为可见框。</span>
                   </td>
                   <td>
-                    Omni3D, HSSD, HOI4D, and WildDet3D are mixed. ProcTHOR remains unclassified until its source package is restored. Every observation should ultimately store <code>box_2d_source = mask | tight | trunc | projected</code>.
-                    <span class="rule-zh">Omni3D、HSSD、HOI4D 和 WildDet3D 属于混合语义。ProcTHOR 在源数据恢复前保持未分类。最终每个 observation 都应保存 <code>box_2d_source = mask | tight | trunc | projected</code>。</span>
+                    Omni3D, HSSD, HOI4D, and WildDet3D are mixed. ProcTHOR remains unclassified until its source package is restored. Every image or video frame should ultimately store <code>box_2d_source = mask | tight | trunc | projected</code>.
+                    <span class="rule-zh">Omni3D、HSSD、HOI4D 和 WildDet3D 属于混合语义。ProcTHOR 在源数据恢复前保持未分类。最终每张图像或视频帧都应保存 <code>box_2d_source = mask | tight | trunc | projected</code>。</span>
                   </td>
                 </tr>
               </tbody>
@@ -392,8 +392,8 @@
       </div>
     </dialog>
 
-    <script src="cases-data.js?v=20260827-11"></script>
-    <script src="app.js?v=20260901-5"></script>
+    <script src="cases-data.js?v=20260902-1"></script>
+    <script src="app.js?v=20260902-1"></script>
     <script src="auth.js?v=20260827-11"></script>
   </body>
 </html>

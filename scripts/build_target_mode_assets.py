@@ -17,12 +17,19 @@ def main() -> None:
 
     count = 0
     total_bytes = 0
+    three_panel_datasets = {"hoi4d", "sceneversepp", "sunrgbd", "synscapes"}
     for source in sorted(args.input_root.rglob("*.webp")):
         destination = args.output_root / source.relative_to(args.input_root)
         destination.parent.mkdir(parents=True, exist_ok=True)
         with Image.open(source) as image:
             rgb = image.convert("RGB")
-            projected_view = rgb.crop((rgb.width // 2, 0, rgb.width, rgb.height))
+            dataset_id = source.relative_to(args.input_root).parts[0]
+            crop_start = (
+                2 * rgb.width // 3
+                if dataset_id in three_panel_datasets
+                else rgb.width // 2
+            )
+            projected_view = rgb.crop((crop_start, 0, rgb.width, rgb.height))
             projected_view.save(destination, "WEBP", quality=88, method=4)
         count += 1
         total_bytes += destination.stat().st_size

@@ -1,7 +1,7 @@
 window.DATASET_QA = {
-  "generatedAt": "2026-08-28",
+  "generatedAt": "2026-09-02",
   "auditDate": "2026-08-28",
-  "assetVersion": "fff856a095f8",
+  "assetVersion": "a30f1350c69a",
   "loaderProvenance": {
     "wilddet3d": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -129,6 +129,51 @@ window.DATASET_QA = {
       ],
       "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
       "visualizationsGeneratedAt": "2026-08-29T00:14:58.140383+00:00"
+    },
+    "hoi4d": {
+      "loader": "ObjectDetectionDataset._load_frames",
+      "sources": [
+        "sam3/train/data/object_detection_dataset.py",
+        "sam3/train/data/ca1m_dataset.py"
+      ],
+      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "visualizationsGeneratedAt": "2026-08-29T06:04:05.434471+00:00"
+    },
+    "objectron": {
+      "loader": "ObjectDetectionDataset._load_frames",
+      "sources": [
+        "sam3/train/data/object_detection_dataset.py",
+        "sam3/train/data/ca1m_dataset.py"
+      ],
+      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "visualizationsGeneratedAt": null
+    },
+    "sceneversepp": {
+      "loader": "ObjectDetectionDataset._load_frames",
+      "sources": [
+        "sam3/train/data/object_detection_dataset.py",
+        "sam3/train/data/ca1m_dataset.py"
+      ],
+      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "visualizationsGeneratedAt": "2026-09-02T04:19:28.868105+00:00"
+    },
+    "sunrgbd": {
+      "loader": "ObjectDetectionDataset._load_frames",
+      "sources": [
+        "sam3/train/data/object_detection_dataset.py",
+        "sam3/train/data/ca1m_dataset.py"
+      ],
+      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "visualizationsGeneratedAt": "2026-09-02T04:19:31.458092+00:00"
+    },
+    "synscapes": {
+      "loader": "ObjectDetectionDataset._load_frames",
+      "sources": [
+        "sam3/train/data/object_detection_dataset.py",
+        "sam3/train/data/ca1m_dataset.py"
+      ],
+      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "visualizationsGeneratedAt": "2026-09-02T04:19:37.754062+00:00"
     }
   },
   "datasets": [
@@ -2152,8 +2197,8 @@ window.DATASET_QA = {
             "IoU": 0.158,
             "centerError": 0.1147
           },
-          "issue": "The visible loader 2D box retains less than half of the stored amodal projection area. Severe truncation or occlusion can explain the weak 2D/3D overlap, so the observation is retained for human verification instead of being automatically filtered.",
-          "issueZh": "loader 可见 2D 框保留的面积不足存储 amodal 投影面积的一半。严重截断或遮挡可能解释较弱的 2D/3D 重合，因此该观测被保留并交由人工确认，而不是自动过滤。"
+          "issue": "The clipped/legacy loader 2D target retains less than half of the stored full amodal projection area. Severe image-boundary truncation can explain the weak overlap, so the observation is retained for human verification instead of being automatically filtered.",
+          "issueZh": "loader 的裁剪/旧版 2D target 保留面积不足完整 amodal 投影面积的一半。严重图像边界截断可以解释较弱重合，因此该观测被保留并交由人工确认，而不是自动过滤。"
         },
         {
           "id": "47895279 / frame 79210312770416",
@@ -3512,6 +3557,1043 @@ window.DATASET_QA = {
           },
           "issue": "The projected cuboid envelope has catastrophic overlap with the loader 2D box (IoU=0.023); the projected and reference box centers differ by 11.31% of the image diagonal.",
           "issueZh": "投影 3D 包络与 loader 2D 框的重合度严重异常（IoU=0.023）；投影框与参考框中心相差图像对角线的 11.31%。"
+        }
+      ],
+      "emptyMessage": ""
+    },
+    {
+      "id": "hoi4d",
+      "name": "HOI4D",
+      "samples": 155018,
+      "dataType": "Video",
+      "videos": 522,
+      "observations": 206263,
+      "review": 74469,
+      "filtered": 0,
+      "filteredRate": 0.0,
+      "currentHard": 7978,
+      "description": "Egocentric RGB-D video with metric object poses, 3D cuboids, masks, and camera calibration.",
+      "statusDetail": "With visible 2D boxes, 74,469 object frames need review and 7,978 are rejected by the containment rule. When the 2D box is calculated from the 3D cuboid, all 206,263 observations pass the projection-consistency check.",
+      "validCases": [
+        {
+          "id": " source_1_dustbinbase / frame 000103",
+          "title": "Dustbinbase · source_1_dustbinbase",
+          "subtitle": "ZY20210800001__H1__C14__N45__S155__s05__T1 / source_1_dustbinbase",
+          "image": "assets/hoi4d/valid/01.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " source_2_dustbinbase / frame 000063",
+          "title": "Dustbinbase · source_2_dustbinbase",
+          "subtitle": "ZY20210800001__H1__C14__N45__S207__s05__T2 / source_2_dustbinbase",
+          "image": "assets/hoi4d/valid/02.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " source_1_dustbinbase / frame 000199",
+          "title": "Dustbinbase · source_1_dustbinbase",
+          "subtitle": "ZY20210800001__H1__C14__N46__S158__s01__T1 / source_1_dustbinbase",
+          "image": "assets/hoi4d/valid/03.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " source_1_chair / frame 000004",
+          "title": "chair · source_1_chair",
+          "subtitle": "ZY20210800001__H1__C20__N19__S381__s01__T1 / source_1_chair",
+          "image": "assets/hoi4d/valid/04.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " source_1_chair / frame 000226",
+          "title": "chair · source_1_chair",
+          "subtitle": "ZY20210800001__H1__C20__N20__S381__s03__T3 / source_1_chair",
+          "image": "assets/hoi4d/valid/05.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " source_1_chair / frame 000269",
+          "title": "chair · source_1_chair",
+          "subtitle": "ZY20210800001__H1__C20__N20__S381__s04__T4 / source_1_chair",
+          "image": "assets/hoi4d/valid/06.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        }
+      ],
+      "reviewCases": [
+        {
+          "id": "ZY20210800001__H1__C20__N18__S286__s01__T1 / frame 000178 / source_1_chair",
+          "title": "chair · source_1_chair",
+          "subtitle": "train-json/ZY20210800001__H1__C20__N18__S286__s01__T1.json",
+          "image": "assets/hoi4d/review/01.webp",
+          "tag": "review",
+          "reason": "visible_center_review",
+          "metrics": {
+            "IoU": 0.574,
+            "centerError": 0.0595,
+            "visibleContainment": 1.0,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "Their centers differ by 5.95% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "两者中心相差图像对角线的 5.95%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        },
+        {
+          "id": "ZY20210800001__H1__C20__N22__S382__s02__T2 / frame 000097 / source_1_chair",
+          "title": "chair · source_1_chair",
+          "subtitle": "train-json/ZY20210800001__H1__C20__N22__S382__s02__T2.json",
+          "image": "assets/hoi4d/review/02.webp",
+          "tag": "review",
+          "reason": "visible_iou_review",
+          "metrics": {
+            "IoU": 0.357,
+            "centerError": 0.0461,
+            "visibleContainment": 1.0,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.357). This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.357）。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        },
+        {
+          "id": "ZY20210800001__H1__C4__N01__S19__s05__T2 / frame 000172 / source_12_lockerdrawer",
+          "title": "Lockerdrawer · source_12_lockerdrawer",
+          "subtitle": "train-json/ZY20210800001__H1__C4__N01__S19__s05__T2.json",
+          "image": "assets/hoi4d/review/03.webp",
+          "tag": "review",
+          "reason": "visible_containment_review, visible_iou_review, visible_center_review, visible_containment_review",
+          "metrics": {
+            "IoU": 0.377,
+            "centerError": 0.0615,
+            "visibleContainment": 0.867,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.377); their centers differ by 6.15% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.377）；两者中心相差图像对角线的 6.15%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        },
+        {
+          "id": "ZY20210800001__H1__C4__N02__S20__s04__T1 / frame 000204 / source_10_lockerbody",
+          "title": "Lockerbody · source_10_lockerbody",
+          "subtitle": "train-json/ZY20210800001__H1__C4__N02__S20__s04__T1.json",
+          "image": "assets/hoi4d/review/04.webp",
+          "tag": "review",
+          "reason": "visible_containment_review, visible_containment_review",
+          "metrics": {
+            "IoU": 0.868,
+            "centerError": 0.0027,
+            "visibleContainment": 0.868,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The case triggered a dataset-specific borderline geometry or projection check and requires visual confirmation.",
+          "issueZh": "该样本触发了数据集专用的几何或投影边界检查，需要人工确认。"
+        },
+        {
+          "id": "ZY20210800001__H1__C4__N04__S20__s02__T1 / frame 000107 / source_1_lockerbody",
+          "title": "Lockerbody · source_1_lockerbody",
+          "subtitle": "train-json/ZY20210800001__H1__C4__N04__S20__s02__T1.json",
+          "image": "assets/hoi4d/review/05.webp",
+          "tag": "review",
+          "reason": "visible_containment_review, visible_center_review, visible_containment_review",
+          "metrics": {
+            "IoU": 0.561,
+            "centerError": 0.06,
+            "visibleContainment": 0.859,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "Their centers differ by 6.00% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "两者中心相差图像对角线的 6.00%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        },
+        {
+          "id": "ZY20210800001__H1__C4__N37__S21__s05__T1 / frame 000036 / source_3_lockerdrawer",
+          "title": "Lockerdrawer · source_3_lockerdrawer",
+          "subtitle": "train-json/ZY20210800001__H1__C4__N37__S21__s05__T1.json",
+          "image": "assets/hoi4d/review/06.webp",
+          "tag": "review",
+          "reason": "visible_iou_review, visible_center_review",
+          "metrics": {
+            "IoU": 0.397,
+            "centerError": 0.0554,
+            "visibleContainment": 0.953,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.397); their centers differ by 5.54% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.397）；两者中心相差图像对角线的 5.54%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        }
+      ],
+      "errorCases": [
+        {
+          "id": "ZY20210800001__H1__C4__N10__S20__s04__T2 / frame 000064 / source_4_lockerdrawer",
+          "title": "Lockerdrawer · source_4_lockerdrawer",
+          "subtitle": "train-json/ZY20210800001__H1__C4__N10__S20__s04__T2.json",
+          "image": "assets/hoi4d/error/01.webp",
+          "tag": "hard reject",
+          "reason": "visible_mask_not_contained",
+          "metrics": {
+            "IoU": 0.373,
+            "centerError": 0.084,
+            "visibleContainment": 0.373,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope contains only 37.3% of the visible 2D box.",
+          "issueZh": "投影 3D 包络仅包含可见 2D 框的 37.3%。"
+        },
+        {
+          "id": "ZY20210800001__H1__C4__N62__S385__s04__T4 / frame 000042 / source_2_lockerdrawer",
+          "title": "Lockerdrawer · source_2_lockerdrawer",
+          "subtitle": "train-json/ZY20210800001__H1__C4__N62__S385__s04__T4.json",
+          "image": "assets/hoi4d/error/02.webp",
+          "tag": "hard reject",
+          "reason": "visible_containment_review, visible_iou_catastrophic",
+          "metrics": {
+            "IoU": 0.129,
+            "centerError": 0.0819,
+            "visibleContainment": 0.663,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope has catastrophic overlap with the loader 2D box (IoU=0.129); the projected cuboid envelope contains only 66.3% of the visible 2D box.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度严重异常（IoU=0.129）；投影 3D 包络仅包含可见 2D 框的 66.3%。"
+        },
+        {
+          "id": "ZY20210800003__H3__C4__N41__S48__s01__T2 / frame 000141 / source_1_lockerbody",
+          "title": "Lockerbody · source_1_lockerbody",
+          "subtitle": "train-json/ZY20210800003__H3__C4__N41__S48__s01__T2.json",
+          "image": "assets/hoi4d/error/03.webp",
+          "tag": "hard reject",
+          "reason": "visible_joint_iou_center",
+          "metrics": {
+            "IoU": 0.231,
+            "centerError": 0.1291,
+            "visibleContainment": 0.968,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected and reference box centers differ by 12.91% of the image diagonal.",
+          "issueZh": "投影框与参考框中心相差图像对角线的 12.91%。"
+        },
+        {
+          "id": "ZY20210800003__H3__C4__N41__S48__s01__T2 / frame 000257 / source_1_lockerbody",
+          "title": "Lockerbody · source_1_lockerbody",
+          "subtitle": "train-json/ZY20210800003__H3__C4__N41__S48__s01__T2.json",
+          "image": "assets/hoi4d/error/04.webp",
+          "tag": "hard reject",
+          "reason": "visible_containment_review, visible_joint_iou_center",
+          "metrics": {
+            "IoU": 0.223,
+            "centerError": 0.1314,
+            "visibleContainment": 0.88,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected and reference box centers differ by 13.14% of the image diagonal; the projected cuboid envelope contains only 88.0% of the visible 2D box.",
+          "issueZh": "投影框与参考框中心相差图像对角线的 13.14%；投影 3D 包络仅包含可见 2D 框的 88.0%。"
+        },
+        {
+          "id": "ZY20210800001__H1__C4__N10__S20__s04__T2 / frame 000155 / source_4_lockerdrawer",
+          "title": "Lockerdrawer · source_4_lockerdrawer",
+          "subtitle": "train-json/ZY20210800001__H1__C4__N10__S20__s04__T2.json",
+          "image": "assets/hoi4d/error/05.webp",
+          "tag": "hard reject",
+          "reason": "visible_mask_not_contained",
+          "metrics": {
+            "IoU": 0.392,
+            "centerError": 0.0877,
+            "visibleContainment": 0.392,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope contains only 39.2% of the visible 2D box.",
+          "issueZh": "投影 3D 包络仅包含可见 2D 框的 39.2%。"
+        },
+        {
+          "id": "ZY20210800001__H1__C4__N33__S22__s02__T1 / frame 000059 / source_1_lockerbody",
+          "title": "Lockerbody · source_1_lockerbody",
+          "subtitle": "train-json/ZY20210800001__H1__C4__N33__S22__s02__T1.json",
+          "image": "assets/hoi4d/error/06.webp",
+          "tag": "hard reject",
+          "reason": "visible_mask_not_contained",
+          "metrics": {
+            "IoU": 0.284,
+            "centerError": 0.1515,
+            "visibleContainment": 0.294,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope contains only 29.4% of the visible 2D box.",
+          "issueZh": "投影 3D 包络仅包含可见 2D 框的 29.4%。"
+        }
+      ],
+      "emptyMessage": ""
+    },
+    {
+      "id": "objectron",
+      "name": "Objectron",
+      "samples": 866840,
+      "dataType": "Video",
+      "videos": 3117,
+      "observations": 962458,
+      "review": 0,
+      "filtered": 0,
+      "filteredRate": 0.0,
+      "description": "Object-centric video with official metric 3D cuboids, camera poses, and projected cuboid keypoints.",
+      "statusDetail": "All 962,458 audited object frames pass the projected-box geometry checks. The package has no separate visible 2D box.",
+      "galleryUnavailable": true,
+      "currentHard": 0,
+      "validCases": [],
+      "reviewCases": [],
+      "errorCases": [],
+      "emptyMessage": "All audited Objectron object frames pass the projected-box checks; there are no review or rejected cases."
+    },
+    {
+      "id": "sceneversepp",
+      "name": "SceneVerse++",
+      "samples": 40420,
+      "dataType": "Video",
+      "videos": 913,
+      "observations": 408969,
+      "review": 0,
+      "filtered": 0,
+      "filteredRate": 0.0,
+      "description": "Indoor scene views with metric reconstructed geometry, object boxes, and released cameras.",
+      "statusDetail": "All 408,969 audited object frames pass the projected-box geometry checks. The package has no separate visible 2D box.",
+      "currentHard": 0,
+      "validCases": [
+        {
+          "id": " instance_0004 / frame 000046",
+          "title": "dresser · instance_0004",
+          "subtitle": "bedroom_100_EJamqKXFz9M / instance_0004",
+          "image": "assets/sceneversepp/valid/01.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " instance_0029 / frame 000032",
+          "title": "pillow · instance_0029",
+          "subtitle": "bedroom_10_M2rsKDfngoE / instance_0029",
+          "image": "assets/sceneversepp/valid/02.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " instance_0019 / frame 000007",
+          "title": "pillow · instance_0019",
+          "subtitle": "bedroom_13_93dt6xyC9fE / instance_0019",
+          "image": "assets/sceneversepp/valid/03.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " instance_0025 / frame 000034",
+          "title": "pillow · instance_0025",
+          "subtitle": "bedroom_13_LAS5vtRL09k / instance_0025",
+          "image": "assets/sceneversepp/valid/04.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " instance_0010 / frame 000000",
+          "title": "wall · instance_0010",
+          "subtitle": "bedroom_15_PN1tWonpUt4 / instance_0010",
+          "image": "assets/sceneversepp/valid/05.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " instance_0016 / frame 000001",
+          "title": "window · instance_0016",
+          "subtitle": "bedroom_16_4VNEW9hAMNI / instance_0016",
+          "image": "assets/sceneversepp/valid/06.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        }
+      ],
+      "reviewCases": [],
+      "errorCases": [],
+      "emptyMessage": "All audited SceneVerse++ object frames pass the projected-box checks; there are no review or rejected cases."
+    },
+    {
+      "id": "sunrgbd",
+      "name": "SUN RGB-D",
+      "samples": 2552,
+      "dataType": "Single image",
+      "videos": null,
+      "observations": 10605,
+      "review": 2129,
+      "filtered": 0,
+      "filteredRate": 0.0,
+      "currentHard": 436,
+      "description": "Indoor RGB-D images with official visible 2D boxes, metric 3D boxes, and camera calibration.",
+      "statusDetail": "With visible 2D boxes, 2,129 objects need review and 436 are rejected by the containment rule. The separately recomputed 3D projections are internally consistent.",
+      "validCases": [
+        {
+          "id": " object_000000 / frame 0",
+          "title": "fridge · object_000000",
+          "subtitle": "kv1_024144bd68c6325a / object_000000",
+          "image": "assets/sunrgbd/valid/01.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " object_000004 / frame 0",
+          "title": "bookshelf · object_000004",
+          "subtitle": "kv1_090abd8bbf57de26 / object_000004",
+          "image": "assets/sunrgbd/valid/02.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " object_000000 / frame 0",
+          "title": "sink · object_000000",
+          "subtitle": "kv1_0c29035f3fbe6e28 / object_000000",
+          "image": "assets/sunrgbd/valid/03.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " object_000000 / frame 0",
+          "title": "sink · object_000000",
+          "subtitle": "kv1_106ad78a8c6c5598 / object_000000",
+          "image": "assets/sunrgbd/valid/04.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " object_000002 / frame 0",
+          "title": "tv · object_000002",
+          "subtitle": "kv1_141ebf0f8ccdd55a / object_000002",
+          "image": "assets/sunrgbd/valid/05.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " object_000004 / frame 0",
+          "title": "plastics · object_000004",
+          "subtitle": "kv1_171acd34d410fd37 / object_000004",
+          "image": "assets/sunrgbd/valid/06.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        }
+      ],
+      "reviewCases": [
+        {
+          "id": "kv1_04a4b8633f09e009 / frame 0 / object_000002",
+          "title": "door · object_000002",
+          "subtitle": "train-json/kv1_04a4b8633f09e009.json",
+          "image": "assets/sunrgbd/review/01.webp",
+          "tag": "review",
+          "reason": "visible_containment_review, visible_containment_review",
+          "metrics": {
+            "IoU": 0.513,
+            "centerError": 0.0197,
+            "visibleContainment": 0.845,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The case triggered a dataset-specific borderline geometry or projection check and requires visual confirmation.",
+          "issueZh": "该样本触发了数据集专用的几何或投影边界检查，需要人工确认。"
+        },
+        {
+          "id": "kv1_0f0790756eb60651 / frame 0 / object_000018",
+          "title": "person · object_000018",
+          "subtitle": "train-json/kv1_0f0790756eb60651.json",
+          "image": "assets/sunrgbd/review/02.webp",
+          "tag": "review",
+          "reason": "visible_iou_review",
+          "metrics": {
+            "IoU": 0.376,
+            "centerError": 0.0104,
+            "visibleContainment": 1.0,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.376). This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.376）。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        },
+        {
+          "id": "kv1_234c3514444ce658 / frame 0 / object_000000",
+          "title": "bed · object_000000",
+          "subtitle": "train-json/kv1_234c3514444ce658.json",
+          "image": "assets/sunrgbd/review/03.webp",
+          "tag": "review",
+          "reason": "visible_containment_review, visible_center_review, visible_containment_review",
+          "metrics": {
+            "IoU": 0.748,
+            "centerError": 0.0615,
+            "visibleContainment": 0.829,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "Their centers differ by 6.15% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "两者中心相差图像对角线的 6.15%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        },
+        {
+          "id": "kv1_33959e42bd29de0f / frame 0 / object_000005",
+          "title": "chair · object_000005",
+          "subtitle": "train-json/kv1_33959e42bd29de0f.json",
+          "image": "assets/sunrgbd/review/04.webp",
+          "tag": "review",
+          "reason": "visible_iou_review, visible_center_review",
+          "metrics": {
+            "IoU": 0.296,
+            "centerError": 0.0659,
+            "visibleContainment": 1.0,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.296); their centers differ by 6.59% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.296）；两者中心相差图像对角线的 6.59%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        },
+        {
+          "id": "kv1_406120a92fd7c8a6 / frame 0 / object_000004",
+          "title": "pillow · object_000004",
+          "subtitle": "train-json/kv1_406120a92fd7c8a6.json",
+          "image": "assets/sunrgbd/review/05.webp",
+          "tag": "review",
+          "reason": "visible_containment_review, visible_iou_review, visible_containment_review",
+          "metrics": {
+            "IoU": 0.313,
+            "centerError": 0.0308,
+            "visibleContainment": 0.547,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.313). This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.313）。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        },
+        {
+          "id": "kv1_73a6ddbf2e33f397 / frame 0 / object_000004",
+          "title": "desk · object_000004",
+          "subtitle": "train-json/kv1_73a6ddbf2e33f397.json",
+          "image": "assets/sunrgbd/review/06.webp",
+          "tag": "review",
+          "reason": "visible_containment_review, visible_iou_review, visible_center_review, visible_containment_review",
+          "metrics": {
+            "IoU": 0.324,
+            "centerError": 0.0899,
+            "visibleContainment": 0.756,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.324); their centers differ by 8.99% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.324）；两者中心相差图像对角线的 8.99%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        }
+      ],
+      "errorCases": [
+        {
+          "id": "kv1_017839de6c414f60 / frame 0 / object_000002",
+          "title": "sink · object_000002",
+          "subtitle": "train-json/kv1_017839de6c414f60.json",
+          "image": "assets/sunrgbd/error/01.webp",
+          "tag": "hard reject",
+          "reason": "visible_iou_catastrophic",
+          "metrics": {
+            "IoU": 0.149,
+            "centerError": 0.0227,
+            "visibleContainment": 1.0,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope has catastrophic overlap with the loader 2D box (IoU=0.149).",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度严重异常（IoU=0.149）。"
+        },
+        {
+          "id": "kv1_0bc613fd006747ef / frame 0 / object_000007",
+          "title": "desk · object_000007",
+          "subtitle": "train-json/kv1_0bc613fd006747ef.json",
+          "image": "assets/sunrgbd/error/02.webp",
+          "tag": "hard reject",
+          "reason": "visible_joint_iou_center",
+          "metrics": {
+            "IoU": 0.231,
+            "centerError": 0.1326,
+            "visibleContainment": 1.0,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected and reference box centers differ by 13.26% of the image diagonal.",
+          "issueZh": "投影框与参考框中心相差图像对角线的 13.26%。"
+        },
+        {
+          "id": "kv1_0f0790756eb60651 / frame 0 / object_000020",
+          "title": "person · object_000020",
+          "subtitle": "train-json/kv1_0f0790756eb60651.json",
+          "image": "assets/sunrgbd/error/03.webp",
+          "tag": "hard reject",
+          "reason": "visible_mask_not_contained",
+          "metrics": {
+            "IoU": 0.0,
+            "centerError": 0.2019,
+            "visibleContainment": 0.0,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope contains only 0.0% of the visible 2D box.",
+          "issueZh": "投影 3D 包络仅包含可见 2D 框的 0.0%。"
+        },
+        {
+          "id": "kv1_24725abba9a509e1 / frame 0 / object_000007",
+          "title": "chair · object_000007",
+          "subtitle": "train-json/kv1_24725abba9a509e1.json",
+          "image": "assets/sunrgbd/error/04.webp",
+          "tag": "hard reject",
+          "reason": "visible_iou_catastrophic, visible_joint_iou_center",
+          "metrics": {
+            "IoU": 0.069,
+            "centerError": 0.1031,
+            "visibleContainment": 1.0,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope has catastrophic overlap with the loader 2D box (IoU=0.069); the projected and reference box centers differ by 10.31% of the image diagonal.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度严重异常（IoU=0.069）；投影框与参考框中心相差图像对角线的 10.31%。"
+        },
+        {
+          "id": "kv1_4d3ff416ddde5e64 / frame 0 / object_000004",
+          "title": "chair · object_000004",
+          "subtitle": "train-json/kv1_4d3ff416ddde5e64.json",
+          "image": "assets/sunrgbd/error/05.webp",
+          "tag": "hard reject",
+          "reason": "visible_containment_review, visible_iou_catastrophic",
+          "metrics": {
+            "IoU": 0.1,
+            "centerError": 0.0866,
+            "visibleContainment": 0.715,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope has catastrophic overlap with the loader 2D box (IoU=0.100); the projected cuboid envelope contains only 71.5% of the visible 2D box.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度严重异常（IoU=0.100）；投影 3D 包络仅包含可见 2D 框的 71.5%。"
+        },
+        {
+          "id": "kv1_4e555b75e905deca / frame 0 / object_000001",
+          "title": "table · object_000001",
+          "subtitle": "train-json/kv1_4e555b75e905deca.json",
+          "image": "assets/sunrgbd/error/06.webp",
+          "tag": "hard reject",
+          "reason": "visible_containment_review, visible_iou_catastrophic, visible_joint_iou_center",
+          "metrics": {
+            "IoU": 0.149,
+            "centerError": 0.1216,
+            "visibleContainment": 0.857,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope has catastrophic overlap with the loader 2D box (IoU=0.149); the projected and reference box centers differ by 12.16% of the image diagonal; the projected cuboid envelope contains only 85.7% of the visible 2D box.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度严重异常（IoU=0.149）；投影框与参考框中心相差图像对角线的 12.16%；投影 3D 包络仅包含可见 2D 框的 85.7%。"
+        }
+      ],
+      "emptyMessage": ""
+    },
+    {
+      "id": "synscapes",
+      "name": "Synscapes",
+      "samples": 24991,
+      "dataType": "Single image",
+      "videos": null,
+      "observations": 326756,
+      "review": 26346,
+      "filtered": 0,
+      "filteredRate": 0.0,
+      "currentHard": 2782,
+      "description": "Synthetic driving images with official visible 2D boxes and metric 3D boxes.",
+      "statusDetail": "With visible 2D boxes, 26,346 objects need review and 2,782 are rejected by the visible-box rule. The projected 2D envelopes are internally consistent with the 3D boxes.",
+      "validCases": [
+        {
+          "id": " instance_2600064 / frame 0",
+          "title": "car · instance_2600064",
+          "subtitle": "synscapes_000003 / instance_2600064",
+          "image": "assets/synscapes/valid/01.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " instance_2400407 / frame 0",
+          "title": "person · instance_2400407",
+          "subtitle": "synscapes_000006 / instance_2400407",
+          "image": "assets/synscapes/valid/02.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " instance_2600062 / frame 0",
+          "title": "car · instance_2600062",
+          "subtitle": "synscapes_000009 / instance_2600062",
+          "image": "assets/synscapes/valid/03.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " instance_2400090 / frame 0",
+          "title": "person · instance_2400090",
+          "subtitle": "synscapes_000017 / instance_2400090",
+          "image": "assets/synscapes/valid/04.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " instance_2400455 / frame 0",
+          "title": "person · instance_2400455",
+          "subtitle": "synscapes_000023 / instance_2400455",
+          "image": "assets/synscapes/valid/05.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " instance_2600050 / frame 0",
+          "title": "car · instance_2600050",
+          "subtitle": "synscapes_000032 / instance_2600050",
+          "image": "assets/synscapes/valid/06.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        }
+      ],
+      "reviewCases": [
+        {
+          "id": "synscapes_000034 / frame 0 / instance_2400474",
+          "title": "person · instance_2400474",
+          "subtitle": "train-json/scene_000034.json",
+          "image": "assets/synscapes/review/01.webp",
+          "tag": "review",
+          "reason": "visible_iou_review",
+          "metrics": {
+            "IoU": 0.389,
+            "centerError": 0.0099,
+            "visibleContainment": 1.0,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.389). This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.389）。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        },
+        {
+          "id": "synscapes_001046 / frame 0 / instance_2600123",
+          "title": "car · instance_2600123",
+          "subtitle": "train-json/scene_001046.json",
+          "image": "assets/synscapes/review/02.webp",
+          "tag": "review",
+          "reason": "visible_center_review",
+          "metrics": {
+            "IoU": 0.498,
+            "centerError": 0.0613,
+            "visibleContainment": 1.0,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "Their centers differ by 6.13% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "两者中心相差图像对角线的 6.13%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        },
+        {
+          "id": "synscapes_001981 / frame 0 / instance_2600052",
+          "title": "car · instance_2600052",
+          "subtitle": "train-json/scene_001981.json",
+          "image": "assets/synscapes/review/03.webp",
+          "tag": "review",
+          "reason": "visible_iou_review, visible_center_review",
+          "metrics": {
+            "IoU": 0.276,
+            "centerError": 0.066,
+            "visibleContainment": 1.0,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.276); their centers differ by 6.60% of the image diagonal. This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.276）；两者中心相差图像对角线的 6.60%。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        },
+        {
+          "id": "synscapes_000372 / frame 0 / instance_2600063",
+          "title": "car · instance_2600063",
+          "subtitle": "train-json/scene_000372.json",
+          "image": "assets/synscapes/review/04.webp",
+          "tag": "review",
+          "reason": "visible_iou_review",
+          "metrics": {
+            "IoU": 0.395,
+            "centerError": 0.0318,
+            "visibleContainment": 1.0,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.395). This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.395）。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        },
+        {
+          "id": "synscapes_000402 / frame 0 / instance_2400383",
+          "title": "person · instance_2400383",
+          "subtitle": "train-json/scene_000402.json",
+          "image": "assets/synscapes/review/05.webp",
+          "tag": "review",
+          "reason": "visible_iou_review",
+          "metrics": {
+            "IoU": 0.269,
+            "centerError": 0.0185,
+            "visibleContainment": 1.0,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.269). This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.269）。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        },
+        {
+          "id": "synscapes_000731 / frame 0 / instance_2700005",
+          "title": "truck · instance_2700005",
+          "subtitle": "train-json/scene_000731.json",
+          "image": "assets/synscapes/review/06.webp",
+          "tag": "review",
+          "reason": "visible_iou_review",
+          "metrics": {
+            "IoU": 0.388,
+            "centerError": 0.0113,
+            "visibleContainment": 1.0,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope has borderline overlap with the loader 2D box (IoU=0.388). This screening signal alone is insufficient for automatic removal, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度处于边界状态（IoU=0.388）。这一筛查信号不足以直接自动删除，因此需要人工确认。"
+        }
+      ],
+      "errorCases": [
+        {
+          "id": "synscapes_000004 / frame 0 / instance_2600082",
+          "title": "car · instance_2600082",
+          "subtitle": "train-json/scene_000004.json",
+          "image": "assets/synscapes/error/01.webp",
+          "tag": "hard reject",
+          "reason": "visible_iou_catastrophic",
+          "metrics": {
+            "IoU": 0.147,
+            "centerError": 0.0264,
+            "visibleContainment": 1.0,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope has catastrophic overlap with the loader 2D box (IoU=0.147).",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度严重异常（IoU=0.147）。"
+        },
+        {
+          "id": "synscapes_000047 / frame 0 / instance_2600060",
+          "title": "car · instance_2600060",
+          "subtitle": "train-json/scene_000047.json",
+          "image": "assets/synscapes/error/02.webp",
+          "tag": "hard reject",
+          "reason": "visible_joint_iou_center",
+          "metrics": {
+            "IoU": 0.24,
+            "centerError": 0.1328,
+            "visibleContainment": 1.0,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected and reference box centers differ by 13.28% of the image diagonal.",
+          "issueZh": "投影框与参考框中心相差图像对角线的 13.28%。"
+        },
+        {
+          "id": "synscapes_000068 / frame 0 / instance_3100016",
+          "title": "train · instance_3100016",
+          "subtitle": "train-json/scene_000068.json",
+          "image": "assets/synscapes/error/03.webp",
+          "tag": "hard reject",
+          "reason": "visible_iou_catastrophic, visible_joint_iou_center",
+          "metrics": {
+            "IoU": 0.081,
+            "centerError": 0.1087,
+            "visibleContainment": 1.0,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope has catastrophic overlap with the loader 2D box (IoU=0.081); the projected and reference box centers differ by 10.87% of the image diagonal.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度严重异常（IoU=0.081）；投影框与参考框中心相差图像对角线的 10.87%。"
+        },
+        {
+          "id": "synscapes_000188 / frame 0 / instance_3100044",
+          "title": "train · instance_3100044",
+          "subtitle": "train-json/scene_000188.json",
+          "image": "assets/synscapes/error/04.webp",
+          "tag": "hard reject",
+          "reason": "visible_iou_catastrophic, visible_center_catastrophic, visible_joint_iou_center",
+          "metrics": {
+            "IoU": 0.046,
+            "centerError": 0.2045,
+            "visibleContainment": 1.0,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope has catastrophic overlap with the loader 2D box (IoU=0.046); the projected and reference box centers differ by 20.45% of the image diagonal.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度严重异常（IoU=0.046）；投影框与参考框中心相差图像对角线的 20.45%。"
+        },
+        {
+          "id": "synscapes_000281 / frame 0 / instance_2800026",
+          "title": "bus · instance_2800026",
+          "subtitle": "train-json/scene_000281.json",
+          "image": "assets/synscapes/error/05.webp",
+          "tag": "hard reject",
+          "reason": "visible_containment_review, visible_iou_catastrophic, visible_joint_iou_center",
+          "metrics": {
+            "IoU": 0.033,
+            "centerError": 0.1047,
+            "visibleContainment": 0.886,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope has catastrophic overlap with the loader 2D box (IoU=0.033); the projected and reference box centers differ by 10.47% of the image diagonal; the projected cuboid envelope contains only 88.6% of the visible 2D box.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度严重异常（IoU=0.033）；投影框与参考框中心相差图像对角线的 10.47%；投影 3D 包络仅包含可见 2D 框的 88.6%。"
+        },
+        {
+          "id": "synscapes_000386 / frame 0 / instance_2600026",
+          "title": "car · instance_2600026",
+          "subtitle": "train-json/scene_000386.json",
+          "image": "assets/synscapes/error/06.webp",
+          "tag": "hard reject",
+          "reason": "visible_containment_review, visible_iou_catastrophic",
+          "metrics": {
+            "IoU": 0.068,
+            "centerError": 0.0884,
+            "visibleContainment": 0.778,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected cuboid envelope has catastrophic overlap with the loader 2D box (IoU=0.068); the projected cuboid envelope contains only 77.8% of the visible 2D box.",
+          "issueZh": "投影 3D 包络与 loader 2D 框的重合度严重异常（IoU=0.068）；投影 3D 包络仅包含可见 2D 框的 77.8%。"
         }
       ],
       "emptyMessage": ""
