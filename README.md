@@ -41,6 +41,12 @@ from the 3D box, the two boxes agree by design, so 2D/3D projection agreement
 is true by construction; a low flag count therefore does not prove that the 3D
 cuboid fits the object.
 
+Each gallery image follows one fixed visual standard. **Visible 2D box** mode
+shows only the visible 2D box and the projected 3D cuboid. **2D box from 3D**
+mode shows only the projected 2D envelope and the projected 3D cuboid. Source
+audit figures with three panels are converted into these two separate two-panel
+views before publication.
+
 The three lanes are intentionally distinct: review cases are not counted as
 confirmed errors until a reviewer rejects them. HSSD has 379 excluded image/frame
 cases. ABO's 154 rule rejections and 2,790 manually reviewed image/frame cases
@@ -72,15 +78,20 @@ Rebuild the generated images and data after an audit update:
 cd /mnt/data/qichen/cvpr27/model/spatial_encoder_v2
 python scripts/build_dataset_case_qa_site.py
 python scripts/build_target_mode_assets.py \
+  --mode visible \
+  --input-root debug_dataset_case_qa_website_20260827/assets \
+  --output-root debug_dataset_case_qa_website_20260827/assets_modes/visible
+python scripts/build_target_mode_assets.py \
+  --mode projected \
   --input-root debug_dataset_case_qa_website_20260827/assets \
   --output-root debug_dataset_case_qa_website_20260827/assets_modes/projected
 ```
 
 The builder refreshes `assets/`, `cases-data.js`, and `cases-data.json` from the
 recorded audit artifacts. It converts the source visualizations to web-sized
-WebP files while preserving the original source figures. The second command
-creates the projection-focused right-panel views used by the projected-envelope
-mode.
+WebP files while preserving the original source figures. The final two commands
+create the standardized two-panel views used by the visible-box and
+projected-envelope modes.
 
 The complete filtering rules and the official-annotation availability table
 are also recorded in `DATA_FILTERING_RULES.md`.

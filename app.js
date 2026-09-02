@@ -540,9 +540,25 @@
     return (Number(stats.review || 0) + Number(stats.hard || 0)) / dataset.observations;
   }
 
+  const threePanelDatasetIds = new Set([
+    "hoi4d",
+    "hope",
+    "sceneversepp",
+    "sunrgbd",
+    "synscapes",
+  ]);
+
   function targetModeAsset(path) {
-    if (currentTargetMode !== "projected" || !path) return path;
-    return path.replace(/^assets\//, "assets_modes/projected/");
+    if (!path) return path;
+    if (currentTargetMode === "projected") {
+      return path.replace(/^assets\//, "assets_modes/projected/");
+    }
+
+    const datasetId = path.split("/")[1];
+    if (threePanelDatasetIds.has(datasetId)) {
+      return path.replace(/^assets\//, "assets_modes/visible/");
+    }
+    return path;
   }
 
   function projectedPassCase(caseData) {
@@ -868,12 +884,12 @@
       .join("");
     const visualLabel =
       currentTargetMode === "visible"
-        ? localized("Visible 2D box vs projected 3D box", "可见 2D 框与投影 3D 框", true)
-        : localized("3D box view · its outer rectangle is the 2D box", "3D 框视图 · 外接矩形就是 2D 框", true);
+        ? localized("Visible 2D box + projected 3D cuboid", "可见 2D 框 + 投影 3D 框", true)
+        : localized("Projected 2D envelope + projected 3D cuboid", "投影 2D 包络 + 投影 3D 框", true);
     const imageAlt =
       currentTargetMode === "visible"
-        ? `Visible 2D box and projected 3D box comparison for ${displayTitle}`
-        : `Projected 3D box used to calculate the 2D box for ${displayTitle}`;
+        ? `Visible 2D box and projected 3D cuboid for ${displayTitle}`
+        : `Projected 2D envelope and projected 3D cuboid for ${displayTitle}`;
     return `
       <article class="case-card">
         <button class="case-image-button" data-kind="${kind}" data-index="${index}" aria-label="Enlarge ${displayTitle}">
@@ -1036,8 +1052,8 @@
     elements.lightboxImage.src = versionedAsset(targetModeAsset(caseData.image));
     elements.lightboxImage.alt =
       currentTargetMode === "visible"
-        ? `Visible 2D box and projected 3D box comparison for ${plainLanguage(caseData.title)}`
-        : `Projected 3D box used to calculate the 2D box for ${plainLanguage(caseData.title)}`;
+        ? `Visible 2D box and projected 3D cuboid for ${plainLanguage(caseData.title)}`
+        : `Projected 2D envelope and projected 3D cuboid for ${plainLanguage(caseData.title)}`;
     elements.lightboxTag.innerHTML = localizedTag(caseData.tag);
     elements.lightboxTag.classList.toggle("error", kind === "error");
     elements.lightboxTag.classList.toggle("review", kind === "review");
