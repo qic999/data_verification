@@ -8,6 +8,119 @@
   }
   const assetVersion = data.assetVersion || data.generatedAt || "current";
 
+  const targetModeProfiles = {
+    visible: {
+      id: "visible",
+      label: "Visible 2D",
+      labelZh: "可见 2D 框",
+      eyebrow: "INDEPENDENT IMAGE TARGET",
+      eyebrowZh: "独立图像目标",
+      title: "Use visible 2D boxes for every dataset",
+      titleZh: "所有数据集统一使用可见 2D 框",
+      description:
+        "The 2D target comes from pixels, masks, or a human box independently of the 3D cuboid. It can expose a cuboid that misses the visible object, but occlusion and truncation mean symmetric IoU and center offset are not valid rejection rules.",
+      descriptionZh:
+        "2D target 独立来自图像、mask 或人工框，可以发现没有覆盖可见物体的 3D 框；但遮挡和截断会使对称 IoU 与中心偏差不适合作为直接删除规则。",
+      signalTitle: "Training signal",
+      signalTitleZh: "训练信号",
+      signalCopy: "The 2D head learns the visible object extent.",
+      signalCopyZh: "2D head 学习物体当前可见的范围。",
+      auditTitle: "Valid QA rule",
+      auditTitleZh: "有效审查规则",
+      auditCopy: "Use visible containment and projected precision; treat visible/amodal IoU as diagnostic only.",
+      auditCopyZh: "使用可见区域包含率和投影 precision；visible/amodal IoU 只用于诊断。",
+      riskTitle: "Main trade-off",
+      riskTitleZh: "主要取舍",
+      riskCopy: "Better image evidence, but some datasets lack a true visible target and heavy occlusion creates more review cases.",
+      riskCopyZh: "图像监督更直接，但部分数据集没有真实 visible target，严重遮挡也会产生更多复核 case。",
+    },
+    projected: {
+      id: "projected",
+      label: "Projected envelope",
+      labelZh: "3D 投影包络",
+      eyebrow: "DERIVED AMODAL TARGET",
+      eyebrowZh: "派生 AMODAL 目标",
+      title: "Use the projected 3D envelope for every dataset",
+      titleZh: "所有数据集统一使用 3D 框的 2D 投影包络",
+      description:
+        "The 2D target is the outer rectangle of the same 3D cuboid used for 3D supervision. Projection consistency becomes exact by construction, so most 2D/3D mismatch flags disappear. This does not verify that the cuboid fits the real object.",
+      descriptionZh:
+        "2D target 是同一个 3D 框投影后的外接矩形，因此 2D/3D 投影一致性天然成立，大部分不匹配告警会消失；但这不能证明 3D 框真的贴合物体。",
+      signalTitle: "Training signal",
+      signalTitleZh: "训练信号",
+      signalCopy: "The 2D head learns the amodal footprint implied by the 3D cuboid.",
+      signalCopyZh: "2D head 学习 3D 框所定义的 amodal 投影范围。",
+      auditTitle: "Valid QA rule",
+      auditTitleZh: "有效审查规则",
+      auditCopy: "Check geometry, camera conversion, and stored-versus-recomputed projection—not visible-box IoU.",
+      auditCopyZh: "检查几何、相机转换和存储投影与重算投影的一致性，而不是 visible-box IoU。",
+      riskTitle: "Main trade-off",
+      riskTitleZh: "主要取舍",
+      riskCopy: "Uniform and 3D-aligned, but a wrong or oversized cuboid produces a matching wrong 2D target and can pass unnoticed.",
+      riskCopyZh: "目标统一且与 3D 对齐，但错误或过大的 3D 框会生成同样错误的 2D target，可能无法被发现。",
+    },
+  };
+
+  const targetModeDatasetStats = {
+    wilddet3d: {
+      visible: { source: "official visible box", sourceZh: "官方 visible box", coverage: 3712952, review: 65188, hard: 0 },
+      projected: { source: "official projected box", sourceZh: "官方投影框", coverage: 3712952, review: 0, hard: 0 },
+    },
+    omni3d: {
+      visible: { source: "mixed official / fallback", sourceZh: "官方 visible / 投影 fallback 混合", coverage: 2393788, review: 0, hard: 0, availability: "mixed" },
+      projected: { source: "official projected box", sourceZh: "官方投影框", coverage: 2393788, review: 0, hard: 0 },
+    },
+    pix3d: {
+      visible: { source: "official visible box", sourceZh: "官方 visible box", coverage: 9372, review: 530, hard: 0 },
+      projected: { source: "derived from CAD + pose", sourceZh: "由 CAD + pose 派生", coverage: 9372, review: 0, hard: 0 },
+    },
+    structured3d: {
+      visible: { source: "derived from instance mask", sourceZh: "由 instance mask 派生", coverage: 252345, review: 265, hard: 82 },
+      projected: { source: "derived from 3D cuboid", sourceZh: "由 3D 框派生", coverage: 252345, review: 0, hard: 0 },
+    },
+    "3dfront": {
+      visible: { source: "derived from semantic render", sourceZh: "由语义渲染派生", coverage: 24704, review: 386, hard: 0 },
+      projected: { source: "derived from 3D cuboid", sourceZh: "由 3D 框派生", coverage: 24704, review: 0, hard: 0 },
+    },
+    kubric: {
+      visible: { source: "official mask box", sourceZh: "官方 mask box", coverage: 4910681, review: 0, hard: 0 },
+      projected: { source: "derived from exact cuboid", sourceZh: "由精确 3D 框派生", coverage: 4910681, review: 0, hard: 0 },
+    },
+    uco3d: {
+      visible: { source: "official mask box", sourceZh: "官方 mask box", coverage: 32650233, review: 5580291, hard: 483970 },
+      projected: { source: "derived from sequence cuboid", sourceZh: "由序列 3D 框派生", coverage: 32650233, review: 0, hard: 65400 },
+    },
+    ca1m: {
+      visible: { source: "not available", sourceZh: "未提供", coverage: 0, review: null, hard: null, availability: "missing" },
+      projected: { source: "official / recomputed projection", sourceZh: "官方 / 重算投影", coverage: 24935871, review: 0, hard: 31 },
+    },
+    hypersim: {
+      visible: { source: "derived from instance render", sourceZh: "由实例渲染派生", coverage: 1740669, review: 0, hard: 34 },
+      projected: { source: "derived from metric cuboid", sourceZh: "由 metric 3D 框派生", coverage: 1740669, review: 0, hard: 34 },
+    },
+    adt: {
+      visible: { source: "official visible box", sourceZh: "官方 visible box", coverage: 7027584, review: 0, hard: 0 },
+      projected: { source: "recomputed from 3D cuboid", sourceZh: "由 3D 框重算", coverage: 7027584, review: 0, hard: 0 },
+    },
+    hssd: {
+      visible: { source: "derived from semantic render", sourceZh: "由语义渲染派生", coverage: 20475, review: 0, hard: 379 },
+      projected: { source: "recomputed from 3D cuboid", sourceZh: "由 3D 框重算", coverage: 20475, review: 0, hard: 355 },
+    },
+    abo: {
+      visible: { source: "derived from alpha / mask", sourceZh: "由 alpha / mask 派生", coverage: 47718, review: 2790, hard: 154 },
+      projected: { source: "derived from normalized CAD", sourceZh: "由 normalized CAD 派生", coverage: 47718, review: 0, hard: 0 },
+    },
+    shapenet: {
+      visible: { source: "derived from project render", sourceZh: "由项目渲染派生", coverage: 314832, review: 14, hard: 0 },
+      projected: { source: "derived from normalized CAD", sourceZh: "由 normalized CAD 派生", coverage: 314832, review: 0, hard: 0 },
+    },
+    replica: {
+      visible: { source: "derived from semantic render", sourceZh: "由语义渲染派生", coverage: 313, review: 29, hard: 5 },
+      projected: { source: "derived from metric cuboid", sourceZh: "由 metric 3D 框派生", coverage: 313, review: 0, hard: 0 },
+    },
+  };
+
+
   function versionedAsset(path) {
     if (!path) return path;
     return `${path}${path.includes("?") ? "&" : "?"}v=${encodeURIComponent(assetVersion)}`;
@@ -114,6 +227,7 @@
     excluded: "已排除",
     review: "待人工确认",
     "hard reject": "确认 hard reject",
+    "target pass": "目标规则通过",
   };
 
   const metricChinese = {
@@ -143,12 +257,34 @@
     auditLabel: document.querySelector("#audit-label"),
     auditDate: document.querySelector("#audit-date"),
     auditStatus: document.querySelector("#audit-status"),
+    targetPolicyKicker: document.querySelector("#target-policy-kicker"),
+    targetPolicyTitle: document.querySelector("#target-policy-title"),
+    targetPolicyIntro: document.querySelector("#target-policy-intro"),
+    targetModeButtons: document.querySelectorAll("[data-target-mode]"),
+    targetModeEyebrow: document.querySelector("#target-mode-eyebrow"),
+    targetModeTitle: document.querySelector("#target-mode-title"),
+    targetModeDescription: document.querySelector("#target-mode-description"),
+    targetCoverageValue: document.querySelector("#target-coverage-value"),
+    targetCoverageLabel: document.querySelector("#target-coverage-label"),
+    targetReviewValue: document.querySelector("#target-review-value"),
+    targetReviewLabel: document.querySelector("#target-review-label"),
+    targetHardValue: document.querySelector("#target-hard-value"),
+    targetHardLabel: document.querySelector("#target-hard-label"),
+    targetKnownValue: document.querySelector("#target-known-value"),
+    targetKnownLabel: document.querySelector("#target-known-label"),
+    targetSignalTitle: document.querySelector("#target-signal-title"),
+    targetSignalCopy: document.querySelector("#target-signal-copy"),
+    targetAuditTitle: document.querySelector("#target-audit-title"),
+    targetAuditCopy: document.querySelector("#target-audit-copy"),
+    targetRiskTitle: document.querySelector("#target-risk-title"),
+    targetRiskCopy: document.querySelector("#target-risk-copy"),
     overviewKicker: document.querySelector("#overview-kicker"),
     overviewTitle: document.querySelector("#overview-title"),
     tableNote: document.querySelector("#table-note"),
     thDataType: document.querySelector("#th-data-type"),
     thSamples: document.querySelector("#th-samples"),
     thVideos: document.querySelector("#th-videos"),
+    thTargetSource: document.querySelector("#th-target-source"),
     thReview: document.querySelector("#th-review"),
     thFiltered: document.querySelector("#th-filtered"),
     thErrorRate: document.querySelector("#th-error-rate"),
@@ -169,6 +305,9 @@
     validCountLabel: document.querySelector("#valid-count-label"),
     validExplainer: document.querySelector("#valid-explainer"),
     validGrid: document.querySelector("#valid-grid"),
+    validEmpty: document.querySelector("#valid-empty"),
+    validEmptyTitle: document.querySelector("#valid-empty-title"),
+    validEmptyMessage: document.querySelector("#valid-empty-message"),
     reviewKicker: document.querySelector("#review-kicker"),
     reviewTitle: document.querySelector("#review-title"),
     reviewCountLabel: document.querySelector("#review-count-label"),
@@ -202,10 +341,13 @@
   const numberFormatter = new Intl.NumberFormat("en-US");
   let currentDatasetId = location.hash.replace(/^#/, "") || data.datasets[0].id;
   let currentLanguage = "en";
+  let currentTargetMode = "visible";
   try {
     if (localStorage.getItem("datasetQaLanguage") === "bilingual") currentLanguage = "bilingual";
+    if (localStorage.getItem("datasetQaTargetMode") === "projected") currentTargetMode = "projected";
   } catch (_error) {
     currentLanguage = "en";
+    currentTargetMode = "visible";
   }
   if (!data.datasets.some((dataset) => dataset.id === currentDatasetId)) {
     currentDatasetId = data.datasets[0].id;
@@ -232,6 +374,136 @@
     if (percentage < 0.01) return `${percentage.toFixed(3)}%`;
     return `${percentage.toFixed(2)}%`;
   }
+
+  function knownErrorCount(dataset) {
+    return Number(dataset.filtered || 0) + Number(dataset.currentHard || 0);
+  }
+
+  function targetStats(dataset) {
+    const profiles = targetModeDatasetStats[dataset.id];
+    if (!profiles) {
+      return {
+        source: "not classified",
+        sourceZh: "尚未分类",
+        coverage: 0,
+        review: null,
+        hard: null,
+        availability: "missing",
+      };
+    }
+    return profiles[currentTargetMode];
+  }
+
+  function targetModeTotals() {
+    return data.datasets.reduce(
+      (total, dataset) => {
+        const stats = targetStats(dataset);
+        total.observations += Number(dataset.observations || 0);
+        total.coverage += Number(stats.coverage || 0);
+        total.review += Number(stats.review || 0);
+        total.hard += Number(stats.hard || 0);
+        total.known += knownErrorCount(dataset);
+        return total;
+      },
+      { observations: 0, coverage: 0, review: 0, hard: 0, known: 0 },
+    );
+  }
+
+  function targetFlagRate(dataset, stats) {
+    if (stats.availability === "missing" || !dataset.observations) return null;
+    return (Number(stats.review || 0) + Number(stats.hard || 0)) / dataset.observations;
+  }
+
+  function targetModeAsset(path) {
+    if (currentTargetMode !== "projected" || !path) return path;
+    return path.replace(/^assets\//, "assets_modes/projected/");
+  }
+
+  function projectedPassCase(caseData) {
+    return {
+      ...caseData,
+      tag: "target pass",
+      reason:
+        "The 2D target is now computed from this same 3D cuboid, so 2D/3D projection consistency passes by construction. The image still cannot prove that the 3D cuboid is correct.",
+      reasonZh:
+        "当前 2D target 由同一个 3D 框直接投影得到，因此 2D/3D 投影一致性天然通过；但图像仍不能证明这个 3D 框本身正确。",
+    };
+  }
+
+  function projectedKnownErrorCase(caseData) {
+    return {
+      ...caseData,
+      issue:
+        "This is a known 3D/source-label problem. Replacing the 2D target with this cuboid's own projected envelope makes the pair self-consistent, but it does not repair the incorrect cuboid.",
+      issueZh:
+        "这是已经确认的 3D/源标注问题。把 2D target 换成该 3D 框自己的投影包络，只会让二者自洽，并不会修复错误的 3D 框。",
+    };
+  }
+
+  function casesForTargetMode(dataset) {
+    const stats = targetStats(dataset);
+    if (currentTargetMode === "visible") {
+      return {
+        valid: stats.availability === "missing" ? [] : dataset.validCases,
+        review: stats.availability === "missing" ? [] : dataset.reviewCases,
+        error: dataset.errorCases,
+      };
+    }
+
+    const promoted = dataset.reviewCases.slice(0, 3).map(projectedPassCase);
+    const retained = dataset.validCases
+      .slice(0, Math.max(0, 6 - promoted.length))
+      .map(projectedPassCase);
+    return {
+      valid: [...retained, ...promoted].slice(0, 6),
+      review: [],
+      error: dataset.errorCases.map(projectedKnownErrorCase),
+    };
+  }
+
+  function targetStatus(dataset, stats) {
+    if (stats.availability === "missing") {
+      return {
+        text: "target unavailable",
+        textZh: "目标不可用",
+        className: "missing",
+      };
+    }
+    if (stats.availability === "mixed") {
+      return {
+        text: "mixed semantics",
+        textZh: "语义混合",
+        className: "warning",
+      };
+    }
+    if (Number(stats.hard || 0) > 0) {
+      return {
+        text: "hard flags remain",
+        textZh: "仍有 hard 告警",
+        className: "warning",
+      };
+    }
+    if (Number(stats.review || 0) > 0) {
+      return {
+        text: "human review needed",
+        textZh: "需要人工复核",
+        className: "warning",
+      };
+    }
+    if (currentTargetMode === "projected" && knownErrorCount(dataset) > 0) {
+      return {
+        text: "self-consistent · 3D risk remains",
+        textZh: "投影自洽 · 3D 风险仍在",
+        className: "blind",
+      };
+    }
+    return {
+      text: "target-ready",
+      textZh: "目标可用",
+      className: "ready",
+    };
+  }
+
 
   function labelForMetric(key) {
     const labels = {
@@ -267,7 +539,9 @@
   }
 
   function diagnosticCopy(caseData, kind) {
-    if (kind === "valid") return localizedReason(caseData.reason);
+    if (kind === "valid") {
+      return localized(caseData.reason, caseData.reasonZh || reasonChinese[caseData.reason]);
+    }
     const label = kind === "review" ? "Why ambiguous" : "Confirmed issue";
     const labelZh = kind === "review" ? "为何需要人工确认" : "已确认问题";
     const explanation = caseData.issue || caseData.reason;
@@ -296,18 +570,26 @@
       [elements.legend3d, "projected 3D cuboid", "投影 3D 长方体"],
       [elements.auditLabel, "FULL RE-AUDIT", "全量复审"],
       [elements.auditStatus, `current hard = ${data.datasets.reduce((total, dataset) => total + (dataset.currentHard || 0), 0)}`, `当前 hard = ${data.datasets.reduce((total, dataset) => total + (dataset.currentHard || 0), 0)}`],
+      [elements.targetPolicyKicker, "2D TARGET POLICY", "2D TARGET 策略"],
+      [elements.targetPolicyTitle, "Compare one target definition across every dataset", "比较全数据集统一 2D target 的结果"],
+      [elements.targetPolicyIntro, "Switching the target changes the table, case grouping, and visualization focus below. These are policy-simulation counts from the recorded audits; known 3D/source errors remain fixed.", "切换 target 后，下方统计表、case 分组和可视化重点会一起改变。这些数字来自现有审查记录的策略模拟；已经确认的 3D/源标注错误保持不变。"],
+      [elements.targetCoverageLabel, "target-covered observations", "有 target 的观测"],
+      [elements.targetReviewLabel, "target review flags", "target 复核告警"],
+      [elements.targetHardLabel, "target hard flags", "target hard 告警"],
+      [elements.targetKnownLabel, "known 3D/source errors", "已知 3D/源标注错误"],
       [elements.overviewKicker, "OVERVIEW", "总览"],
       [elements.overviewTitle, "Dataset statistics", "数据集统计"],
       [elements.tableNote, "“Images / Frames” counts unique audited images or frames in the reported loader scope. CA-1M and HyperSim include train and validation; the other rows report their audited training scope. “Videos” is shown only for video data. Need Human Verify and Filtered errors are audit-case counts, not image counts.", "“图像 / 帧数”表示报告的 loader 范围内去重审查的图像或帧；CA-1M 与 HyperSim 包含训练集和验证集，其他数据集使用已审查的训练范围。“视频数”仅适用于视频数据。Need Human Verify 和已过滤错误是审查 case 数，不是图像数。"],
       [elements.thDataType, "Data type", "数据类型"],
       [elements.thSamples, "Images / Frames", "图像 / 帧数"],
       [elements.thVideos, "Videos", "视频数"],
-      [elements.thReview, "Need Human Verify", "需要人工确认"],
-      [elements.thFiltered, "Filtered errors", "已过滤错误"],
-      [elements.thErrorRate, "Error rate", "错误占比"],
-      [elements.thCurrentHard, "Current Hard", "当前 Hard"],
-      [elements.thGallery, "Gallery (No-review / Review / Filtered or hard)", "网站展示（无需复核 / 人工复核 / 已过滤或 hard）"],
-      [elements.thStatus, "Status", "状态"],
+      [elements.thTargetSource, "Selected target source", "所选 target 来源"],
+      [elements.thReview, "Target review flags", "Target 复核告警"],
+      [elements.thFiltered, "Target hard flags", "Target hard 告警"],
+      [elements.thErrorRate, "Target flag rate", "Target 告警占比"],
+      [elements.thCurrentHard, "Known 3D/source errors", "已知 3D/源标注错误"],
+      [elements.thGallery, "Gallery (Pass / Review / Known error)", "网站展示（通过 / 复核 / 已知错误）"],
+      [elements.thStatus, "Policy outcome", "策略结果"],
       [elements.navSelectLabel, "SELECT DATASET", "选择数据集"],
       [elements.acceptedKicker, "NO HUMAN REVIEW NEEDED", "无需人工确认"],
       [elements.validTitle, "Cases ready for use", "可直接使用的 case"],
@@ -336,23 +618,70 @@
     });
   }
 
+  function renderTargetMode() {
+    const profile = targetModeProfiles[currentTargetMode];
+    const totals = targetModeTotals();
+    document.documentElement.dataset.targetMode = currentTargetMode;
+    elements.targetModeEyebrow.innerHTML = localized(profile.eyebrow, profile.eyebrowZh);
+    elements.targetModeTitle.innerHTML = localized(profile.title, profile.titleZh);
+    elements.targetModeDescription.innerHTML = localized(profile.description, profile.descriptionZh);
+    elements.targetCoverageValue.textContent = `${formatNumber(totals.coverage)} / ${formatNumber(totals.observations)}`;
+    elements.targetReviewValue.textContent = formatNumber(totals.review);
+    elements.targetHardValue.textContent = formatNumber(totals.hard);
+    elements.targetKnownValue.textContent = formatNumber(totals.known);
+    elements.targetSignalTitle.innerHTML = localized(profile.signalTitle, profile.signalTitleZh);
+    elements.targetSignalCopy.innerHTML = localized(profile.signalCopy, profile.signalCopyZh);
+    elements.targetAuditTitle.innerHTML = localized(profile.auditTitle, profile.auditTitleZh);
+    elements.targetAuditCopy.innerHTML = localized(profile.auditCopy, profile.auditCopyZh);
+    elements.targetRiskTitle.innerHTML = localized(profile.riskTitle, profile.riskTitleZh);
+    elements.targetRiskCopy.innerHTML = localized(profile.riskCopy, profile.riskCopyZh);
+    elements.targetModeButtons.forEach((button) => {
+      const active = button.dataset.targetMode === currentTargetMode;
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-pressed", String(active));
+      const projected = button.dataset.targetMode === "projected";
+      button.innerHTML = projected
+        ? `<span>${localized("Projected envelope", "投影包络", true)}</span><small>${localized("derived from 3D cuboid", "由 3D 框派生", true)}</small>`
+        : `<span>${localized("Visible 2D", "可见 2D", true)}</span><small>${localized("independent image target", "独立图像目标", true)}</small>`;
+    });
+    elements.legend2d.innerHTML =
+      currentTargetMode === "visible"
+        ? localized("visible 2D target", "可见 2D target", true)
+        : localized("projected 2D envelope target", "投影 2D 包络 target", true);
+
+    const note =
+      currentTargetMode === "visible"
+        ? "Visible-mode flags use asymmetric containment where possible. CA-1M has no independent visible target in the current package, and Omni3D mixes true visible boxes with projection fallbacks."
+        : "Projected-mode 2D targets come from the same 3D cuboids. The lower flag counts measure conversion/geometry failures only; they must not be read as evidence that the 3D labels fit the image.";
+    const noteZh =
+      currentTargetMode === "visible"
+        ? "Visible 模式尽量使用非对称包含率。当前 CA-1M 包没有独立 visible target；Omni3D 混合了真实 visible box 与投影 fallback。"
+        : "Projected 模式的 2D target 来自同一个 3D 框。更低的告警数只反映转换/几何失败，不能说明 3D 标注一定贴合图像。";
+    elements.tableNote.innerHTML = localized(note, noteZh);
+  }
+
   function renderStats() {
     elements.statsBody.innerHTML = data.datasets
-      .map(
-        (dataset) => `
+      .map((dataset) => {
+        const stats = targetStats(dataset);
+        const status = targetStatus(dataset, stats);
+        const cases = casesForTargetMode(dataset);
+        const flagRate = targetFlagRate(dataset, stats);
+        return `
           <tr data-dataset="${dataset.id}" tabindex="0" aria-label="View ${dataset.name}">
             <td>${dataset.name}</td>
             <td>${localized(dataset.dataType, dataset.dataType === "Video" ? "视频" : "单图像", true)}</td>
             <td class="numeric">${formatNumber(dataset.samples)}</td>
             <td class="numeric">${dataset.videos == null ? "—" : formatNumber(dataset.videos)}</td>
-            <td class="numeric">${formatNumber(dataset.review)}</td>
-            <td class="numeric">${formatNumber(dataset.filtered)}</td>
-            <td class="numeric">${formatRate(dataset.filteredRate)}</td>
-            <td class="numeric zero-value">${dataset.currentHard}</td>
-            <td class="numeric">${dataset.validCases.length} / ${dataset.reviewCases.length} / ${dataset.errorCases.length}</td>
-            <td><span class="table-status">${localized("audited", "已审查", true)}</span></td>
-          </tr>`,
-      )
+            <td class="target-source">${localized(stats.source, stats.sourceZh, true)}</td>
+            <td class="numeric">${stats.review == null ? "—" : formatNumber(stats.review)}</td>
+            <td class="numeric">${stats.hard == null ? "—" : formatNumber(stats.hard)}</td>
+            <td class="numeric">${flagRate == null ? "—" : formatRate(flagRate)}</td>
+            <td class="numeric">${formatNumber(knownErrorCount(dataset))}</td>
+            <td class="numeric">${cases.valid.length} / ${cases.review.length} / ${cases.error.length}</td>
+            <td><span class="table-status ${status.className}">${localized(status.text, status.textZh, true)}</span></td>
+          </tr>`;
+      })
       .join("");
 
     elements.statsBody.querySelectorAll("tr").forEach((row) => {
@@ -392,10 +721,19 @@
           `<span class="metric-chip"><span>${labelForMetric(key)}</span><strong>${formatMetricValue(value)}</strong></span>`,
       )
       .join("");
+    const visualLabel =
+      currentTargetMode === "visible"
+        ? localized("Visible target vs projected cuboid", "可见 target 与投影 3D 框", true)
+        : localized("Projected cuboid focus · envelope = outer rectangle", "投影 3D 框特写 · envelope 为其外接矩形", true);
+    const imageAlt =
+      currentTargetMode === "visible"
+        ? `Visible 2D target and projected 3D cuboid comparison for ${caseData.title}`
+        : `Projected 3D cuboid used to derive the 2D envelope for ${caseData.title}`;
     return `
       <article class="case-card">
         <button class="case-image-button" data-kind="${kind}" data-index="${index}" aria-label="Enlarge ${caseData.title}">
-          <img src="${versionedAsset(caseData.image)}" alt="2D and projected 3D box comparison for ${caseData.title}" loading="lazy" />
+          <img src="${versionedAsset(targetModeAsset(caseData.image))}" alt="${imageAlt}" loading="lazy" />
+          <span class="case-visual-label">${visualLabel}</span>
         </button>
         <div class="case-copy">
           <div class="case-topline">
@@ -417,13 +755,15 @@
     });
   }
 
-  function renderFacts(dataset) {
+  function renderFacts(dataset, stats) {
     const isVideo = dataset.dataType === "Video";
     elements.facts.innerHTML = [
       [isVideo ? "frames" : "images", isVideo ? "帧数" : "图像数", formatNumber(dataset.samples)],
-      ["needs review", "待人工确认", formatNumber(dataset.review)],
-      ["filtered", "已过滤", formatNumber(dataset.filtered)],
-      ["current hard", "当前 hard", dataset.currentHard],
+      ["target source", "target 来源", localized(stats.source, stats.sourceZh, true)],
+      ["target coverage", "target 覆盖观测", `${formatNumber(stats.coverage)} / ${formatNumber(dataset.observations)}`],
+      ["target review", "target 复核", stats.review == null ? "—" : formatNumber(stats.review)],
+      ["target hard", "target hard", stats.hard == null ? "—" : formatNumber(stats.hard)],
+      ["known errors", "已知错误", formatNumber(knownErrorCount(dataset))],
     ]
       .map(
         ([english, chinese, value]) => `
@@ -442,49 +782,83 @@
     history.replaceState(null, "", `#${dataset.id}`);
 
     const chinese = datasetChinese[dataset.id] || {};
-    const englishDescription = `${dataset.description} ${dataset.statusDetail}`;
-    const chineseDescription = [chinese.description, chinese.statusDetail].filter(Boolean).join(" ");
+    const stats = targetStats(dataset);
+    const status = targetStatus(dataset, stats);
+    const modeCases = casesForTargetMode(dataset);
+    const englishDescription = `${dataset.description} Selected target: ${stats.source}. ${dataset.statusDetail}`;
+    const chineseDescription = [chinese.description, `当前 target：${stats.sourceZh}。`, chinese.statusDetail].filter(Boolean).join(" ");
     const defaultErrorExplainer = "These are archival audit visualizations retained before confirmed errors were filtered, excluded, or physically deleted. Cases needing human verification and false positives from older rules are not presented as errors.";
     const defaultErrorExplainerChinese = "这些是确认错误在被过滤、排除或物理删除前保留的审计可视化；需要人工确认的样本和旧规则 false positive 不会作为错误展示。";
-    const hasCurrentHard = Number(dataset.currentHard || 0) > 0;
-    elements.errorKicker.innerHTML = hasCurrentHard
-      ? localized("HARD REJECT", "确认 HARD REJECT")
-      : localized("FILTERED", "已过滤");
-    elements.errorTitle.innerHTML = hasCurrentHard
-      ? localized("Confirmed hard-reject cases", "已确认的 hard-reject case")
-      : localized("Confirmed filtered cases", "已确认并过滤的 case");
+    elements.errorKicker.innerHTML = localized("KNOWN ERROR EVIDENCE", "已知错误证据");
+    elements.errorTitle.innerHTML = localized("Known 3D / source-label error cases", "已知 3D / 源标注错误 case");
 
     elements.title.textContent = dataset.name;
-    elements.datasetStatus.innerHTML = localized("Audited · review separated", "已审查 · 复核样本已分离", true);
+    elements.datasetStatus.className = `status-pill ${status.className}`;
+    elements.datasetStatus.innerHTML = localized(status.text, status.textZh, true);
     elements.description.innerHTML = localized(englishDescription, chineseDescription);
-    elements.validCount.textContent = dataset.validCases.length;
-    elements.reviewCount.textContent = dataset.reviewCases.length;
-    elements.errorCount.textContent = dataset.errorCases.length;
-    renderFacts(dataset);
-    renderCards(elements.validGrid, dataset.validCases, "valid");
-    renderCards(elements.reviewGrid, dataset.reviewCases, "review");
-    renderCards(elements.errorGrid, dataset.errorCases, "error");
+    elements.validCount.textContent = modeCases.valid.length;
+    elements.reviewCount.textContent = modeCases.review.length;
+    elements.errorCount.textContent = modeCases.error.length;
+    renderFacts(dataset, stats);
+    renderCards(elements.validGrid, modeCases.valid, "valid");
+    renderCards(elements.reviewGrid, modeCases.review, "review");
+    renderCards(elements.errorGrid, modeCases.error, "error");
 
-    const hasReviewCases = dataset.reviewCases.length > 0;
+    elements.validExplainer.innerHTML =
+      currentTargetMode === "visible"
+        ? localized(
+            "These examples have an independent visible-image target and pass the applicable containment and geometry checks.",
+            "这些样本具有独立的图像 visible target，并通过适用的包含率和几何检查。",
+          )
+        : localized(
+            "The 2D envelope is derived from the same 3D cuboid shown here, so the pair is projection-consistent by construction. This lane is not proof that the cuboid fits the object.",
+            "2D envelope 由图中的同一个 3D 框派生，因此二者天然投影一致；这里的通过不代表 3D 框一定贴合物体。",
+          );
+    elements.reviewExplainer.innerHTML =
+      currentTargetMode === "visible"
+        ? localized(
+            "These cases trigger a visible-containment or dataset-specific review signal. Symmetric visible/amodal IoU and center offset are diagnostic only.",
+            "这些 case 触发 visible containment 或数据集专用复核信号；对称 visible/amodal IoU 与中心偏差只用于诊断。",
+          )
+        : localized(
+            "A projected-envelope target does not create visible-versus-amodal review cases. Only independent geometry or conversion warnings remain.",
+            "projected-envelope target 不会产生 visible 与 amodal 的不匹配复核；只保留独立几何或转换告警。",
+          );
+
+    const hasValidCases = modeCases.valid.length > 0;
+    elements.validGrid.hidden = !hasValidCases;
+    elements.validEmpty.hidden = hasValidCases;
+    elements.validEmptyTitle.innerHTML = localized("No compatible target examples", "没有兼容的 target 样本");
+    elements.validEmptyMessage.innerHTML = localized(
+      `${dataset.name} has no independent visible 2D target in the current package, so it cannot participate in a visible-only policy without adding a new annotation source.`,
+      `${dataset.name} 当前数据包没有独立 visible 2D target，因此在补充新标注来源前不能参与统一 visible-only 策略。`,
+    );
+
+    const hasReviewCases = modeCases.review.length > 0;
     elements.reviewGrid.hidden = !hasReviewCases;
     elements.reviewEmpty.hidden = hasReviewCases;
     elements.reviewEmptyMessage.innerHTML = localized(
-      "No cases in the current audit require human verification.",
-      "当前审查中没有需要人工确认的样本。",
+      currentTargetMode === "visible"
+        ? "No review visualization is available for this dataset under the visible-target policy. The table reports the full audit count."
+        : "No visible/amodal review lane exists because the 2D envelope is derived from the same 3D cuboid. Independent hard geometry checks still apply.",
+      currentTargetMode === "visible"
+        ? "该数据集在 visible-target 策略下没有可展示的复核图；完整审查数量见上方表格。"
+        : "由于 2D envelope 由同一个 3D 框派生，因此不存在 visible/amodal 复核通道；独立 hard 几何检查仍然生效。",
     );
 
-    const hasErrors = dataset.errorCases.length > 0;
+    const hasErrors = modeCases.error.length > 0;
     elements.errorGrid.hidden = !hasErrors;
     elements.errorEmpty.hidden = hasErrors;
     elements.emptyMessage.innerHTML = localized(dataset.emptyMessage || "No confirmed error cases in the current audit.", chinese.emptyMessage || "当前审查没有确认错误样本。");
-    elements.errorExplainer.innerHTML = dataset.emptyMessage
-      ? localized(dataset.emptyMessage, chinese.emptyMessage)
-      : hasCurrentHard
+    elements.errorExplainer.innerHTML =
+      currentTargetMode === "projected" && hasErrors
         ? localized(
-            "These cases fail the latest hard rules but are still present in the current source package. They must be excluded before the dataset is declared clean.",
-            "这些 case 未通过最新 hard 规则，但仍存在于当前源数据包中；在数据集被视为干净版本前必须将其排除。",
+            "These known 3D or source-label errors remain errors. Deriving the 2D target from the bad cuboid can hide the 2D/3D mismatch, but it does not repair the cuboid.",
+            "这些已知 3D 或源标注错误仍然是错误。由错误 3D 框派生 2D target 会隐藏 2D/3D 不匹配，但不会修复 3D 框。",
           )
-        : localized(defaultErrorExplainer, defaultErrorExplainerChinese);
+        : dataset.emptyMessage
+          ? localized(dataset.emptyMessage, chinese.emptyMessage)
+          : localized(defaultErrorExplainer, defaultErrorExplainerChinese);
 
     document.querySelectorAll(".dataset-tab").forEach((tab) => {
       const active = tab.dataset.dataset === dataset.id;
@@ -503,11 +877,14 @@
 
   function openLightbox(kind, index) {
     const dataset = data.datasets.find((candidate) => candidate.id === currentDatasetId);
-    const caseData = dataset[`${kind}Cases`][index];
+    const caseData = casesForTargetMode(dataset)[kind][index];
     if (!caseData) return;
 
-    elements.lightboxImage.src = versionedAsset(caseData.image);
-    elements.lightboxImage.alt = `2D and projected 3D box comparison for ${caseData.title}`;
+    elements.lightboxImage.src = versionedAsset(targetModeAsset(caseData.image));
+    elements.lightboxImage.alt =
+      currentTargetMode === "visible"
+        ? `Visible 2D target and projected 3D cuboid comparison for ${caseData.title}`
+        : `Projected 3D cuboid used to derive the 2D envelope for ${caseData.title}`;
     elements.lightboxTag.innerHTML = localizedTag(caseData.tag);
     elements.lightboxTag.classList.toggle("error", kind === "error");
     elements.lightboxTag.classList.toggle("review", kind === "review");
@@ -539,12 +916,28 @@
       // The static site still works when storage is unavailable.
     }
     renderStaticLanguage();
+    renderTargetMode();
+    renderStats();
+    selectDataset(currentDatasetId);
+  }
+
+  function setTargetMode(mode) {
+    currentTargetMode = mode === "projected" ? "projected" : "visible";
+    try {
+      localStorage.setItem("datasetQaTargetMode", currentTargetMode);
+    } catch (_error) {
+      // The static site still works when storage is unavailable.
+    }
+    renderTargetMode();
     renderStats();
     selectDataset(currentDatasetId);
   }
 
   elements.languageButtons.forEach((button) => {
     button.addEventListener("click", () => setLanguage(button.dataset.language));
+  });
+  elements.targetModeButtons.forEach((button) => {
+    button.addEventListener("click", () => setTargetMode(button.dataset.targetMode));
   });
   elements.closeLightbox.addEventListener("click", closeLightbox);
   elements.lightbox.addEventListener("click", (event) => {

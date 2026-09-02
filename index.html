@@ -11,7 +11,7 @@
     />
     <title>SpatialEncoder · Dataset QA</title>
     <script>document.documentElement.classList.add("auth-locked");</script>
-    <link rel="stylesheet" href="styles.css?v=20260901-2" />
+    <link rel="stylesheet" href="styles.css?v=20260901-3" />
   </head>
   <body>
     <div class="auth-gate" id="auth-gate" role="dialog" aria-modal="true" aria-labelledby="auth-title">
@@ -52,6 +52,46 @@
       </header>
 
       <main>
+        <section class="target-policy-panel" aria-labelledby="target-policy-title">
+          <div class="target-policy-heading">
+            <div>
+              <p class="section-kicker" id="target-policy-kicker">2D TARGET POLICY</p>
+              <h2 id="target-policy-title">Compare one target definition across every dataset</h2>
+              <p id="target-policy-intro"></p>
+            </div>
+            <div class="target-policy-switch" role="group" aria-label="2D target policy">
+              <button type="button" class="active" data-target-mode="visible" aria-pressed="true">
+                <span>Visible 2D</span>
+                <small>independent image target</small>
+              </button>
+              <button type="button" data-target-mode="projected" aria-pressed="false">
+                <span>Projected envelope</span>
+                <small>derived from 3D cuboid</small>
+              </button>
+            </div>
+          </div>
+
+          <div class="target-mode-readout">
+            <div class="target-mode-copy">
+              <p class="target-mode-eyebrow" id="target-mode-eyebrow"></p>
+              <h3 id="target-mode-title"></h3>
+              <p id="target-mode-description"></p>
+            </div>
+            <div class="target-mode-summary" aria-label="Selected policy totals">
+              <div class="target-summary-item"><strong id="target-coverage-value">—</strong><span id="target-coverage-label">target-covered observations</span></div>
+              <div class="target-summary-item"><strong id="target-review-value">—</strong><span id="target-review-label">target review flags</span></div>
+              <div class="target-summary-item"><strong id="target-hard-value">—</strong><span id="target-hard-label">target hard flags</span></div>
+              <div class="target-summary-item"><strong id="target-known-value">—</strong><span id="target-known-label">known 3D/source errors</span></div>
+            </div>
+          </div>
+
+          <div class="target-consequence-grid">
+            <article class="target-consequence-card"><span>01</span><h3 id="target-signal-title"></h3><p id="target-signal-copy"></p></article>
+            <article class="target-consequence-card"><span>02</span><h3 id="target-audit-title"></h3><p id="target-audit-copy"></p></article>
+            <article class="target-consequence-card risk"><span>03</span><h3 id="target-risk-title"></h3><p id="target-risk-copy"></p></article>
+          </div>
+        </section>
+
         <section class="rules-panel" aria-labelledby="rules-title">
           <div class="rules-heading">
             <div>
@@ -77,8 +117,8 @@
               <span class="rule-index">02</span>
               <h3>Measure projection consistency</h3>
               <span class="rule-zh">计算投影一致性</span>
-              <p>Project the 3D cuboid with the loader intrinsics, clip at the image boundary, then compare it with the reference 2D box or visible mask.</p>
-              <span class="rule-zh">使用 loader 内参投影 3D 框，在图像边界裁剪后，与参考 2D 框或可见 mask 比较。</span>
+              <p>Identify whether the training 2D target is visible/modal or amodal/projected, then apply only a same-semantic projection check or an asymmetric visible-containment check.</p>
+              <span class="rule-zh">先判断训练 2D target 是 visible/modal 还是 amodal/projected，再分别采用同语义投影检查或非对称 visible containment 检查。</span>
             </article>
             <article class="rule-step filtered-step">
               <span class="rule-index">03</span>
@@ -107,80 +147,47 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>WildDet3D, Pix3D, 3D-FRONT</strong><span class="rule-zh">通用 2D/3D 投影规则</span></td>
+                  <td><strong>All datasets</strong><span class="rule-zh">所有数据集</span></td>
                   <td>
-                    Invalid geometry; <code>IoU &lt; 0.15</code> with a ≥0.05 normalized box-diagonal size guard; <code>center &gt; 0.20</code>; or jointly <code>IoU &lt; 0.25</code> and <code>center &gt; 0.10</code>. Pix3D/3D-FRONT additionally filter stored-vs-recomputed projection error <code>&gt; 1 px</code>.
-                    <span class="rule-zh">无效几何；在归一化框对角线至少为 0.05 时 <code>IoU &lt; 0.15</code>；<code>中心偏差 &gt; 0.20</code>；或同时满足 <code>IoU &lt; 0.25</code> 与 <code>中心偏差 &gt; 0.10</code>。Pix3D/3D-FRONT 还会过滤存储投影与重算投影误差 <code>&gt; 1 px</code> 的样本。</span>
+                    Missing, non-finite, or non-positive geometry; invalid matrix shapes; a cuboid intersecting/behind the camera; or an invalid recomputed projection. Known axis, handedness, dimension-order, and scale conventions are repaired first.
+                    <span class="rule-zh">缺失、非有限或非正几何量；矩阵形状错误；3D 框穿过或位于相机后方；或重算投影无效。已知坐标轴、手性、尺寸顺序与尺度约定必须先修正。</span>
                   </td>
                   <td>
-                    If not hard-filtered: <code>IoU &lt; 0.40</code> or <code>center &gt; 0.05</code>.
-                    <span class="rule-zh">未达到 hard rule 时，<code>IoU &lt; 0.40</code> 或 <code>中心偏差 &gt; 0.05</code> 进入人工复核。</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td><strong>CA-1M</strong><span class="rule-zh">当前 loader 的视频观测规则</span></td>
-                  <td>
-                    Invalid/non-finite geometry or a cuboid corner behind the camera; <code>IoU &lt; 0.15</code> with a ≥0.05 normalized size guard; <code>center &gt; 0.20</code>; or jointly <code>IoU &lt; 0.25</code> and <code>center &gt; 0.10</code>. Confirmed failures are excluded by exact <code>(scene, frame, object)</code> loader manifest entries.
-                    <span class="rule-zh">无效或非有限几何、3D 框角点位于相机后方；在归一化尺寸至少为 0.05 时 <code>IoU &lt; 0.15</code>；<code>中心偏差 &gt; 0.20</code>；或同时满足 <code>IoU &lt; 0.25</code> 与 <code>中心偏差 &gt; 0.10</code>。确认错误通过精确的 <code>(scene, frame, object)</code> loader 清单排除。</span>
-                  </td>
-                  <td>
-                    If not hard-filtered: <code>IoU &lt; 0.40</code> or <code>center &gt; 0.05</code>. A hard projection candidate with visible-to-amodal retained area <code>&lt; 0.50</code> is downgraded to review because severe truncation/occlusion is plausible. Legacy stored-projection error is diagnostic only.
-                    <span class="rule-zh">未达到 hard rule 时，<code>IoU &lt; 0.40</code> 或 <code>中心偏差 &gt; 0.05</code> 进入人工复核。若 hard 投影候选的可见面积与 amodal 面积比 <code>&lt; 0.50</code>，由于可能存在严重截断或遮挡，将其降级为人工复核；旧版存储投影误差只作为诊断。</span>
+                    Unknown 2D-target provenance is not guessed: only independent 3D geometry checks are applied until the source is identified.
+                    <span class="rule-zh">不会猜测未知的 2D target 来源：在来源确认之前，只执行独立的 3D 几何检查。</span>
                   </td>
                 </tr>
                 <tr>
-                  <td><strong>HyperSim, ADT</strong><span class="rule-zh">精确 loader 投影一致性</span></td>
+                  <td><strong>Amodal projected target</strong><span class="rule-zh">Amodal 投影 target</span></td>
                   <td>
-                    The same invalid-geometry, IoU, and normalized-center hard rules apply, plus stored-vs-recomputed projection error <code>&gt; 1 px</code>. Fully clipped boxes with zero visible width or height are rejected by the loader object-validity filter.
-                    <span class="rule-zh">使用相同的无效几何、IoU 和归一化中心偏差 hard rules，并额外检查存储投影与重算投影误差 <code>&gt; 1 px</code>。裁剪后可见宽度或高度为零的画外框会被 loader 物体有效性过滤。</span>
+                    Compare the stored amodal target with an independently recomputed amodal cuboid envelope. Hard: exact stored-projection error <code>&gt; 1 px</code>; <code>IoU &lt; 0.15</code> with normalized-size guard ≥0.05; <code>center &gt; 0.20</code>; or jointly <code>IoU &lt; 0.25</code> and <code>center &gt; 0.10</code>.
+                    <span class="rule-zh">将存储的 amodal target 与独立重算的 amodal 3D 投影包络比较。Hard：精确投影误差 <code>&gt; 1 px</code>；在归一化尺寸至少为 0.05 时 <code>IoU &lt; 0.15</code>；<code>中心偏差 &gt; 0.20</code>；或同时满足 <code>IoU &lt; 0.25</code> 与 <code>中心偏差 &gt; 0.10</code>。</span>
                   </td>
                   <td>
-                    If not hard-filtered: <code>IoU &lt; 0.40</code> or <code>center &gt; 0.05</code>. The current eligible subsets contain no HyperSim or ADT review candidates.
-                    <span class="rule-zh">未达到 hard rule 时，<code>IoU &lt; 0.40</code> 或 <code>中心偏差 &gt; 0.05</code> 进入人工复核。当前 loader 可用子集中，HyperSim 和 ADT 均没有人工复核候选。</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td><strong>Omni3D</strong><span class="rule-zh">OBB 拟合与源投影一致性</span></td>
-                  <td>
-                    Invalid geometry; <code>axis-fit error &gt; 0.10</code>; fitted-vs-released clipped projection <code>IoU &lt; 0.75</code>; or normalized projected-center error <code>&gt; 0.05</code>.
-                    <span class="rule-zh">无效几何；<code>axis-fit error &gt; 0.10</code>；拟合 OBB 与源 3D 角点的裁剪投影 <code>IoU &lt; 0.75</code>；或归一化投影中心偏差 <code>&gt; 0.05</code>。</span>
-                  </td>
-                  <td>
-                    Retained annotations pass all four geometry checks; no current review-only set remains.
-                    <span class="rule-zh">保留标注均通过四项几何检查，目前没有仅需人工复核的集合。</span>
+                    If not hard-filtered: <code>IoU &lt; 0.40</code> or <code>center &gt; 0.05</code>. Applies to CA-1M, HyperSim, ADT, HOPE Image/Video, Objectron, and SceneVersepp; documented legacy projection errors may remain diagnostic-only.
+                    <span class="rule-zh">未达到 hard rule 时，<code>IoU &lt; 0.40</code> 或 <code>中心偏差 &gt; 0.05</code> 进入人工复核。适用于 CA-1M、HyperSim、ADT、HOPE Image/Video、Objectron 和 SceneVersepp；已记录的旧版近似投影误差可只作为诊断。</span>
                   </td>
                 </tr>
                 <tr>
-                  <td><strong>Structured3D</strong><span class="rule-zh">可见实例 mask 与 amodal 3D 框</span></td>
+                  <td><strong>Visible/modal target</strong><span class="rule-zh">Visible/modal target</span></td>
                   <td>
-                    Invalid geometry or visible instance-mask containment by the projected cuboid <code>&lt; 0.50</code>.
-                    <span class="rule-zh">无效几何，或投影 3D 框对可见实例 mask 的包含率 <code>&lt; 0.50</code>。</span>
+                    Compute <code>visible containment = area(visible ∩ projected) / area(visible)</code>, preferably with exact mask pixels. Hard: containment <code>&lt; 0.50</code>. Visible-to-amodal IoU and center offset never trigger rejection.
+                    <span class="rule-zh">计算 <code>visible containment = area(visible ∩ projected) / area(visible)</code>，优先使用精确 mask pixels。Hard：包含率 <code>&lt; 0.50</code>。Visible-to-amodal IoU 与中心偏差绝不直接触发过滤。</span>
                   </td>
                   <td>
-                    <code>0.50 ≤ mask containment &lt; 0.90</code>. Symmetric 2D/3D IoU is diagnostic only because the 2D mask is visible while the cuboid is amodal.
-                    <span class="rule-zh"><code>0.50 ≤ mask 包含率 &lt; 0.90</code>。由于 2D mask 是可见框而 3D 框是 amodal，双向 IoU 只作为诊断指标。</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td><strong>uCO3D</strong><span class="rule-zh">双向覆盖检查</span></td>
-                  <td>
-                    Invalid geometry; visible-box containment <code>&lt; 0.50</code>; or projected-envelope precision <code>&lt; 0.25</code>. Residual hard frames are excluded after sequence-box repair.
-                    <span class="rule-zh">无效几何；可见框包含率 <code>&lt; 0.50</code>；或投影包络 precision <code>&lt; 0.25</code>。序列 3D 框修正后仍失败的帧会被排除。</span>
-                  </td>
-                  <td>
-                    If not hard-filtered: containment <code>&lt; 0.90</code> or projected precision <code>&lt; 0.50</code>.
-                    <span class="rule-zh">未达到 hard rule 时，包含率 <code>&lt; 0.90</code> 或投影 precision <code>&lt; 0.50</code> 进入人工复核。</span>
+                    If not hard-filtered: <code>containment &lt; 0.90</code>. Applies to Pix3D, Structured3D, 3D-FRONT, Kubric, uCO3D, ABO, ShapeNet, Replica v2, SUN RGB-D, and Synscapes. Dataset-specific exact-geometry checks remain active.
+                    <span class="rule-zh">未达到 hard rule 时，<code>包含率 &lt; 0.90</code> 进入人工复核。适用于 Pix3D、Structured3D、3D-FRONT、Kubric、uCO3D、ABO、ShapeNet、Replica v2、SUN RGB-D 和 Synscapes；数据集专用的精确几何检查继续保留。</span>
                   </td>
                 </tr>
                 <tr>
-                  <td><strong>Kubric</strong><span class="rule-zh">精确合成数据例外</span></td>
+                  <td><strong>Mixed / fallback targets</strong><span class="rule-zh">混合或 fallback target</span></td>
                   <td>
-                    Invalid geometry; stored-vs-recomputed projection error <code>&gt; 1 px</code>; or released object-origin projection error <code>&gt; 2 px</code>.
-                    <span class="rule-zh">无效几何；存储投影与重算投影误差 <code>&gt; 1 px</code>；或官方物体原点投影误差 <code>&gt; 2 px</code>。</span>
+                    Resolve each observation before thresholding. A target equal within 2 px to the full or image-clipped stored projection is amodal; otherwise a known render/mask target is visible.
+                    <span class="rule-zh">逐 observation 判断语义后再应用阈值。若 target 与完整或裁剪后的存储投影在 2 px 内相等，则视为 amodal；否则，已知来自 render/mask 的 target 视为 visible。</span>
                   </td>
                   <td>
-                    Visible-mask 2D box versus amodal-cuboid IoU is not used for filtering. The 4,596 old generic-rule candidates were rechecked and confirmed valid.
-                    <span class="rule-zh">可见 mask 的 2D 框与 amodal 3D 框之间的 IoU 不用于过滤。旧通用规则命中的 4,596 个候选已复核并确认有效。</span>
+                    Omni3D, HSSD, HOI4D, and WildDet3D are mixed. ProcTHOR remains unclassified until its source package is restored. Every observation should ultimately store <code>box_2d_source = mask | tight | trunc | projected</code>.
+                    <span class="rule-zh">Omni3D、HSSD、HOI4D 和 WildDet3D 属于混合语义。ProcTHOR 在源数据恢复前保持未分类。最终每个 observation 都应保存 <code>box_2d_source = mask | tight | trunc | projected</code>。</span>
                   </td>
                 </tr>
               </tbody>
@@ -188,8 +195,8 @@
           </div>
 
           <p class="rule-definitions">
-            <strong>Metric definitions:</strong> <code>IoU</code> compares the clipped reference 2D box with the clipped projected-3D envelope; <code>center</code> is their center distance divided by the image diagonal; <code>containment = intersection / visible area</code>; <code>projected precision = intersection / projected area</code>.
-            <span class="rule-zh"><strong>指标定义：</strong><code>IoU</code> 比较裁剪后的参考 2D 框和 3D 投影包络；<code>中心偏差</code>为两者中心距离除以图像对角线；<code>包含率 = 交集 / 可见区域</code>；<code>投影 precision = 交集 / 投影区域</code>。</span>
+            <strong>Metric definitions:</strong> <code>IoU</code> and normalized <code>center</code> are decision metrics only for same-semantic amodal boxes. For a visible target, <code>containment = intersection / visible area</code> is the decision metric; visible/amodal IoU and center are diagnostic only. Historical candidates produced by the old cross-semantic IoU/center rule must be re-audited before deletion.
+            <span class="rule-zh"><strong>指标定义：</strong><code>IoU</code> 和归一化 <code>中心偏差</code> 只在同语义 amodal 框之间作为判定指标。对 visible target，判定指标为 <code>包含率 = 交集 / visible area</code>；visible/amodal IoU 与中心偏差只用于诊断。旧版跨语义 IoU/中心规则产生的历史候选必须重新审查后才能删除。</span>
           </p>
 
           <div class="availability-heading">
@@ -260,6 +267,7 @@
                   <th scope="col" id="th-data-type">Data type</th>
                   <th scope="col" class="numeric" id="th-samples">Images / Frames</th>
                   <th scope="col" class="numeric" id="th-videos">Videos</th>
+                  <th scope="col" id="th-target-source">Selected target source</th>
                   <th scope="col" class="numeric" id="th-review">Need Human Verify</th>
                   <th scope="col" class="numeric" id="th-filtered">Filtered errors</th>
                   <th scope="col" class="numeric" id="th-error-rate">Error rate</th>
@@ -304,6 +312,11 @@
             Retained examples that pass the current dataset-specific checks without triggering an automatic or manual review concern.
           </p>
           <div class="case-grid" id="valid-grid"></div>
+          <div class="empty-state" id="valid-empty" hidden>
+            <div class="empty-icon">—</div>
+            <h3 id="valid-empty-title">No compatible target examples</h3>
+            <p id="valid-empty-message"></p>
+          </div>
         </section>
 
         <section class="case-section review-section" aria-labelledby="review-title">
@@ -367,7 +380,7 @@
     </dialog>
 
     <script src="cases-data.js?v=20260827-11"></script>
-    <script src="app.js?v=20260827-11"></script>
+    <script src="app.js?v=20260901-3"></script>
     <script src="auth.js?v=20260827-11"></script>
   </body>
 </html>

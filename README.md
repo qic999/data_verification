@@ -20,6 +20,8 @@ Replica) with:
   fields from boxes derived by the project and records whether absolute metric
   scale exists;
 - a top-level audit statistics table;
+- a 2D-target policy switch that compares using one visible 2D target across
+  all datasets with using the 2D envelope projected from each 3D cuboid;
 - an English-only / English-and-Chinese display toggle;
 - up to six examples that need no human review per dataset;
 - up to six ambiguous examples that still need human review per dataset;
@@ -29,6 +31,14 @@ Replica) with:
   case was confirmed erroneous, including the relevant measured values;
 - explicit empty states when a dataset has no review or filtered examples;
 - click-to-enlarge case images and per-case projection metrics.
+
+The target switch updates the target source, coverage, review/hard flag counts,
+flag rate, gallery grouping, and visualization focus. These values are policy
+simulations derived from the recorded audits, not a new deletion run. Known 3D
+and source-label errors remain fixed in both modes. In projected-envelope mode,
+the 2D target is derived from the same 3D cuboid, so 2D/3D projection agreement
+is true by construction; a low flag count therefore does not prove that the 3D
+cuboid fits the object.
 
 The three lanes are intentionally distinct: review candidates are not counted
 as confirmed errors until a reviewer rejects them. HSSD has 379 excluded error
@@ -55,11 +65,16 @@ Rebuild the generated images and data after an audit update:
 ```bash
 cd /mnt/data/qichen/cvpr27/model/spatial_encoder_v2
 python scripts/build_dataset_case_qa_site.py
+python scripts/build_target_mode_assets.py \
+  --input-root debug_dataset_case_qa_website_20260827/assets \
+  --output-root debug_dataset_case_qa_website_20260827/assets_modes/projected
 ```
 
 The builder refreshes `assets/`, `cases-data.js`, and `cases-data.json` from the
 recorded audit artifacts. It converts the source visualizations to web-sized
-WebP files while preserving the original source figures.
+WebP files while preserving the original source figures. The second command
+creates the projection-focused right-panel views used by the projected-envelope
+mode.
 
 The complete filtering rules and the official-annotation availability table
 are also recorded in `DATA_FILTERING_RULES.md`.
