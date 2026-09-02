@@ -16,6 +16,8 @@ Replica) with:
 
 - the exact general and dataset-specific filtering/review rules before the
   dataset statistics and galleries;
+- an official-annotation availability table that distinguishes direct source
+  fields from boxes derived by the project;
 - a top-level audit statistics table;
 - an English-only / English-and-Chinese display toggle;
 - up to six examples that need no human review per dataset;
@@ -57,6 +59,9 @@ python scripts/build_dataset_case_qa_site.py
 The builder refreshes `assets/`, `cases-data.js`, and `cases-data.json` from the
 recorded audit artifacts. It converts the source visualizations to web-sized
 WebP files while preserving the original source figures.
+
+The complete filtering rules and the official-annotation availability table
+are also recorded in `DATA_FILTERING_RULES.md`.
 
 The public website is published from the repository's `gh-pages` branch via
 GitHub Pages; `main` is kept at the same release commit.

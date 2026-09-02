@@ -502,6 +502,75 @@ main {
   color: var(--text);
 }
 
+.availability-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  margin: 30px 2px 16px;
+}
+
+.availability-heading h3 {
+  margin: 0;
+  font-size: clamp(22px, 2.4vw, 30px);
+  letter-spacing: -0.025em;
+}
+
+.availability-heading > p {
+  max-width: 760px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.availability-heading > p strong {
+  color: var(--text);
+}
+
+.availability-table {
+  min-width: 1260px;
+}
+
+.availability-table th:first-child,
+.availability-table td:first-child {
+  width: 14%;
+}
+
+.availability-table th:nth-child(2),
+.availability-table td:nth-child(2),
+.availability-table th:nth-child(3),
+.availability-table td:nth-child(3),
+.availability-table th:nth-child(4),
+.availability-table td:nth-child(4) {
+  width: 12%;
+  text-align: center;
+}
+
+.availability-table th:nth-child(5),
+.availability-table td:nth-child(5) {
+  width: 50%;
+}
+
+.availability-table td.mark {
+  vertical-align: middle;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 22px;
+  font-weight: 850;
+}
+
+.availability-table td.direct {
+  color: var(--mint);
+}
+
+.availability-table td.derived {
+  color: var(--amber);
+}
+
+.availability-table td.missing {
+  color: var(--muted);
+}
+
 .overview-panel,
 .case-section {
   border: 1px solid var(--line);
@@ -1177,6 +1246,12 @@ dialog::backdrop {
     align-items: flex-start;
     flex-direction: column;
     gap: 14px;
+  }
+
+  .availability-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
   }
 
   .case-grid {

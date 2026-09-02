@@ -11,7 +11,7 @@
     />
     <title>SpatialEncoder · Dataset QA</title>
     <script>document.documentElement.classList.add("auth-locked");</script>
-    <link rel="stylesheet" href="styles.css?v=20260827-11" />
+    <link rel="stylesheet" href="styles.css?v=20260901-1" />
   </head>
   <body>
     <div class="auth-gate" id="auth-gate" role="dialog" aria-modal="true" aria-labelledby="auth-title">
@@ -191,6 +191,54 @@
             <strong>Metric definitions:</strong> <code>IoU</code> compares the clipped reference 2D box with the clipped projected-3D envelope; <code>center</code> is their center distance divided by the image diagonal; <code>containment = intersection / visible area</code>; <code>projected precision = intersection / projected area</code>.
             <span class="rule-zh"><strong>指标定义：</strong><code>IoU</code> 比较裁剪后的参考 2D 框和 3D 投影包络；<code>中心偏差</code>为两者中心距离除以图像对角线；<code>包含率 = 交集 / 可见区域</code>；<code>投影 precision = 交集 / 投影区域</code>。</span>
           </p>
+
+          <div class="availability-heading">
+            <div>
+              <p class="section-kicker">SOURCE ANNOTATIONS</p>
+              <h3>Official annotation availability</h3>
+              <span class="rule-zh">官方标注提供情况</span>
+            </div>
+            <p>
+              <strong>✓</strong> official box field · <strong>△</strong> derived by our adapter from official mask/geometry/camera · <strong>—</strong> unavailable. <strong>✓*</strong> is source-dependent.
+              <span class="rule-zh"><strong>✓</strong> 官方直接提供 · <strong>△</strong> 由我们的 adapter 使用官方 mask/geometry/camera 派生 · <strong>—</strong> 未提供；<strong>✓*</strong> 表示不同子数据源存在差异。</span>
+            </p>
+          </div>
+          <div class="rules-table-wrap availability-table-wrap">
+            <table class="rules-table availability-table">
+              <thead>
+                <tr>
+                  <th scope="col">Dataset <span class="rule-zh">数据集</span></th>
+                  <th scope="col">Visible 2D <span class="rule-zh">可见 2D 框</span></th>
+                  <th scope="col">3D box <span class="rule-zh">3D 框</span></th>
+                  <th scope="col">2D cuboid envelope <span class="rule-zh">3D 框的 2D 投影包络</span></th>
+                  <th scope="col">Official field / project derivation <span class="rule-zh">官方字段 / 项目派生方式</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>WildDet3D</strong></td><td class="mark direct">✓</td><td class="mark direct">✓</td><td class="mark direct">✓</td><td><code>bbox2D_tight</code>; <code>bbox3D_cam</code>; <code>bbox2D_proj/trunc</code></td></tr>
+                <tr><td><strong>Omni3D</strong></td><td class="mark direct">✓*</td><td class="mark direct">✓</td><td class="mark direct">✓</td><td><code>bbox2D_tight</code> is source-dependent; <code>bbox3D_cam</code>; <code>bbox2D_proj/trunc</code><span class="rule-zh"><code>bbox2D_tight</code> 并非所有子数据源都有。</span></td></tr>
+                <tr><td><strong>Pix3D</strong></td><td class="mark direct">✓</td><td class="mark derived">△</td><td class="mark derived">△</td><td>Official <code>bbox</code>/mask; CAD + pose → cuboid/projection; pseudometric scale is ours.<span class="rule-zh">官方 <code>bbox</code>/mask；CAD + pose 派生 3D 框和投影；伪米制尺度由本项目校准。</span></td></tr>
+                <tr><td><strong>Structured3D</strong></td><td class="mark derived">△</td><td class="mark direct">✓</td><td class="mark derived">△</td><td><code>instance.png</code> → visible box; <code>bbox_3d.json</code>; project with camera.<span class="rule-zh"><code>instance.png</code> 派生 visible box；官方 <code>bbox_3d.json</code>；相机投影由本项目计算。</span></td></tr>
+                <tr><td><strong>3D-FRONT</strong></td><td class="mark derived">△</td><td class="mark derived">△</td><td class="mark derived">△</td><td>Semantic render; 3D-FUTURE mesh bounds + scene transform; project with camera.<span class="rule-zh">语义渲染；3D-FUTURE mesh bounds + scene transform；相机投影。</span></td></tr>
+                <tr><td><strong>Kubric</strong></td><td class="mark direct">✓</td><td class="mark direct">✓</td><td class="mark derived">△</td><td><code>instances/bboxes</code>; <code>instances/bboxes_3d</code>; project with camera.</td></tr>
+                <tr><td><strong>uCO3D</strong></td><td class="mark direct">✓</td><td class="mark derived">△</td><td class="mark derived">△</td><td>Official mask bbox/segmentation; segmented point cloud → robust cuboid → projection.<span class="rule-zh">官方 mask bbox/segmentation；前景点云派生 robust cuboid 和投影。</span></td></tr>
+                <tr><td><strong>CA-1M</strong></td><td class="mark missing">—</td><td class="mark direct">✓</td><td class="mark direct">✓</td><td>No separate occlusion-aware visible box in our package; camera 3D fields and <code>camera_box_2d_proj</code> are stored.<span class="rule-zh">当前包无独立的遮挡感知 visible box；直接存储 camera 3D 字段和 <code>camera_box_2d_proj</code>。</span></td></tr>
+                <tr><td><strong>HyperSim</strong></td><td class="mark derived">△</td><td class="mark direct">✓</td><td class="mark derived">△</td><td>Semantic-instance image → visible box; official tight 9-DoF box; project with camera.<span class="rule-zh">实例语义图派生 visible box；官方 tight 9-DoF box；相机投影。</span></td></tr>
+                <tr><td><strong>ADT</strong></td><td class="mark direct">✓</td><td class="mark direct">✓</td><td class="mark derived">△</td><td><code>2d_bounding_box.csv</code>; <code>3d_bounding_box.csv</code> + <code>scene_objects.csv</code>; envelope reprojection is ours.</td></tr>
+                <tr><td><strong>HSSD</strong></td><td class="mark derived">△</td><td class="mark derived">△</td><td class="mark derived">△</td><td>Habitat semantic render and semantic-scene/asset bounds.<span class="rule-zh">由 Habitat 语义渲染和 semantic-scene/asset bounds 派生。</span></td></tr>
+                <tr><td><strong>ProcTHOR</strong></td><td class="mark derived">△</td><td class="mark derived">△</td><td class="mark derived">△</td><td>Generated through the official AI2-THOR simulator; no fixed box files in source scenes.<span class="rule-zh">通过官方 AI2-THOR simulator 生成；源 scene 中没有固定 box 标注文件。</span></td></tr>
+                <tr><td><strong>ABO</strong></td><td class="mark derived">△</td><td class="mark derived">△</td><td class="mark derived">△</td><td>Official render/alpha; CAD bounds + released camera.<span class="rule-zh">官方 render/alpha；CAD bounds + 官方相机。</span></td></tr>
+                <tr><td><strong>ShapeNet</strong></td><td class="mark derived">△</td><td class="mark derived">△</td><td class="mark derived">△</td><td>Project render; CAD mesh bounds + project camera.<span class="rule-zh">本项目渲染；CAD mesh bounds + 本项目相机。</span></td></tr>
+                <tr><td><strong>Replica</strong></td><td class="mark derived">△</td><td class="mark derived">△</td><td class="mark derived">△</td><td>Habitat semantic render; semantic mesh/depth → cuboid → projection.<span class="rule-zh">Habitat 语义渲染；semantic mesh/depth 派生 3D 框和投影。</span></td></tr>
+                <tr><td><strong>HOI4D</strong></td><td class="mark derived">△</td><td class="mark direct">✓</td><td class="mark direct">✓</td><td>Official mask → visible box; <code>objpose</code> 3D fields and full projected <code>2dBox</code>.<span class="rule-zh">官方 mask 派生 visible box；<code>objpose</code> 直接提供 3D 字段和完整投影 <code>2dBox</code>。</span></td></tr>
+                <tr><td><strong>HOPE Image / Video</strong></td><td class="mark missing">—</td><td class="mark derived">△</td><td class="mark derived">△</td><td>No visible box in our source package; eval CAD + released pose/camera.<span class="rule-zh">当前源包无 visible box；由 eval CAD + 官方 pose/camera 派生。</span></td></tr>
+                <tr><td><strong>Objectron</strong></td><td class="mark missing">—</td><td class="mark direct">✓</td><td class="mark direct">✓</td><td>Official 3D cuboid and per-frame projected 2D cuboid keypoints; no visible box.<span class="rule-zh">官方 3D cuboid 和逐帧 2D 投影顶点；无 visible box。</span></td></tr>
+                <tr><td><strong>SceneVerse++</strong></td><td class="mark missing">—</td><td class="mark derived">△</td><td class="mark derived">△</td><td>Instance point IDs + reconstructed mesh → AABB; released cameras → projection.<span class="rule-zh">instance point IDs + 重建 mesh 派生 AABB；官方相机派生投影。</span></td></tr>
+                <tr><td><strong>SUN RGB-D</strong></td><td class="mark direct">✓</td><td class="mark direct">✓</td><td class="mark derived">△</td><td><code>gtBb2D</code>; <code>groundtruth3DBB</code>; project through <code>Rtilt</code> and <code>K</code>.</td></tr>
+                <tr><td><strong>Synscapes</strong></td><td class="mark direct">✓</td><td class="mark direct">✓</td><td class="mark derived">△</td><td>Official instance 2D boxes and ego-frame 3D boxes; envelope projection is ours.<span class="rule-zh">官方 instance 2D box 和 ego-frame 3D box；2D 投影包络由本项目计算。</span></td></tr>
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <section class="overview-panel" aria-labelledby="overview-title">
