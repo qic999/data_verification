@@ -10,9 +10,9 @@ does not make the public repository or its static asset URLs private.
 Open `index.html` directly in a browser when developing locally. The site is
 fully static and does not require a web server.
 
-It presents twenty audited datasets (WildDet3D, Omni3D, Pix3D, Structured3D,
+It presents twenty-one audited datasets (WildDet3D, Omni3D, Pix3D, Structured3D,
 3D-FRONT, Kubric, uCO3D, CA-1M, HyperSim, ADT, HSSD, ABO, ShapeNet, and
-Replica, HOI4D, HOPE, Objectron, SceneVerse++, SUN RGB-D, and Synscapes) with:
+Replica, HOI4D, HOPE, Objectron, SceneVerse++, SUN RGB-D, Synscapes, and ATEK) with:
 
 - the exact general and dataset-specific filtering/review rules before the
   dataset statistics and galleries;
@@ -62,6 +62,9 @@ Objectron and SceneVerse++ have no separate visible 2D boxes. Their projected-bo
 mode includes six current-loader examples for each dataset. HOPE also has no
 separate visible 2D box; its combined HOPE Image and HOPE Video entry contains
 13,864 accepted projected-box cases and six current-loader examples.
+ATEK reports 245,810 video frames from 965 scenes and 1,450,396 object cases.
+Under the visible-box rule, 153,569 cases need human review and 1,403 are hard
+rejects; its separately stored and recomputed 3D projections agree within 1 px.
 
 The **No human review needed** and **Needs human review** figures are generated
 through the current training loaders. Their loader source files, combined

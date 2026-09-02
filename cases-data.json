@@ -1,7 +1,7 @@
 {
   "generatedAt": "2026-09-02",
-  "auditDate": "2026-08-28",
-  "assetVersion": "b01a493585f7",
+  "auditDate": "2026-09-02",
+  "assetVersion": "b1253a551664",
   "loaderProvenance": {
     "wilddet3d": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -183,6 +183,15 @@
       ],
       "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
       "visualizationsGeneratedAt": "2026-09-02T04:19:37.754062+00:00"
+    },
+    "atek": {
+      "loader": "ObjectDetectionDataset._load_frames",
+      "sources": [
+        "sam3/train/data/object_detection_dataset.py",
+        "sam3/train/data/ca1m_dataset.py"
+      ],
+      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "visualizationsGeneratedAt": "2026-09-02T11:50:59.901153+00:00"
     }
   },
   "datasets": [
@@ -4802,6 +4811,327 @@
           },
           "issue": "The projected cuboid envelope has catastrophic overlap with the loader 2D box (IoU=0.068); the projected cuboid envelope contains only 77.8% of the visible 2D box.",
           "issueZh": "投影 3D 包络与 loader 2D 框的重合度严重异常（IoU=0.068）；投影 3D 包络仅包含可见 2D 框的 77.8%。"
+        }
+      ],
+      "emptyMessage": ""
+    },
+    {
+      "id": "atek",
+      "name": "ATEK",
+      "samples": 245810,
+      "dataType": "Video",
+      "videos": 965,
+      "observations": 1450396,
+      "review": 153569,
+      "filtered": 0,
+      "filteredRate": 0.0,
+      "currentHard": 1403,
+      "description": "Egocentric indoor video with visible 2D boxes, metric camera-frame 3D cuboids, RGB, depth, and camera calibration.",
+      "statusDetail": "Of 1,450,396 audited object frames, 1,295,424 pass, 153,569 need human review, and 1,403 are rejected by the visible-containment rule. Stored and recomputed 3D projections agree within 1 px.",
+      "validCases": [
+        {
+          "id": " instance_000029 / frame 000079",
+          "title": "chair · instance_000029",
+          "subtitle": "ase_train_scene_82352 / instance_000029",
+          "image": "assets/atek/valid/01.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              0.7941043432882414,
+              2.2573064174730746
+            ]
+          }
+        },
+        {
+          "id": " instance_000050 / frame 000043",
+          "title": "sofa · instance_000050",
+          "subtitle": "ase_train_scene_82356 / instance_000050",
+          "image": "assets/atek/valid/02.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              3.1338233517440575,
+              5.260724174135779
+            ]
+          }
+        },
+        {
+          "id": " instance_000030 / frame 000096",
+          "title": "lamp · instance_000030",
+          "subtitle": "ase_train_scene_82372 / instance_000030",
+          "image": "assets/atek/valid/03.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              1.6732000115260217,
+              3.514218267329597
+            ]
+          }
+        },
+        {
+          "id": " instance_000056 / frame 000195",
+          "title": "chair · instance_000056",
+          "subtitle": "ase_train_scene_82378 / instance_000056",
+          "image": "assets/atek/valid/04.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              6.643694986048479,
+              7.950197932917136
+            ]
+          }
+        },
+        {
+          "id": " instance_000082 / frame 000162",
+          "title": "sofa · instance_000082",
+          "subtitle": "ase_train_scene_82395 / instance_000082",
+          "image": "assets/atek/valid/05.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              0.9704158340656353,
+              3.1636576692280425
+            ]
+          }
+        },
+        {
+          "id": " instance_000315 / frame 000182",
+          "title": "lamp · instance_000315",
+          "subtitle": "ase_train_scene_82397 / instance_000315",
+          "image": "assets/atek/valid/06.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              3.1518969631473532,
+              3.7168681152511645
+            ]
+          }
+        }
+      ],
+      "reviewCases": [
+        {
+          "id": "ase_train_scene_82365 / frame 000005 / instance_000056",
+          "title": "chair · instance_000056",
+          "subtitle": "train-json/ase_train_scene_82365.json",
+          "image": "assets/atek/review/01.webp",
+          "tag": "review",
+          "reason": "visible_containment_review",
+          "metrics": {
+            "IoU": 0.822,
+            "centerError": 0.0143,
+            "visibleContainment": 0.8725,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected 3D box contains 87.25% of the visible 2D box. This is between the 50% hard-reject threshold and the 90% pass threshold, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 框包含可见 2D 框的 87.25%。该数值位于 50% hard-reject 阈值和 90% 通过阈值之间，因此需要人工确认。"
+        },
+        {
+          "id": "ase_train_scene_82370 / frame 000039 / instance_000239",
+          "title": "table · instance_000239",
+          "subtitle": "train-json/ase_train_scene_82370.json",
+          "image": "assets/atek/review/02.webp",
+          "tag": "review",
+          "reason": "visible_containment_review",
+          "metrics": {
+            "IoU": 0.649,
+            "centerError": 0.0303,
+            "visibleContainment": 0.6635,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected 3D box contains 66.35% of the visible 2D box. This is between the 50% hard-reject threshold and the 90% pass threshold, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 框包含可见 2D 框的 66.35%。该数值位于 50% hard-reject 阈值和 90% 通过阈值之间，因此需要人工确认。"
+        },
+        {
+          "id": "ase_train_scene_82373 / frame 000231 / instance_000044",
+          "title": "cabinet · instance_000044",
+          "subtitle": "train-json/ase_train_scene_82373.json",
+          "image": "assets/atek/review/03.webp",
+          "tag": "review",
+          "reason": "visible_containment_review",
+          "metrics": {
+            "IoU": 0.762,
+            "centerError": 0.0076,
+            "visibleContainment": 0.8701,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected 3D box contains 87.01% of the visible 2D box. This is between the 50% hard-reject threshold and the 90% pass threshold, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 框包含可见 2D 框的 87.01%。该数值位于 50% hard-reject 阈值和 90% 通过阈值之间，因此需要人工确认。"
+        },
+        {
+          "id": "ase_train_scene_82391 / frame 000273 / instance_000031",
+          "title": "bed · instance_000031",
+          "subtitle": "train-json/ase_train_scene_82391.json",
+          "image": "assets/atek/review/04.webp",
+          "tag": "review",
+          "reason": "visible_containment_review",
+          "metrics": {
+            "IoU": 0.434,
+            "centerError": 0.022,
+            "visibleContainment": 0.8851,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected 3D box contains 88.51% of the visible 2D box. This is between the 50% hard-reject threshold and the 90% pass threshold, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 框包含可见 2D 框的 88.51%。该数值位于 50% hard-reject 阈值和 90% 通过阈值之间，因此需要人工确认。"
+        },
+        {
+          "id": "ase_train_scene_82417 / frame 000017 / instance_000021",
+          "title": "window · instance_000021",
+          "subtitle": "train-json/ase_train_scene_82417.json",
+          "image": "assets/atek/review/05.webp",
+          "tag": "review",
+          "reason": "visible_containment_review",
+          "metrics": {
+            "IoU": 0.788,
+            "centerError": 0.0104,
+            "visibleContainment": 0.8198,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected 3D box contains 81.98% of the visible 2D box. This is between the 50% hard-reject threshold and the 90% pass threshold, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 框包含可见 2D 框的 81.98%。该数值位于 50% hard-reject 阈值和 90% 通过阈值之间，因此需要人工确认。"
+        },
+        {
+          "id": "ase_train_scene_82418 / frame 000067 / instance_000029",
+          "title": "lamp · instance_000029",
+          "subtitle": "train-json/ase_train_scene_82418.json",
+          "image": "assets/atek/review/06.webp",
+          "tag": "review",
+          "reason": "visible_containment_review",
+          "metrics": {
+            "IoU": 0.778,
+            "centerError": 0.0222,
+            "visibleContainment": 0.8781,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected 3D box contains 87.81% of the visible 2D box. This is between the 50% hard-reject threshold and the 90% pass threshold, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 框包含可见 2D 框的 87.81%。该数值位于 50% hard-reject 阈值和 90% 通过阈值之间，因此需要人工确认。"
+        }
+      ],
+      "errorCases": [
+        {
+          "id": "ase_train_scene_82353 / frame 000217 / instance_000053",
+          "title": "lamp · instance_000053",
+          "subtitle": "train-json/ase_train_scene_82353.json",
+          "image": "assets/atek/error/01.webp",
+          "tag": "hard reject",
+          "reason": "visible_mask_not_contained",
+          "metrics": {
+            "IoU": 0.001,
+            "centerError": 0.1751,
+            "visibleContainment": 0.0607,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected 3D box contains only 6.07% of the visible 2D box, which is below the 50% hard-reject threshold.",
+          "issueZh": "投影 3D 框仅包含可见 2D 框的 6.07%，低于 50% hard-reject 阈值。"
+        },
+        {
+          "id": "ase_train_scene_82360 / frame 000159 / instance_000167",
+          "title": "sofa · instance_000167",
+          "subtitle": "train-json/ase_train_scene_82360.json",
+          "image": "assets/atek/error/02.webp",
+          "tag": "hard reject",
+          "reason": "visible_mask_not_contained",
+          "metrics": {
+            "IoU": 0.429,
+            "centerError": 0.0652,
+            "visibleContainment": 0.4982,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected 3D box contains only 49.82% of the visible 2D box, which is below the 50% hard-reject threshold.",
+          "issueZh": "投影 3D 框仅包含可见 2D 框的 49.82%，低于 50% hard-reject 阈值。"
+        },
+        {
+          "id": "ase_train_scene_82429 / frame 000121 / instance_000178",
+          "title": "cabinet · instance_000178",
+          "subtitle": "train-json/ase_train_scene_82429.json",
+          "image": "assets/atek/error/03.webp",
+          "tag": "hard reject",
+          "reason": "visible_mask_not_contained",
+          "metrics": {
+            "IoU": 0.297,
+            "centerError": 0.023,
+            "visibleContainment": 0.4996,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected 3D box contains only 49.96% of the visible 2D box, which is below the 50% hard-reject threshold.",
+          "issueZh": "投影 3D 框仅包含可见 2D 框的 49.96%，低于 50% hard-reject 阈值。"
+        },
+        {
+          "id": "ase_train_scene_84495 / frame 000343 / instance_000035",
+          "title": "window · instance_000035",
+          "subtitle": "train-json/ase_train_scene_84495.json",
+          "image": "assets/atek/error/04.webp",
+          "tag": "hard reject",
+          "reason": "visible_mask_not_contained",
+          "metrics": {
+            "IoU": 0.32,
+            "centerError": 0.2228,
+            "visibleContainment": 0.3432,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected 3D box contains only 34.32% of the visible 2D box, which is below the 50% hard-reject threshold.",
+          "issueZh": "投影 3D 框仅包含可见 2D 框的 34.32%，低于 50% hard-reject 阈值。"
+        },
+        {
+          "id": "ase_train_scene_8495 / frame 000003 / instance_000051",
+          "title": "dresser · instance_000051",
+          "subtitle": "train-json/ase_train_scene_8495.json",
+          "image": "assets/atek/error/05.webp",
+          "tag": "hard reject",
+          "reason": "visible_mask_not_contained",
+          "metrics": {
+            "IoU": 0.1,
+            "centerError": 0.0664,
+            "visibleContainment": 0.1236,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected 3D box contains only 12.36% of the visible 2D box, which is below the 50% hard-reject threshold.",
+          "issueZh": "投影 3D 框仅包含可见 2D 框的 12.36%，低于 50% hard-reject 阈值。"
+        },
+        {
+          "id": "ase_train_scene_8508 / frame 000024 / instance_000106",
+          "title": "table · instance_000106",
+          "subtitle": "train-json/ase_train_scene_8508.json",
+          "image": "assets/atek/error/06.webp",
+          "tag": "hard reject",
+          "reason": "visible_mask_not_contained",
+          "metrics": {
+            "IoU": 0.237,
+            "centerError": 0.0258,
+            "visibleContainment": 0.2598,
+            "envelopeErrorPx": 0.0
+          },
+          "issue": "The projected 3D box contains only 25.98% of the visible 2D box, which is below the 50% hard-reject threshold.",
+          "issueZh": "投影 3D 框仅包含可见 2D 框的 25.98%，低于 50% hard-reject 阈值。"
         }
       ],
       "emptyMessage": ""

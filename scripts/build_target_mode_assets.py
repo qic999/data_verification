@@ -30,6 +30,7 @@ def main() -> None:
         "sceneversepp",
         "sunrgbd",
         "synscapes",
+        "atek",
     }
     for source in sorted(args.input_root.rglob("*.webp")):
         destination = args.output_root / source.relative_to(args.input_root)

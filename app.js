@@ -182,6 +182,10 @@
       visible: { source: "official visible box", sourceZh: "官方可见框", coverage: 326756, review: 26346, hard: 2782 },
       projected: { source: "recomputed from metric 3D boxes", sourceZh: "由 metric 3D 框重算", coverage: 326756, review: 0, hard: 0, known: 0, hideKnownErrors: true },
     },
+    atek: {
+      visible: { source: "official visible box", sourceZh: "官方可见框", coverage: 1450396, review: 153569, hard: 1403 },
+      projected: { source: "official / recomputed projection", sourceZh: "官方 / 重算投影", coverage: 1450396, review: 0, hard: 0, known: 0, hideKnownErrors: true },
+    },
   };
 
 
@@ -277,6 +281,10 @@
     synscapes: {
       description: "具有官方可见 2D 框和米制 3D 框的合成驾驶图像。",
       statusDetail: "使用可见 2D 框时，26,346 个物体需要复核，2,782 个被可见框规则拒绝；投影 2D 框与 3D 框在内部保持一致。",
+    },
+    atek: {
+      description: "具有可见 2D 框、米制相机坐标系 3D 框、RGB、深度和相机标定的第一视角室内视频。",
+      statusDetail: "审查的 1,450,396 个物体帧中，1,295,424 个通过，153,569 个需要人工确认，1,403 个被可见区域包含率规则拒绝；存储投影与重算投影的误差均不超过 1 像素。",
     },
   };
 
@@ -547,6 +555,7 @@
     "sceneversepp",
     "sunrgbd",
     "synscapes",
+    "atek",
   ]);
 
   function targetModeAsset(path) {
