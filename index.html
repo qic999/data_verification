@@ -55,18 +55,18 @@
         <section class="target-policy-panel" aria-labelledby="target-policy-title">
           <div class="target-policy-heading">
             <div>
-              <p class="section-kicker" id="target-policy-kicker">2D TARGET POLICY</p>
-              <h2 id="target-policy-title">Compare one target definition across every dataset</h2>
+              <p class="section-kicker" id="target-policy-kicker">2D BOX CHOICE</p>
+              <h2 id="target-policy-title">Compare two ways to define the 2D box</h2>
               <p id="target-policy-intro"></p>
             </div>
-            <div class="target-policy-switch" role="group" aria-label="2D target policy">
+            <div class="target-policy-switch" role="group" aria-label="2D box choice">
               <button type="button" class="active" data-target-mode="visible" aria-pressed="true">
-                <span>Visible 2D</span>
-                <small>independent image target</small>
+                <span>Visible 2D box</span>
+                <small>drawn from the image</small>
               </button>
               <button type="button" data-target-mode="projected" aria-pressed="false">
-                <span>Projected envelope</span>
-                <small>derived from 3D cuboid</small>
+                <span>2D box from 3D</span>
+                <small>calculated from the 3D box</small>
               </button>
             </div>
           </div>
@@ -78,10 +78,10 @@
               <p id="target-mode-description"></p>
             </div>
             <div class="target-mode-summary" aria-label="Selected policy totals">
-              <div class="target-summary-item"><strong id="target-coverage-value">—</strong><span id="target-coverage-label">target-covered observations</span></div>
-              <div class="target-summary-item"><strong id="target-review-value">—</strong><span id="target-review-label">target review flags</span></div>
-              <div class="target-summary-item"><strong id="target-hard-value">—</strong><span id="target-hard-label">target hard flags</span></div>
-              <div class="target-summary-item"><strong id="target-known-value">—</strong><span id="target-known-label">known 3D/source errors</span></div>
+              <div class="target-summary-item"><strong id="target-coverage-value">—</strong><span id="target-coverage-label">images / video frames with this 2D box</span></div>
+              <div class="target-summary-item"><strong id="target-review-value">—</strong><span id="target-review-label">need human review</span></div>
+              <div class="target-summary-item"><strong id="target-hard-value">—</strong><span id="target-hard-label">rejected by rule</span></div>
+              <div class="target-summary-item"><strong id="target-known-value">—</strong><span id="target-known-label">confirmed 3D / data errors</span></div>
             </div>
           </div>
 
@@ -108,7 +108,7 @@
           <div class="rule-mode-banner" aria-live="polite">
             <div class="rule-mode-copy">
               <p id="rule-mode-kicker">ACTIVE RULE SET</p>
-              <h3 id="rule-mode-title">Visible-target filtering rules</h3>
+              <h3 id="rule-mode-title">Visible 2D box filtering rules</h3>
               <p id="rule-mode-summary"></p>
             </div>
             <div class="rule-mode-metrics">
@@ -130,8 +130,8 @@
               <span class="rule-index">02</span>
               <h3>Measure projection consistency</h3>
               <span class="rule-zh">计算投影一致性</span>
-              <p id="rule-projection-copy">Compare the independent visible target with the projected cuboid using asymmetric containment.</p>
-              <span class="rule-zh" id="rule-projection-copy-zh">用非对称 containment 比较独立 visible target 与投影 3D 框。</span>
+              <p id="rule-projection-copy">Compare the visible 2D box with the projected 3D box using one-way containment.</p>
+              <span class="rule-zh" id="rule-projection-copy-zh">用单向包含率比较可见 2D 框与投影 3D 框。</span>
             </article>
             <article class="rule-step filtered-step">
               <span class="rule-index">03</span>
@@ -166,15 +166,15 @@
                     <span class="rule-zh">缺失、非有限或非正几何量；矩阵形状错误；3D 框穿过或位于相机后方；或重算投影无效。已知坐标轴、手性、尺寸顺序与尺度约定必须先修正。</span>
                   </td>
                   <td>
-                    Unknown 2D-target provenance is not guessed: only independent 3D geometry checks are applied until the source is identified.
-                    <span class="rule-zh">不会猜测未知的 2D target 来源：在来源确认之前，只执行独立的 3D 几何检查。</span>
+                    If the source of a 2D box is unknown, only independent 3D geometry checks are used until the source is identified.
+                    <span class="rule-zh">如果 2D 框来源未知，在确认来源前只执行独立的 3D 几何检查。</span>
                   </td>
                 </tr>
                 <tr data-rule-mode="projected">
-                  <td><strong>Amodal projected target</strong><span class="rule-zh">Amodal 投影 target</span></td>
+                  <td><strong>2D box calculated from 3D</strong><span class="rule-zh">由 3D 框计算的 2D 框</span></td>
                   <td>
-                    Compare the stored amodal target with an independently recomputed amodal cuboid envelope. Hard: exact stored-projection error <code>&gt; 1 px</code>; <code>IoU &lt; 0.15</code> with normalized-size guard ≥0.05; <code>center &gt; 0.20</code>; or jointly <code>IoU &lt; 0.25</code> and <code>center &gt; 0.10</code>.
-                    <span class="rule-zh">将存储的 amodal target 与独立重算的 amodal 3D 投影包络比较。Hard：精确投影误差 <code>&gt; 1 px</code>；在归一化尺寸至少为 0.05 时 <code>IoU &lt; 0.15</code>；<code>中心偏差 &gt; 0.20</code>；或同时满足 <code>IoU &lt; 0.25</code> 与 <code>中心偏差 &gt; 0.10</code>。</span>
+                    Compare a separately stored projected 2D box with a 2D box recomputed from the 3D box. Hard: exact projection error <code>&gt; 1 px</code>; <code>IoU &lt; 0.15</code> with normalized-size guard ≥0.05; <code>center &gt; 0.20</code>; or jointly <code>IoU &lt; 0.25</code> and <code>center &gt; 0.10</code>.
+                    <span class="rule-zh">将单独存储的投影 2D 框与从 3D 框重算的 2D 框比较。Hard：精确投影误差 <code>&gt; 1 px</code>；在归一化尺寸至少为 0.05 时 <code>IoU &lt; 0.15</code>；<code>中心偏差 &gt; 0.20</code>；或同时满足 <code>IoU &lt; 0.25</code> 与 <code>中心偏差 &gt; 0.10</code>。</span>
                   </td>
                   <td>
                     If not hard-filtered: <code>IoU &lt; 0.40</code> or <code>center &gt; 0.05</code>. Applies to CA-1M, HyperSim, ADT, HOPE Image/Video, Objectron, and SceneVersepp; documented legacy projection errors may remain diagnostic-only.
@@ -182,7 +182,7 @@
                   </td>
                 </tr>
                 <tr data-rule-mode="visible">
-                  <td><strong>Visible/modal target</strong><span class="rule-zh">Visible/modal target</span></td>
+                  <td><strong>Visible 2D box</strong><span class="rule-zh">可见 2D 框</span></td>
                   <td>
                     Compute <code>visible containment = area(visible ∩ projected) / area(visible)</code>, preferably with exact mask pixels. Hard: containment <code>&lt; 0.50</code>. Visible-to-amodal IoU and center offset never trigger rejection.
                     <span class="rule-zh">计算 <code>visible containment = area(visible ∩ projected) / area(visible)</code>，优先使用精确 mask pixels。Hard：包含率 <code>&lt; 0.50</code>。Visible-to-amodal IoU 与中心偏差绝不直接触发过滤。</span>
@@ -193,10 +193,10 @@
                   </td>
                 </tr>
                 <tr data-rule-mode="visible">
-                  <td><strong>Mixed / fallback targets</strong><span class="rule-zh">混合或 fallback target</span></td>
+                  <td><strong>Mixed 2D box sources</strong><span class="rule-zh">混合 2D 框来源</span></td>
                   <td>
-                    Resolve each observation before thresholding. A target equal within 2 px to the full or image-clipped stored projection is amodal; otherwise a known render/mask target is visible.
-                    <span class="rule-zh">逐 observation 判断语义后再应用阈值。若 target 与完整或裁剪后的存储投影在 2 px 内相等，则视为 amodal；否则，已知来自 render/mask 的 target 视为 visible。</span>
+                    Check each image or video frame before applying thresholds. A 2D box within 2 px of the stored 3D projection is treated as a box calculated from 3D; a box from a render or mask is treated as visible.
+                    <span class="rule-zh">逐图像或视频帧判断后再应用阈值。与存储 3D 投影相差不超过 2 px 的 2D 框视为由 3D 计算；来自 render 或 mask 的框视为可见框。</span>
                   </td>
                   <td>
                     Omni3D, HSSD, HOI4D, and WildDet3D are mixed. ProcTHOR remains unclassified until its source package is restored. Every observation should ultimately store <code>box_2d_source = mask | tight | trunc | projected</code>.
@@ -208,8 +208,8 @@
           </div>
 
           <p class="rule-definitions" id="rule-definitions">
-            <strong>Metric definitions:</strong> <code>IoU</code> and normalized <code>center</code> are decision metrics only for same-semantic amodal boxes. For a visible target, <code>containment = intersection / visible area</code> is the decision metric; visible/amodal IoU and center are diagnostic only. Historical candidates produced by the old cross-semantic IoU/center rule must be re-audited before deletion.
-            <span class="rule-zh"><strong>指标定义：</strong><code>IoU</code> 和归一化 <code>中心偏差</code> 只在同语义 amodal 框之间作为判定指标。对 visible target，判定指标为 <code>包含率 = 交集 / visible area</code>；visible/amodal IoU 与中心偏差只用于诊断。旧版跨语义 IoU/中心规则产生的历史候选必须重新审查后才能删除。</span>
+            <strong>Metric definitions:</strong> <code>IoU</code> and normalized <code>center</code> are decision metrics only for two projected 2D boxes with the same meaning. For a visible 2D box, <code>containment = intersection / visible area</code> is the decision metric. Historical cases from the old mixed-box rule must be checked again before deletion.
+            <span class="rule-zh"><strong>指标定义：</strong><code>IoU</code> 和归一化 <code>中心偏差</code> 只用于含义相同的两个投影 2D 框。对可见 2D 框，判定指标为 <code>包含率 = 交集 / 可见面积</code>。旧版混合框规则产生的历史 case 必须重新审查后才能删除。</span>
           </p>
 
           <div class="availability-heading">
@@ -280,7 +280,7 @@
                   <th scope="col" id="th-data-type">Data type</th>
                   <th scope="col" class="numeric" id="th-samples">Images / Frames</th>
                   <th scope="col" class="numeric" id="th-videos">Videos</th>
-                  <th scope="col" id="th-target-source">Selected target source</th>
+                  <th scope="col" id="th-target-source">2D box source</th>
                   <th scope="col" class="numeric" id="th-review">Need Human Verify</th>
                   <th scope="col" class="numeric" id="th-filtered">Filtered errors</th>
                   <th scope="col" class="numeric" id="th-error-rate">Error rate</th>
@@ -327,7 +327,7 @@
           <div class="case-grid" id="valid-grid"></div>
           <div class="empty-state" id="valid-empty" hidden>
             <div class="empty-icon">—</div>
-            <h3 id="valid-empty-title">No compatible target examples</h3>
+            <h3 id="valid-empty-title">No matching 2D box examples</h3>
             <p id="valid-empty-message"></p>
           </div>
         </section>
@@ -393,7 +393,7 @@
     </dialog>
 
     <script src="cases-data.js?v=20260827-11"></script>
-    <script src="app.js?v=20260901-4"></script>
+    <script src="app.js?v=20260901-5"></script>
     <script src="auth.js?v=20260827-11"></script>
   </body>
 </html>

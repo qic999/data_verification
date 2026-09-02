@@ -13,14 +13,14 @@
       id: "visible",
       label: "Visible 2D",
       labelZh: "可见 2D 框",
-      eyebrow: "INDEPENDENT IMAGE TARGET",
+      eyebrow: "BOX DRAWN FROM THE IMAGE",
       eyebrowZh: "独立图像目标",
       title: "Use visible 2D boxes for every dataset",
       titleZh: "所有数据集统一使用可见 2D 框",
       description:
-        "The 2D target comes from pixels, masks, or a human box independently of the 3D cuboid. It can expose a cuboid that misses the visible object, but occlusion and truncation mean symmetric IoU and center offset are not valid rejection rules.",
+        "The 2D box comes from the image, a mask, or a person. It can show when the 3D box misses the visible object. Occlusion means the two boxes do not need the same center or IoU.",
       descriptionZh:
-        "2D target 独立来自图像、mask 或人工框，可以发现没有覆盖可见物体的 3D 框；但遮挡和截断会使对称 IoU 与中心偏差不适合作为直接删除规则。",
+        "2D 框来自图像、mask 或人工标注，可以发现没有覆盖可见物体的 3D 框；存在遮挡时，两个框不必具有相同中心或 IoU。",
       signalTitle: "Training signal",
       signalTitleZh: "训练信号",
       signalCopy: "The 2D head learns the visible object extent.",
@@ -31,14 +31,14 @@
       auditCopyZh: "使用可见区域包含率和投影 precision；visible/amodal IoU 只用于诊断。",
       riskTitle: "Main trade-off",
       riskTitleZh: "主要取舍",
-      riskCopy: "Better image evidence, but some datasets lack a true visible target and heavy occlusion creates more review cases.",
-      riskCopyZh: "图像监督更直接，但部分数据集没有真实 visible target，严重遮挡也会产生更多复核 case。",
-      ruleTitle: "Visible-target filtering rules",
-      ruleTitleZh: "Visible target 过滤规则",
+      riskCopy: "Better image evidence, but some datasets have no visible 2D box and heavy occlusion creates more review cases.",
+      riskCopyZh: "图像监督更直接，但部分数据集没有可见 2D 框，严重遮挡也会产生更多复核 case。",
+      ruleTitle: "Visible 2D box filtering rules",
+      ruleTitleZh: "可见 2D 框过滤规则",
       ruleSummary:
-        "The 2D target is independent image evidence. Audit whether the projected cuboid contains what is visible; do not reject a case just because a visible box and an amodal projection have different centers or IoU.",
+        "The 2D box is independent image evidence. Check whether the projected 3D box contains what is visible. Do not reject a case only because the two boxes have different centers or IoU.",
       ruleSummaryZh:
-        "2D target 是独立图像证据。审查投影 3D 框是否包含可见物体；visible 框与 amodal 投影的中心或 IoU 不同，不能单独作为删除理由。",
+        "2D 框是独立图像证据。检查投影 3D 框是否包含可见物体；两个框的中心或 IoU 不同，不能单独作为删除理由。",
       ruleMetric: "visible containment = intersection / visible area",
       ruleMetricZh: "visible containment = 交集 / 可见区域",
       ruleHard: "containment < 0.50",
@@ -56,16 +56,16 @@
     },
     projected: {
       id: "projected",
-      label: "Projected envelope",
-      labelZh: "3D 投影包络",
-      eyebrow: "DERIVED AMODAL TARGET",
+      label: "2D box from 3D",
+      labelZh: "由 3D 框计算的 2D 框",
+      eyebrow: "BOX CALCULATED FROM THE 3D BOX",
       eyebrowZh: "派生 AMODAL 目标",
-      title: "Use the projected 3D envelope for every dataset",
-      titleZh: "所有数据集统一使用 3D 框的 2D 投影包络",
+      title: "Use a 2D box calculated from the 3D box for every dataset",
+      titleZh: "所有数据集统一使用由 3D 框计算的 2D 框",
       description:
-        "The 2D target is the outer rectangle of the same 3D cuboid used for 3D supervision. Projection consistency becomes exact by construction, so most 2D/3D mismatch flags disappear. This does not verify that the cuboid fits the real object.",
+        "The 2D box is the outer rectangle of the same 3D box used for training. The two boxes always agree by design, so most mismatch warnings disappear. This does not prove that the 3D box fits the real object.",
       descriptionZh:
-        "2D target 是同一个 3D 框投影后的外接矩形，因此 2D/3D 投影一致性天然成立，大部分不匹配告警会消失；但这不能证明 3D 框真的贴合物体。",
+        "2D 框是同一个 3D 框投影后的外接矩形，因此两者天然一致，大部分不匹配告警会消失；但这不能证明 3D 框真的贴合物体。",
       signalTitle: "Training signal",
       signalTitleZh: "训练信号",
       signalCopy: "The 2D head learns the amodal footprint implied by the 3D cuboid.",
@@ -76,28 +76,28 @@
       auditCopyZh: "检查几何、相机转换和存储投影与重算投影的一致性，而不是 visible-box IoU。",
       riskTitle: "Main trade-off",
       riskTitleZh: "主要取舍",
-      riskCopy: "Uniform and 3D-aligned, but a wrong or oversized cuboid produces a matching wrong 2D target and can pass unnoticed.",
-      riskCopyZh: "目标统一且与 3D 对齐，但错误或过大的 3D 框会生成同样错误的 2D target，可能无法被发现。",
+      riskCopy: "Easy to unify, but a wrong or oversized 3D box produces a matching wrong 2D box and can pass unnoticed.",
+      riskCopyZh: "容易统一，但错误或过大的 3D 框会生成同样错误的 2D 框，可能无法被发现。",
       ruleTitle: "Projected-envelope filtering rules",
       ruleTitleZh: "Projected envelope 过滤规则",
       ruleSummary:
-        "The 2D target comes from the same 3D cuboid. Do not compare the target back to its source as an object-fit test; instead audit geometry, camera conversion, and any independently stored projection.",
+        "The 2D box comes from the same 3D box. Comparing it back to that 3D box cannot test object fit. Check the 3D geometry, camera conversion, and any separately stored projection instead.",
       ruleSummaryZh:
-        "2D target 来自同一个 3D 框，不能再把 target 与其来源比较来判断是否贴合物体；应检查几何、相机转换和独立存储的投影。",
-      ruleMetric: "stored projection vs independently recomputed envelope",
-      ruleMetricZh: "存储投影 vs 独立重算 envelope",
+        "2D 框来自同一个 3D 框，不能再用两者比较来判断是否贴合物体；应检查 3D 几何、相机转换和单独存储的投影。",
+      ruleMetric: "stored 2D box vs 2D box recomputed from 3D",
+      ruleMetricZh: "存储 2D 框 vs 从 3D 重算的 2D 框",
       ruleHard: "invalid geometry or exact projection error > 1 px",
       ruleHardZh: "无效几何或精确投影误差 > 1 px",
-      ruleReview: "same-semantic IoU < 0.40 or center > 0.05",
-      ruleReviewZh: "同语义 IoU < 0.40 或中心偏差 > 0.05",
+      ruleReview: "IoU < 0.40 or center > 0.05 between two projected 2D boxes",
+      ruleReviewZh: "两个投影 2D 框之间 IoU < 0.40 或中心偏差 > 0.05",
       projectionStep:
-        "Recompute the cuboid envelope with the current loader and compare it only with an independently stored amodal projection. If the target is generated on the fly from this cuboid, projection consistency passes by construction.",
+        "Recompute the 2D box from the 3D box with the current loader. Compare it only with a separately stored projected 2D box. If both come from the same 3D box, they agree by design.",
       projectionStepZh:
-        "使用当前 loader 重算 3D 框 envelope，只与独立存储的 amodal 投影比较。如果 target 由该 3D 框现场生成，投影一致性天然通过。",
+        "使用当前 loader 从 3D 框重算 2D 框，只与单独存储的投影 2D 框比较。如果两者来自同一个 3D 框，它们天然一致。",
       ruleDefinitions:
-        "Decision metrics apply only to an independently stored amodal target versus a recomputed envelope. A newly derived envelope cannot verify object fit. Invalid geometry, camera conversion, depth, scale, and other independent 3D checks remain active.",
+        "These checks apply only when a projected 2D box was stored separately. A 2D box newly calculated from the same 3D box cannot verify object fit. Geometry, camera, depth, scale, and other independent 3D checks still apply.",
       ruleDefinitionsZh:
-        "判定指标只适用于独立存储的 amodal target 与重算 envelope。新派生的 envelope 无法验证物体贴合度；无效几何、相机转换、深度、尺度和其他独立 3D 检查继续生效。",
+        "这些检查只适用于单独存储的投影 2D 框。由同一个 3D 框新计算的 2D 框无法验证物体贴合度；几何、相机、深度、尺度和其他独立 3D 检查继续生效。",
     },
   };
 
@@ -196,36 +196,36 @@
     },
     uco3d: {
       description: "具有逐帧相机和重建 3D 框的以物体为中心的真实视频序列。",
-      statusDetail: "clean-data 构建排除了 483,970 个失败帧标注；当前训练观测中不存在 hard error。",
+      statusDetail: "clean-data 构建排除了 483,970 个失败帧标注；当前训练帧中不存在 hard error。",
     },
     ca1m: {
       description: "具有逐帧相机几何、深度和物体 3D 框的大规模米制第一视角视频。",
-      statusDetail: "审查覆盖当前训练与验证 loader 范围。31 个确认失败的物体帧由默认 loader 清单排除；38,345 个边界观测保留并等待人工确认。",
+      statusDetail: "审查覆盖当前训练与验证 loader 范围。31 个确认失败的物体帧由默认 loader 清单排除；38,345 个边界图像帧保留并等待人工确认。",
     },
     hypersim: {
       description: "具有米制几何和精确相机参数的高真实感合成室内相机轨迹。",
-      statusDetail: "审查覆盖当前训练与验证 loader 范围。34 个完全位于画面外的物体观测会被 loader 有效性过滤；所有 loader 可用观测均通过。",
+      statusDetail: "审查覆盖当前训练与验证 loader 范围。34 个完全位于画面外的物体图像会被 loader 有效性过滤；所有 loader 可用图像均通过。",
     },
     adt: {
       description: "具有米制物体几何和官方逐帧相机标定的 Aria Digital Twin 序列。",
-      statusDetail: "7,027,584 个物体帧观测全部通过当前 loader 对齐的几何与投影检查。",
+      statusDetail: "7,027,584 个物体帧全部通过当前 loader 对齐的几何与投影检查。",
       emptyMessage: "ADT 当前审查没有需要人工确认或已过滤的样本。",
     },
     hssd: {
       description: "具有米制物体几何、深度和已知相机的合成室内序列。",
-      statusDetail: "379 个无效几何或投影 metadata 观测已被排除；这些观测均不满足当前训练 loader 的使用条件。",
+      statusDetail: "379 个无效几何或投影 metadata 图像帧已被排除；这些图像帧均不满足当前训练 loader 的使用条件。",
     },
     abo: {
       description: "具有归一化物体几何和已知相机的多视角商品渲染图像。",
-      statusDetail: "154 个自动 hard reject 和 2,790 个经人工确认的 review 观测均为错误；全部 2,944 个观测均不满足当前训练 loader 的使用条件。",
+      statusDetail: "154 个自动 hard reject 和 2,790 个经人工确认的 review 图像均为错误；全部 2,944 个图像均不满足当前训练 loader 的使用条件。",
     },
     shapenet: {
       description: "具有归一化 ShapeNet 几何和已知相机的物体渲染视图。",
-      statusDetail: "14 个自动 review 观测均经人工确认为错误并被排除；它们均不满足当前训练 loader 的使用条件。",
+      statusDetail: "14 个自动 review 图像均经人工确认为错误并被排除；它们均不满足当前训练 loader 的使用条件。",
     },
     replica: {
       description: "HF v2 包含每个 Replica 场景的一张米制 RGB/depth 图像及相机坐标系 3D 框。",
-      statusDetail: "当前 loader 可用的 313 个物体观测中，279 个通过、29 个需人工确认，另有 5 个尚未移除的 hard reject。",
+      statusDetail: "当前 loader 可用的 313 个物体图像中，279 个通过、29 个需人工确认，另有 5 个尚未移除的 hard reject。",
     },
   };
 
@@ -267,7 +267,7 @@
     excluded: "已排除",
     review: "待人工确认",
     "hard reject": "确认 hard reject",
-    "target pass": "目标规则通过",
+    "2D box check passed": "2D 框检查通过",
   };
 
   const metricChinese = {
@@ -417,6 +417,25 @@
     return `${english}${separator}<span class="${className}">${chinese}</span>`;
   }
 
+  function plainLanguage(value) {
+    return String(value == null ? "" : value)
+      .replace(/\bobject-frame observations\b/gi, "object cases")
+      .replace(/\bobject observations\b/gi, "object cases")
+      .replace(/\btraining observations\b/gi, "training images / video frames")
+      .replace(/\baudited observations\b/gi, "audited images / video frames")
+      .replace(/\bobservations\b/gi, "images / video frames")
+      .replace(/\btarget object's\b/gi, "object's")
+      .replace(/\s+·\s+target\b/gi, "")
+      .replace(/\btarget object\b/gi, "object");
+  }
+
+  function plainChinese(value) {
+    return String(value == null ? "" : value)
+      .replace(/物体观测/g, "物体图像 / 帧")
+      .replace(/观测/g, "图像 / 帧")
+      .replace(/2D target/gi, "2D 框");
+  }
+
   function formatNumber(value) {
     return numberFormatter.format(value == null ? 0 : value);
   }
@@ -475,11 +494,11 @@
   function projectedPassCase(caseData) {
     return {
       ...caseData,
-      tag: "target pass",
+      tag: "2D box check passed",
       reason:
-        "The 2D target is now computed from this same 3D cuboid, so 2D/3D projection consistency passes by construction. The image still cannot prove that the 3D cuboid is correct.",
+        "The 2D box is calculated from this same 3D box, so they agree by design. The image still cannot prove that the 3D box is correct.",
       reasonZh:
-        "当前 2D target 由同一个 3D 框直接投影得到，因此 2D/3D 投影一致性天然通过；但图像仍不能证明这个 3D 框本身正确。",
+        "当前 2D 框由同一个 3D 框直接投影得到，因此两者天然一致；但图像仍不能证明这个 3D 框本身正确。",
     };
   }
 
@@ -487,9 +506,9 @@
     return {
       ...caseData,
       issue:
-        "This is a known 3D/source-label problem. Replacing the 2D target with this cuboid's own projected envelope makes the pair self-consistent, but it does not repair the incorrect cuboid.",
+        "This is a known 3D or source-label problem. Calculating the 2D box from this incorrect 3D box makes the pair agree, but it does not repair the 3D box.",
       issueZh:
-        "这是已经确认的 3D/源标注问题。把 2D target 换成该 3D 框自己的投影包络，只会让二者自洽，并不会修复错误的 3D 框。",
+        "这是已经确认的 3D 或源标注问题。从这个错误 3D 框计算 2D 框只会让两者一致，并不会修复错误的 3D 框。",
     };
   }
 
@@ -517,8 +536,8 @@
   function targetStatus(dataset, stats) {
     if (stats.availability === "missing") {
       return {
-        text: "target unavailable",
-        textZh: "目标不可用",
+        text: "no visible 2D box",
+        textZh: "没有可见 2D 框",
         className: "missing",
       };
     }
@@ -551,8 +570,8 @@
       };
     }
     return {
-      text: "target-ready",
-      textZh: "目标可用",
+      text: "2D box ready",
+      textZh: "2D 框可用",
       className: "ready",
     };
   }
@@ -593,12 +612,12 @@
 
   function diagnosticCopy(caseData, kind) {
     if (kind === "valid") {
-      return localized(caseData.reason, caseData.reasonZh || reasonChinese[caseData.reason]);
+      return localized(plainLanguage(caseData.reason), plainChinese(caseData.reasonZh || reasonChinese[caseData.reason]));
     }
     const label = kind === "review" ? "Why ambiguous" : "Confirmed issue";
     const labelZh = kind === "review" ? "为何需要人工确认" : "已确认问题";
-    const explanation = caseData.issue || caseData.reason;
-    const explanationZh = caseData.issueZh || reasonChinese[caseData.reason];
+    const explanation = plainLanguage(caseData.issue || caseData.reason);
+    const explanationZh = plainChinese(caseData.issueZh || reasonChinese[caseData.reason]);
     return `<strong>${localized(label, labelZh, true)}:</strong> ${localized(explanation, explanationZh)}`;
   }
 
@@ -626,24 +645,24 @@
       [elements.ruleMetricLabel, "Decision metric", "判定指标"],
       [elements.ruleHardLabel, "Hard filter", "Hard 过滤"],
       [elements.ruleReviewLabel, "Human review", "人工复核"],
-      [elements.targetPolicyKicker, "2D TARGET POLICY", "2D TARGET 策略"],
-      [elements.targetPolicyTitle, "Compare one target definition across every dataset", "比较全数据集统一 2D target 的结果"],
-      [elements.targetPolicyIntro, "Switching the target changes the table, case grouping, and visualization focus below. These are policy-simulation counts from the recorded audits; known 3D/source errors remain fixed.", "切换 target 后，下方统计表、case 分组和可视化重点会一起改变。这些数字来自现有审查记录的策略模拟；已经确认的 3D/源标注错误保持不变。"],
-      [elements.targetCoverageLabel, "target-covered observations", "有 target 的观测"],
-      [elements.targetReviewLabel, "target review flags", "target 复核告警"],
-      [elements.targetHardLabel, "target hard flags", "target hard 告警"],
-      [elements.targetKnownLabel, "known 3D/source errors", "已知 3D/源标注错误"],
+      [elements.targetPolicyKicker, "2D BOX CHOICE", "2D 框选择"],
+      [elements.targetPolicyTitle, "Compare two ways to define the 2D box", "比较两种 2D 框定义"],
+      [elements.targetPolicyIntro, "The button changes the rules, numbers, case groups, and images below. The numbers are calculated from the audits already completed. Confirmed 3D and data errors stay the same.", "按钮会切换下方规则、数字、case 分组和图片。这些数字根据已经完成的审查计算；已确认的 3D 和数据错误保持不变。"],
+      [elements.targetCoverageLabel, "images / video frames with this 2D box", "具有这种 2D 框的图像 / 视频帧"],
+      [elements.targetReviewLabel, "need human review", "需要人工复核"],
+      [elements.targetHardLabel, "rejected by rule", "被规则拒绝"],
+      [elements.targetKnownLabel, "confirmed 3D / data errors", "已确认的 3D / 数据错误"],
       [elements.overviewKicker, "OVERVIEW", "总览"],
       [elements.overviewTitle, "Dataset statistics", "数据集统计"],
       [elements.tableNote, "“Images / Frames” counts unique audited images or frames in the reported loader scope. CA-1M and HyperSim include train and validation; the other rows report their audited training scope. “Videos” is shown only for video data. Need Human Verify and Filtered errors are audit-case counts, not image counts.", "“图像 / 帧数”表示报告的 loader 范围内去重审查的图像或帧；CA-1M 与 HyperSim 包含训练集和验证集，其他数据集使用已审查的训练范围。“视频数”仅适用于视频数据。Need Human Verify 和已过滤错误是审查 case 数，不是图像数。"],
       [elements.thDataType, "Data type", "数据类型"],
       [elements.thSamples, "Images / Frames", "图像 / 帧数"],
       [elements.thVideos, "Videos", "视频数"],
-      [elements.thTargetSource, "Selected target source", "所选 target 来源"],
-      [elements.thReview, "Target review flags", "Target 复核告警"],
-      [elements.thFiltered, "Target hard flags", "Target hard 告警"],
-      [elements.thErrorRate, "Target flag rate", "Target 告警占比"],
-      [elements.thCurrentHard, "Known 3D/source errors", "已知 3D/源标注错误"],
+      [elements.thTargetSource, "2D box source", "2D 框来源"],
+      [elements.thReview, "Need human review", "需要人工复核"],
+      [elements.thFiltered, "Rejected by rule", "被规则拒绝"],
+      [elements.thErrorRate, "Review / reject rate", "复核 / 拒绝占比"],
+      [elements.thCurrentHard, "Confirmed 3D / data errors", "已确认的 3D / 数据错误"],
       [elements.thGallery, "Gallery (Pass / Review / Known error)", "网站展示（通过 / 复核 / 已知错误）"],
       [elements.thStatus, "Policy outcome", "策略结果"],
       [elements.navSelectLabel, "SELECT DATASET", "选择数据集"],
@@ -709,22 +728,22 @@
       button.setAttribute("aria-pressed", String(active));
       const projected = button.dataset.targetMode === "projected";
       button.innerHTML = projected
-        ? `<span>${localized("Projected envelope", "投影包络", true)}</span><small>${localized("derived from 3D cuboid", "由 3D 框派生", true)}</small>`
-        : `<span>${localized("Visible 2D", "可见 2D", true)}</span><small>${localized("independent image target", "独立图像目标", true)}</small>`;
+        ? `<span>${localized("2D box from 3D", "由 3D 框计算 2D 框", true)}</span><small>${localized("calculated from the 3D box", "由 3D 框计算", true)}</small>`
+        : `<span>${localized("Visible 2D box", "可见 2D 框", true)}</span><small>${localized("drawn from the image", "来自图像", true)}</small>`;
     });
     elements.legend2d.innerHTML =
       currentTargetMode === "visible"
-        ? localized("visible 2D target", "可见 2D target", true)
-        : localized("projected 2D envelope target", "投影 2D 包络 target", true);
+        ? localized("visible 2D box", "可见 2D 框", true)
+        : localized("2D box calculated from 3D", "由 3D 框计算的 2D 框", true);
 
     const note =
       currentTargetMode === "visible"
-        ? "Visible-mode flags use asymmetric containment where possible. CA-1M has no independent visible target in the current package, and Omni3D mixes true visible boxes with projection fallbacks."
-        : "Projected-mode 2D targets come from the same 3D cuboids. The lower flag counts measure conversion/geometry failures only; they must not be read as evidence that the 3D labels fit the image.";
+        ? "Visible-box checks use one-way containment where possible. CA-1M has no separate visible 2D box in the current files, and Omni3D mixes visible boxes with boxes projected from 3D."
+        : "These 2D boxes come from the same 3D boxes. Fewer warnings only mean fewer geometry or conversion failures; they do not prove that the 3D boxes fit the objects.";
     const noteZh =
       currentTargetMode === "visible"
-        ? "Visible 模式尽量使用非对称包含率。当前 CA-1M 包没有独立 visible target；Omni3D 混合了真实 visible box 与投影 fallback。"
-        : "Projected 模式的 2D target 来自同一个 3D 框。更低的告警数只反映转换/几何失败，不能说明 3D 标注一定贴合图像。";
+        ? "可见 2D 框模式尽量使用单向包含率。当前 CA-1M 文件没有单独的可见 2D 框；Omni3D 混合了可见框和由 3D 计算的 2D 框。"
+        : "这些 2D 框来自同一个 3D 框。更少的告警只表示几何或转换失败更少，不能说明 3D 框一定贴合物体。";
     elements.tableNote.innerHTML = localized(note, noteZh);
   }
 
@@ -783,6 +802,8 @@
   }
 
   function cardTemplate(caseData, index, kind) {
+    const displayTitle = plainLanguage(caseData.title);
+    const displaySubtitle = plainLanguage(caseData.subtitle);
     const chips = visibleMetrics(caseData.metrics)
       .map(
         ([key, value]) =>
@@ -791,15 +812,15 @@
       .join("");
     const visualLabel =
       currentTargetMode === "visible"
-        ? localized("Visible target vs projected cuboid", "可见 target 与投影 3D 框", true)
-        : localized("Projected cuboid focus · envelope = outer rectangle", "投影 3D 框特写 · envelope 为其外接矩形", true);
+        ? localized("Visible 2D box vs projected 3D box", "可见 2D 框与投影 3D 框", true)
+        : localized("3D box view · its outer rectangle is the 2D box", "3D 框视图 · 外接矩形就是 2D 框", true);
     const imageAlt =
       currentTargetMode === "visible"
-        ? `Visible 2D target and projected 3D cuboid comparison for ${caseData.title}`
-        : `Projected 3D cuboid used to derive the 2D envelope for ${caseData.title}`;
+        ? `Visible 2D box and projected 3D box comparison for ${displayTitle}`
+        : `Projected 3D box used to calculate the 2D box for ${displayTitle}`;
     return `
       <article class="case-card">
-        <button class="case-image-button" data-kind="${kind}" data-index="${index}" aria-label="Enlarge ${caseData.title}">
+        <button class="case-image-button" data-kind="${kind}" data-index="${index}" aria-label="Enlarge ${displayTitle}">
           <img src="${versionedAsset(targetModeAsset(caseData.image))}" alt="${imageAlt}" loading="lazy" />
           <span class="case-visual-label">${visualLabel}</span>
         </button>
@@ -808,8 +829,8 @@
             <span class="case-tag">${localizedTag(caseData.tag)}</span>
             <span class="case-number">${String(index + 1).padStart(2, "0")}</span>
           </div>
-          <h3 title="${caseData.title}">${caseData.title}</h3>
-          <p class="case-subtitle" title="${caseData.subtitle}">${caseData.subtitle}</p>
+          <h3 title="${displayTitle}">${displayTitle}</h3>
+          <p class="case-subtitle" title="${displaySubtitle}">${displaySubtitle}</p>
           <p class="case-reason">${diagnosticCopy(caseData, kind)}</p>
           <div class="metric-list">${chips}</div>
         </div>
@@ -827,10 +848,10 @@
     const isVideo = dataset.dataType === "Video";
     elements.facts.innerHTML = [
       [isVideo ? "frames" : "images", isVideo ? "帧数" : "图像数", formatNumber(dataset.samples)],
-      ["target source", "target 来源", localized(stats.source, stats.sourceZh, true)],
-      ["target coverage", "target 覆盖观测", `${formatNumber(stats.coverage)} / ${formatNumber(dataset.observations)}`],
-      ["target review", "target 复核", stats.review == null ? "—" : formatNumber(stats.review)],
-      ["target hard", "target hard", stats.hard == null ? "—" : formatNumber(stats.hard)],
+      ["2D box source", "2D 框来源", localized(stats.source, stats.sourceZh, true)],
+      ["images / frames with box", "有 2D 框的图像 / 帧", `${formatNumber(stats.coverage)} / ${formatNumber(dataset.observations)}`],
+      ["need human review", "需要人工复核", stats.review == null ? "—" : formatNumber(stats.review)],
+      ["rejected by rule", "被规则拒绝", stats.hard == null ? "—" : formatNumber(stats.hard)],
       ["known errors", "已知错误", formatNumber(knownErrorCount(dataset))],
     ]
       .map(
@@ -853,8 +874,8 @@
     const stats = targetStats(dataset);
     const status = targetStatus(dataset, stats);
     const modeCases = casesForTargetMode(dataset);
-    const englishDescription = `${dataset.description} Selected target: ${stats.source}. ${dataset.statusDetail}`;
-    const chineseDescription = [chinese.description, `当前 target：${stats.sourceZh}。`, chinese.statusDetail].filter(Boolean).join(" ");
+    const englishDescription = `${plainLanguage(dataset.description)} 2D box used here: ${stats.source}. ${plainLanguage(dataset.statusDetail)}`;
+    const chineseDescription = [chinese.description, `这里使用的 2D 框：${stats.sourceZh}。`, chinese.statusDetail].filter(Boolean).join(" ");
     const defaultErrorExplainer = "These are archival audit visualizations retained before confirmed errors were filtered, excluded, or physically deleted. Cases needing human verification and false positives from older rules are not presented as errors.";
     const defaultErrorExplainerChinese = "这些是确认错误在被过滤、排除或物理删除前保留的审计可视化；需要人工确认的样本和旧规则 false positive 不会作为错误展示。";
     elements.errorKicker.innerHTML = localized("KNOWN ERROR EVIDENCE", "已知错误证据");
@@ -875,12 +896,12 @@
     elements.validExplainer.innerHTML =
       currentTargetMode === "visible"
         ? localized(
-            "These examples have an independent visible-image target and pass the applicable containment and geometry checks.",
-            "这些样本具有独立的图像 visible target，并通过适用的包含率和几何检查。",
+            "These examples have a visible 2D box from the image and pass the applicable containment and geometry checks.",
+            "这些样本具有来自图像的可见 2D 框，并通过适用的包含率和几何检查。",
           )
         : localized(
-            "The 2D envelope is derived from the same 3D cuboid shown here, so the pair is projection-consistent by construction. This lane is not proof that the cuboid fits the object.",
-            "2D envelope 由图中的同一个 3D 框派生，因此二者天然投影一致；这里的通过不代表 3D 框一定贴合物体。",
+            "The 2D box is calculated from the same 3D box shown here, so the pair agrees by design. Passing this check does not prove that the 3D box fits the object.",
+            "2D 框由图中的同一个 3D 框计算，因此两者天然一致；通过这里的检查不代表 3D 框一定贴合物体。",
           );
     elements.reviewExplainer.innerHTML =
       currentTargetMode === "visible"
@@ -889,17 +910,17 @@
             "这些 case 触发 visible containment 或数据集专用复核信号；对称 visible/amodal IoU 与中心偏差只用于诊断。",
           )
         : localized(
-            "A projected-envelope target does not create visible-versus-amodal review cases. Only independent geometry or conversion warnings remain.",
-            "projected-envelope target 不会产生 visible 与 amodal 的不匹配复核；只保留独立几何或转换告警。",
+            "A 2D box calculated from the 3D box cannot create a mismatch with that same 3D box. Only separate geometry or conversion warnings remain.",
+            "由 3D 框计算的 2D 框不会与同一个 3D 框产生不匹配；只保留单独的几何或转换告警。",
           );
 
     const hasValidCases = modeCases.valid.length > 0;
     elements.validGrid.hidden = !hasValidCases;
     elements.validEmpty.hidden = hasValidCases;
-    elements.validEmptyTitle.innerHTML = localized("No compatible target examples", "没有兼容的 target 样本");
+    elements.validEmptyTitle.innerHTML = localized("No matching 2D box examples", "没有匹配的 2D 框样本");
     elements.validEmptyMessage.innerHTML = localized(
-      `${dataset.name} has no independent visible 2D target in the current package, so it cannot participate in a visible-only policy without adding a new annotation source.`,
-      `${dataset.name} 当前数据包没有独立 visible 2D target，因此在补充新标注来源前不能参与统一 visible-only 策略。`,
+      `${dataset.name} has no separate visible 2D box in the current files. A visible-box-only setup needs a new box or mask source.`,
+      `${dataset.name} 当前文件没有单独的可见 2D 框。若只使用可见框，需要补充新的框或 mask 来源。`,
     );
 
     const hasReviewCases = modeCases.review.length > 0;
@@ -907,25 +928,25 @@
     elements.reviewEmpty.hidden = hasReviewCases;
     elements.reviewEmptyMessage.innerHTML = localized(
       currentTargetMode === "visible"
-        ? "No review visualization is available for this dataset under the visible-target policy. The table reports the full audit count."
+        ? "No review image is available for this dataset under the visible 2D box setup. The table reports the full count."
         : "No visible/amodal review lane exists because the 2D envelope is derived from the same 3D cuboid. Independent hard geometry checks still apply.",
       currentTargetMode === "visible"
-        ? "该数据集在 visible-target 策略下没有可展示的复核图；完整审查数量见上方表格。"
+        ? "该数据集在可见 2D 框设置下没有可展示的复核图；完整数量见上方表格。"
         : "由于 2D envelope 由同一个 3D 框派生，因此不存在 visible/amodal 复核通道；独立 hard 几何检查仍然生效。",
     );
 
     const hasErrors = modeCases.error.length > 0;
     elements.errorGrid.hidden = !hasErrors;
     elements.errorEmpty.hidden = hasErrors;
-    elements.emptyMessage.innerHTML = localized(dataset.emptyMessage || "No confirmed error cases in the current audit.", chinese.emptyMessage || "当前审查没有确认错误样本。");
+    elements.emptyMessage.innerHTML = localized(plainLanguage(dataset.emptyMessage || "No confirmed error cases in the current audit."), chinese.emptyMessage || "当前审查没有确认错误样本。");
     elements.errorExplainer.innerHTML =
       currentTargetMode === "projected" && hasErrors
         ? localized(
-            "These known 3D or source-label errors remain errors. Deriving the 2D target from the bad cuboid can hide the 2D/3D mismatch, but it does not repair the cuboid.",
-            "这些已知 3D 或源标注错误仍然是错误。由错误 3D 框派生 2D target 会隐藏 2D/3D 不匹配，但不会修复 3D 框。",
+            "These confirmed 3D or data errors remain errors. Calculating the 2D box from a bad 3D box can hide the mismatch, but it does not repair the 3D box.",
+            "这些已确认的 3D 或数据错误仍然是错误。从错误 3D 框计算 2D 框会隐藏不匹配，但不会修复 3D 框。",
           )
         : dataset.emptyMessage
-          ? localized(dataset.emptyMessage, chinese.emptyMessage)
+          ? localized(plainLanguage(dataset.emptyMessage), chinese.emptyMessage)
           : localized(defaultErrorExplainer, defaultErrorExplainerChinese);
 
     document.querySelectorAll(".dataset-tab").forEach((tab) => {
@@ -951,13 +972,13 @@
     elements.lightboxImage.src = versionedAsset(targetModeAsset(caseData.image));
     elements.lightboxImage.alt =
       currentTargetMode === "visible"
-        ? `Visible 2D target and projected 3D cuboid comparison for ${caseData.title}`
-        : `Projected 3D cuboid used to derive the 2D envelope for ${caseData.title}`;
+        ? `Visible 2D box and projected 3D box comparison for ${plainLanguage(caseData.title)}`
+        : `Projected 3D box used to calculate the 2D box for ${plainLanguage(caseData.title)}`;
     elements.lightboxTag.innerHTML = localizedTag(caseData.tag);
     elements.lightboxTag.classList.toggle("error", kind === "error");
     elements.lightboxTag.classList.toggle("review", kind === "review");
-    elements.lightboxTitle.textContent = caseData.title;
-    elements.lightboxSubtitle.innerHTML = `${caseData.subtitle}<br>${diagnosticCopy(caseData, kind)}`;
+    elements.lightboxTitle.textContent = plainLanguage(caseData.title);
+    elements.lightboxSubtitle.innerHTML = `${plainLanguage(caseData.subtitle)}<br>${diagnosticCopy(caseData, kind)}`;
     elements.lightboxMetrics.innerHTML = visibleMetrics(caseData.metrics)
       .map(
         ([key, value]) => `

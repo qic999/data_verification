@@ -20,8 +20,8 @@ Replica) with:
   fields from boxes derived by the project and records whether absolute metric
   scale exists;
 - a top-level audit statistics table;
-- a 2D-target policy switch that compares using one visible 2D target across
-  all datasets with using the 2D envelope projected from each 3D cuboid;
+- a 2D-box switch that compares using a visible 2D box across all datasets
+  with using a 2D box calculated from each 3D box;
 - an English-only / English-and-Chinese display toggle;
 - up to six examples that need no human review per dataset;
 - up to six ambiguous examples that still need human review per dataset;
@@ -32,21 +32,21 @@ Replica) with:
 - explicit empty states when a dataset has no review or filtered examples;
 - click-to-enlarge case images and per-case projection metrics.
 
-The target switch updates the active filtering rules and thresholds, target
-source, coverage, review/hard flag counts, flag rate, gallery grouping, and
-visualization focus. These values are policy
+The 2D-box switch updates the active filtering rules and thresholds, 2D-box
+source, image/video-frame coverage, human-review and rejection counts, gallery
+grouping, and visualization focus. These values are policy
 simulations derived from the recorded audits, not a new deletion run. Known 3D
-and source-label errors remain fixed in both modes. In projected-envelope mode,
-the 2D target is derived from the same 3D cuboid, so 2D/3D projection agreement
+and source-label errors remain fixed in both modes. When the 2D box is calculated
+from the 3D box, the two boxes agree by design, so 2D/3D projection agreement
 is true by construction; a low flag count therefore does not prove that the 3D
 cuboid fits the object.
 
-The three lanes are intentionally distinct: review candidates are not counted
-as confirmed errors until a reviewer rejects them. HSSD has 379 excluded error
-observations. ABO's 154 hard rejects and 2,790 manually adjudicated review
-observations are all reported as errors; ShapeNet's 14 manually adjudicated
-review observations are also reported as errors. Replica reports 29 pending
-review observations and five current hard rejects separately; those five still
+The three lanes are intentionally distinct: review cases are not counted as
+confirmed errors until a reviewer rejects them. HSSD has 379 excluded image/frame
+cases. ABO's 154 rule rejections and 2,790 manually reviewed image/frame cases
+are all reported as errors; ShapeNet's 14 manually reviewed cases are also
+reported as errors. Replica reports 29 pending review cases and five current
+rule rejections separately; those five still
 exist in the source package and must be excluded before it is declared clean.
 Pix3D correctly contains only three error examples because only three cases
 were confirmed irreparable. 3D-FRONT and Kubric correctly contain zero error
@@ -59,7 +59,7 @@ SHA-256, and generation time are recorded in `cases-data.json`; the site builder
 refuses to publish them after those loader sources change. The **Filtered**
 figures are either deletion-time evidence or loader-exclusion evidence. CA-1M
 uses exact `(scene, frame, object)` exclusions, while HyperSim's 34 fully
-offscreen observations are rejected by the current loader validity filter.
+offscreen image cases are rejected by the current loader validity filter.
 
 Rebuild the generated images and data after an audit update:
 
