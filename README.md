@@ -17,7 +17,8 @@ Replica) with:
 - the exact general and dataset-specific filtering/review rules before the
   dataset statistics and galleries;
 - an official-annotation availability table that distinguishes direct source
-  fields from boxes derived by the project;
+  fields from boxes derived by the project and records whether absolute metric
+  scale exists;
 - a top-level audit statistics table;
 - an English-only / English-and-Chinese display toggle;
 - up to six examples that need no human review per dataset;

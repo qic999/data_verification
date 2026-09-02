@@ -534,7 +534,7 @@ main {
 
 .availability-table th:first-child,
 .availability-table td:first-child {
-  width: 14%;
+  width: 12%;
 }
 
 .availability-table th:nth-child(2),
@@ -542,14 +542,16 @@ main {
 .availability-table th:nth-child(3),
 .availability-table td:nth-child(3),
 .availability-table th:nth-child(4),
-.availability-table td:nth-child(4) {
-  width: 12%;
+.availability-table td:nth-child(4),
+.availability-table th:nth-child(5),
+.availability-table td:nth-child(5) {
+  width: 10%;
   text-align: center;
 }
 
-.availability-table th:nth-child(5),
-.availability-table td:nth-child(5) {
-  width: 50%;
+.availability-table th:nth-child(6),
+.availability-table td:nth-child(6) {
+  width: 48%;
 }
 
 .availability-table td.mark {

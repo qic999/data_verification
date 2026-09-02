@@ -31,30 +31,35 @@ the fields in our converted training JSON.
   official box field.
 - `—` means the source package used here does not contain that annotation.
 - `✓*` means availability is source-dependent within an aggregate dataset.
+- In the **Metric scale** column, `✓` means the released geometry has a common
+  physical scale with a documented conversion to meters; `△` means only an
+  approximate or sequence-relative pseudo-metric scale is available; and `—`
+  means the current source geometry is normalized/non-metric. This column is
+  about absolute scale, not merely whether a `camera_scale` field exists.
 
-| Dataset | Visible 2D box | 3D box / cuboid | Projected 2D cuboid envelope | Official field or derivation used here |
-| --- | :---: | :---: | :---: | --- |
-| WildDet3D | ✓ | ✓ | ✓ | `bbox2D_tight`; `bbox3D_cam`; `bbox2D_proj` / `bbox2D_trunc` |
-| Omni3D | ✓* | ✓ | ✓ | `bbox2D_tight` is not present for every source; `bbox3D_cam`; `bbox2D_proj` / `bbox2D_trunc` |
-| Pix3D | ✓ | △ | △ | Official `bbox`/mask; CAD model + `rot_mat`/`trans_mat` -> cuboid and projection; pseudometric scale is ours |
-| Structured3D | △ | ✓ | △ | `instance.png` -> visible box; `bbox_3d.json`; camera projection is ours |
-| 3D-FRONT | △ | △ | △ | Semantic render -> visible box; 3D-FUTURE mesh bounds + scene transform -> cuboid and projection |
-| Kubric | ✓ | ✓ | △ | `instances/bboxes`; `instances/bboxes_3d`; camera projection is ours |
-| uCO3D | ✓ | △ | △ | Released mask bounding box/segmentation; aligned segmented point cloud -> robust cuboid and projection |
-| CA-1M | — | ✓ | ✓ | No separate occlusion-aware visible target in the package used here; camera-frame center/scale/rotation and `camera_box_2d_proj` are stored |
-| HyperSim | △ | ✓ | △ | Semantic-instance image -> visible box; released tight 9-DoF instance box; camera projection is ours |
-| ADT | ✓ | ✓ | △ | `2d_bounding_box.csv` with visibility ratio; `3d_bounding_box.csv` + `scene_objects.csv`; cuboid-envelope reprojection is ours |
-| HSSD | △ | △ | △ | Habitat semantic render -> visible box; semantic-scene object/asset bounds -> cuboid and projection |
-| ProcTHOR | △ | △ | △ | Official AI2-THOR simulator can render instance masks and object bounds; no fixed box annotation files in the source scenes |
-| ABO | △ | △ | △ | Official render/alpha -> visible box; CAD mesh bounds + released camera -> cuboid and projection |
-| ShapeNet | △ | △ | △ | Project render -> visible box; CAD mesh bounds + project camera -> cuboid and projection |
-| Replica | △ | △ | △ | Habitat semantic render -> visible box; semantic mesh/depth -> object cuboid and projection |
-| HOI4D | △ | ✓ | ✓ | Official instance mask -> visible box; `objpose` center/dimensions/rotation and its full projected `2dBox` |
-| HOPE Image / Video | — | △ | △ | No occlusion-aware visible box in the source package used here; eval CAD mesh + released pose/camera -> cuboid and projection |
-| Objectron | — | ✓ | ✓ | Released 3D cuboid plus per-frame projected 2D cuboid keypoints; no occlusion-aware visible box |
-| SceneVerse++ | — | △ | △ | Released instance point IDs + reconstructed mesh -> world AABB; released cameras -> projection; no visible target |
-| SUN RGB-D | ✓ | ✓ | △ | `gtBb2D`; released `groundtruth3DBB`; projection through `Rtilt` and `K` is ours |
-| Synscapes | ✓ | ✓ | △ | Released instance 2D boxes and ego-frame 3D boxes; cuboid-envelope projection is ours |
+| Dataset | Visible 2D box | 3D box / cuboid | Projected 2D cuboid envelope | Metric scale | Official field or derivation used here |
+| --- | :---: | :---: | :---: | :---: | --- |
+| WildDet3D | ✓ | ✓ | ✓ | ✓ | `bbox2D_tight`; metric `bbox3D_cam`; `bbox2D_proj` / `bbox2D_trunc` |
+| Omni3D | ✓* | ✓ | ✓ | ✓ | `bbox2D_tight` is not present for every source; `bbox3D_cam` center/dimensions are in meters; `bbox2D_proj` / `bbox2D_trunc` |
+| Pix3D | ✓ | △ | △ | △ | Official `bbox`/mask; CAD model + `rot_mat`/`trans_mat` -> cuboid and projection; category-prior pseudometric scale is ours |
+| Structured3D | △ | ✓ | △ | ✓ | `instance.png` -> visible box; `bbox_3d.json` and depth are released in millimeters; camera projection is ours |
+| 3D-FRONT | △ | △ | △ | ✓ | Semantic render -> visible box; metric 3D-FUTURE mesh bounds + scene transform -> cuboid and projection |
+| Kubric | ✓ | ✓ | △ | ✓ | `instances/bboxes`; metric `instances/bboxes_3d` and depth; camera projection is ours |
+| uCO3D | ✓ | △ | △ | △ | Released mask; officially aligned point cloud/camera/depth has consistent scale only within each sequence, not a shared physical scale |
+| CA-1M | — | ✓ | ✓ | ✓ | No separate occlusion-aware visible target in the package used here; metric camera-frame center/scale/rotation and `camera_box_2d_proj` are stored |
+| HyperSim | △ | ✓ | △ | ✓ | Semantic-instance image -> visible box; released metric tight 9-DoF instance box; camera projection is ours |
+| ADT | ✓ | ✓ | △ | ✓ | `2d_bounding_box.csv`; metric `3d_bounding_box.csv` + `scene_objects.csv`; cuboid-envelope reprojection is ours |
+| HSSD | △ | △ | △ | ✓ | Habitat semantic render -> visible box; metric semantic-scene object/asset bounds -> cuboid and projection |
+| ProcTHOR | △ | △ | △ | ✓ | Official AI2-THOR simulator uses metric world units and can render masks/object bounds; no fixed box files in source scenes |
+| ABO | △ | △ | △ | — | Official render/alpha -> visible box; current 3D package and project render use normalized CAD geometry, not absolute metric object size |
+| ShapeNet | △ | △ | △ | — | Project render -> visible box; normalized CAD mesh bounds + project camera, without absolute physical scale |
+| Replica | △ | △ | △ | ✓ | Habitat semantic render; released metric semantic mesh/depth -> object cuboid and projection |
+| HOI4D | △ | ✓ | ✓ | ✓ | Official instance mask; metric `objpose` center/dimensions/rotation and its full projected `2dBox` |
+| HOPE Image / Video | — | △ | △ | ✓ | No visible box in the source package used here; metric eval CAD mesh + released pose/camera -> cuboid and projection |
+| Objectron | — | ✓ | ✓ | ✓ | Released metric 3D cuboid plus per-frame projected 2D cuboid keypoints; no visible box |
+| SceneVerse++ | — | △ | △ | ✓ | Released metric instance point IDs/reconstructed mesh -> world AABB; released cameras -> projection; no visible target |
+| SUN RGB-D | ✓ | ✓ | △ | ✓ | `gtBb2D`; released metric `groundtruth3DBB`; projection through `Rtilt` and `K` is ours |
+| Synscapes | ✓ | ✓ | △ | ✓ | Released metric instance 2D/ego-frame 3D boxes; cuboid-envelope projection is ours |
 
 Primary format references include [WildDet3D](https://github.com/allenai/WildDet3D),
 [Omni3D](https://github.com/facebookresearch/omni3d/blob/main/cubercnn/data/datasets.py),
