@@ -32,8 +32,9 @@ Replica) with:
 - explicit empty states when a dataset has no review or filtered examples;
 - click-to-enlarge case images and per-case projection metrics.
 
-The target switch updates the target source, coverage, review/hard flag counts,
-flag rate, gallery grouping, and visualization focus. These values are policy
+The target switch updates the active filtering rules and thresholds, target
+source, coverage, review/hard flag counts, flag rate, gallery grouping, and
+visualization focus. These values are policy
 simulations derived from the recorded audits, not a new deletion run. Known 3D
 and source-label errors remain fixed in both modes. In projected-envelope mode,
 the 2D target is derived from the same 3D cuboid, so 2D/3D projection agreement

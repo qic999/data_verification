@@ -11,7 +11,7 @@
     />
     <title>SpatialEncoder · Dataset QA</title>
     <script>document.documentElement.classList.add("auth-locked");</script>
-    <link rel="stylesheet" href="styles.css?v=20260901-3" />
+    <link rel="stylesheet" href="styles.css?v=20260901-4" />
   </head>
   <body>
     <div class="auth-gate" id="auth-gate" role="dialog" aria-modal="true" aria-labelledby="auth-title">
@@ -105,6 +105,19 @@
             </p>
           </div>
 
+          <div class="rule-mode-banner" aria-live="polite">
+            <div class="rule-mode-copy">
+              <p id="rule-mode-kicker">ACTIVE RULE SET</p>
+              <h3 id="rule-mode-title">Visible-target filtering rules</h3>
+              <p id="rule-mode-summary"></p>
+            </div>
+            <div class="rule-mode-metrics">
+              <div><span id="rule-metric-label">Decision metric</span><strong id="rule-metric-value">—</strong></div>
+              <div><span id="rule-hard-label">Hard filter</span><strong id="rule-hard-value">—</strong></div>
+              <div><span id="rule-review-label">Human review</span><strong id="rule-review-value">—</strong></div>
+            </div>
+          </div>
+
           <div class="rule-flow" aria-label="Filtering decision flow">
             <article class="rule-step">
               <span class="rule-index">01</span>
@@ -117,8 +130,8 @@
               <span class="rule-index">02</span>
               <h3>Measure projection consistency</h3>
               <span class="rule-zh">计算投影一致性</span>
-              <p>Identify whether the training 2D target is visible/modal or amodal/projected, then apply only a same-semantic projection check or an asymmetric visible-containment check.</p>
-              <span class="rule-zh">先判断训练 2D target 是 visible/modal 还是 amodal/projected，再分别采用同语义投影检查或非对称 visible containment 检查。</span>
+              <p id="rule-projection-copy">Compare the independent visible target with the projected cuboid using asymmetric containment.</p>
+              <span class="rule-zh" id="rule-projection-copy-zh">用非对称 containment 比较独立 visible target 与投影 3D 框。</span>
             </article>
             <article class="rule-step filtered-step">
               <span class="rule-index">03</span>
@@ -157,7 +170,7 @@
                     <span class="rule-zh">不会猜测未知的 2D target 来源：在来源确认之前，只执行独立的 3D 几何检查。</span>
                   </td>
                 </tr>
-                <tr>
+                <tr data-rule-mode="projected">
                   <td><strong>Amodal projected target</strong><span class="rule-zh">Amodal 投影 target</span></td>
                   <td>
                     Compare the stored amodal target with an independently recomputed amodal cuboid envelope. Hard: exact stored-projection error <code>&gt; 1 px</code>; <code>IoU &lt; 0.15</code> with normalized-size guard ≥0.05; <code>center &gt; 0.20</code>; or jointly <code>IoU &lt; 0.25</code> and <code>center &gt; 0.10</code>.
@@ -168,7 +181,7 @@
                     <span class="rule-zh">未达到 hard rule 时，<code>IoU &lt; 0.40</code> 或 <code>中心偏差 &gt; 0.05</code> 进入人工复核。适用于 CA-1M、HyperSim、ADT、HOPE Image/Video、Objectron 和 SceneVersepp；已记录的旧版近似投影误差可只作为诊断。</span>
                   </td>
                 </tr>
-                <tr>
+                <tr data-rule-mode="visible">
                   <td><strong>Visible/modal target</strong><span class="rule-zh">Visible/modal target</span></td>
                   <td>
                     Compute <code>visible containment = area(visible ∩ projected) / area(visible)</code>, preferably with exact mask pixels. Hard: containment <code>&lt; 0.50</code>. Visible-to-amodal IoU and center offset never trigger rejection.
@@ -179,7 +192,7 @@
                     <span class="rule-zh">未达到 hard rule 时，<code>包含率 &lt; 0.90</code> 进入人工复核。适用于 Pix3D、Structured3D、3D-FRONT、Kubric、uCO3D、ABO、ShapeNet、Replica v2、SUN RGB-D 和 Synscapes；数据集专用的精确几何检查继续保留。</span>
                   </td>
                 </tr>
-                <tr>
+                <tr data-rule-mode="visible">
                   <td><strong>Mixed / fallback targets</strong><span class="rule-zh">混合或 fallback target</span></td>
                   <td>
                     Resolve each observation before thresholding. A target equal within 2 px to the full or image-clipped stored projection is amodal; otherwise a known render/mask target is visible.
@@ -194,7 +207,7 @@
             </table>
           </div>
 
-          <p class="rule-definitions">
+          <p class="rule-definitions" id="rule-definitions">
             <strong>Metric definitions:</strong> <code>IoU</code> and normalized <code>center</code> are decision metrics only for same-semantic amodal boxes. For a visible target, <code>containment = intersection / visible area</code> is the decision metric; visible/amodal IoU and center are diagnostic only. Historical candidates produced by the old cross-semantic IoU/center rule must be re-audited before deletion.
             <span class="rule-zh"><strong>指标定义：</strong><code>IoU</code> 和归一化 <code>中心偏差</code> 只在同语义 amodal 框之间作为判定指标。对 visible target，判定指标为 <code>包含率 = 交集 / visible area</code>；visible/amodal IoU 与中心偏差只用于诊断。旧版跨语义 IoU/中心规则产生的历史候选必须重新审查后才能删除。</span>
           </p>
@@ -380,7 +393,7 @@
     </dialog>
 
     <script src="cases-data.js?v=20260827-11"></script>
-    <script src="app.js?v=20260901-3"></script>
+    <script src="app.js?v=20260901-4"></script>
     <script src="auth.js?v=20260827-11"></script>
   </body>
 </html>

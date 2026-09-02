@@ -33,6 +33,26 @@
       riskTitleZh: "主要取舍",
       riskCopy: "Better image evidence, but some datasets lack a true visible target and heavy occlusion creates more review cases.",
       riskCopyZh: "图像监督更直接，但部分数据集没有真实 visible target，严重遮挡也会产生更多复核 case。",
+      ruleTitle: "Visible-target filtering rules",
+      ruleTitleZh: "Visible target 过滤规则",
+      ruleSummary:
+        "The 2D target is independent image evidence. Audit whether the projected cuboid contains what is visible; do not reject a case just because a visible box and an amodal projection have different centers or IoU.",
+      ruleSummaryZh:
+        "2D target 是独立图像证据。审查投影 3D 框是否包含可见物体；visible 框与 amodal 投影的中心或 IoU 不同，不能单独作为删除理由。",
+      ruleMetric: "visible containment = intersection / visible area",
+      ruleMetricZh: "visible containment = 交集 / 可见区域",
+      ruleHard: "containment < 0.50",
+      ruleHardZh: "包含率 < 0.50",
+      ruleReview: "0.50 ≤ containment < 0.90",
+      ruleReviewZh: "0.50 ≤ 包含率 < 0.90",
+      projectionStep:
+        "Compare the independent visible box or mask with the projected cuboid using asymmetric containment. Symmetric IoU and center offset remain diagnostic only.",
+      projectionStepZh:
+        "用非对称 containment 比较独立 visible box 或 mask 与投影 3D 框；对称 IoU 和中心偏差只作诊断。",
+      ruleDefinitions:
+        "Decision metric: visible containment = area(visible ∩ projected) / area(visible). Visible/amodal IoU and center offset are diagnostic only. Independent geometry and dataset-specific exact checks remain active.",
+      ruleDefinitionsZh:
+        "判定指标：visible containment = area(visible ∩ projected) / area(visible)。Visible/amodal IoU 与中心偏差只作诊断；独立几何检查和数据集专用精确检查继续生效。",
     },
     projected: {
       id: "projected",
@@ -58,6 +78,26 @@
       riskTitleZh: "主要取舍",
       riskCopy: "Uniform and 3D-aligned, but a wrong or oversized cuboid produces a matching wrong 2D target and can pass unnoticed.",
       riskCopyZh: "目标统一且与 3D 对齐，但错误或过大的 3D 框会生成同样错误的 2D target，可能无法被发现。",
+      ruleTitle: "Projected-envelope filtering rules",
+      ruleTitleZh: "Projected envelope 过滤规则",
+      ruleSummary:
+        "The 2D target comes from the same 3D cuboid. Do not compare the target back to its source as an object-fit test; instead audit geometry, camera conversion, and any independently stored projection.",
+      ruleSummaryZh:
+        "2D target 来自同一个 3D 框，不能再把 target 与其来源比较来判断是否贴合物体；应检查几何、相机转换和独立存储的投影。",
+      ruleMetric: "stored projection vs independently recomputed envelope",
+      ruleMetricZh: "存储投影 vs 独立重算 envelope",
+      ruleHard: "invalid geometry or exact projection error > 1 px",
+      ruleHardZh: "无效几何或精确投影误差 > 1 px",
+      ruleReview: "same-semantic IoU < 0.40 or center > 0.05",
+      ruleReviewZh: "同语义 IoU < 0.40 或中心偏差 > 0.05",
+      projectionStep:
+        "Recompute the cuboid envelope with the current loader and compare it only with an independently stored amodal projection. If the target is generated on the fly from this cuboid, projection consistency passes by construction.",
+      projectionStepZh:
+        "使用当前 loader 重算 3D 框 envelope，只与独立存储的 amodal 投影比较。如果 target 由该 3D 框现场生成，投影一致性天然通过。",
+      ruleDefinitions:
+        "Decision metrics apply only to an independently stored amodal target versus a recomputed envelope. A newly derived envelope cannot verify object fit. Invalid geometry, camera conversion, depth, scale, and other independent 3D checks remain active.",
+      ruleDefinitionsZh:
+        "判定指标只适用于独立存储的 amodal target 与重算 envelope。新派生的 envelope 无法验证物体贴合度；无效几何、相机转换、深度、尺度和其他独立 3D 检查继续生效。",
     },
   };
 
@@ -257,6 +297,19 @@
     auditLabel: document.querySelector("#audit-label"),
     auditDate: document.querySelector("#audit-date"),
     auditStatus: document.querySelector("#audit-status"),
+    ruleModeKicker: document.querySelector("#rule-mode-kicker"),
+    ruleModeTitle: document.querySelector("#rule-mode-title"),
+    ruleModeSummary: document.querySelector("#rule-mode-summary"),
+    ruleMetricLabel: document.querySelector("#rule-metric-label"),
+    ruleMetricValue: document.querySelector("#rule-metric-value"),
+    ruleHardLabel: document.querySelector("#rule-hard-label"),
+    ruleHardValue: document.querySelector("#rule-hard-value"),
+    ruleReviewLabel: document.querySelector("#rule-review-label"),
+    ruleReviewValue: document.querySelector("#rule-review-value"),
+    ruleProjectionCopy: document.querySelector("#rule-projection-copy"),
+    ruleProjectionCopyZh: document.querySelector("#rule-projection-copy-zh"),
+    ruleDefinitions: document.querySelector("#rule-definitions"),
+    ruleModeRows: document.querySelectorAll("[data-rule-mode]"),
     targetPolicyKicker: document.querySelector("#target-policy-kicker"),
     targetPolicyTitle: document.querySelector("#target-policy-title"),
     targetPolicyIntro: document.querySelector("#target-policy-intro"),
@@ -570,6 +623,9 @@
       [elements.legend3d, "projected 3D cuboid", "投影 3D 长方体"],
       [elements.auditLabel, "FULL RE-AUDIT", "全量复审"],
       [elements.auditStatus, `current hard = ${data.datasets.reduce((total, dataset) => total + (dataset.currentHard || 0), 0)}`, `当前 hard = ${data.datasets.reduce((total, dataset) => total + (dataset.currentHard || 0), 0)}`],
+      [elements.ruleMetricLabel, "Decision metric", "判定指标"],
+      [elements.ruleHardLabel, "Hard filter", "Hard 过滤"],
+      [elements.ruleReviewLabel, "Human review", "人工复核"],
       [elements.targetPolicyKicker, "2D TARGET POLICY", "2D TARGET 策略"],
       [elements.targetPolicyTitle, "Compare one target definition across every dataset", "比较全数据集统一 2D target 的结果"],
       [elements.targetPolicyIntro, "Switching the target changes the table, case grouping, and visualization focus below. These are policy-simulation counts from the recorded audits; known 3D/source errors remain fixed.", "切换 target 后，下方统计表、case 分组和可视化重点会一起改变。这些数字来自现有审查记录的策略模拟；已经确认的 3D/源标注错误保持不变。"],
@@ -635,6 +691,18 @@
     elements.targetAuditCopy.innerHTML = localized(profile.auditCopy, profile.auditCopyZh);
     elements.targetRiskTitle.innerHTML = localized(profile.riskTitle, profile.riskTitleZh);
     elements.targetRiskCopy.innerHTML = localized(profile.riskCopy, profile.riskCopyZh);
+    elements.ruleModeKicker.innerHTML = localized("ACTIVE RULE SET", "当前规则集", true);
+    elements.ruleModeTitle.innerHTML = localized(profile.ruleTitle, profile.ruleTitleZh);
+    elements.ruleModeSummary.innerHTML = localized(profile.ruleSummary, profile.ruleSummaryZh);
+    elements.ruleMetricValue.innerHTML = localized(profile.ruleMetric, profile.ruleMetricZh);
+    elements.ruleHardValue.innerHTML = localized(profile.ruleHard, profile.ruleHardZh);
+    elements.ruleReviewValue.innerHTML = localized(profile.ruleReview, profile.ruleReviewZh);
+    elements.ruleProjectionCopy.textContent = profile.projectionStep;
+    elements.ruleProjectionCopyZh.textContent = profile.projectionStepZh;
+    elements.ruleDefinitions.innerHTML = localized(profile.ruleDefinitions, profile.ruleDefinitionsZh);
+    elements.ruleModeRows.forEach((row) => {
+      row.hidden = row.dataset.ruleMode !== currentTargetMode;
+    });
     elements.targetModeButtons.forEach((button) => {
       const active = button.dataset.targetMode === currentTargetMode;
       button.classList.toggle("active", active);
