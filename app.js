@@ -543,6 +543,7 @@
   const threePanelDatasetIds = new Set([
     "hoi4d",
     "hope",
+    "objectron",
     "sceneversepp",
     "sunrgbd",
     "synscapes",

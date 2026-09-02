@@ -58,11 +58,10 @@ Pix3D correctly contains only three error examples because only three cases
 were confirmed irreparable. 3D-FRONT and Kubric correctly contain zero error
 examples. The 4,596 old Kubric generic-rule candidates are intentionally not
 shown as errors because the mask and exact-projection recheck proved them valid.
-Objectron and SceneVerse++ have no separate visible 2D boxes. Objectron's full
-statistics are included, but its visualization source directory was unavailable
-when this release was built, so the site does not show placeholder images.
-HOPE also has no separate visible 2D box; its combined HOPE Image and HOPE Video
-entry contains 13,864 accepted projected-box cases and six current-loader examples.
+Objectron and SceneVerse++ have no separate visible 2D boxes. Their projected-box
+mode includes six current-loader examples for each dataset. HOPE also has no
+separate visible 2D box; its combined HOPE Image and HOPE Video entry contains
+13,864 accepted projected-box cases and six current-loader examples.
 
 The **No human review needed** and **Needs human review** figures are generated
 through the current training loaders. Their loader source files, combined

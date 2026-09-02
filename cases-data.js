@@ -1,7 +1,7 @@
 window.DATASET_QA = {
   "generatedAt": "2026-09-02",
   "auditDate": "2026-08-28",
-  "assetVersion": "ef361c32fa9b",
+  "assetVersion": "b01a493585f7",
   "loaderProvenance": {
     "wilddet3d": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -155,7 +155,7 @@ window.DATASET_QA = {
         "sam3/train/data/ca1m_dataset.py"
       ],
       "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
-      "visualizationsGeneratedAt": null
+      "visualizationsGeneratedAt": "2026-09-02T05:46:05.149519+00:00"
     },
     "sceneversepp": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -3994,9 +3994,99 @@ window.DATASET_QA = {
       "filteredRate": 0.0,
       "description": "Object-centric video with official metric 3D cuboids, camera poses, and projected cuboid keypoints.",
       "statusDetail": "All 962,458 audited object frames pass the projected-box geometry checks. The package has no separate visible 2D box.",
-      "galleryUnavailable": true,
       "currentHard": 0,
-      "validCases": [],
+      "validCases": [
+        {
+          "id": " object_0000 / frame 000155",
+          "title": "cereal_box · object_0000",
+          "subtitle": "cereal_box_batch_4_9 / object_0000",
+          "image": "assets/objectron/valid/01.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " object_0000 / frame 000120",
+          "title": "chair · object_0000",
+          "subtitle": "chair_batch_13_39 / object_0000",
+          "image": "assets/objectron/valid/02.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " object_0000 / frame 000074",
+          "title": "chair · object_0000",
+          "subtitle": "chair_batch_25_14 / object_0000",
+          "image": "assets/objectron/valid/03.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " object_0000 / frame 000314",
+          "title": "laptop · object_0000",
+          "subtitle": "laptop_batch_20_2 / object_0000",
+          "image": "assets/objectron/valid/04.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " object_0000 / frame 000329",
+          "title": "laptop · object_0000",
+          "subtitle": "laptop_batch_29_25 / object_0000",
+          "image": "assets/objectron/valid/05.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        },
+        {
+          "id": " object_0000 / frame 000195",
+          "title": "laptop · object_0000",
+          "subtitle": "laptop_batch_35_26 / object_0000",
+          "image": "assets/objectron/valid/06.webp",
+          "tag": "accepted",
+          "reason": "Passed the current loader-aligned geometry and projection checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": null,
+            "centerError": null,
+            "envelopeErrorPx": null,
+            "depthRangeM": null
+          }
+        }
+      ],
       "reviewCases": [],
       "errorCases": [],
       "emptyMessage": "All audited Objectron object frames pass the projected-box checks; there are no review or rejected cases."
