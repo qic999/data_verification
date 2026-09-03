@@ -11,7 +11,7 @@
     />
     <title>SpatialEncoder · Dataset QA</title>
     <script>document.documentElement.classList.add("auth-locked");</script>
-    <link rel="stylesheet" href="styles.css?v=20260903-4" />
+    <link rel="stylesheet" href="styles.css?v=20260903-5" />
   </head>
   <body>
     <div class="auth-gate" id="auth-gate" role="dialog" aria-modal="true" aria-labelledby="auth-title">
@@ -324,6 +324,24 @@
           <div class="dataset-facts" id="dataset-facts"></div>
         </section>
 
+        <section class="comment-guide" aria-labelledby="comment-guide-title">
+          <div class="comment-guide-heading">
+            <span class="comment-guide-icon" aria-hidden="true">💬</span>
+            <div>
+              <p class="section-kicker" id="comment-guide-kicker">CASE FEEDBACK</p>
+              <h2 id="comment-guide-title">Have a question or an extra comment about a case?</h2>
+              <p id="comment-guide-intro">Each visualized case has its own saved comment thread.</p>
+            </div>
+          </div>
+          <ol class="comment-guide-steps">
+            <li id="comment-guide-step-1"><strong>Open the case</strong> by clicking its image or card.</li>
+            <li id="comment-guide-step-2">Scroll to <strong>Case comments</strong> below the enlarged image.</li>
+            <li id="comment-guide-step-3">Click <strong>Start a comment thread on GitHub</strong>, sign in, write your comment, and submit the issue. If a thread already exists, use <strong>View or add comment on GitHub</strong>.</li>
+            <li id="comment-guide-step-4">Return to this page and click <strong>Refresh comments</strong> to display the saved comment.</li>
+          </ol>
+          <p class="comment-guide-note" id="comment-guide-note">Comments are saved in this repository's GitHub Issues and remain available to other reviewers. A GitHub account is required to post, and comments are public.</p>
+        </section>
+
         <section class="case-section valid-section" aria-labelledby="valid-title">
           <div class="section-heading">
             <div>
@@ -418,8 +436,8 @@
       </section>
     </dialog>
 
-    <script src="cases-data.js?v=20260903-4"></script>
-    <script src="app.js?v=20260903-4"></script>
-    <script src="auth.js?v=20260903-4"></script>
+    <script src="cases-data.js?v=20260903-5"></script>
+    <script src="app.js?v=20260903-5"></script>
+    <script src="auth.js?v=20260903-5"></script>
   </body>
 </html>

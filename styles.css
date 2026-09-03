@@ -1263,6 +1263,100 @@ td:first-child {
   text-overflow: ellipsis;
 }
 
+.comment-guide {
+  margin: 0 0 28px;
+  padding: 22px 24px;
+  border: 1px solid rgba(84, 230, 162, 0.24);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 100% 0, rgba(84, 230, 162, 0.1), transparent 34%),
+    rgba(11, 23, 21, 0.78);
+}
+
+.comment-guide-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.comment-guide-icon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  place-items: center;
+  border: 1px solid rgba(84, 230, 162, 0.3);
+  border-radius: 12px;
+  background: var(--mint-soft);
+  font-size: 20px;
+}
+
+.comment-guide-heading .section-kicker {
+  margin: 1px 0 5px;
+}
+
+.comment-guide-heading h2 {
+  margin: 0;
+  font-size: clamp(22px, 2.5vw, 30px);
+  letter-spacing: -0.025em;
+}
+
+.comment-guide-heading p:last-child {
+  margin: 7px 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.comment-guide-steps {
+  display: grid;
+  margin: 20px 0 0;
+  padding: 0;
+  counter-reset: comment-step;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.comment-guide-steps li {
+  position: relative;
+  min-height: 116px;
+  padding: 44px 14px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--muted-strong);
+  font-size: 13px;
+  line-height: 1.55;
+  list-style: none;
+  counter-increment: comment-step;
+}
+
+.comment-guide-steps li::before {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--mint);
+  color: #062117;
+  content: counter(comment-step);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.comment-guide-steps strong {
+  color: var(--text);
+}
+
+.comment-guide-note {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
 .case-section {
   margin-bottom: 28px;
   padding-bottom: 28px;
@@ -1817,6 +1911,10 @@ dialog::backdrop {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .comment-guide-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .dataset-header {
     align-items: flex-start;
     flex-direction: column;
@@ -1920,6 +2018,18 @@ dialog::backdrop {
   .case-grid {
     grid-template-columns: 1fr;
     padding: 0 12px;
+  }
+
+  .comment-guide {
+    padding: 20px 16px;
+  }
+
+  .comment-guide-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .comment-guide-steps li {
+    min-height: 0;
   }
 
   .section-explainer {
