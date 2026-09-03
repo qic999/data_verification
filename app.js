@@ -934,10 +934,10 @@
         return `
           <tr data-dataset="${dataset.id}" tabindex="0" aria-label="View ${dataset.name}">
             <td>${dataset.name}</td>
+            <td class="numeric storage-value">${formatStorage(dataset.storageBytes ?? approxStorageBytes[dataset.id])}</td>
             <td>${localized(dataset.dataType, dataset.dataType === "Video" ? "视频" : dataset.dataType === "Image + Video" ? "图像 + 视频" : "单图像", true)}</td>
             <td class="numeric">${formatNumber(dataset.samples)}</td>
             <td class="numeric">${dataset.videos == null ? "—" : formatNumber(dataset.videos)}</td>
-            <td class="numeric storage-value">${formatStorage(dataset.storageBytes ?? approxStorageBytes[dataset.id])}</td>
             <td class="target-source">${localized(stats.source, stats.sourceZh, true)}</td>
             <td class="numeric">${stats.review == null ? "—" : formatNumber(stats.review)}</td>
             <td class="numeric">${stats.hard == null ? "—" : formatNumber(stats.hard)}</td>
