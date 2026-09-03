@@ -61,7 +61,6 @@ the fields in our converted training JSON.
 | SUN RGB-D | ✓ | ✓ | △ | ✓ | `gtBb2D`; released metric `groundtruth3DBB`; projection through `Rtilt` and `K` is ours |
 | Synscapes | ✓ | ✓ | △ | ✓ | Released metric instance 2D/ego-frame 3D boxes; cuboid-envelope projection is ours |
 | ATEK | ✓ | ✓ | ✓ | ✓ | `camera_box_2d_rend`; metric camera-frame center/scale/rotation; stored `camera_box_2d_proj`; camera-Z depth in meters |
-| ScanNet++ | △ | ✓ | △ | ✓ | Official annotated mesh -> visible box; released metric OBB; official DSLR/iPhone cameras or panorama direction maps + scanner poses -> projection |
 
 Primary format references include [WildDet3D](https://github.com/allenai/WildDet3D),
 [Omni3D](https://github.com/facebookresearch/omni3d/blob/main/cubercnn/data/datasets.py),
@@ -155,7 +154,7 @@ Current target policies:
 
 | Policy | Datasets |
 | --- | --- |
-| Visible | Pix3D, Structured3D, 3D-FRONT, Kubric, uCO3D, ABO, ShapeNet, Replica v2, SUN RGB-D, Synscapes, ATEK, ScanNet++ |
+| Visible | Pix3D, Structured3D, 3D-FRONT, Kubric, uCO3D, ABO, ShapeNet, Replica v2, SUN RGB-D, Synscapes, ATEK |
 | Amodal projected/clipped | CA-1M, HyperSim, ADT, HOPE Image/Video, Objectron, SceneVersepp |
 | Per-observation mixed | Omni3D, HSSD, HOI4D, WildDet3D |
 | Source unavailable; must be rechecked | ProcTHOR |

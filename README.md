@@ -10,10 +10,9 @@ does not make the public repository or its static asset URLs private.
 Open `index.html` directly in a browser when developing locally. The site is
 fully static and does not require a web server.
 
-It presents twenty-two audited datasets (WildDet3D, Omni3D, Pix3D, Structured3D,
+It presents twenty-one audited datasets (WildDet3D, Omni3D, Pix3D, Structured3D,
 3D-FRONT, Kubric, uCO3D, CA-1M, HyperSim, ADT, HSSD, ABO, ShapeNet, and
-Replica, HOI4D, HOPE, Objectron, SceneVerse++, SUN RGB-D, Synscapes, ATEK, and
-ScanNet++) with:
+Replica, HOI4D, HOPE, Objectron, SceneVerse++, SUN RGB-D, Synscapes, and ATEK) with:
 
 - the exact general and dataset-specific filtering/review rules before the
   dataset statistics and galleries;
@@ -66,10 +65,6 @@ separate visible 2D box; its combined HOPE Image and HOPE Video entry contains
 ATEK reports 245,810 video frames from 965 scenes and 1,450,396 object cases.
 Under the visible-box rule, 153,569 cases need human review and 1,403 are hard
 rejects; its separately stored and recomputed 3D projections agree within 1 px.
-ScanNet++ combines DSLR images, iPhone video, and 360 RGB-D panoramas. Its
-complete official-camera audit covers 906 DSLR scenes, 968 iPhone scenes, and
-956 panorama scenes. No hard error remains; one iPhone chair frame remains in
-the human-review lane.
 
 The **No human review needed** and **Needs human review** figures are generated
 through the current training loaders. Their loader source files, combined

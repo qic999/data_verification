@@ -1,7 +1,7 @@
 window.DATASET_QA = {
-  "generatedAt": "2026-09-03",
-  "auditDate": "2026-09-03",
-  "assetVersion": "8a39f05db017",
+  "generatedAt": "2026-09-02",
+  "auditDate": "2026-09-02",
+  "assetVersion": "b1253a551664",
   "loaderProvenance": {
     "wilddet3d": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -192,15 +192,6 @@ window.DATASET_QA = {
       ],
       "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
       "visualizationsGeneratedAt": "2026-09-02T11:50:59.901153+00:00"
-    },
-    "scannetpp": {
-      "loader": "official ScanNet++ cameras + released metric OBBs",
-      "sources": [
-        "scripts/audit_scannetpp_latest.py",
-        "scripts/audit_scannetpp_multisensor.py"
-      ],
-      "sha256": "7b2fd16993936aed11874d0b1f759719b1bd13694495df0d5862dddf33d72b94",
-      "visualizationsGeneratedAt": "2026-09-03T08:42:46.119402+00:00"
     }
   },
   "datasets": [
@@ -5144,154 +5135,6 @@ window.DATASET_QA = {
         }
       ],
       "emptyMessage": ""
-    },
-    {
-      "id": "scannetpp",
-      "name": "ScanNet++",
-      "samples": 1666251,
-      "dataType": "Image + Video",
-      "videos": 968,
-      "observations": 4281562,
-      "review": 1,
-      "filtered": 0,
-      "filteredRate": 0.0,
-      "currentHard": 0,
-      "description": "Indoor DSLR images, iPhone video, and 360 RGB-D panoramas with official metric object boxes and cameras.",
-      "statusDetail": "The complete official-camera audit covers 906 DSLR scenes, 968 iPhone scenes, and 956 panorama scenes. No hard error remains; one iPhone chair frame needs human verification.",
-      "validCases": [
-        {
-          "id": "979a852c94 / frame DSC06312.JPG",
-          "title": "chair · object 10",
-          "subtitle": "DSLR/979a852c94/DSC06312.JPG",
-          "image": "assets/scannetpp/valid/01.webp",
-          "tag": "accepted",
-          "reason": "Passed official-camera geometry and visible-containment checks",
-          "metrics": {
-            "objects": 1,
-            "medianIoU": 0.731,
-            "centerError": 0.0069,
-            "envelopeErrorPx": null,
-            "depthRangeM": [
-              0.6128246134294645,
-              1.599748578541684
-            ]
-          }
-        },
-        {
-          "id": "8de35c04a3 / frame DSC07717.JPG",
-          "title": "table · object 26",
-          "subtitle": "DSLR/8de35c04a3/DSC07717.JPG",
-          "image": "assets/scannetpp/valid/02.webp",
-          "tag": "accepted",
-          "reason": "Passed official-camera geometry and visible-containment checks",
-          "metrics": {
-            "objects": 1,
-            "medianIoU": 0.53,
-            "centerError": 0.0273,
-            "envelopeErrorPx": null,
-            "depthRangeM": [
-              1.1917398857959918,
-              2.6827700427373453
-            ]
-          }
-        },
-        {
-          "id": "666d04a14a / frame f31beca7_DSC03517.JPG",
-          "title": "bed · object 22",
-          "subtitle": "DSLR/666d04a14a/f31beca7_DSC03517.JPG",
-          "image": "assets/scannetpp/valid/03.webp",
-          "tag": "accepted",
-          "reason": "Passed official-camera geometry and visible-containment checks",
-          "metrics": {
-            "objects": 1,
-            "medianIoU": 0.493,
-            "centerError": 0.0322,
-            "envelopeErrorPx": null,
-            "depthRangeM": [
-              1.3242103066449404,
-              3.717217843569676
-            ]
-          }
-        },
-        {
-          "id": "dfa70fb232 / frame f438976c_DSC06987.JPG",
-          "title": "sofa · object 36",
-          "subtitle": "DSLR/dfa70fb232/f438976c_DSC06987.JPG",
-          "image": "assets/scannetpp/valid/04.webp",
-          "tag": "accepted",
-          "reason": "Passed official-camera geometry and visible-containment checks",
-          "metrics": {
-            "objects": 1,
-            "medianIoU": 0.577,
-            "centerError": 0.0127,
-            "envelopeErrorPx": null,
-            "depthRangeM": [
-              1.7374392598315778,
-              3.0884679766899064
-            ]
-          }
-        },
-        {
-          "id": "bc2fce1d81 / frame DSC04365.JPG",
-          "title": "bookshelf · object 42",
-          "subtitle": "DSLR/bc2fce1d81/DSC04365.JPG",
-          "image": "assets/scannetpp/valid/05.webp",
-          "tag": "accepted",
-          "reason": "Passed official-camera geometry and visible-containment checks",
-          "metrics": {
-            "objects": 1,
-            "medianIoU": 0.56,
-            "centerError": 0.0293,
-            "envelopeErrorPx": null,
-            "depthRangeM": [
-              2.1832753784920644,
-              4.17106907549294
-            ]
-          }
-        },
-        {
-          "id": "736536044 / frame c8572a21_DSC08074.JPG",
-          "title": "refrigerator · object 43",
-          "subtitle": "DSLR/736536044/c8572a21_DSC08074.JPG",
-          "image": "assets/scannetpp/valid/06.webp",
-          "tag": "accepted",
-          "reason": "Passed official-camera geometry and visible-containment checks",
-          "metrics": {
-            "objects": 1,
-            "medianIoU": 0.576,
-            "centerError": 0.0013,
-            "envelopeErrorPx": null,
-            "depthRangeM": [
-              1.4534398489376086,
-              3.0204385915419647
-            ]
-          }
-        }
-      ],
-      "reviewCases": [
-        {
-          "id": "c545851c4f / frame frame_005610.jpg",
-          "title": "chair · 14",
-          "subtitle": "iPhone/c545851c4f/frame_005610.jpg",
-          "image": "assets/scannetpp/review/01.webp",
-          "tag": "review",
-          "reason": "visible_containment_review",
-          "metrics": {
-            "objects": 1,
-            "IoU": 0.364,
-            "centerError": 0.0672,
-            "visibleContainment": 0.807,
-            "depthRangeM": [
-              1.8549733739998984,
-              2.8341015230498496
-            ]
-          },
-          "issue": "The projected 3D box contains 80.70% of the visible 2D box. This is between the 50% hard-reject threshold and the 90% pass threshold, so the case needs visual confirmation.",
-          "issueZh": "投影 3D 框包含可见 2D 框的 80.70%。该数值位于 50% hard-reject 阈值和 90% 通过阈值之间，因此需要人工确认。"
-        }
-      ],
-      "errorCases": [],
-      "emptyMessage": "The complete audit found no hard or confirmed filtered ScanNet++ case. One iPhone chair frame remains in the separate human-review lane."
     }
   ]
 };
