@@ -32,6 +32,9 @@ ScanNet++) with:
   case was confirmed erroneous, including the relevant measured values;
 - explicit empty states when a dataset has no review or filtered examples;
 - click-to-enlarge case images and per-case projection metrics.
+- persistent per-case review comments backed by this repository's GitHub
+  Issues. Existing comments appear inside the case dialog; posting a new
+  comment requires a GitHub login.
 
 ScanNet++ is one dataset entry with three separate sensor tabs: **DSLR**,
 **iPhone**, and **360 Panorama**. Each tab has its own image/frame count,

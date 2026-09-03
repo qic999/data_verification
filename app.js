@@ -7,6 +7,11 @@
     return;
   }
   const assetVersion = data.assetVersion || data.generatedAt || "current";
+  const commentRepository = "qic999/data_verification";
+  const commentApiRoot = `https://api.github.com/repos/${commentRepository}`;
+  const commentCache = new Map();
+  let commentLoadToken = 0;
+  let currentCommentContext = null;
 
   const targetModeProfiles = {
     visible: {
@@ -486,6 +491,12 @@
     lightboxTitle: document.querySelector("#lightbox-title"),
     lightboxSubtitle: document.querySelector("#lightbox-subtitle"),
     lightboxMetrics: document.querySelector("#lightbox-metrics"),
+    commentsTitle: document.querySelector("#case-comments-title"),
+    commentsHelp: document.querySelector("#case-comments-help"),
+    commentsStatus: document.querySelector("#case-comments-status"),
+    commentsList: document.querySelector("#case-comments-list"),
+    commentsLink: document.querySelector("#case-comments-link"),
+    refreshComments: document.querySelector("#refresh-case-comments"),
     closeLightbox: document.querySelector("#close-lightbox"),
   };
 
@@ -534,6 +545,167 @@
       .replace(/物体观测/g, "物体图像 / 帧")
       .replace(/观测/g, "图像 / 帧")
       .replace(/2D target/gi, "2D 框");
+  }
+
+  function stableHash(value) {
+    let hash = 0x811c9dc5;
+    for (let index = 0; index < value.length; index += 1) {
+      hash ^= value.charCodeAt(index);
+      hash = Math.imul(hash, 0x01000193);
+    }
+    return (hash >>> 0).toString(16).padStart(8, "0");
+  }
+
+  function commentContext(dataset, caseData) {
+    const sensorId = Array.isArray(dataset.sensorViews) && dataset.sensorViews.length
+      ? currentSensorId || dataset.sensorViews[0].id
+      : "all";
+    const title = plainLanguage(caseData.title);
+    const subtitle = plainLanguage(caseData.subtitle);
+    const sourceId = caseData.id || [title, subtitle].join("|");
+    const identity = [dataset.id, sensorId, sourceId].join("|");
+    const caseId = `${dataset.id}-${stableHash(identity)}`;
+    const issueTitle = `[Case QA ${caseId}] ${title}`;
+    const pageUrl = `${location.origin}${location.pathname}#${dataset.id}${sensorId === "all" ? "" : `/${sensorId}`}`;
+    const issueBody = [
+      "## Dataset QA case",
+      "",
+      `- Case ID: \`${caseId}\``,
+      `- Source case ID: \`${sourceId}\``,
+      `- Dataset: ${dataset.name}`,
+      `- Sensor: ${sensorId}`,
+      `- Case: ${title}`,
+      `- Source: ${subtitle}`,
+      `- Website: ${pageUrl}`,
+      "",
+      "## Review comment",
+      "",
+      "<!-- Write your comment here. This issue is the permanent discussion thread for this case. -->",
+    ].join("\n");
+    const createUrl = `https://github.com/${commentRepository}/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueBody)}`;
+    return { caseId, issueTitle, createUrl };
+  }
+
+  function commentText(english, chinese) {
+    return isBilingual() && chinese ? `${english} / ${chinese}` : english;
+  }
+
+  function setCommentStatus(english, chinese) {
+    elements.commentsStatus.textContent = commentText(english, chinese);
+  }
+
+  function extractOpeningComment(body) {
+    const marker = "## Review comment";
+    const markerIndex = String(body || "").indexOf(marker);
+    if (markerIndex < 0) return "";
+    return String(body)
+      .slice(markerIndex + marker.length)
+      .replace(/<!--[\s\S]*?-->/g, "")
+      .trim();
+  }
+
+  function renderCaseComments(context, result) {
+    elements.commentsList.replaceChildren();
+    if (!result.issue) {
+      setCommentStatus("No comments yet.", "还没有评论。");
+      elements.commentsLink.href = context.createUrl;
+      elements.commentsLink.textContent = commentText("Start a comment thread on GitHub", "在 GitHub 发起评论");
+      return;
+    }
+
+    const openingComment = extractOpeningComment(result.issue.body);
+    const entries = [
+      ...(openingComment
+        ? [{
+            author: result.issue.user && result.issue.user.login ? result.issue.user.login : "reviewer",
+            authorUrl: result.issue.user && result.issue.user.html_url ? result.issue.user.html_url : result.issue.html_url,
+            body: openingComment,
+            createdAt: result.issue.created_at,
+            htmlUrl: result.issue.html_url,
+          }]
+        : []),
+      ...result.comments.map((comment) => ({
+        author: comment.user && comment.user.login ? comment.user.login : "reviewer",
+        authorUrl: comment.user && comment.user.html_url ? comment.user.html_url : comment.html_url,
+        body: comment.body || "",
+        createdAt: comment.created_at,
+        htmlUrl: comment.html_url,
+      })),
+    ];
+
+    entries.forEach((entry) => {
+      const article = document.createElement("article");
+      article.className = "case-comment";
+
+      const header = document.createElement("div");
+      header.className = "case-comment-meta";
+      const author = document.createElement("a");
+      author.href = entry.authorUrl;
+      author.target = "_blank";
+      author.rel = "noopener noreferrer";
+      author.textContent = `@${entry.author}`;
+      const timestamp = document.createElement("a");
+      timestamp.href = entry.htmlUrl;
+      timestamp.target = "_blank";
+      timestamp.rel = "noopener noreferrer";
+      timestamp.textContent = new Date(entry.createdAt).toLocaleString();
+      header.append(author, timestamp);
+
+      const body = document.createElement("p");
+      body.textContent = entry.body;
+      article.append(header, body);
+      elements.commentsList.append(article);
+    });
+
+    setCommentStatus(
+      entries.length === 1 ? "1 saved comment." : `${entries.length} saved comments.`,
+      `已保存 ${entries.length} 条评论。`,
+    );
+    elements.commentsLink.href = result.issue.html_url;
+    elements.commentsLink.textContent = commentText("View or add comment on GitHub", "在 GitHub 查看或添加评论");
+  }
+
+  async function loadCaseComments(dataset, caseData, force = false) {
+    const context = commentContext(dataset, caseData);
+    currentCommentContext = { dataset, caseData, context };
+    const token = ++commentLoadToken;
+    elements.commentsList.replaceChildren();
+    elements.commentsLink.href = context.createUrl;
+    elements.commentsLink.textContent = commentText("Add comment on GitHub", "在 GitHub 添加评论");
+    setCommentStatus("Loading saved comments…", "正在读取已保存的评论……");
+
+    if (!force && commentCache.has(context.caseId)) {
+      renderCaseComments(context, commentCache.get(context.caseId));
+      return;
+    }
+
+    try {
+      const query = `repo:${commentRepository} is:issue in:title ${context.caseId}`;
+      const issueResponse = await fetch(`https://api.github.com/search/issues?q=${encodeURIComponent(query)}`, {
+        headers: { Accept: "application/vnd.github+json" },
+      });
+      if (!issueResponse.ok) throw new Error(`GitHub search returned ${issueResponse.status}`);
+      const issueData = await issueResponse.json();
+      const issue = (issueData.items || []).find((candidate) => candidate.title.includes(`[Case QA ${context.caseId}]`)) || null;
+      let comments = [];
+      if (issue && issue.comments > 0) {
+        const commentsResponse = await fetch(`${commentApiRoot}/issues/${issue.number}/comments?per_page=100`, {
+          headers: { Accept: "application/vnd.github+json" },
+        });
+        if (!commentsResponse.ok) throw new Error(`GitHub comments returned ${commentsResponse.status}`);
+        comments = await commentsResponse.json();
+      }
+      if (token !== commentLoadToken) return;
+      const result = { issue, comments };
+      commentCache.set(context.caseId, result);
+      renderCaseComments(context, result);
+    } catch (_error) {
+      if (token !== commentLoadToken) return;
+      setCommentStatus(
+        "Saved comments could not be loaded. The GitHub link still works.",
+        "暂时无法读取已保存评论，但 GitHub 链接仍可使用。",
+      );
+    }
   }
 
   function formatNumber(value) {
@@ -856,6 +1028,9 @@
       [elements.errorTitle, "Confirmed filtered cases", "已确认并过滤的 case"],
       [elements.errorCountLabel, "cases shown", "展示样本"],
       [elements.emptyTitle, "No confirmed error cases", "没有确认错误样本"],
+      [elements.commentsTitle, "Case comments", "Case 评论"],
+      [elements.commentsHelp, "Comments are stored in GitHub Issues and remain available to every reviewer. GitHub login is required to post.", "评论保存在 GitHub Issues 中，所有审核者都能长期查看；发布评论需要登录 GitHub。"],
+      [elements.refreshComments, "Refresh comments", "刷新评论"],
       [elements.footerLabel, "SpatialEncoder dataset QA", "SpatialEncoder 数据集质量验证"],
     ];
     staticCopy.forEach(([element, english, chinese]) => {
@@ -1260,11 +1435,16 @@
       )
       .join("");
     elements.lightbox.showModal();
+    loadCaseComments(dataset, caseData);
   }
 
   function closeLightbox() {
+    commentLoadToken += 1;
+    currentCommentContext = null;
     elements.lightbox.close();
     elements.lightboxImage.removeAttribute("src");
+    elements.commentsList.replaceChildren();
+    elements.commentsStatus.textContent = "";
   }
 
   function setLanguage(language) {
@@ -1300,6 +1480,11 @@
     button.addEventListener("click", () => setTargetMode(button.dataset.targetMode));
   });
   elements.closeLightbox.addEventListener("click", closeLightbox);
+  elements.refreshComments.addEventListener("click", () => {
+    if (!currentCommentContext) return;
+    commentCache.delete(currentCommentContext.context.caseId);
+    loadCaseComments(currentCommentContext.dataset, currentCommentContext.caseData, true);
+  });
   elements.lightbox.addEventListener("click", (event) => {
     if (event.target === elements.lightbox) closeLightbox();
   });

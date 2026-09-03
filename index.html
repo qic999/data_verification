@@ -11,7 +11,7 @@
     />
     <title>SpatialEncoder · Dataset QA</title>
     <script>document.documentElement.classList.add("auth-locked");</script>
-    <link rel="stylesheet" href="styles.css?v=20260903-3" />
+    <link rel="stylesheet" href="styles.css?v=20260903-4" />
   </head>
   <body>
     <div class="auth-gate" id="auth-gate" role="dialog" aria-modal="true" aria-labelledby="auth-title">
@@ -401,10 +401,25 @@
         </div>
         <dl id="lightbox-metrics"></dl>
       </div>
+      <section class="case-comments" aria-labelledby="case-comments-title">
+        <div class="case-comments-heading">
+          <div>
+            <p class="section-kicker">REVIEW NOTES</p>
+            <h3 id="case-comments-title">Case comments</h3>
+          </div>
+          <button class="comment-refresh" id="refresh-case-comments" type="button">Refresh</button>
+        </div>
+        <p class="case-comments-help" id="case-comments-help">
+          Comments are stored in GitHub Issues and remain available to every reviewer.
+        </p>
+        <div class="case-comments-status" id="case-comments-status" role="status"></div>
+        <div class="case-comments-list" id="case-comments-list"></div>
+        <a class="comment-action" id="case-comments-link" target="_blank" rel="noopener noreferrer">Add comment on GitHub</a>
+      </section>
     </dialog>
 
-    <script src="cases-data.js?v=20260903-3"></script>
-    <script src="app.js?v=20260903-3"></script>
-    <script src="auth.js?v=20260903-3"></script>
+    <script src="cases-data.js?v=20260903-4"></script>
+    <script src="app.js?v=20260903-4"></script>
+    <script src="auth.js?v=20260903-4"></script>
   </body>
 </html>
