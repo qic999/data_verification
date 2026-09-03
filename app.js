@@ -925,7 +925,7 @@
   }
 
   function renderStats() {
-    elements.statsBody.innerHTML = data.datasets
+    const rows = data.datasets
       .map((dataset) => {
         const stats = targetStats(dataset);
         const status = targetStatus(dataset, stats);
@@ -949,7 +949,58 @@
       })
       .join("");
 
-    elements.statsBody.querySelectorAll("tr").forEach((row) => {
+    const totals = data.datasets.reduce(
+      (result, dataset) => {
+        const stats = targetStats(dataset);
+        const cases = tableCasesForTargetMode(dataset);
+        result.storage += Number(dataset.storageBytes ?? approxStorageBytes[dataset.id] ?? 0);
+        result.samples += Number(dataset.samples || 0);
+        result.videos += Number(dataset.videos || 0);
+        result.review += Number(stats.review || 0);
+        result.hard += Number(stats.hard || 0);
+        result.known += knownErrorCount(dataset);
+        result.validGallery += cases.valid.length;
+        result.reviewGallery += cases.review.length;
+        result.errorGallery += cases.error.length;
+        if (stats.availability !== "missing" && stats.review != null && stats.hard != null) {
+          result.rateDenominator += Number(dataset.observations || 0);
+        }
+        return result;
+      },
+      {
+        storage: 0,
+        samples: 0,
+        videos: 0,
+        review: 0,
+        hard: 0,
+        known: 0,
+        validGallery: 0,
+        reviewGallery: 0,
+        errorGallery: 0,
+        rateDenominator: 0,
+      },
+    );
+    const overallRate = totals.rateDenominator
+      ? (totals.review + totals.hard) / totals.rateDenominator
+      : null;
+    const overallRow = `
+      <tr class="overall-row" aria-label="Overall totals">
+        <td>${localized("Overall", "总计", true)}</td>
+        <td class="numeric storage-value">${formatStorage(totals.storage)}</td>
+        <td>${localized(`${data.datasets.length} datasets`, `${data.datasets.length} 个数据集`, true)}</td>
+        <td class="numeric">${formatNumber(totals.samples)}</td>
+        <td class="numeric">${formatNumber(totals.videos)}</td>
+        <td class="target-source">${localized("Varies by dataset", "各数据集不同", true)}</td>
+        <td class="numeric">${formatNumber(totals.review)}</td>
+        <td class="numeric">${formatNumber(totals.hard)}</td>
+        <td class="numeric">${overallRate == null ? "—" : formatRate(overallRate)}</td>
+        <td class="numeric">${formatNumber(totals.known)}</td>
+        <td class="numeric">${totals.validGallery} / ${totals.reviewGallery} / ${totals.errorGallery}</td>
+        <td><span class="table-status">${localized("Combined total", "全部汇总", true)}</span></td>
+      </tr>`;
+    elements.statsBody.innerHTML = rows + overallRow;
+
+    elements.statsBody.querySelectorAll("tr[data-dataset]").forEach((row) => {
       const activate = () => selectDataset(row.dataset.dataset, true);
       row.addEventListener("click", activate);
       row.addEventListener("keydown", (event) => {

@@ -951,6 +951,18 @@ tbody tr.active {
   background: rgba(84, 230, 162, 0.07);
 }
 
+tbody tr.overall-row,
+tbody tr.overall-row:hover {
+  cursor: default;
+  background: rgba(84, 230, 162, 0.11);
+}
+
+.overall-row td {
+  border-top: 2px solid rgba(84, 230, 162, 0.34);
+  color: var(--text);
+  font-weight: 760;
+}
+
 tbody tr:focus-visible {
   outline: 2px solid var(--mint);
   outline-offset: -2px;
