@@ -1,6 +1,6 @@
 # Data filtering rules
 
-Version: semantic-aware v2 (2026-09-02)
+Version: 3D-evidence v3 (2026-09-03)
 
 ## Principle
 
@@ -61,6 +61,7 @@ the fields in our converted training JSON.
 | SUN RGB-D | ✓ | ✓ | △ | ✓ | `gtBb2D`; released metric `groundtruth3DBB`; projection through `Rtilt` and `K` is ours |
 | Synscapes | ✓ | ✓ | △ | ✓ | Released metric instance 2D/ego-frame 3D boxes; cuboid-envelope projection is ours |
 | ATEK | ✓ | ✓ | ✓ | ✓ | `camera_box_2d_rend`; metric camera-frame center/scale/rotation; stored `camera_box_2d_proj`; camera-Z depth in meters |
+| ScanNet++ | △ | ✓ | △ | ✓ | Official annotated mesh -> visible box; released metric OBB; official DSLR/iPhone cameras or panorama direction maps + scanner poses -> projection |
 
 Primary format references include [WildDet3D](https://github.com/allenai/WildDet3D),
 [Omni3D](https://github.com/facebookresearch/omni3d/blob/main/cubercnn/data/datasets.py),
@@ -154,10 +155,133 @@ Current target policies:
 
 | Policy | Datasets |
 | --- | --- |
-| Visible | Pix3D, Structured3D, 3D-FRONT, Kubric, uCO3D, ABO, ShapeNet, Replica v2, SUN RGB-D, Synscapes, ATEK |
+| Visible | Pix3D, Structured3D, 3D-FRONT, Kubric, uCO3D, ABO, ShapeNet, Replica v2, SUN RGB-D, Synscapes, ATEK, ScanNet++ |
 | Amodal projected/clipped | CA-1M, HyperSim, ADT, HOPE Image/Video, Objectron, SceneVersepp |
 | Per-observation mixed | Omni3D, HSSD, HOI4D, WildDet3D |
 | Source unavailable; must be rechecked | ProcTHOR |
+
+## Step 5: depth-to-cuboid surface check
+
+This check asks whether the measured object surface is at the depth occupied by
+the 3D cuboid. It uses the depth map after the same unit conversion,
+ray-distance-to-camera-Z conversion, image rotation, and intrinsic update as the
+training loader.
+
+For each sampled object pixel, intersect its camera ray with the cuboid. The
+measured depth should fall between the ray's cuboid entry and exit depths after
+expanding the cuboid by 10% and allowing a minimum 3 cm tolerance for metric
+data.
+
+When an exact instance mask and at least 128 valid depth pixels are available:
+
+- hard reject if fewer than 10% of the measured object depths are supported by
+  the expanded cuboid;
+- human review if support is below 50%.
+
+When only a visible 2D box is available, background and occluder pixels are
+unavoidable. The same values are recorded as `diagnostic_only` and cannot
+cause an automatic reject.
+
+Transparent or reflective categories such as windows, glass, and mirrors are
+also `diagnostic_only`: the instance mask may be exact while the depth sensor
+measures a surface behind the labeled object.
+
+## Step 6: backprojected 3D-point containment check
+
+Backproject valid object depth pixels with the loader intrinsics and test the
+resulting camera-frame 3D points against the oriented cuboid. Report the
+fractions inside the original box and inside the 10%-expanded box.
+
+With an exact instance mask and at least 128 valid points:
+
+- hard reject if fewer than 10% of the points lie inside the expanded cuboid;
+- human review if fewer than 50% lie inside it.
+
+This check and Step 5 use related evidence, so they count as one depth-based
+evidence family in the final decision. They must not be counted twice to turn a
+single weak depth signal into a hard rejection.
+
+## Step 7: pose validity check
+
+Validate rotations **before** projecting them to SO(3). For both the object
+rotation and any camera-to-world pose, record
+`max(abs(R.T @ R - I))` and `abs(det(R) - 1)`.
+
+- hard reject malformed, non-finite, or singular transforms, or either error
+  above 0.05;
+- human review if either error is above 0.005.
+
+Known dataset-wide axis and handedness conversions are applied first. A model
+that repairs a slightly noisy rotation for training must not hide the original
+pose error from the audit.
+
+An object being tilted or lying on its side is not by itself an error. We do
+not hard reject an object from a category-level "upright" assumption; its pose
+must instead disagree with depth, source geometry, or multiple views.
+
+## Step 8: multi-view world-cuboid consistency check
+
+Apply this check only to a static object observed in at least three frames with
+valid, non-placeholder camera-to-world poses and actual camera motion. Transform
+each camera-frame cuboid to world coordinates and compare its eight corners to
+the same object's robust multi-view reference. Corner matching ignores cuboid
+corner order and axis-sign flips.
+
+Normalize the symmetric corner-set distance by the cuboid diagonal:
+
+- hard reject if the 90th-percentile normalized distance is above 0.25;
+- human review if it is above 0.10.
+
+Do not apply a static-scene rule to moving or manipulated objects (for example,
+HOI4D hands/objects, Kubric moving objects, or traffic participants). An
+identity/placeholder camera pose also makes this check `unavailable`, not a
+failure.
+
+## Step 9: free-space contradiction check
+
+For rays through an exact object mask, count pixels whose measured object depth
+is farther than the expanded cuboid's exit depth. A high fraction means the
+annotated cuboid is floating in known free space in front of the measured
+object.
+
+With at least 128 valid exact-mask depth pixels:
+
+- hard reject if more than 90% are behind the cuboid and surface support from
+  Step 5 is below 10%;
+- human review if more than 50% are behind the cuboid and surface support is
+  below 50%.
+
+With only a 2D-box proxy, free-space results are `diagnostic_only`, because the
+farther depth may belong to background rather than the object.
+The same exception applies to transparent/reflective objects.
+
+## 3D-evidence coverage and final labels
+
+The five added checks are evidence-dependent. Missing depth, mask, camera pose,
+or additional views is reported as `unavailable`; it is never treated as a
+pass or a failure.
+
+| Evidence level | Meaning |
+| --- | --- |
+| `3d_evidence_pass` | Steps 1--4 pass and at least one independent 3D evidence family (exact-mask depth/points, valid static multi-view consistency, or source mesh/point containment) passes. |
+| `projection_only_pass` | Steps 1--4 pass, but no independent 3D evidence is available. The projection is internally consistent; the physical 3D placement has not been verified. |
+| `review` | A review threshold is triggered, or strong but proxy-only evidence is suspicious. |
+| `hard_reject` | A hard rule is triggered using valid same-semantic or exact 3D evidence. |
+
+Current source capability is summarized below. `Exact` means that the source
+used here gives object pixels or source geometry; `proxy` means that only a 2D
+box is available for selecting depth pixels.
+
+| Dataset group | Depth / 3D points | Pose | Static multi-view | Free-space |
+| --- | --- | --- | --- | --- |
+| Structured3D, 3D-FRONT, Kubric | Exact synthetic evidence | Yes | Structured3D/3D-FRONT only; Kubric only for explicitly static objects | Exact |
+| uCO3D | Exact mask + aligned depth/point cloud | Yes | Yes | Exact |
+| ScanNet++ | Official instance mesh and sensor geometry | Yes | Yes | Exact source-mesh/raycast evidence |
+| ABO, ShapeNet | Exact object-render depth silhouette, but normalized/non-metric scale | Yes | Yes | Exact within each render's own scale |
+| HSSD, Replica, HyperSim | Dense metric depth; current converted package lacks a direct instance mask | Yes | Yes where multiple valid views exist | Proxy only until masks are linked |
+| WildDet3D, CA-1M, ADT, HOI4D, HOPE, SUN RGB-D, Synscapes, ATEK | Depth availability varies; current standardized package often has only a 2D-box proxy | Yes where non-placeholder | Dataset/object dependent | Proxy only unless an exact mask is resolved |
+| Omni3D, Pix3D, Objectron, SceneVerse++ | No dense depth in the current training package | Yes where non-placeholder | Objectron/SceneVerse++ where static and multi-view | Unavailable |
+| ProcTHOR | Source simulator can provide all evidence, but the current package provenance must first be resolved | To be resolved | To be resolved | To be resolved |
 
 ## Dataset-specific extensions
 
@@ -174,5 +298,8 @@ Current target policies:
 Review thresholds only produce candidates for human verification. Files or
 metadata may be deleted only after a hard rule based on valid semantic
 comparison, or after manual confirmation. Historical candidates generated by
-visible-to-amodal IoU or center thresholds must be re-audited under this v2
-policy before being treated as confirmed errors.
+visible-to-amodal IoU or center thresholds must be re-audited under this v3
+policy before being treated as confirmed errors. Existing projection-audit
+totals remain labeled as projection results until the corresponding 3D-evidence
+pass has completed; they must not be silently relabeled as physically verified
+3D boxes.

@@ -11,7 +11,7 @@
     />
     <title>SpatialEncoder · Dataset QA</title>
     <script>document.documentElement.classList.add("auth-locked");</script>
-    <link rel="stylesheet" href="styles.css?v=20260903-5" />
+    <link rel="stylesheet" href="styles.css?v=20260903-6" />
   </head>
   <body>
     <div class="auth-gate" id="auth-gate" role="dialog" aria-modal="true" aria-labelledby="auth-title">
@@ -100,8 +100,8 @@
               <span class="rule-zh">数据过滤规则</span>
             </div>
             <p class="rules-intro">
-              Known format, coordinate-axis, and scale conventions are corrected first. Only residual cases that meet a dataset-specific hard rule are filtered; borderline cases remain in the data and are sent to human review.
-              <span class="rule-zh">首先修正已知的数据格式、坐标轴和尺度约定。只有修正后仍满足数据集专用 hard rule 的样本才会被过滤；边界样本继续保留，并进入人工复核。</span>
+              Known format, coordinate-axis, and scale conventions are corrected first. Projection, depth, 3D points, pose, multiple views, and free space are then checked when the source data supports them. Missing evidence is marked unavailable, not passed. Only residual cases that meet a dataset-specific hard rule are filtered; borderline cases remain in the data and are sent to human review.
+              <span class="rule-zh">首先修正已知的数据格式、坐标轴和尺度约定。随后在源数据允许时检查投影、深度、3D 点、pose、多视角和自由空间。缺少证据时标记为 unavailable，不能算作通过。只有修正后仍满足数据集专用 hard rule 的样本才会被过滤；边界样本继续保留，并进入人工复核。</span>
             </p>
           </div>
 
@@ -203,6 +203,31 @@
                     <span class="rule-zh">Omni3D、HSSD、HOI4D 和 WildDet3D 属于混合语义。ProcTHOR 在源数据恢复前保持未分类。最终每张图像或视频帧都应保存 <code>box_2d_source = mask | tight | trunc | projected</code>。</span>
                   </td>
                 </tr>
+                <tr>
+                  <td><strong>Depth vs. 3D box</strong><span class="rule-zh">深度与 3D 框</span></td>
+                  <td>With an exact object mask and at least 128 valid depth pixels: hard if less than 10% of measured object depths fall inside the 10%-expanded cuboid along their camera rays.<span class="rule-zh">有精确物体 mask 且至少 128 个有效深度像素时：若少于 10% 的物体深度落在沿相机射线扩张 10% 的 3D 框内，则 hard reject。</span></td>
+                  <td>Review below 50%. A 2D-box-only proxy, or transparent/reflective object, is diagnostic only.<span class="rule-zh">低于 50% 进入人工复核。仅有 2D 框、或物体透明/反光时，只做辅助诊断。</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Backprojected 3D points</strong><span class="rule-zh">反投影 3D 点</span></td>
+                  <td>With an exact object mask: hard if less than 10% of backprojected object points lie inside the expanded cuboid.<span class="rule-zh">有精确物体 mask 时：若少于 10% 的反投影物体点位于扩张后的 3D 框内，则 hard reject。</span></td>
+                  <td>Review below 50%. This and the depth check are one evidence family and are not counted twice.<span class="rule-zh">低于 50% 进入人工复核。该检查与深度检查属于同一证据来源，不重复计数。</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Pose validity</strong><span class="rule-zh">Pose 有效性</span></td>
+                  <td>Check object and camera rotations before numerical repair. Hard if the matrix is malformed/non-finite, or orthogonality/right-handed determinant error is above 0.05.<span class="rule-zh">在数值修正前检查物体和相机旋转。矩阵形状/数值无效，或正交性/右手系行列式误差超过 0.05 时 hard reject。</span></td>
+                  <td>Review above 0.005. A tilted or fallen object is not an error unless it conflicts with depth, source geometry, or other views.<span class="rule-zh">误差超过 0.005 进入人工复核。物体倾斜或倒下本身不是错误，除非它与深度、源几何或其他视角冲突。</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Static multi-view check</strong><span class="rule-zh">静态多视角检查</span></td>
+                  <td>For the same static object in at least three moving-camera views: hard if the world-space cuboid corner error p90, divided by box diagonal, is above 0.25.<span class="rule-zh">同一静态物体至少有三个相机发生变化的视角时：世界坐标 3D 框角点误差 p90 除以框对角线后超过 0.25，则 hard reject。</span></td>
+                  <td>Review above 0.10. Moving/manipulated objects and placeholder camera poses are unavailable, not failed.<span class="rule-zh">超过 0.10 进入人工复核。运动/被操作的物体和占位相机 pose 记为 unavailable，不记为失败。</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Free-space check</strong><span class="rule-zh">自由空间检查</span></td>
+                  <td>With an exact mask: hard when over 90% of measured object depths are behind the cuboid and surface support is below 10%. This means the box is floating in front of the measured object.<span class="rule-zh">有精确 mask 时：超过 90% 的物体深度位于 3D 框之后，同时表面支持率低于 10%，则 hard reject；这表示框漂浮在测得物体前方的自由空间中。</span></td>
+                  <td>Review at 50%/50%. A 2D-box proxy and transparent/reflective objects are diagnostic only.<span class="rule-zh">两项比例达到 50%/50% 时进入人工复核。仅有 2D 框、或透明/反光物体时，只做辅助诊断。</span></td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -288,6 +313,7 @@
                   <th scope="col" class="numeric" id="th-filtered">Filtered errors</th>
                   <th scope="col" class="numeric" id="th-error-rate">Error rate</th>
                   <th scope="col" class="numeric" id="th-current-hard">Current Hard</th>
+                  <th scope="col" id="th-3d-evidence">3D evidence audit</th>
                   <th scope="col" class="numeric" id="th-gallery">Gallery (No-review / Review / Filtered)</th>
                   <th scope="col" id="th-status">Status</th>
                 </tr>
@@ -436,8 +462,8 @@
       </section>
     </dialog>
 
-    <script src="cases-data.js?v=20260903-5"></script>
-    <script src="app.js?v=20260903-5"></script>
-    <script src="auth.js?v=20260903-5"></script>
+    <script src="cases-data.js?v=20260903-6"></script>
+    <script src="app.js?v=20260903-6"></script>
+    <script src="auth.js?v=20260903-6"></script>
   </body>
 </html>

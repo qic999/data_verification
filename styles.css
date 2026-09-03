@@ -911,7 +911,7 @@ tr[hidden] {
 
 table {
   width: 100%;
-  min-width: 1620px;
+  min-width: 1900px;
   border-collapse: collapse;
 }
 
@@ -980,6 +980,25 @@ td:first-child {
 .storage-value {
   color: var(--text);
   font-weight: 680;
+}
+
+.evidence-summary {
+  display: flex;
+  min-width: 255px;
+  flex-direction: column;
+  gap: 3px;
+  white-space: normal;
+}
+
+.evidence-summary strong {
+  color: var(--text);
+  font-size: 13px;
+}
+
+.evidence-summary small {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.35;
 }
 
 .zero-value {

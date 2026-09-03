@@ -1,7 +1,7 @@
 window.DATASET_QA = {
   "generatedAt": "2026-09-03",
   "auditDate": "2026-09-03",
-  "assetVersion": "97749c23b34c",
+  "assetVersion": "947b2293a603",
   "loaderProvenance": {
     "wilddet3d": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -9,8 +9,8 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
-      "visualizationsGeneratedAt": "2026-08-29T00:07:17.577276+00:00"
+      "sha256": "46a773e52385f30e725e29038800443b3efe127c97b650c9f7fe4f0b801b1ded",
+      "visualizationsGeneratedAt": "2026-09-03T22:37:58.900803+00:00"
     },
     "omni3d": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -18,8 +18,8 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
-      "visualizationsGeneratedAt": "2026-08-29T00:07:47.926828+00:00"
+      "sha256": "46a773e52385f30e725e29038800443b3efe127c97b650c9f7fe4f0b801b1ded",
+      "visualizationsGeneratedAt": "2026-09-03T22:37:49.535324+00:00"
     },
     "pix3d": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -27,8 +27,8 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
-      "visualizationsGeneratedAt": "2026-08-29T00:08:31.972616+00:00"
+      "sha256": "46a773e52385f30e725e29038800443b3efe127c97b650c9f7fe4f0b801b1ded",
+      "visualizationsGeneratedAt": "2026-09-03T22:37:55.878925+00:00"
     },
     "structured3d": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -36,8 +36,8 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
-      "visualizationsGeneratedAt": "2026-08-29T00:09:23.107669+00:00"
+      "sha256": "46a773e52385f30e725e29038800443b3efe127c97b650c9f7fe4f0b801b1ded",
+      "visualizationsGeneratedAt": "2026-09-03T22:37:58.978940+00:00"
     },
     "3dfront": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -45,8 +45,8 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
-      "visualizationsGeneratedAt": "2026-08-29T00:10:10.648627+00:00"
+      "sha256": "46a773e52385f30e725e29038800443b3efe127c97b650c9f7fe4f0b801b1ded",
+      "visualizationsGeneratedAt": "2026-09-03T22:37:30.547875+00:00"
     },
     "kubric": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -54,8 +54,8 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
-      "visualizationsGeneratedAt": "2026-08-29T00:10:42.504670+00:00"
+      "sha256": "46a773e52385f30e725e29038800443b3efe127c97b650c9f7fe4f0b801b1ded",
+      "visualizationsGeneratedAt": "2026-09-03T22:37:25.563630+00:00"
     },
     "uco3d": {
       "loader": "UCO3DDetectionDataset._load_clip",
@@ -63,8 +63,8 @@ window.DATASET_QA = {
         "sam3/train/data/uco3d_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "4608b96ff02bca9a0e8bcf9187a706c3cd54168fc76bfb3ce5e3c35f18307f40",
-      "visualizationsGeneratedAt": "2026-08-29T00:12:52.543763+00:00"
+      "sha256": "aead14018084ec4b515c246845d49b39ddd379ca4acdf6469e2d0214a7714147",
+      "visualizationsGeneratedAt": "2026-09-03T22:37:38.714118+00:00"
     },
     "ca1m": {
       "loader": "CA1MTrainIterableDataset",
@@ -73,8 +73,8 @@ window.DATASET_QA = {
         "sam3/train/data/sam3_image_dataset.py",
         "sam3/train/data/filters/ca1m_hard_observations_20260827.jsonl"
       ],
-      "sha256": "57ee49058ec0e34d4bc8bf5760ac6092c65d6fc4bf083a0b686b607d7415d90b",
-      "visualizationsGeneratedAt": "2026-08-29T00:23:21.949409+00:00"
+      "sha256": "c1d86b6353b93315e445f7a86e396b59ef1ee9a6336f0f5c8089fa518a12e67e",
+      "visualizationsGeneratedAt": "2026-09-03T22:38:03.246583+00:00"
     },
     "hypersim": {
       "loader": "ObjectDetectionDataset",
@@ -82,8 +82,8 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
-      "visualizationsGeneratedAt": "2026-08-29T00:26:40.664585+00:00"
+      "sha256": "46a773e52385f30e725e29038800443b3efe127c97b650c9f7fe4f0b801b1ded",
+      "visualizationsGeneratedAt": "2026-09-03T22:38:01.496591+00:00"
     },
     "adt": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -91,8 +91,8 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
-      "visualizationsGeneratedAt": "2026-08-29T00:37:36.346864+00:00"
+      "sha256": "46a773e52385f30e725e29038800443b3efe127c97b650c9f7fe4f0b801b1ded",
+      "visualizationsGeneratedAt": "2026-09-03T22:38:16.764514+00:00"
     },
     "hssd": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -100,8 +100,8 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
-      "visualizationsGeneratedAt": "2026-08-29T00:04:08.823011+00:00"
+      "sha256": "46a773e52385f30e725e29038800443b3efe127c97b650c9f7fe4f0b801b1ded",
+      "visualizationsGeneratedAt": "2026-09-03T22:37:23.150010+00:00"
     },
     "abo": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -109,8 +109,8 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
-      "visualizationsGeneratedAt": "2026-08-29T00:04:32.706548+00:00"
+      "sha256": "46a773e52385f30e725e29038800443b3efe127c97b650c9f7fe4f0b801b1ded",
+      "visualizationsGeneratedAt": "2026-09-03T22:37:31.712945+00:00"
     },
     "shapenet": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -118,8 +118,8 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
-      "visualizationsGeneratedAt": "2026-08-29T00:04:57.928505+00:00"
+      "sha256": "46a773e52385f30e725e29038800443b3efe127c97b650c9f7fe4f0b801b1ded",
+      "visualizationsGeneratedAt": "2026-09-03T22:37:33.518980+00:00"
     },
     "replica": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -127,8 +127,8 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
-      "visualizationsGeneratedAt": "2026-08-29T00:14:58.140383+00:00"
+      "sha256": "46a773e52385f30e725e29038800443b3efe127c97b650c9f7fe4f0b801b1ded",
+      "visualizationsGeneratedAt": "2026-09-03T22:37:47.579545+00:00"
     },
     "hoi4d": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -136,7 +136,7 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "sha256": "46a773e52385f30e725e29038800443b3efe127c97b650c9f7fe4f0b801b1ded",
       "visualizationsGeneratedAt": "2026-08-29T06:04:05.434471+00:00"
     },
     "hope": {
@@ -145,7 +145,7 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "sha256": "46a773e52385f30e725e29038800443b3efe127c97b650c9f7fe4f0b801b1ded",
       "visualizationsGeneratedAt": "2026-09-02T04:50:26.468251+00:00"
     },
     "objectron": {
@@ -154,7 +154,7 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "sha256": "46a773e52385f30e725e29038800443b3efe127c97b650c9f7fe4f0b801b1ded",
       "visualizationsGeneratedAt": "2026-09-02T05:46:05.149519+00:00"
     },
     "sceneversepp": {
@@ -163,7 +163,7 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "sha256": "46a773e52385f30e725e29038800443b3efe127c97b650c9f7fe4f0b801b1ded",
       "visualizationsGeneratedAt": "2026-09-02T04:19:28.868105+00:00"
     },
     "sunrgbd": {
@@ -172,7 +172,7 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "sha256": "46a773e52385f30e725e29038800443b3efe127c97b650c9f7fe4f0b801b1ded",
       "visualizationsGeneratedAt": "2026-09-02T04:19:31.458092+00:00"
     },
     "synscapes": {
@@ -181,7 +181,7 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "sha256": "46a773e52385f30e725e29038800443b3efe127c97b650c9f7fe4f0b801b1ded",
       "visualizationsGeneratedAt": "2026-09-02T04:19:37.754062+00:00"
     },
     "atek": {
@@ -190,7 +190,7 @@ window.DATASET_QA = {
         "sam3/train/data/object_detection_dataset.py",
         "sam3/train/data/ca1m_dataset.py"
       ],
-      "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
+      "sha256": "46a773e52385f30e725e29038800443b3efe127c97b650c9f7fe4f0b801b1ded",
       "visualizationsGeneratedAt": "2026-09-02T11:50:59.901153+00:00"
     },
     "scannetpp": {
@@ -201,14 +201,7 @@ window.DATASET_QA = {
         "scripts/visualize_scannetpp_official_multisensor_website.py"
       ],
       "sha256": "f6092265b1416ad88602ad00046f67506c2fe8092c7c883d0ca17fae58766a97",
-      "visualizationsGeneratedAt": "2026-09-03T11:12:36.184659+00:00",
-      "sensorDetails": {
-        "dslr_pose": "official dslr/colmap/images.txt parsed by the official ScanNet++ toolkit",
-        "iphone_pose": "official iphone/colmap/images.txt parsed by the official ScanNet++ toolkit",
-        "object_geometry": "released metric OBB and official segments.json segment mapping",
-        "panocam_projection": "official azimuth/elevation convention plus scans/scanner_poses.json",
-        "visible_2d": "raycast from released annotated mesh"
-      }
+      "visualizationsGeneratedAt": "2026-09-03T11:12:36.184659+00:00"
     }
   },
   "datasets": [
@@ -224,6 +217,14 @@ window.DATASET_QA = {
       "description": "In-the-wild real images with object-level 2D boxes and metric 3D cuboids.",
       "statusDetail": "274 confirmed source-annotation failures were filtered; the current training data has no hard failures.",
       "currentHard": 0,
+      "storageBytes": 1474975957022,
+      "evidenceAudit": {
+        "status": "not_run",
+        "scope": "not yet run with all five v3 checks",
+        "observations": 0,
+        "counts": {},
+        "note": "Existing website totals are projection-audit results only."
+      },
       "filteredRate": 7.379028370478931e-05,
       "validCases": [
         {
@@ -551,6 +552,14 @@ window.DATASET_QA = {
       "description": "Multi-source indoor/outdoor metric 3D detection data normalized to one loader format.",
       "statusDetail": "349 invalid or inconsistent annotations were filtered; the current training data has no hard failures.",
       "currentHard": 0,
+      "storageBytes": 506325540256,
+      "evidenceAudit": {
+        "status": "not_run",
+        "scope": "not yet run with all five v3 checks",
+        "observations": 0,
+        "counts": {},
+        "note": "Existing website totals are projection-audit results only."
+      },
       "filteredRate": 0.000145772777414158,
       "validCases": [
         {
@@ -765,6 +774,14 @@ window.DATASET_QA = {
       "description": "Single-view object images calibrated to the pseudometric training convention.",
       "statusDetail": "Three irreparable chair cases were physically removed. They are the only confirmed Pix3D errors.",
       "currentHard": 0,
+      "storageBytes": 4601509897,
+      "evidenceAudit": {
+        "status": "not_run",
+        "scope": "not yet run with all five v3 checks",
+        "observations": 0,
+        "counts": {},
+        "note": "Existing website totals are projection-audit results only."
+      },
       "filteredRate": 0.00032,
       "validCases": [
         {
@@ -1050,6 +1067,35 @@ window.DATASET_QA = {
       "description": "Synthetic indoor views with metric scene geometry, camera parameters, and instance annotations.",
       "statusDetail": "82 visible-mask/cuboid containment failures were filtered; the current training data has no hard failures.",
       "currentHard": 0,
+      "storageBytes": 728417653488,
+      "evidenceAudit": {
+        "status": "pilot",
+        "scope": "deterministic 100-scene pilot per component",
+        "observations": 1280,
+        "counts": {
+          "3d_evidence_pass": 1228,
+          "projection_only_pass": 50,
+          "hard_reject": 1,
+          "review": 1
+        },
+        "depthStatusCounts": {
+          "pass": 1183,
+          "diagnostic_only": 95,
+          "hard_reject": 1,
+          "review": 1
+        },
+        "multiViewStatusCounts": {
+          "unavailable": 726,
+          "pass": 554
+        },
+        "maskEvidenceCounts": {
+          "exact_instance_mask": 1280
+        },
+        "components": [
+          "Structured3D"
+        ],
+        "note": "Pilot counts are shown separately and do not replace the full projection-audit totals."
+      },
       "filteredRate": 0.0003248463912339013,
       "validCases": [
         {
@@ -1377,6 +1423,32 @@ window.DATASET_QA = {
       "description": "Rendered indoor scenes with metric object geometry and known cameras.",
       "statusDetail": "No confirmed hard error remains under the current dataset-specific audit rule.",
       "currentHard": 0,
+      "storageBytes": 1974452303740,
+      "evidenceAudit": {
+        "status": "pilot",
+        "scope": "deterministic 100-scene pilot per component",
+        "observations": 332,
+        "counts": {
+          "3d_evidence_pass": 268,
+          "review": 63,
+          "hard_reject": 1
+        },
+        "depthStatusCounts": {
+          "pass": 268,
+          "review": 63,
+          "hard_reject": 1
+        },
+        "multiViewStatusCounts": {
+          "unavailable": 332
+        },
+        "maskEvidenceCounts": {
+          "exact_instance_mask": 332
+        },
+        "components": [
+          "3DFront"
+        ],
+        "note": "Pilot counts are shown separately and do not replace the full projection-audit totals."
+      },
       "filteredRate": 0.0,
       "validCases": [
         {
@@ -1619,6 +1691,14 @@ window.DATASET_QA = {
       "description": "Synthetic video frames with exact camera, pose, metric geometry, and instance masks.",
       "statusDetail": "4,596 generic-rule candidates were verified as valid false positives; none were removed.",
       "currentHard": 0,
+      "storageBytes": 6675445464421,
+      "evidenceAudit": {
+        "status": "not_run",
+        "scope": "not yet run with all five v3 checks",
+        "observations": 0,
+        "counts": {},
+        "note": "Existing website totals are projection-audit results only."
+      },
       "filteredRate": 0.0,
       "validCases": [
         {
@@ -1746,6 +1826,14 @@ window.DATASET_QA = {
       "description": "Object-centric real video sequences with per-frame cameras and reconstructed 3D boxes.",
       "statusDetail": "483,970 failed frame annotations were excluded from the clean-data construction; current audited training observations have no hard failures.",
       "currentHard": 0,
+      "storageBytes": 21235968261748,
+      "evidenceAudit": {
+        "status": "not_run",
+        "scope": "not yet run with all five v3 checks",
+        "observations": 0,
+        "counts": {},
+        "note": "Existing website totals are projection-audit results only."
+      },
       "filteredRate": 0.014606357062519355,
       "validCases": [
         {
@@ -2085,11 +2173,19 @@ window.DATASET_QA = {
       "description": "Large-scale metric egocentric video with per-frame camera geometry, depth, and object cuboids.",
       "statusDetail": "The audit covers the current train/validation loader scope. Thirty-one confirmed object-frame failures are excluded by the default loader manifest; 38,345 borderline observations remain for human verification.",
       "currentHard": 0,
+      "storageBytes": 1772241767522,
+      "evidenceAudit": {
+        "status": "not_run",
+        "scope": "not yet run with all five v3 checks",
+        "observations": 0,
+        "counts": {},
+        "note": "Existing website totals are projection-audit results only."
+      },
       "filteredRate": 1.243187433123534e-06,
       "validCases": [
         {
-          "id": "image / frame 299248360966666",
-          "title": "Case 01 · image",
+          "id": "47430514 / frame 299248360966666",
+          "title": "Case 01 · 47430514",
           "subtitle": "47430514/299248360966666.wide/image.png",
           "image": "assets/ca1m/valid/01.webp",
           "tag": "accepted",
@@ -2103,8 +2199,8 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": "image / frame 65717381014083",
-          "title": "Case 02 · image",
+          "id": "47430818 / frame 65717381014083",
+          "title": "Case 02 · 47430818",
           "subtitle": "47430818/65717381014083.wide/image.png",
           "image": "assets/ca1m/valid/02.webp",
           "tag": "accepted",
@@ -2118,8 +2214,8 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": "image / frame 102479402758833",
-          "title": "Case 03 · image",
+          "id": "42444887 / frame 102479402758833",
+          "title": "Case 03 · 42444887",
           "subtitle": "42444887/102479402758833.wide/image.png",
           "image": "assets/ca1m/valid/03.webp",
           "tag": "accepted",
@@ -2133,8 +2229,8 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": "image / frame 14978773816291",
-          "title": "Case 04 · image",
+          "id": "47204303 / frame 14978773816291",
+          "title": "Case 04 · 47204303",
           "subtitle": "47204303/14978773816291.wide/image.png",
           "image": "assets/ca1m/valid/04.webp",
           "tag": "accepted",
@@ -2148,8 +2244,8 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": "image / frame 32887630395082",
-          "title": "Case 05 · image",
+          "id": "47670038 / frame 32887630395082",
+          "title": "Case 05 · 47670038",
           "subtitle": "47670038/32887630395082.wide/image.png",
           "image": "assets/ca1m/valid/05.webp",
           "tag": "accepted",
@@ -2163,8 +2259,8 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": "image / frame 43434730502458",
-          "title": "Case 06 · image",
+          "id": "45261507 / frame 43434730502458",
+          "title": "Case 06 · 45261507",
           "subtitle": "45261507/43434730502458.wide/image.png",
           "image": "assets/ca1m/valid/06.webp",
           "tag": "accepted",
@@ -2364,6 +2460,14 @@ window.DATASET_QA = {
       "description": "Photorealistic synthetic indoor camera trajectories with metric geometry and exact cameras.",
       "statusDetail": "The audit covers the current train/validation loader scope. Thirty-four fully offscreen object observations are rejected by the loader object-validity filter; all loader-eligible observations pass.",
       "currentHard": 0,
+      "storageBytes": 61081211942,
+      "evidenceAudit": {
+        "status": "not_run",
+        "scope": "not yet run with all five v3 checks",
+        "observations": 0,
+        "counts": {},
+        "note": "Existing website totals are projection-audit results only."
+      },
       "filteredRate": 1.9532338371336178e-05,
       "validCases": [
         {
@@ -2558,6 +2662,14 @@ window.DATASET_QA = {
       "description": "Aria Digital Twin sequences with metric object geometry and shipped per-frame camera calibration.",
       "statusDetail": "All 7,027,584 audited object-frame observations pass the current loader-aligned geometry and projection checks.",
       "currentHard": 0,
+      "storageBytes": 874754862963,
+      "evidenceAudit": {
+        "status": "not_run",
+        "scope": "not yet run with all five v3 checks",
+        "observations": 0,
+        "counts": {},
+        "note": "Existing website totals are projection-audit results only."
+      },
       "filteredRate": 0.0,
       "validCases": [
         {
@@ -2668,6 +2780,32 @@ window.DATASET_QA = {
       "description": "Synthetic indoor sequences with metric object geometry, depth, and known cameras.",
       "statusDetail": "379 invalid-geometry or projection-metadata observations are excluded; none is eligible under the current training loader.",
       "currentHard": 0,
+      "storageBytes": 6383072099,
+      "evidenceAudit": {
+        "status": "pilot",
+        "scope": "deterministic 100-scene pilot per component",
+        "observations": 10715,
+        "counts": {
+          "projection_only_pass": 8483,
+          "hard_reject": 226,
+          "3d_evidence_pass": 2006
+        },
+        "depthStatusCounts": {
+          "diagnostic_only": 10523,
+          "unavailable": 192
+        },
+        "multiViewStatusCounts": {
+          "unavailable": 8651,
+          "pass": 2064
+        },
+        "maskEvidenceCounts": {
+          "box_proxy": 10715
+        },
+        "components": [
+          "HSSD"
+        ],
+        "note": "Pilot counts are shown separately and do not replace the full projection-audit totals."
+      },
       "validCases": [
         {
           "id": "102344022 / frame 000000",
@@ -2867,6 +3005,28 @@ window.DATASET_QA = {
       "description": "Multi-view product renders with normalized object geometry and known cameras.",
       "statusDetail": "154 automatic hard rejects and 2,790 visually adjudicated review observations are confirmed errors; all 2,944 are ineligible under the current training loader.",
       "currentHard": 0,
+      "storageBytes": 59483977905,
+      "evidenceAudit": {
+        "status": "pilot",
+        "scope": "deterministic 100-scene pilot per component",
+        "observations": 600,
+        "counts": {
+          "3d_evidence_pass": 600
+        },
+        "depthStatusCounts": {
+          "pass": 600
+        },
+        "multiViewStatusCounts": {
+          "pass": 600
+        },
+        "maskEvidenceCounts": {
+          "exact_instance_mask": 600
+        },
+        "components": [
+          "ABO"
+        ],
+        "note": "Pilot counts are shown separately and do not replace the full projection-audit totals."
+      },
       "validCases": [
         {
           "id": "B07TZRLNFV / frame 1",
@@ -3091,6 +3251,28 @@ window.DATASET_QA = {
       "description": "Rendered object views with normalized ShapeNet geometry and known cameras.",
       "statusDetail": "All 14 automated review observations were visually confirmed as errors and excluded; none is eligible under the current training loader.",
       "currentHard": 0,
+      "storageBytes": 400907684165,
+      "evidenceAudit": {
+        "status": "pilot",
+        "scope": "deterministic 100-scene pilot per component",
+        "observations": 600,
+        "counts": {
+          "3d_evidence_pass": 600
+        },
+        "depthStatusCounts": {
+          "pass": 600
+        },
+        "multiViewStatusCounts": {
+          "pass": 600
+        },
+        "maskEvidenceCounts": {
+          "exact_instance_mask": 600
+        },
+        "components": [
+          "ShapeNet"
+        ],
+        "note": "Pilot counts are shown separately and do not replace the full projection-audit totals."
+      },
       "validCases": [
         {
           "id": "76005568c6a76385c8f56abbf37ac61c / frame 1",
@@ -3315,6 +3497,14 @@ window.DATASET_QA = {
       "currentHard": 5,
       "description": "The HF v2 package contains one metric RGB/depth view per Replica scene with camera-frame 3D cuboids.",
       "statusDetail": "Of 313 current-loader-eligible object observations, 279 pass, 29 require human verification, and 5 remain hard rejects that have not yet been removed.",
+      "storageBytes": 44668375,
+      "evidenceAudit": {
+        "status": "not_run",
+        "scope": "not yet run with all five v3 checks",
+        "observations": 0,
+        "counts": {},
+        "note": "Existing website totals are projection-audit results only."
+      },
       "validCases": [
         {
           "id": "frl_apartment_4 / frame 0",
@@ -3609,9 +3799,31 @@ window.DATASET_QA = {
       "currentHard": 7978,
       "description": "Egocentric RGB-D video with metric object poses, 3D cuboids, masks, and camera calibration.",
       "statusDetail": "With visible 2D boxes, 74,469 object frames need review and 7,978 are rejected by the containment rule. When the 2D box is calculated from the 3D cuboid, all 206,263 observations pass the projection-consistency check.",
+      "storageBytes": 69950452236,
+      "evidenceAudit": {
+        "status": "pilot",
+        "scope": "deterministic 100-scene pilot per component",
+        "observations": 19865,
+        "counts": {
+          "projection_only_pass": 19865
+        },
+        "depthStatusCounts": {
+          "diagnostic_only": 19865
+        },
+        "multiViewStatusCounts": {
+          "unavailable": 19865
+        },
+        "maskEvidenceCounts": {
+          "box_proxy": 19865
+        },
+        "components": [
+          "HOI4D"
+        ],
+        "note": "Pilot counts are shown separately and do not replace the full projection-audit totals."
+      },
       "validCases": [
         {
-          "id": " source_1_dustbinbase / frame 000103",
+          "id": "ZY20210800001__H1__C14__N45__S155__s05__T1 / frame 000103",
           "title": "Dustbinbase · source_1_dustbinbase",
           "subtitle": "ZY20210800001__H1__C14__N45__S155__s05__T1 / source_1_dustbinbase",
           "image": "assets/hoi4d/valid/01.webp",
@@ -3626,7 +3838,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " source_2_dustbinbase / frame 000063",
+          "id": "ZY20210800001__H1__C14__N45__S207__s05__T2 / frame 000063",
           "title": "Dustbinbase · source_2_dustbinbase",
           "subtitle": "ZY20210800001__H1__C14__N45__S207__s05__T2 / source_2_dustbinbase",
           "image": "assets/hoi4d/valid/02.webp",
@@ -3641,7 +3853,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " source_1_dustbinbase / frame 000199",
+          "id": "ZY20210800001__H1__C14__N46__S158__s01__T1 / frame 000199",
           "title": "Dustbinbase · source_1_dustbinbase",
           "subtitle": "ZY20210800001__H1__C14__N46__S158__s01__T1 / source_1_dustbinbase",
           "image": "assets/hoi4d/valid/03.webp",
@@ -3656,7 +3868,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " source_1_chair / frame 000004",
+          "id": "ZY20210800001__H1__C20__N19__S381__s01__T1 / frame 000004",
           "title": "chair · source_1_chair",
           "subtitle": "ZY20210800001__H1__C20__N19__S381__s01__T1 / source_1_chair",
           "image": "assets/hoi4d/valid/04.webp",
@@ -3671,7 +3883,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " source_1_chair / frame 000226",
+          "id": "ZY20210800001__H1__C20__N20__S381__s03__T3 / frame 000226",
           "title": "chair · source_1_chair",
           "subtitle": "ZY20210800001__H1__C20__N20__S381__s03__T3 / source_1_chair",
           "image": "assets/hoi4d/valid/05.webp",
@@ -3686,7 +3898,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " source_1_chair / frame 000269",
+          "id": "ZY20210800001__H1__C20__N20__S381__s04__T4 / frame 000269",
           "title": "chair · source_1_chair",
           "subtitle": "ZY20210800001__H1__C20__N20__S381__s04__T4 / source_1_chair",
           "image": "assets/hoi4d/valid/06.webp",
@@ -3912,9 +4124,33 @@ window.DATASET_QA = {
       "description": "HOPE Image and HOPE Video use metric evaluation CAD models with released object poses, cameras, RGB, and depth.",
       "statusDetail": "All 13,864 audited object cases pass the current projected-box geometry checks. The package has no separate visible 2D box.",
       "currentHard": 0,
+      "storageBytes": 374021620,
+      "evidenceAudit": {
+        "status": "pilot",
+        "scope": "deterministic 100-scene pilot per component",
+        "observations": 2915,
+        "counts": {
+          "projection_only_pass": 2915
+        },
+        "depthStatusCounts": {
+          "diagnostic_only": 2908,
+          "unavailable": 7
+        },
+        "multiViewStatusCounts": {
+          "unavailable": 2915
+        },
+        "maskEvidenceCounts": {
+          "box_proxy": 2915
+        },
+        "components": [
+          "HOPEImage",
+          "HOPEVideo"
+        ],
+        "note": "Pilot counts are shown separately and do not replace the full projection-audit totals."
+      },
       "validCases": [
         {
-          "id": " MacaroniAndCheese_00 / frame 000000",
+          "id": "scene_0000_0003 / frame 000000",
           "title": "HOPE Image · MacaroniAndCheese · MacaroniAndCheese_00",
           "subtitle": "scene_0000_0003 / MacaroniAndCheese_00",
           "image": "assets/hope/valid/01.webp",
@@ -3929,7 +4165,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " PeasAndCarrots_01 / frame 000000",
+          "id": "scene_0001_0000 / frame 000000",
           "title": "HOPE Image · PeasAndCarrots · PeasAndCarrots_01",
           "subtitle": "scene_0001_0000 / PeasAndCarrots_01",
           "image": "assets/hope/valid/02.webp",
@@ -3944,7 +4180,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " CreamCheese_00 / frame 000000",
+          "id": "scene_0001_0001 / frame 000000",
           "title": "HOPE Image · CreamCheese · CreamCheese_00",
           "subtitle": "scene_0001_0001 / CreamCheese_00",
           "image": "assets/hope/valid/03.webp",
@@ -3959,7 +4195,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " OrangeJuice_00 / frame 000299",
+          "id": "scene_0000 / frame 000299",
           "title": "HOPE Video · OrangeJuice · OrangeJuice_00",
           "subtitle": "scene_0000 / OrangeJuice_00",
           "image": "assets/hope/valid/04.webp",
@@ -3974,7 +4210,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " Parmesan_00 / frame 000136",
+          "id": "scene_0001 / frame 000136",
           "title": "HOPE Video · Parmesan · Parmesan_00",
           "subtitle": "scene_0001 / Parmesan_00",
           "image": "assets/hope/valid/05.webp",
@@ -3989,7 +4225,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " Mayo_00 / frame 000188",
+          "id": "scene_0002 / frame 000188",
           "title": "HOPE Video · Mayo · Mayo_00",
           "subtitle": "scene_0002 / Mayo_00",
           "image": "assets/hope/valid/06.webp",
@@ -4021,9 +4257,17 @@ window.DATASET_QA = {
       "description": "Object-centric video with official metric 3D cuboids, camera poses, and projected cuboid keypoints.",
       "statusDetail": "All 962,458 audited object frames pass the projected-box geometry checks. The package has no separate visible 2D box.",
       "currentHard": 0,
+      "storageBytes": 568422148834,
+      "evidenceAudit": {
+        "status": "not_run",
+        "scope": "not yet run with all five v3 checks",
+        "observations": 0,
+        "counts": {},
+        "note": "Existing website totals are projection-audit results only."
+      },
       "validCases": [
         {
-          "id": " object_0000 / frame 000155",
+          "id": "cereal_box_batch_4_9 / frame 000155",
           "title": "cereal_box · object_0000",
           "subtitle": "cereal_box_batch_4_9 / object_0000",
           "image": "assets/objectron/valid/01.webp",
@@ -4038,7 +4282,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " object_0000 / frame 000120",
+          "id": "chair_batch_13_39 / frame 000120",
           "title": "chair · object_0000",
           "subtitle": "chair_batch_13_39 / object_0000",
           "image": "assets/objectron/valid/02.webp",
@@ -4053,7 +4297,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " object_0000 / frame 000074",
+          "id": "chair_batch_25_14 / frame 000074",
           "title": "chair · object_0000",
           "subtitle": "chair_batch_25_14 / object_0000",
           "image": "assets/objectron/valid/03.webp",
@@ -4068,7 +4312,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " object_0000 / frame 000314",
+          "id": "laptop_batch_20_2 / frame 000314",
           "title": "laptop · object_0000",
           "subtitle": "laptop_batch_20_2 / object_0000",
           "image": "assets/objectron/valid/04.webp",
@@ -4083,7 +4327,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " object_0000 / frame 000329",
+          "id": "laptop_batch_29_25 / frame 000329",
           "title": "laptop · object_0000",
           "subtitle": "laptop_batch_29_25 / object_0000",
           "image": "assets/objectron/valid/05.webp",
@@ -4098,7 +4342,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " object_0000 / frame 000195",
+          "id": "laptop_batch_35_26 / frame 000195",
           "title": "laptop · object_0000",
           "subtitle": "laptop_batch_35_26 / object_0000",
           "image": "assets/objectron/valid/06.webp",
@@ -4130,9 +4374,17 @@ window.DATASET_QA = {
       "description": "Indoor scene views with metric reconstructed geometry, object boxes, and released cameras.",
       "statusDetail": "All 408,969 audited object frames pass the projected-box geometry checks. The package has no separate visible 2D box.",
       "currentHard": 0,
+      "storageBytes": 8930671382,
+      "evidenceAudit": {
+        "status": "not_run",
+        "scope": "not yet run with all five v3 checks",
+        "observations": 0,
+        "counts": {},
+        "note": "Existing website totals are projection-audit results only."
+      },
       "validCases": [
         {
-          "id": " instance_0004 / frame 000046",
+          "id": "bedroom_100_EJamqKXFz9M / frame 000046",
           "title": "dresser · instance_0004",
           "subtitle": "bedroom_100_EJamqKXFz9M / instance_0004",
           "image": "assets/sceneversepp/valid/01.webp",
@@ -4147,7 +4399,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " instance_0029 / frame 000032",
+          "id": "bedroom_10_M2rsKDfngoE / frame 000032",
           "title": "pillow · instance_0029",
           "subtitle": "bedroom_10_M2rsKDfngoE / instance_0029",
           "image": "assets/sceneversepp/valid/02.webp",
@@ -4162,7 +4414,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " instance_0019 / frame 000007",
+          "id": "bedroom_13_93dt6xyC9fE / frame 000007",
           "title": "pillow · instance_0019",
           "subtitle": "bedroom_13_93dt6xyC9fE / instance_0019",
           "image": "assets/sceneversepp/valid/03.webp",
@@ -4177,7 +4429,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " instance_0025 / frame 000034",
+          "id": "bedroom_13_LAS5vtRL09k / frame 000034",
           "title": "pillow · instance_0025",
           "subtitle": "bedroom_13_LAS5vtRL09k / instance_0025",
           "image": "assets/sceneversepp/valid/04.webp",
@@ -4192,7 +4444,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " instance_0010 / frame 000000",
+          "id": "bedroom_15_PN1tWonpUt4 / frame 000000",
           "title": "wall · instance_0010",
           "subtitle": "bedroom_15_PN1tWonpUt4 / instance_0010",
           "image": "assets/sceneversepp/valid/05.webp",
@@ -4207,7 +4459,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " instance_0016 / frame 000001",
+          "id": "bedroom_16_4VNEW9hAMNI / frame 000001",
           "title": "window · instance_0016",
           "subtitle": "bedroom_16_4VNEW9hAMNI / instance_0016",
           "image": "assets/sceneversepp/valid/06.webp",
@@ -4239,9 +4491,33 @@ window.DATASET_QA = {
       "currentHard": 436,
       "description": "Indoor RGB-D images with official visible 2D boxes, metric 3D boxes, and camera calibration.",
       "statusDetail": "With visible 2D boxes, 2,129 objects need review and 436 are rejected by the containment rule. The separately recomputed 3D projections are internally consistent.",
+      "storageBytes": 2302818997,
+      "evidenceAudit": {
+        "status": "pilot",
+        "scope": "deterministic 100-scene pilot per component",
+        "observations": 380,
+        "counts": {
+          "projection_only_pass": 355,
+          "review": 24,
+          "hard_reject": 1
+        },
+        "depthStatusCounts": {
+          "diagnostic_only": 380
+        },
+        "multiViewStatusCounts": {
+          "unavailable": 380
+        },
+        "maskEvidenceCounts": {
+          "box_proxy": 380
+        },
+        "components": [
+          "SUN_RGB-D"
+        ],
+        "note": "Pilot counts are shown separately and do not replace the full projection-audit totals."
+      },
       "validCases": [
         {
-          "id": " object_000000 / frame 0",
+          "id": "kv1_024144bd68c6325a / frame 0",
           "title": "fridge · object_000000",
           "subtitle": "kv1_024144bd68c6325a / object_000000",
           "image": "assets/sunrgbd/valid/01.webp",
@@ -4256,7 +4532,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " object_000004 / frame 0",
+          "id": "kv1_090abd8bbf57de26 / frame 0",
           "title": "bookshelf · object_000004",
           "subtitle": "kv1_090abd8bbf57de26 / object_000004",
           "image": "assets/sunrgbd/valid/02.webp",
@@ -4271,7 +4547,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " object_000000 / frame 0",
+          "id": "kv1_0c29035f3fbe6e28 / frame 0",
           "title": "sink · object_000000",
           "subtitle": "kv1_0c29035f3fbe6e28 / object_000000",
           "image": "assets/sunrgbd/valid/03.webp",
@@ -4286,7 +4562,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " object_000000 / frame 0",
+          "id": "kv1_106ad78a8c6c5598 / frame 0",
           "title": "sink · object_000000",
           "subtitle": "kv1_106ad78a8c6c5598 / object_000000",
           "image": "assets/sunrgbd/valid/04.webp",
@@ -4301,7 +4577,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " object_000002 / frame 0",
+          "id": "kv1_141ebf0f8ccdd55a / frame 0",
           "title": "tv · object_000002",
           "subtitle": "kv1_141ebf0f8ccdd55a / object_000002",
           "image": "assets/sunrgbd/valid/05.webp",
@@ -4316,7 +4592,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " object_000004 / frame 0",
+          "id": "kv1_171acd34d410fd37 / frame 0",
           "title": "plastics · object_000004",
           "subtitle": "kv1_171acd34d410fd37 / object_000004",
           "image": "assets/sunrgbd/valid/06.webp",
@@ -4542,9 +4818,31 @@ window.DATASET_QA = {
       "currentHard": 2782,
       "description": "Synthetic driving images with official visible 2D boxes and metric 3D boxes.",
       "statusDetail": "With visible 2D boxes, 26,346 objects need review and 2,782 are rejected by the visible-box rule. The projected 2D envelopes are internally consistent with the 3D boxes.",
+      "storageBytes": 182082533497,
+      "evidenceAudit": {
+        "status": "pilot",
+        "scope": "deterministic 100-scene pilot per component",
+        "observations": 1333,
+        "counts": {
+          "projection_only_pass": 1333
+        },
+        "depthStatusCounts": {
+          "diagnostic_only": 1333
+        },
+        "multiViewStatusCounts": {
+          "unavailable": 1333
+        },
+        "maskEvidenceCounts": {
+          "box_proxy": 1333
+        },
+        "components": [
+          "Synscapes"
+        ],
+        "note": "Pilot counts are shown separately and do not replace the full projection-audit totals."
+      },
       "validCases": [
         {
-          "id": " instance_2600064 / frame 0",
+          "id": "synscapes_000003 / frame 0",
           "title": "car · instance_2600064",
           "subtitle": "synscapes_000003 / instance_2600064",
           "image": "assets/synscapes/valid/01.webp",
@@ -4559,7 +4857,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " instance_2400407 / frame 0",
+          "id": "synscapes_000006 / frame 0",
           "title": "person · instance_2400407",
           "subtitle": "synscapes_000006 / instance_2400407",
           "image": "assets/synscapes/valid/02.webp",
@@ -4574,7 +4872,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " instance_2600062 / frame 0",
+          "id": "synscapes_000009 / frame 0",
           "title": "car · instance_2600062",
           "subtitle": "synscapes_000009 / instance_2600062",
           "image": "assets/synscapes/valid/03.webp",
@@ -4589,7 +4887,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " instance_2400090 / frame 0",
+          "id": "synscapes_000017 / frame 0",
           "title": "person · instance_2400090",
           "subtitle": "synscapes_000017 / instance_2400090",
           "image": "assets/synscapes/valid/04.webp",
@@ -4604,7 +4902,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " instance_2400455 / frame 0",
+          "id": "synscapes_000023 / frame 0",
           "title": "person · instance_2400455",
           "subtitle": "synscapes_000023 / instance_2400455",
           "image": "assets/synscapes/valid/05.webp",
@@ -4619,7 +4917,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " instance_2600050 / frame 0",
+          "id": "synscapes_000032 / frame 0",
           "title": "car · instance_2600050",
           "subtitle": "synscapes_000032 / instance_2600050",
           "image": "assets/synscapes/valid/06.webp",
@@ -4845,9 +5143,32 @@ window.DATASET_QA = {
       "currentHard": 1403,
       "description": "Egocentric indoor video with visible 2D boxes, metric camera-frame 3D cuboids, RGB, depth, and camera calibration.",
       "statusDetail": "Of 1,450,396 audited object frames, 1,295,424 pass, 153,569 need human review, and 1,403 are rejected by the visible-containment rule. Stored and recomputed 3D projections agree within 1 px.",
+      "storageBytes": 538426855640,
+      "evidenceAudit": {
+        "status": "pilot",
+        "scope": "deterministic 100-scene pilot per component",
+        "observations": 1990,
+        "counts": {
+          "projection_only_pass": 1767,
+          "review": 223
+        },
+        "depthStatusCounts": {
+          "diagnostic_only": 1990
+        },
+        "multiViewStatusCounts": {
+          "unavailable": 1990
+        },
+        "maskEvidenceCounts": {
+          "box_proxy": 1990
+        },
+        "components": [
+          "ATEK"
+        ],
+        "note": "Pilot counts are shown separately and do not replace the full projection-audit totals."
+      },
       "validCases": [
         {
-          "id": " instance_000029 / frame 000079",
+          "id": "ase_train_scene_82352 / frame 000079",
           "title": "chair · instance_000029",
           "subtitle": "ase_train_scene_82352 / instance_000029",
           "image": "assets/atek/valid/01.webp",
@@ -4865,7 +5186,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " instance_000050 / frame 000043",
+          "id": "ase_train_scene_82356 / frame 000043",
           "title": "sofa · instance_000050",
           "subtitle": "ase_train_scene_82356 / instance_000050",
           "image": "assets/atek/valid/02.webp",
@@ -4883,7 +5204,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " instance_000030 / frame 000096",
+          "id": "ase_train_scene_82372 / frame 000096",
           "title": "lamp · instance_000030",
           "subtitle": "ase_train_scene_82372 / instance_000030",
           "image": "assets/atek/valid/03.webp",
@@ -4901,7 +5222,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " instance_000056 / frame 000195",
+          "id": "ase_train_scene_82378 / frame 000195",
           "title": "chair · instance_000056",
           "subtitle": "ase_train_scene_82378 / instance_000056",
           "image": "assets/atek/valid/04.webp",
@@ -4919,7 +5240,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " instance_000082 / frame 000162",
+          "id": "ase_train_scene_82395 / frame 000162",
           "title": "sofa · instance_000082",
           "subtitle": "ase_train_scene_82395 / instance_000082",
           "image": "assets/atek/valid/05.webp",
@@ -4937,7 +5258,7 @@ window.DATASET_QA = {
           }
         },
         {
-          "id": " instance_000315 / frame 000182",
+          "id": "ase_train_scene_82397 / frame 000182",
           "title": "lamp · instance_000315",
           "subtitle": "ase_train_scene_82397 / instance_000315",
           "image": "assets/atek/valid/06.webp",
@@ -5159,495 +5480,160 @@ window.DATASET_QA = {
       "samples": 1666251,
       "dataType": "Image + Video",
       "videos": 968,
-      "observations": 8298338,
+      "observations": 4281562,
       "review": 1,
       "filtered": 0,
       "filteredRate": 0.0,
       "currentHard": 0,
       "description": "Indoor DSLR images, iPhone video, and 360 RGB-D panoramas with official metric object boxes and cameras.",
-      "statusDetail": "Official sensor-specific audit: 8,298,338 object frames; 1 need human review and 0 are rejected. The earlier custom world-axis conversion was replaced by the official ScanNet++ camera parsing and panorama angle maps. Select DSLR, iPhone, or 360 Panorama below for separate results.",
-      "knownErrors": 0,
-      "targetModeStats": {
-        "visible": {
-          "source": "mesh-derived visible box with official sensor cameras",
-          "sourceZh": "由 mesh 派生的可见框和官方传感器相机",
-          "coverage": 8298338,
+      "statusDetail": "The complete official-camera audit covers 906 DSLR scenes, 968 iPhone scenes, and 956 panorama scenes. No hard error remains; one iPhone chair frame needs human verification.",
+      "storageBytes": 2486924822185,
+      "evidenceAudit": {
+        "status": "existing_exact_audit",
+        "scope": "complete official mesh/camera audit",
+        "observations": 8298338,
+        "counts": {
+          "3d_evidence_pass": 8298337,
           "review": 1,
-          "hard": 0
+          "hard_reject": 0,
+          "projection_only_pass": 0
         },
-        "projected": {
-          "source": "metric OBB projected with official sensor cameras",
-          "sourceZh": "metric OBB 使用官方传感器相机投影",
-          "coverage": 8298338,
-          "review": 0,
-          "hard": 0
-        }
+        "note": "Uses official instance meshes, OBBs, and sensor geometry."
       },
-      "sensorViews": [
+      "validCases": [
         {
-          "id": "dslr",
-          "name": "DSLR",
-          "samples": 900774,
-          "dataType": "Single image",
-          "videos": null,
-          "observations": 6076894,
-          "review": 1,
-          "filtered": 0,
-          "currentHard": 0,
-          "knownErrors": 0,
-          "description": "High-resolution DSLR images using the released COLMAP cameras and metric object boxes.",
-          "descriptionZh": "高分辨率 DSLR 图像，使用官方 COLMAP 相机和 metric 物体框。",
-          "statusDetail": "Of 6,076,894 audited object frames, 6,076,893 pass, 1 need human review, and 0 are rejected by the current rules.",
-          "statusDetailZh": "在 6,076,894 个审查物体帧中，6,076,893 个通过，1 个需要人工确认，0 个被当前规则拒绝。",
-          "targetModeStats": {
-            "visible": {
-              "source": "mesh-derived visible box + official COLMAP camera",
-              "sourceZh": "由 mesh 派生的可见框 + 官方 COLMAP 相机",
-              "coverage": 6076894,
-              "review": 1,
-              "hard": 0
-            },
-            "projected": {
-              "source": "derived from metric OBB with official COLMAP camera",
-              "sourceZh": "由 metric OBB 和官方 COLMAP 相机派生",
-              "coverage": 6076894,
-              "review": 0,
-              "hard": 0
-            }
-          },
-          "validCases": [
-            {
-              "id": "fb5a96b1a2 / frame DSC03949.JPG",
-              "title": "chair · object 16",
-              "subtitle": "dslr/fb5a96b1a2/DSC03949.JPG",
-              "image": "assets/scannetpp/dslr/valid/01.webp",
-              "tag": "accepted",
-              "reason": "Passed official sensor geometry and visible-containment checks",
-              "metrics": {
-                "objects": 1,
-                "medianIoU": 0.777,
-                "centerError": 0.0086,
-                "visibleContainment": 1.0,
-                "depthRangeM": [
-                  0.9168146204932597,
-                  1.817399083703629
-                ]
-              }
-            },
-            {
-              "id": "928c9da20c / frame DSC05547.JPG",
-              "title": "table · object 20",
-              "subtitle": "dslr/928c9da20c/DSC05547.JPG",
-              "image": "assets/scannetpp/dslr/valid/02.webp",
-              "tag": "accepted",
-              "reason": "Passed official sensor geometry and visible-containment checks",
-              "metrics": {
-                "objects": 1,
-                "medianIoU": 0.855,
-                "centerError": 0.0042,
-                "visibleContainment": 1.0,
-                "depthRangeM": [
-                  1.0791232773517736,
-                  2.208670535431769
-                ]
-              }
-            },
-            {
-              "id": "e667e09fe6 / frame 97575d69_DSC09944.JPG",
-              "title": "bed · object 2",
-              "subtitle": "dslr/e667e09fe6/97575d69_DSC09944.JPG",
-              "image": "assets/scannetpp/dslr/valid/03.webp",
-              "tag": "accepted",
-              "reason": "Passed official sensor geometry and visible-containment checks",
-              "metrics": {
-                "objects": 1,
-                "medianIoU": 0.387,
-                "centerError": 0.1403,
-                "visibleContainment": 1.0,
-                "depthRangeM": [
-                  1.0952608830796007,
-                  3.5033485258367887
-                ]
-              }
-            },
-            {
-              "id": "7f97f24691 / frame f674dab1_DSC08000.JPG",
-              "title": "sofa · object 5",
-              "subtitle": "dslr/7f97f24691/f674dab1_DSC08000.JPG",
-              "image": "assets/scannetpp/dslr/valid/04.webp",
-              "tag": "accepted",
-              "reason": "Passed official sensor geometry and visible-containment checks",
-              "metrics": {
-                "objects": 1,
-                "medianIoU": 0.789,
-                "centerError": 0.0029,
-                "visibleContainment": 1.0,
-                "depthRangeM": [
-                  1.3727309744205163,
-                  2.6227044908523545
-                ]
-              }
-            },
-            {
-              "id": "3d0b7d4b4e / frame f7226bb3_DSC01806.JPG",
-              "title": "cabinet · object 1",
-              "subtitle": "dslr/3d0b7d4b4e/f7226bb3_DSC01806.JPG",
-              "image": "assets/scannetpp/dslr/valid/05.webp",
-              "tag": "accepted",
-              "reason": "Passed official sensor geometry and visible-containment checks",
-              "metrics": {
-                "objects": 1,
-                "medianIoU": 0.618,
-                "centerError": 0.0367,
-                "visibleContainment": 1.0,
-                "depthRangeM": [
-                  1.076835833341,
-                  2.921033982854709
-                ]
-              }
-            },
-            {
-              "id": "7f22d5ef1b / frame a857ff37_DSC09743.JPG",
-              "title": "bookshelf · object 15",
-              "subtitle": "dslr/7f22d5ef1b/a857ff37_DSC09743.JPG",
-              "image": "assets/scannetpp/dslr/valid/06.webp",
-              "tag": "accepted",
-              "reason": "Passed official sensor geometry and visible-containment checks",
-              "metrics": {
-                "objects": 1,
-                "medianIoU": 0.939,
-                "centerError": 0.0007,
-                "visibleContainment": 1.0,
-                "depthRangeM": [
-                  0.7708159254674145,
-                  1.424358768006146
-                ]
-              }
-            }
-          ],
-          "reviewCases": [
-            {
-              "id": "270ada6f0d / frame DSC01151.JPG",
-              "title": "table · object 56",
-              "subtitle": "dslr/270ada6f0d/DSC01151.JPG",
-              "image": "assets/scannetpp/dslr/review/01.webp",
-              "tag": "review",
-              "reason": "visible_containment_review",
-              "metrics": {
-                "objects": 1,
-                "medianIoU": 0.533,
-                "centerError": 0.0051,
-                "visibleContainment": 0.882,
-                "depthRangeM": [
-                  7.386570829905253,
-                  9.043935232857812
-                ]
-              },
-              "issue": "The projected 3D box contains 88.20% of the visible 2D box. This is between the 50% hard-reject threshold and the 90% pass threshold, so the case needs visual confirmation.",
-              "issueZh": "投影 3D 框包含可见 2D 框的 88.20%。该数值位于 50% hard-reject 阈值和 90% 通过阈值之间，因此需要人工确认。"
-            }
-          ],
-          "errorCases": [],
-          "emptyMessage": "No DSLR case is rejected by the current official-sensor audit.",
-          "emptyMessageZh": "当前使用官方传感器模型的审查没有拒绝任何 DSLR case。"
+          "id": "fb5a96b1a2 / frame DSC03949.JPG",
+          "title": "chair · object 16",
+          "subtitle": "dslr/fb5a96b1a2/DSC03949.JPG",
+          "image": "assets/scannetpp/valid/01.webp",
+          "tag": "accepted",
+          "reason": "Passed official sensor geometry and visible-containment checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.777,
+            "centerError": 0.0086,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              0.9168146204932597,
+              1.817399083703629
+            ]
+          }
         },
         {
-          "id": "iphone",
-          "name": "iPhone",
-          "samples": 760349,
-          "dataType": "Video",
-          "videos": 968,
-          "observations": 2082685,
-          "review": 0,
-          "filtered": 0,
-          "currentHard": 0,
-          "knownErrors": 0,
-          "description": "iPhone video frames using the released COLMAP cameras, RGB, depth, annotated mesh, and metric object boxes.",
-          "descriptionZh": "iPhone 视频帧，使用官方 COLMAP 相机、RGB、深度、标注 mesh 和 metric 物体框。",
-          "statusDetail": "Of 2,082,685 audited object frames, 2,082,685 pass, 0 need human review, and 0 are rejected by the current rules.",
-          "statusDetailZh": "在 2,082,685 个审查物体帧中，2,082,685 个通过，0 个需要人工确认，0 个被当前规则拒绝。",
-          "targetModeStats": {
-            "visible": {
-              "source": "mesh-derived visible box + official COLMAP camera",
-              "sourceZh": "由 mesh 派生的可见框 + 官方 COLMAP 相机",
-              "coverage": 2082685,
-              "review": 0,
-              "hard": 0
-            },
-            "projected": {
-              "source": "derived from metric OBB with official COLMAP camera",
-              "sourceZh": "由 metric OBB 和官方 COLMAP 相机派生",
-              "coverage": 2082685,
-              "review": 0,
-              "hard": 0
-            }
-          },
-          "validCases": [
-            {
-              "id": "ac48a9b736 / frame frame_001600.jpg",
-              "title": "chair · object 38",
-              "subtitle": "iphone/ac48a9b736/frame_001600.jpg",
-              "image": "assets/scannetpp/iphone/valid/01.webp",
-              "tag": "accepted",
-              "reason": "Passed official sensor geometry and visible-containment checks",
-              "metrics": {
-                "objects": 1,
-                "medianIoU": 0.759,
-                "centerError": 0.0042,
-                "visibleContainment": 1.0,
-                "depthRangeM": [
-                  2.3210478212797625,
-                  3.5029637612951365
-                ]
-              }
-            },
-            {
-              "id": "d593a4f87a / frame frame_000000.jpg",
-              "title": "table · object 3",
-              "subtitle": "iphone/d593a4f87a/frame_000000.jpg",
-              "image": "assets/scannetpp/iphone/valid/02.webp",
-              "tag": "accepted",
-              "reason": "Passed official sensor geometry and visible-containment checks",
-              "metrics": {
-                "objects": 1,
-                "medianIoU": 0.257,
-                "centerError": 0.0814,
-                "visibleContainment": 1.0,
-                "depthRangeM": [
-                  2.028016876085206,
-                  4.378544778633544
-                ]
-              }
-            },
-            {
-              "id": "a4d48ea6b3 / frame frame_000000.jpg",
-              "title": "bed · object 42",
-              "subtitle": "iphone/a4d48ea6b3/frame_000000.jpg",
-              "image": "assets/scannetpp/iphone/valid/03.webp",
-              "tag": "accepted",
-              "reason": "Passed official sensor geometry and visible-containment checks",
-              "metrics": {
-                "objects": 1,
-                "medianIoU": 0.023,
-                "centerError": 0.4202,
-                "visibleContainment": 1.0,
-                "depthRangeM": [
-                  0.4625465868882941,
-                  2.07362818302587
-                ]
-              }
-            },
-            {
-              "id": "53755e535e / frame frame_000000.jpg",
-              "title": "sofa · object 16",
-              "subtitle": "iphone/53755e535e/frame_000000.jpg",
-              "image": "assets/scannetpp/iphone/valid/04.webp",
-              "tag": "accepted",
-              "reason": "Passed official sensor geometry and visible-containment checks",
-              "metrics": {
-                "objects": 1,
-                "medianIoU": 0.092,
-                "centerError": 0.1428,
-                "visibleContainment": 1.0,
-                "depthRangeM": [
-                  1.3588206607502866,
-                  3.6943471269747565
-                ]
-              }
-            },
-            {
-              "id": "d6d9ddb03f / frame frame_000000.jpg",
-              "title": "cabinet · object 11",
-              "subtitle": "iphone/d6d9ddb03f/frame_000000.jpg",
-              "image": "assets/scannetpp/iphone/valid/05.webp",
-              "tag": "accepted",
-              "reason": "Passed official sensor geometry and visible-containment checks",
-              "metrics": {
-                "objects": 1,
-                "medianIoU": 0.268,
-                "centerError": 0.0575,
-                "visibleContainment": 1.0,
-                "depthRangeM": [
-                  1.4238582245685203,
-                  2.501088597822404
-                ]
-              }
-            },
-            {
-              "id": "09c1414f1b / frame frame_000000.jpg",
-              "title": "bookshelf · object 58",
-              "subtitle": "iphone/09c1414f1b/frame_000000.jpg",
-              "image": "assets/scannetpp/iphone/valid/06.webp",
-              "tag": "accepted",
-              "reason": "Passed official sensor geometry and visible-containment checks",
-              "metrics": {
-                "objects": 1,
-                "medianIoU": 0.706,
-                "centerError": 0.023,
-                "visibleContainment": 1.0,
-                "depthRangeM": [
-                  2.8230227828032834,
-                  3.9053345503470402
-                ]
-              }
-            }
-          ],
-          "reviewCases": [],
-          "errorCases": [],
-          "emptyMessage": "No iPhone case is rejected by the current official-sensor audit.",
-          "emptyMessageZh": "当前使用官方传感器模型的审查没有拒绝任何 iPhone case。"
+          "id": "928c9da20c / frame DSC05547.JPG",
+          "title": "table · object 20",
+          "subtitle": "dslr/928c9da20c/DSC05547.JPG",
+          "image": "assets/scannetpp/valid/02.webp",
+          "tag": "accepted",
+          "reason": "Passed official sensor geometry and visible-containment checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.855,
+            "centerError": 0.0042,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              1.0791232773517736,
+              2.208670535431769
+            ]
+          }
         },
         {
-          "id": "panocam",
-          "name": "360 Panorama",
-          "samples": 5128,
-          "dataType": "Single image",
-          "videos": null,
-          "observations": 138759,
-          "review": 0,
-          "filtered": 0,
-          "currentHard": 0,
-          "knownErrors": 0,
-          "description": "360 RGB-D panoramas using the released azimuth/elevation maps, scanner poses, annotated mesh, and metric object boxes.",
-          "descriptionZh": "360 RGB-D 全景图，使用官方方位角/仰角 map、scanner pose、标注 mesh 和 metric 物体框。",
-          "statusDetail": "Of 138,759 audited object frames, 138,759 pass, 0 need human review, and 0 are rejected by the current rules.",
-          "statusDetailZh": "在 138,759 个审查物体帧中，138,759 个通过，0 个需要人工确认，0 个被当前规则拒绝。",
-          "targetModeStats": {
-            "visible": {
-              "source": "mesh-derived visible box + official spherical camera",
-              "sourceZh": "由 mesh 派生的可见框 + 官方球面相机",
-              "coverage": 138759,
-              "review": 0,
-              "hard": 0
-            },
-            "projected": {
-              "source": "derived from metric OBB with official spherical camera",
-              "sourceZh": "由 metric OBB 和官方球面相机派生",
-              "coverage": 138759,
-              "review": 0,
-              "hard": 0
-            }
-          },
-          "validCases": [
-            {
-              "id": "e3e0617f98 / frame 0.jpg",
-              "title": "chair · object 6",
-              "subtitle": "panocam/e3e0617f98/0.jpg",
-              "image": "assets/scannetpp/panocam/valid/01.webp",
-              "tag": "accepted",
-              "reason": "Passed official sensor geometry and visible-containment checks",
-              "metrics": {
-                "objects": 1,
-                "medianIoU": 0.697,
-                "centerError": 0.0084,
-                "visibleContainment": 1.0,
-                "depthRangeM": [
-                  0.4654677356378197,
-                  1.5529077451925515
-                ]
-              }
-            },
-            {
-              "id": "9d8fc94966 / frame 0.jpg",
-              "title": "table · object 1",
-              "subtitle": "panocam/9d8fc94966/0.jpg",
-              "image": "assets/scannetpp/panocam/valid/02.webp",
-              "tag": "accepted",
-              "reason": "Passed official sensor geometry and visible-containment checks",
-              "metrics": {
-                "objects": 1,
-                "medianIoU": 0.846,
-                "centerError": 0.007,
-                "visibleContainment": 1.0,
-                "depthRangeM": [
-                  0.9199380215891445,
-                  2.3054684457109516
-                ]
-              }
-            },
-            {
-              "id": "d497bb124d / frame 0.jpg",
-              "title": "bed · object 2",
-              "subtitle": "panocam/d497bb124d/0.jpg",
-              "image": "assets/scannetpp/panocam/valid/03.webp",
-              "tag": "accepted",
-              "reason": "Passed official sensor geometry and visible-containment checks",
-              "metrics": {
-                "objects": 1,
-                "medianIoU": 0.886,
-                "centerError": 0.0049,
-                "visibleContainment": 1.0,
-                "depthRangeM": [
-                  1.2204261746279776,
-                  3.142833941076153
-                ]
-              }
-            },
-            {
-              "id": "d27235711b / frame 0.jpg",
-              "title": "sofa · object 27",
-              "subtitle": "panocam/d27235711b/0.jpg",
-              "image": "assets/scannetpp/panocam/valid/04.webp",
-              "tag": "accepted",
-              "reason": "Passed official sensor geometry and visible-containment checks",
-              "metrics": {
-                "objects": 1,
-                "medianIoU": 0.599,
-                "centerError": 0.0294,
-                "visibleContainment": 1.0,
-                "depthRangeM": [
-                  0.877772386716475,
-                  3.2244139538175265
-                ]
-              }
-            },
-            {
-              "id": "ed2216380b / frame 0.jpg",
-              "title": "cabinet · object 2",
-              "subtitle": "panocam/ed2216380b/0.jpg",
-              "image": "assets/scannetpp/panocam/valid/05.webp",
-              "tag": "accepted",
-              "reason": "Passed official sensor geometry and visible-containment checks",
-              "metrics": {
-                "objects": 1,
-                "medianIoU": 0.922,
-                "centerError": 0.0016,
-                "visibleContainment": 1.0,
-                "depthRangeM": [
-                  0.7201074667365264,
-                  2.092247459370562
-                ]
-              }
-            },
-            {
-              "id": "27dc178a3d / frame 0.jpg",
-              "title": "bookshelf · object 5",
-              "subtitle": "panocam/27dc178a3d/0.jpg",
-              "image": "assets/scannetpp/panocam/valid/06.webp",
-              "tag": "accepted",
-              "reason": "Passed official sensor geometry and visible-containment checks",
-              "metrics": {
-                "objects": 1,
-                "medianIoU": 0.902,
-                "centerError": 0.0037,
-                "visibleContainment": 1.0,
-                "depthRangeM": [
-                  1.107568330327162,
-                  2.207354544483902
-                ]
-              }
-            }
-          ],
-          "reviewCases": [],
-          "errorCases": [],
-          "emptyMessage": "No 360 Panorama case is rejected by the current official-sensor audit.",
-          "emptyMessageZh": "当前使用官方传感器模型的审查没有拒绝任何 360 Panorama case。"
+          "id": "e667e09fe6 / frame 97575d69_DSC09944.JPG",
+          "title": "bed · object 2",
+          "subtitle": "dslr/e667e09fe6/97575d69_DSC09944.JPG",
+          "image": "assets/scannetpp/valid/03.webp",
+          "tag": "accepted",
+          "reason": "Passed official sensor geometry and visible-containment checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.387,
+            "centerError": 0.1403,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              1.0952608830796007,
+              3.5033485258367887
+            ]
+          }
+        },
+        {
+          "id": "7f97f24691 / frame f674dab1_DSC08000.JPG",
+          "title": "sofa · object 5",
+          "subtitle": "dslr/7f97f24691/f674dab1_DSC08000.JPG",
+          "image": "assets/scannetpp/valid/04.webp",
+          "tag": "accepted",
+          "reason": "Passed official sensor geometry and visible-containment checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.789,
+            "centerError": 0.0029,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              1.3727309744205163,
+              2.6227044908523545
+            ]
+          }
+        },
+        {
+          "id": "3d0b7d4b4e / frame f7226bb3_DSC01806.JPG",
+          "title": "cabinet · object 1",
+          "subtitle": "dslr/3d0b7d4b4e/f7226bb3_DSC01806.JPG",
+          "image": "assets/scannetpp/valid/05.webp",
+          "tag": "accepted",
+          "reason": "Passed official sensor geometry and visible-containment checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.618,
+            "centerError": 0.0367,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              1.076835833341,
+              2.921033982854709
+            ]
+          }
+        },
+        {
+          "id": "7f22d5ef1b / frame a857ff37_DSC09743.JPG",
+          "title": "bookshelf · object 15",
+          "subtitle": "dslr/7f22d5ef1b/a857ff37_DSC09743.JPG",
+          "image": "assets/scannetpp/valid/06.webp",
+          "tag": "accepted",
+          "reason": "Passed official sensor geometry and visible-containment checks",
+          "metrics": {
+            "objects": 1,
+            "medianIoU": 0.939,
+            "centerError": 0.0007,
+            "envelopeErrorPx": null,
+            "depthRangeM": [
+              0.7708159254674145,
+              1.424358768006146
+            ]
+          }
         }
       ],
-      "validCases": [],
-      "reviewCases": [],
+      "reviewCases": [
+        {
+          "id": "270ada6f0d / frame DSC01151.JPG",
+          "title": "table · 56",
+          "subtitle": "dslr/270ada6f0d/DSC01151.JPG",
+          "image": "assets/scannetpp/review/01.webp",
+          "tag": "review",
+          "reason": "visible_containment_review",
+          "metrics": {
+            "objects": 1,
+            "IoU": 0.533,
+            "centerError": 0.0051,
+            "visibleContainment": 0.882,
+            "depthRangeM": [
+              7.386570829905253,
+              9.043935232857812
+            ]
+          },
+          "issue": "The projected 3D box contains 88.20% of the visible 2D box. This is between the 50% hard-reject threshold and the 90% pass threshold, so the case needs visual confirmation.",
+          "issueZh": "投影 3D 框包含可见 2D 框的 88.20%。该数值位于 50% hard-reject 阈值和 90% 通过阈值之间，因此需要人工确认。"
+        }
+      ],
       "errorCases": [],
-      "emptyMessage": "Choose a ScanNet++ sensor tab to view its cases."
+      "emptyMessage": "The complete audit found no hard or confirmed filtered ScanNet++ case. One iPhone chair frame remains in the separate human-review lane."
     }
   ]
 };

@@ -441,6 +441,7 @@
     thFiltered: document.querySelector("#th-filtered"),
     thErrorRate: document.querySelector("#th-error-rate"),
     thCurrentHard: document.querySelector("#th-current-hard"),
+    th3dEvidence: document.querySelector("#th-3d-evidence"),
     thGallery: document.querySelector("#th-gallery"),
     thStatus: document.querySelector("#th-status"),
     navSelectLabel: document.querySelector("#nav-select-label"),
@@ -741,6 +742,21 @@
     return `≈${scaled.toFixed(digits)} ${units[unitIndex]}`;
   }
 
+  function format3dEvidence(audit) {
+    if (!audit || audit.status === "not_run") {
+      return localized("Not run", "尚未运行", true);
+    }
+    const counts = audit.counts || {};
+    const pass = Number(counts["3d_evidence_pass"] || 0);
+    const projectionOnly = Number(counts["projection_only_pass"] || 0);
+    const review = Number(counts.review || 0);
+    const hard = Number(counts.hard_reject || 0);
+    const scope = audit.status === "pilot"
+      ? localized("pilot", "试运行", true)
+      : localized("exact audit", "精确审查", true);
+    return `<span class="evidence-summary" title="${plainLanguage(audit.scope || "")}"><strong>n=${formatNumber(audit.observations || 0)}</strong><small>${scope}: 3D pass ${formatNumber(pass)} · 2D-only ${formatNumber(projectionOnly)} · review ${formatNumber(review)} · hard ${formatNumber(hard)}</small></span>`;
+  }
+
   function datasetViewForSensor(dataset, sensor) {
     return {
       ...dataset,
@@ -1020,6 +1036,7 @@
       [elements.thFiltered, "Rejected by rule", "被规则拒绝"],
       [elements.thErrorRate, "Review / reject rate", "复核 / 拒绝占比"],
       [elements.thCurrentHard, "Known errors / rule rejects", "已知错误 / 规则拒绝"],
+      [elements.th3dEvidence, "3D evidence audit", "3D 证据审查"],
       [elements.thGallery, "Gallery (Pass / Review / Rejected)", "网站展示（通过 / 复核 / 已拒绝）"],
       [elements.thStatus, "Policy outcome", "策略结果"],
       [elements.navSelectLabel, "SELECT DATASET", "选择数据集"],
@@ -1106,12 +1123,12 @@
 
     const note =
       currentTargetMode === "visible"
-        ? "Visible-box checks use one-way containment where possible. CA-1M has no separate visible 2D box in the current files, and Omni3D mixes visible boxes with boxes projected from 3D. Approx. storage is the current local dataset/package size in decimal units."
-        : "These 2D boxes come from the same 3D boxes. Fewer warnings only mean fewer geometry or conversion failures; they do not prove that the 3D boxes fit the objects. Approx. storage is the current local dataset/package size in decimal units.";
+        ? "Visible-box checks use one-way containment where possible. CA-1M has no separate visible 2D box in the current files, and Omni3D mixes visible boxes with boxes projected from 3D. Approx. storage is the current local dataset/package size in decimal units. The 3D-evidence column is a separate v3 pilot and does not replace the full projection totals. ‘3D pass’ has independent depth/multi-view evidence; ‘2D-only’ has only projection agreement."
+        : "These 2D boxes come from the same 3D boxes. Fewer warnings only mean fewer geometry or conversion failures; they do not prove that the 3D boxes fit the objects. Approx. storage is the current local dataset/package size in decimal units. The 3D-evidence column is a separate v3 pilot and does not replace the full projection totals. ‘3D pass’ has independent depth/multi-view evidence; ‘2D-only’ has only projection agreement.";
     const noteZh =
       currentTargetMode === "visible"
-        ? "可见 2D 框模式尽量使用单向包含率。当前 CA-1M 文件没有单独的可见 2D 框；Omni3D 混合了可见框和由 3D 计算的 2D 框。大致存储空间按当前本地数据目录或数据包计算，使用十进制单位。"
-        : "这些 2D 框来自同一个 3D 框。更少的告警只表示几何或转换失败更少，不能说明 3D 框一定贴合物体。大致存储空间按当前本地数据目录或数据包计算，使用十进制单位。";
+        ? "可见 2D 框模式尽量使用单向包含率。当前 CA-1M 文件没有单独的可见 2D 框；Omni3D 混合了可见框和由 3D 计算的 2D 框。大致存储空间按当前本地数据目录或数据包计算，使用十进制单位。3D 证据列是单独的 v3 试运行，不替换完整投影审查总数。‘3D pass’ 有独立深度或多视角证据；‘2D-only’ 只有投影一致性。"
+        : "这些 2D 框来自同一个 3D 框。更少的告警只表示几何或转换失败更少，不能说明 3D 框一定贴合物体。大致存储空间按当前本地数据目录或数据包计算，使用十进制单位。3D 证据列是单独的 v3 试运行，不替换完整投影审查总数。‘3D pass’ 有独立深度或多视角证据；‘2D-only’ 只有投影一致性。";
     elements.tableNote.innerHTML = localized(note, noteZh);
   }
 
@@ -1134,6 +1151,7 @@
             <td class="numeric">${stats.hard == null ? "—" : formatNumber(stats.hard)}</td>
             <td class="numeric">${flagRate == null ? "—" : formatRate(flagRate)}</td>
             <td class="numeric">${formatNumber(knownErrorCount(dataset))}</td>
+            <td>${format3dEvidence(dataset.evidenceAudit)}</td>
             <td class="numeric">${cases.valid.length} / ${cases.review.length} / ${cases.error.length}</td>
             <td><span class="table-status ${status.className}">${localized(status.text, status.textZh, true)}</span></td>
           </tr>`;
@@ -1150,6 +1168,12 @@
         result.review += Number(stats.review || 0);
         result.hard += Number(stats.hard || 0);
         result.known += knownErrorCount(dataset);
+        const evidenceCounts = (dataset.evidenceAudit && dataset.evidenceAudit.counts) || {};
+        result.evidenceObservations += Number((dataset.evidenceAudit && dataset.evidenceAudit.observations) || 0);
+        result.evidencePass += Number(evidenceCounts["3d_evidence_pass"] || 0);
+        result.evidenceProjectionOnly += Number(evidenceCounts["projection_only_pass"] || 0);
+        result.evidenceReview += Number(evidenceCounts.review || 0);
+        result.evidenceHard += Number(evidenceCounts.hard_reject || 0);
         result.validGallery += cases.valid.length;
         result.reviewGallery += cases.review.length;
         result.errorGallery += cases.error.length;
@@ -1165,6 +1189,11 @@
         review: 0,
         hard: 0,
         known: 0,
+        evidenceObservations: 0,
+        evidencePass: 0,
+        evidenceProjectionOnly: 0,
+        evidenceReview: 0,
+        evidenceHard: 0,
         validGallery: 0,
         reviewGallery: 0,
         errorGallery: 0,
@@ -1186,6 +1215,7 @@
         <td class="numeric">${formatNumber(totals.hard)}</td>
         <td class="numeric">${overallRate == null ? "—" : formatRate(overallRate)}</td>
         <td class="numeric">${formatNumber(totals.known)}</td>
+        <td>${format3dEvidence({status: "pilot", scope: "combined available 3D-evidence audits", observations: totals.evidenceObservations, counts: {"3d_evidence_pass": totals.evidencePass, "projection_only_pass": totals.evidenceProjectionOnly, review: totals.evidenceReview, hard_reject: totals.evidenceHard}})}</td>
         <td class="numeric">${totals.validGallery} / ${totals.reviewGallery} / ${totals.errorGallery}</td>
         <td><span class="table-status">${localized("Combined total", "全部汇总", true)}</span></td>
       </tr>`;
@@ -1302,6 +1332,7 @@
       ["need human review", "需要人工复核", stats.review == null ? "—" : formatNumber(stats.review)],
       ["rejected by rule", "被规则拒绝", stats.hard == null ? "—" : formatNumber(stats.hard)],
       ["known errors / rule rejects", "已知错误 / 规则拒绝", formatNumber(knownErrorCount(dataset))],
+      ["3D evidence audit", "3D 证据审查", format3dEvidence(dataset.evidenceAudit)],
     ]
       .map(
         ([english, chinese, value]) => `
