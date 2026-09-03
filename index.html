@@ -188,8 +188,8 @@
                     <span class="rule-zh">计算 <code>visible containment = area(visible ∩ projected) / area(visible)</code>，优先使用精确 mask pixels。Hard：包含率 <code>&lt; 0.50</code>。Visible-to-amodal IoU 与中心偏差绝不直接触发过滤。</span>
                   </td>
                   <td>
-                    If not hard-filtered: <code>containment &lt; 0.90</code>. Applies to Pix3D, Structured3D, 3D-FRONT, Kubric, uCO3D, ABO, ShapeNet, Replica v2, SUN RGB-D, Synscapes, and ATEK. Dataset-specific exact-geometry checks remain active.
-                    <span class="rule-zh">未达到 hard rule 时，<code>包含率 &lt; 0.90</code> 进入人工复核。适用于 Pix3D、Structured3D、3D-FRONT、Kubric、uCO3D、ABO、ShapeNet、Replica v2、SUN RGB-D、Synscapes 和 ATEK；数据集专用的精确几何检查继续保留。</span>
+                    If not hard-filtered: <code>containment &lt; 0.90</code>. Applies to Pix3D, Structured3D, 3D-FRONT, Kubric, uCO3D, ABO, ShapeNet, Replica v2, SUN RGB-D, Synscapes, ATEK, and ScanNet++. Dataset-specific exact-geometry checks remain active.
+                    <span class="rule-zh">未达到 hard rule 时，<code>包含率 &lt; 0.90</code> 进入人工复核。适用于 Pix3D、Structured3D、3D-FRONT、Kubric、uCO3D、ABO、ShapeNet、Replica v2、SUN RGB-D、Synscapes、ATEK 和 ScanNet++；数据集专用的精确几何检查继续保留。</span>
                   </td>
                 </tr>
                 <tr data-rule-mode="visible">
@@ -258,6 +258,7 @@
                 <tr><td><strong>SUN RGB-D</strong></td><td class="mark direct">✓</td><td class="mark direct">✓</td><td class="mark derived">△</td><td class="mark direct">✓</td><td><code>gtBb2D</code>; metric <code>groundtruth3DBB</code>; project through <code>Rtilt</code> and <code>K</code>.</td></tr>
                 <tr><td><strong>Synscapes</strong></td><td class="mark direct">✓</td><td class="mark direct">✓</td><td class="mark derived">△</td><td class="mark direct">✓</td><td>Official metric instance 2D/ego-frame 3D boxes; envelope projection is ours.<span class="rule-zh">官方 metric instance 2D/ego-frame 3D box；2D 投影包络由本项目计算。</span></td></tr>
                 <tr><td><strong>ATEK</strong></td><td class="mark direct">✓</td><td class="mark direct">✓</td><td class="mark direct">✓</td><td class="mark direct">✓</td><td><code>camera_box_2d_rend</code>; metric camera-frame center/scale/rotation; stored <code>camera_box_2d_proj</code> and camera-Z depth.<span class="rule-zh">直接提供 <code>camera_box_2d_rend</code>、米制相机坐标系 3D 中心/尺寸/旋转、<code>camera_box_2d_proj</code> 和相机 Z 深度。</span></td></tr>
+                <tr><td><strong>ScanNet++</strong></td><td class="mark derived">△</td><td class="mark direct">✓</td><td class="mark derived">△</td><td class="mark direct">✓</td><td>Visible box from the official annotated mesh; released metric OBB; projection uses the official DSLR/iPhone cameras or panorama direction maps and scanner poses.<span class="rule-zh">可见框由官方标注 mesh 派生；官方直接提供 metric OBB；投影使用官方 DSLR/iPhone 相机，或全景方向图与 scanner pose。</span></td></tr>
               </tbody>
             </table>
           </div>
@@ -298,7 +299,7 @@
         <nav class="dataset-nav" aria-label="Select dataset">
           <div class="nav-label">
             <span id="nav-select-label">SELECT DATASET</span>
-            <strong id="dataset-count">21 datasets</strong>
+            <strong id="dataset-count">22 datasets</strong>
           </div>
           <div class="dataset-tabs" id="dataset-tabs" role="tablist"></div>
         </nav>

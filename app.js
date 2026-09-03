@@ -186,6 +186,10 @@
       visible: { source: "official visible box", sourceZh: "官方可见框", coverage: 1450396, review: 153569, hard: 1403 },
       projected: { source: "official / recomputed projection", sourceZh: "官方 / 重算投影", coverage: 1450396, review: 0, hard: 0, known: 0, hideKnownErrors: true },
     },
+    scannetpp: {
+      visible: { source: "derived from official annotated mesh", sourceZh: "由官方标注 mesh 派生", coverage: 4281562, review: 1, hard: 0 },
+      projected: { source: "derived from official metric OBB", sourceZh: "由官方 metric OBB 投影", coverage: 4281562, review: 0, hard: 0 },
+    },
   };
 
 
@@ -285,6 +289,11 @@
     atek: {
       description: "具有可见 2D 框、米制相机坐标系 3D 框、RGB、深度和相机标定的第一视角室内视频。",
       statusDetail: "审查的 1,450,396 个物体帧中，1,295,424 个通过，153,569 个需要人工确认，1,403 个被可见区域包含率规则拒绝；存储投影与重算投影的误差均不超过 1 像素。",
+    },
+    scannetpp: {
+      description: "包含官方 metric 物体框和相机的室内 DSLR 图像、iPhone 视频与 360 RGB-D 全景。",
+      statusDetail: "完整审查覆盖 906 个 DSLR 场景、968 个 iPhone 场景和 956 个全景场景。当前没有 hard error；一个 iPhone 椅子帧需要人工确认。",
+      emptyMessage: "完整审查没有发现 ScanNet++ hard error 或已确认过滤的 case；唯一边界样本位于人工复核区域。",
     },
   };
 
@@ -556,6 +565,7 @@
     "sunrgbd",
     "synscapes",
     "atek",
+    "scannetpp",
   ]);
 
   function targetModeAsset(path) {
