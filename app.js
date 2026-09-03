@@ -192,6 +192,31 @@
     },
   };
 
+  const approxStorageBytes = {
+    wilddet3d: 1474975957022,
+    omni3d: 506325540256,
+    pix3d: 4601509897,
+    structured3d: 728417653488,
+    "3dfront": 1974452303740,
+    kubric: 6675445464421,
+    uco3d: 21235968261748,
+    ca1m: 1772241767522,
+    hypersim: 61081211942,
+    adt: 874754862963,
+    hssd: 6383072099,
+    abo: 59483977905,
+    shapenet: 400907684165,
+    replica: 44668375,
+    hoi4d: 69950452236,
+    hope: 374021620,
+    objectron: 568422148834,
+    sceneversepp: 8930671382,
+    sunrgbd: 2302818997,
+    synscapes: 182082533497,
+    atek: 538426855640,
+    scannetpp: 2486924822185,
+  };
+
 
   function versionedAsset(path) {
     if (!path) return path;
@@ -405,6 +430,7 @@
     thDataType: document.querySelector("#th-data-type"),
     thSamples: document.querySelector("#th-samples"),
     thVideos: document.querySelector("#th-videos"),
+    thStorage: document.querySelector("#th-storage"),
     thTargetSource: document.querySelector("#th-target-source"),
     thReview: document.querySelector("#th-review"),
     thFiltered: document.querySelector("#th-filtered"),
@@ -519,6 +545,20 @@
     const percentage = value * 100;
     if (percentage < 0.01) return `${percentage.toFixed(3)}%`;
     return `${percentage.toFixed(2)}%`;
+  }
+
+  function formatStorage(bytes) {
+    if (bytes == null || !Number.isFinite(Number(bytes))) return "—";
+    const value = Number(bytes);
+    const units = ["B", "KB", "MB", "GB", "TB", "PB"];
+    let unitIndex = 0;
+    let scaled = value;
+    while (scaled >= 1000 && unitIndex < units.length - 1) {
+      scaled /= 1000;
+      unitIndex += 1;
+    }
+    const digits = scaled >= 100 ? 0 : scaled >= 10 ? 1 : 2;
+    return `≈${scaled.toFixed(digits)} ${units[unitIndex]}`;
   }
 
   function datasetViewForSensor(dataset, sensor) {
@@ -790,10 +830,11 @@
       [elements.targetKnownLabel, "known errors / rule rejects", "已知错误 / 规则拒绝"],
       [elements.overviewKicker, "OVERVIEW", "总览"],
       [elements.overviewTitle, "Dataset statistics", "数据集统计"],
-      [elements.tableNote, "“Images / Frames” counts unique audited images or frames in the reported loader scope. CA-1M and HyperSim include train and validation; the other rows report their audited training scope. “Videos” is shown only for video data. Need Human Verify and Filtered errors are audit-case counts, not image counts.", "“图像 / 帧数”表示报告的 loader 范围内去重审查的图像或帧；CA-1M 与 HyperSim 包含训练集和验证集，其他数据集使用已审查的训练范围。“视频数”仅适用于视频数据。Need Human Verify 和已过滤错误是审查 case 数，不是图像数。"],
+      [elements.tableNote, "“Images / Frames” counts unique audited images or frames in the reported loader scope. CA-1M and HyperSim include train and validation; the other rows report their audited training scope. “Videos” is shown only for video data. “Approx. storage” is the current local dataset/package size, in decimal units, and excludes QA website files. Need Human Verify and Filtered errors are audit-case counts, not image counts.", "“图像 / 帧数”表示报告的 loader 范围内去重审查的图像或帧；CA-1M 与 HyperSim 包含训练集和验证集，其他数据集使用已审查的训练范围。“视频数”仅适用于视频数据。“大致存储空间”按当前本地数据目录或数据包计算，使用十进制单位，不包含本网站文件。Need Human Verify 和已过滤错误是审查 case 数，不是图像数。"],
       [elements.thDataType, "Data type", "数据类型"],
       [elements.thSamples, "Images / Frames", "图像 / 帧数"],
       [elements.thVideos, "Videos", "视频数"],
+      [elements.thStorage, "Approx. storage", "大致存储空间"],
       [elements.thTargetSource, "2D box source", "2D 框来源"],
       [elements.thReview, "Need human review", "需要人工复核"],
       [elements.thFiltered, "Rejected by rule", "被规则拒绝"],
@@ -874,12 +915,12 @@
 
     const note =
       currentTargetMode === "visible"
-        ? "Visible-box checks use one-way containment where possible. CA-1M has no separate visible 2D box in the current files, and Omni3D mixes visible boxes with boxes projected from 3D."
-        : "These 2D boxes come from the same 3D boxes. Fewer warnings only mean fewer geometry or conversion failures; they do not prove that the 3D boxes fit the objects.";
+        ? "Visible-box checks use one-way containment where possible. CA-1M has no separate visible 2D box in the current files, and Omni3D mixes visible boxes with boxes projected from 3D. Approx. storage is the current local dataset/package size in decimal units."
+        : "These 2D boxes come from the same 3D boxes. Fewer warnings only mean fewer geometry or conversion failures; they do not prove that the 3D boxes fit the objects. Approx. storage is the current local dataset/package size in decimal units.";
     const noteZh =
       currentTargetMode === "visible"
-        ? "可见 2D 框模式尽量使用单向包含率。当前 CA-1M 文件没有单独的可见 2D 框；Omni3D 混合了可见框和由 3D 计算的 2D 框。"
-        : "这些 2D 框来自同一个 3D 框。更少的告警只表示几何或转换失败更少，不能说明 3D 框一定贴合物体。";
+        ? "可见 2D 框模式尽量使用单向包含率。当前 CA-1M 文件没有单独的可见 2D 框；Omni3D 混合了可见框和由 3D 计算的 2D 框。大致存储空间按当前本地数据目录或数据包计算，使用十进制单位。"
+        : "这些 2D 框来自同一个 3D 框。更少的告警只表示几何或转换失败更少，不能说明 3D 框一定贴合物体。大致存储空间按当前本地数据目录或数据包计算，使用十进制单位。";
     elements.tableNote.innerHTML = localized(note, noteZh);
   }
 
@@ -896,6 +937,7 @@
             <td>${localized(dataset.dataType, dataset.dataType === "Video" ? "视频" : dataset.dataType === "Image + Video" ? "图像 + 视频" : "单图像", true)}</td>
             <td class="numeric">${formatNumber(dataset.samples)}</td>
             <td class="numeric">${dataset.videos == null ? "—" : formatNumber(dataset.videos)}</td>
+            <td class="numeric storage-value">${formatStorage(dataset.storageBytes ?? approxStorageBytes[dataset.id])}</td>
             <td class="target-source">${localized(stats.source, stats.sourceZh, true)}</td>
             <td class="numeric">${stats.review == null ? "—" : formatNumber(stats.review)}</td>
             <td class="numeric">${stats.hard == null ? "—" : formatNumber(stats.hard)}</td>

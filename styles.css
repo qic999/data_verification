@@ -911,7 +911,7 @@ tr[hidden] {
 
 table {
   width: 100%;
-  min-width: 1500px;
+  min-width: 1620px;
   border-collapse: collapse;
 }
 
@@ -963,6 +963,11 @@ td:first-child {
 
 .numeric {
   text-align: right;
+}
+
+.storage-value {
+  color: var(--text);
+  font-weight: 680;
 }
 
 .zero-value {
