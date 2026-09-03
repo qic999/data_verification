@@ -1,7 +1,7 @@
 window.DATASET_QA = {
-  "generatedAt": "2026-09-02",
-  "auditDate": "2026-09-02",
-  "assetVersion": "b1253a551664",
+  "generatedAt": "2026-09-03",
+  "auditDate": "2026-09-03",
+  "assetVersion": "97749c23b34c",
   "loaderProvenance": {
     "wilddet3d": {
       "loader": "ObjectDetectionDataset._load_frames",
@@ -192,6 +192,23 @@ window.DATASET_QA = {
       ],
       "sha256": "e20f27f41ff498cdf801c384d28613af4e696fc3e990af4e70d9f5e8ae5b6fe2",
       "visualizationsGeneratedAt": "2026-09-02T11:50:59.901153+00:00"
+    },
+    "scannetpp": {
+      "loader": "official ScanNet++ sensor cameras + released metric OBBs",
+      "sources": [
+        "scripts/audit_scannetpp_latest.py",
+        "scripts/audit_scannetpp_multisensor.py",
+        "scripts/visualize_scannetpp_official_multisensor_website.py"
+      ],
+      "sha256": "f6092265b1416ad88602ad00046f67506c2fe8092c7c883d0ca17fae58766a97",
+      "visualizationsGeneratedAt": "2026-09-03T11:12:36.184659+00:00",
+      "sensorDetails": {
+        "dslr_pose": "official dslr/colmap/images.txt parsed by the official ScanNet++ toolkit",
+        "iphone_pose": "official iphone/colmap/images.txt parsed by the official ScanNet++ toolkit",
+        "object_geometry": "released metric OBB and official segments.json segment mapping",
+        "panocam_projection": "official azimuth/elevation convention plus scans/scanner_poses.json",
+        "visible_2d": "raycast from released annotated mesh"
+      }
     }
   },
   "datasets": [
@@ -5135,6 +5152,502 @@ window.DATASET_QA = {
         }
       ],
       "emptyMessage": ""
+    },
+    {
+      "id": "scannetpp",
+      "name": "ScanNet++",
+      "samples": 1666251,
+      "dataType": "Image + Video",
+      "videos": 968,
+      "observations": 8298338,
+      "review": 1,
+      "filtered": 0,
+      "filteredRate": 0.0,
+      "currentHard": 0,
+      "description": "Indoor DSLR images, iPhone video, and 360 RGB-D panoramas with official metric object boxes and cameras.",
+      "statusDetail": "Official sensor-specific audit: 8,298,338 object frames; 1 need human review and 0 are rejected. The earlier custom world-axis conversion was replaced by the official ScanNet++ camera parsing and panorama angle maps. Select DSLR, iPhone, or 360 Panorama below for separate results.",
+      "knownErrors": 0,
+      "targetModeStats": {
+        "visible": {
+          "source": "mesh-derived visible box with official sensor cameras",
+          "sourceZh": "由 mesh 派生的可见框和官方传感器相机",
+          "coverage": 8298338,
+          "review": 1,
+          "hard": 0
+        },
+        "projected": {
+          "source": "metric OBB projected with official sensor cameras",
+          "sourceZh": "metric OBB 使用官方传感器相机投影",
+          "coverage": 8298338,
+          "review": 0,
+          "hard": 0
+        }
+      },
+      "sensorViews": [
+        {
+          "id": "dslr",
+          "name": "DSLR",
+          "samples": 900774,
+          "dataType": "Single image",
+          "videos": null,
+          "observations": 6076894,
+          "review": 1,
+          "filtered": 0,
+          "currentHard": 0,
+          "knownErrors": 0,
+          "description": "High-resolution DSLR images using the released COLMAP cameras and metric object boxes.",
+          "descriptionZh": "高分辨率 DSLR 图像，使用官方 COLMAP 相机和 metric 物体框。",
+          "statusDetail": "Of 6,076,894 audited object frames, 6,076,893 pass, 1 need human review, and 0 are rejected by the current rules.",
+          "statusDetailZh": "在 6,076,894 个审查物体帧中，6,076,893 个通过，1 个需要人工确认，0 个被当前规则拒绝。",
+          "targetModeStats": {
+            "visible": {
+              "source": "mesh-derived visible box + official COLMAP camera",
+              "sourceZh": "由 mesh 派生的可见框 + 官方 COLMAP 相机",
+              "coverage": 6076894,
+              "review": 1,
+              "hard": 0
+            },
+            "projected": {
+              "source": "derived from metric OBB with official COLMAP camera",
+              "sourceZh": "由 metric OBB 和官方 COLMAP 相机派生",
+              "coverage": 6076894,
+              "review": 0,
+              "hard": 0
+            }
+          },
+          "validCases": [
+            {
+              "id": "fb5a96b1a2 / frame DSC03949.JPG",
+              "title": "chair · object 16",
+              "subtitle": "dslr/fb5a96b1a2/DSC03949.JPG",
+              "image": "assets/scannetpp/dslr/valid/01.webp",
+              "tag": "accepted",
+              "reason": "Passed official sensor geometry and visible-containment checks",
+              "metrics": {
+                "objects": 1,
+                "medianIoU": 0.777,
+                "centerError": 0.0086,
+                "visibleContainment": 1.0,
+                "depthRangeM": [
+                  0.9168146204932597,
+                  1.817399083703629
+                ]
+              }
+            },
+            {
+              "id": "928c9da20c / frame DSC05547.JPG",
+              "title": "table · object 20",
+              "subtitle": "dslr/928c9da20c/DSC05547.JPG",
+              "image": "assets/scannetpp/dslr/valid/02.webp",
+              "tag": "accepted",
+              "reason": "Passed official sensor geometry and visible-containment checks",
+              "metrics": {
+                "objects": 1,
+                "medianIoU": 0.855,
+                "centerError": 0.0042,
+                "visibleContainment": 1.0,
+                "depthRangeM": [
+                  1.0791232773517736,
+                  2.208670535431769
+                ]
+              }
+            },
+            {
+              "id": "e667e09fe6 / frame 97575d69_DSC09944.JPG",
+              "title": "bed · object 2",
+              "subtitle": "dslr/e667e09fe6/97575d69_DSC09944.JPG",
+              "image": "assets/scannetpp/dslr/valid/03.webp",
+              "tag": "accepted",
+              "reason": "Passed official sensor geometry and visible-containment checks",
+              "metrics": {
+                "objects": 1,
+                "medianIoU": 0.387,
+                "centerError": 0.1403,
+                "visibleContainment": 1.0,
+                "depthRangeM": [
+                  1.0952608830796007,
+                  3.5033485258367887
+                ]
+              }
+            },
+            {
+              "id": "7f97f24691 / frame f674dab1_DSC08000.JPG",
+              "title": "sofa · object 5",
+              "subtitle": "dslr/7f97f24691/f674dab1_DSC08000.JPG",
+              "image": "assets/scannetpp/dslr/valid/04.webp",
+              "tag": "accepted",
+              "reason": "Passed official sensor geometry and visible-containment checks",
+              "metrics": {
+                "objects": 1,
+                "medianIoU": 0.789,
+                "centerError": 0.0029,
+                "visibleContainment": 1.0,
+                "depthRangeM": [
+                  1.3727309744205163,
+                  2.6227044908523545
+                ]
+              }
+            },
+            {
+              "id": "3d0b7d4b4e / frame f7226bb3_DSC01806.JPG",
+              "title": "cabinet · object 1",
+              "subtitle": "dslr/3d0b7d4b4e/f7226bb3_DSC01806.JPG",
+              "image": "assets/scannetpp/dslr/valid/05.webp",
+              "tag": "accepted",
+              "reason": "Passed official sensor geometry and visible-containment checks",
+              "metrics": {
+                "objects": 1,
+                "medianIoU": 0.618,
+                "centerError": 0.0367,
+                "visibleContainment": 1.0,
+                "depthRangeM": [
+                  1.076835833341,
+                  2.921033982854709
+                ]
+              }
+            },
+            {
+              "id": "7f22d5ef1b / frame a857ff37_DSC09743.JPG",
+              "title": "bookshelf · object 15",
+              "subtitle": "dslr/7f22d5ef1b/a857ff37_DSC09743.JPG",
+              "image": "assets/scannetpp/dslr/valid/06.webp",
+              "tag": "accepted",
+              "reason": "Passed official sensor geometry and visible-containment checks",
+              "metrics": {
+                "objects": 1,
+                "medianIoU": 0.939,
+                "centerError": 0.0007,
+                "visibleContainment": 1.0,
+                "depthRangeM": [
+                  0.7708159254674145,
+                  1.424358768006146
+                ]
+              }
+            }
+          ],
+          "reviewCases": [
+            {
+              "id": "270ada6f0d / frame DSC01151.JPG",
+              "title": "table · object 56",
+              "subtitle": "dslr/270ada6f0d/DSC01151.JPG",
+              "image": "assets/scannetpp/dslr/review/01.webp",
+              "tag": "review",
+              "reason": "visible_containment_review",
+              "metrics": {
+                "objects": 1,
+                "medianIoU": 0.533,
+                "centerError": 0.0051,
+                "visibleContainment": 0.882,
+                "depthRangeM": [
+                  7.386570829905253,
+                  9.043935232857812
+                ]
+              },
+              "issue": "The projected 3D box contains 88.20% of the visible 2D box. This is between the 50% hard-reject threshold and the 90% pass threshold, so the case needs visual confirmation.",
+              "issueZh": "投影 3D 框包含可见 2D 框的 88.20%。该数值位于 50% hard-reject 阈值和 90% 通过阈值之间，因此需要人工确认。"
+            }
+          ],
+          "errorCases": [],
+          "emptyMessage": "No DSLR case is rejected by the current official-sensor audit.",
+          "emptyMessageZh": "当前使用官方传感器模型的审查没有拒绝任何 DSLR case。"
+        },
+        {
+          "id": "iphone",
+          "name": "iPhone",
+          "samples": 760349,
+          "dataType": "Video",
+          "videos": 968,
+          "observations": 2082685,
+          "review": 0,
+          "filtered": 0,
+          "currentHard": 0,
+          "knownErrors": 0,
+          "description": "iPhone video frames using the released COLMAP cameras, RGB, depth, annotated mesh, and metric object boxes.",
+          "descriptionZh": "iPhone 视频帧，使用官方 COLMAP 相机、RGB、深度、标注 mesh 和 metric 物体框。",
+          "statusDetail": "Of 2,082,685 audited object frames, 2,082,685 pass, 0 need human review, and 0 are rejected by the current rules.",
+          "statusDetailZh": "在 2,082,685 个审查物体帧中，2,082,685 个通过，0 个需要人工确认，0 个被当前规则拒绝。",
+          "targetModeStats": {
+            "visible": {
+              "source": "mesh-derived visible box + official COLMAP camera",
+              "sourceZh": "由 mesh 派生的可见框 + 官方 COLMAP 相机",
+              "coverage": 2082685,
+              "review": 0,
+              "hard": 0
+            },
+            "projected": {
+              "source": "derived from metric OBB with official COLMAP camera",
+              "sourceZh": "由 metric OBB 和官方 COLMAP 相机派生",
+              "coverage": 2082685,
+              "review": 0,
+              "hard": 0
+            }
+          },
+          "validCases": [
+            {
+              "id": "ac48a9b736 / frame frame_001600.jpg",
+              "title": "chair · object 38",
+              "subtitle": "iphone/ac48a9b736/frame_001600.jpg",
+              "image": "assets/scannetpp/iphone/valid/01.webp",
+              "tag": "accepted",
+              "reason": "Passed official sensor geometry and visible-containment checks",
+              "metrics": {
+                "objects": 1,
+                "medianIoU": 0.759,
+                "centerError": 0.0042,
+                "visibleContainment": 1.0,
+                "depthRangeM": [
+                  2.3210478212797625,
+                  3.5029637612951365
+                ]
+              }
+            },
+            {
+              "id": "d593a4f87a / frame frame_000000.jpg",
+              "title": "table · object 3",
+              "subtitle": "iphone/d593a4f87a/frame_000000.jpg",
+              "image": "assets/scannetpp/iphone/valid/02.webp",
+              "tag": "accepted",
+              "reason": "Passed official sensor geometry and visible-containment checks",
+              "metrics": {
+                "objects": 1,
+                "medianIoU": 0.257,
+                "centerError": 0.0814,
+                "visibleContainment": 1.0,
+                "depthRangeM": [
+                  2.028016876085206,
+                  4.378544778633544
+                ]
+              }
+            },
+            {
+              "id": "a4d48ea6b3 / frame frame_000000.jpg",
+              "title": "bed · object 42",
+              "subtitle": "iphone/a4d48ea6b3/frame_000000.jpg",
+              "image": "assets/scannetpp/iphone/valid/03.webp",
+              "tag": "accepted",
+              "reason": "Passed official sensor geometry and visible-containment checks",
+              "metrics": {
+                "objects": 1,
+                "medianIoU": 0.023,
+                "centerError": 0.4202,
+                "visibleContainment": 1.0,
+                "depthRangeM": [
+                  0.4625465868882941,
+                  2.07362818302587
+                ]
+              }
+            },
+            {
+              "id": "53755e535e / frame frame_000000.jpg",
+              "title": "sofa · object 16",
+              "subtitle": "iphone/53755e535e/frame_000000.jpg",
+              "image": "assets/scannetpp/iphone/valid/04.webp",
+              "tag": "accepted",
+              "reason": "Passed official sensor geometry and visible-containment checks",
+              "metrics": {
+                "objects": 1,
+                "medianIoU": 0.092,
+                "centerError": 0.1428,
+                "visibleContainment": 1.0,
+                "depthRangeM": [
+                  1.3588206607502866,
+                  3.6943471269747565
+                ]
+              }
+            },
+            {
+              "id": "d6d9ddb03f / frame frame_000000.jpg",
+              "title": "cabinet · object 11",
+              "subtitle": "iphone/d6d9ddb03f/frame_000000.jpg",
+              "image": "assets/scannetpp/iphone/valid/05.webp",
+              "tag": "accepted",
+              "reason": "Passed official sensor geometry and visible-containment checks",
+              "metrics": {
+                "objects": 1,
+                "medianIoU": 0.268,
+                "centerError": 0.0575,
+                "visibleContainment": 1.0,
+                "depthRangeM": [
+                  1.4238582245685203,
+                  2.501088597822404
+                ]
+              }
+            },
+            {
+              "id": "09c1414f1b / frame frame_000000.jpg",
+              "title": "bookshelf · object 58",
+              "subtitle": "iphone/09c1414f1b/frame_000000.jpg",
+              "image": "assets/scannetpp/iphone/valid/06.webp",
+              "tag": "accepted",
+              "reason": "Passed official sensor geometry and visible-containment checks",
+              "metrics": {
+                "objects": 1,
+                "medianIoU": 0.706,
+                "centerError": 0.023,
+                "visibleContainment": 1.0,
+                "depthRangeM": [
+                  2.8230227828032834,
+                  3.9053345503470402
+                ]
+              }
+            }
+          ],
+          "reviewCases": [],
+          "errorCases": [],
+          "emptyMessage": "No iPhone case is rejected by the current official-sensor audit.",
+          "emptyMessageZh": "当前使用官方传感器模型的审查没有拒绝任何 iPhone case。"
+        },
+        {
+          "id": "panocam",
+          "name": "360 Panorama",
+          "samples": 5128,
+          "dataType": "Single image",
+          "videos": null,
+          "observations": 138759,
+          "review": 0,
+          "filtered": 0,
+          "currentHard": 0,
+          "knownErrors": 0,
+          "description": "360 RGB-D panoramas using the released azimuth/elevation maps, scanner poses, annotated mesh, and metric object boxes.",
+          "descriptionZh": "360 RGB-D 全景图，使用官方方位角/仰角 map、scanner pose、标注 mesh 和 metric 物体框。",
+          "statusDetail": "Of 138,759 audited object frames, 138,759 pass, 0 need human review, and 0 are rejected by the current rules.",
+          "statusDetailZh": "在 138,759 个审查物体帧中，138,759 个通过，0 个需要人工确认，0 个被当前规则拒绝。",
+          "targetModeStats": {
+            "visible": {
+              "source": "mesh-derived visible box + official spherical camera",
+              "sourceZh": "由 mesh 派生的可见框 + 官方球面相机",
+              "coverage": 138759,
+              "review": 0,
+              "hard": 0
+            },
+            "projected": {
+              "source": "derived from metric OBB with official spherical camera",
+              "sourceZh": "由 metric OBB 和官方球面相机派生",
+              "coverage": 138759,
+              "review": 0,
+              "hard": 0
+            }
+          },
+          "validCases": [
+            {
+              "id": "e3e0617f98 / frame 0.jpg",
+              "title": "chair · object 6",
+              "subtitle": "panocam/e3e0617f98/0.jpg",
+              "image": "assets/scannetpp/panocam/valid/01.webp",
+              "tag": "accepted",
+              "reason": "Passed official sensor geometry and visible-containment checks",
+              "metrics": {
+                "objects": 1,
+                "medianIoU": 0.697,
+                "centerError": 0.0084,
+                "visibleContainment": 1.0,
+                "depthRangeM": [
+                  0.4654677356378197,
+                  1.5529077451925515
+                ]
+              }
+            },
+            {
+              "id": "9d8fc94966 / frame 0.jpg",
+              "title": "table · object 1",
+              "subtitle": "panocam/9d8fc94966/0.jpg",
+              "image": "assets/scannetpp/panocam/valid/02.webp",
+              "tag": "accepted",
+              "reason": "Passed official sensor geometry and visible-containment checks",
+              "metrics": {
+                "objects": 1,
+                "medianIoU": 0.846,
+                "centerError": 0.007,
+                "visibleContainment": 1.0,
+                "depthRangeM": [
+                  0.9199380215891445,
+                  2.3054684457109516
+                ]
+              }
+            },
+            {
+              "id": "d497bb124d / frame 0.jpg",
+              "title": "bed · object 2",
+              "subtitle": "panocam/d497bb124d/0.jpg",
+              "image": "assets/scannetpp/panocam/valid/03.webp",
+              "tag": "accepted",
+              "reason": "Passed official sensor geometry and visible-containment checks",
+              "metrics": {
+                "objects": 1,
+                "medianIoU": 0.886,
+                "centerError": 0.0049,
+                "visibleContainment": 1.0,
+                "depthRangeM": [
+                  1.2204261746279776,
+                  3.142833941076153
+                ]
+              }
+            },
+            {
+              "id": "d27235711b / frame 0.jpg",
+              "title": "sofa · object 27",
+              "subtitle": "panocam/d27235711b/0.jpg",
+              "image": "assets/scannetpp/panocam/valid/04.webp",
+              "tag": "accepted",
+              "reason": "Passed official sensor geometry and visible-containment checks",
+              "metrics": {
+                "objects": 1,
+                "medianIoU": 0.599,
+                "centerError": 0.0294,
+                "visibleContainment": 1.0,
+                "depthRangeM": [
+                  0.877772386716475,
+                  3.2244139538175265
+                ]
+              }
+            },
+            {
+              "id": "ed2216380b / frame 0.jpg",
+              "title": "cabinet · object 2",
+              "subtitle": "panocam/ed2216380b/0.jpg",
+              "image": "assets/scannetpp/panocam/valid/05.webp",
+              "tag": "accepted",
+              "reason": "Passed official sensor geometry and visible-containment checks",
+              "metrics": {
+                "objects": 1,
+                "medianIoU": 0.922,
+                "centerError": 0.0016,
+                "visibleContainment": 1.0,
+                "depthRangeM": [
+                  0.7201074667365264,
+                  2.092247459370562
+                ]
+              }
+            },
+            {
+              "id": "27dc178a3d / frame 0.jpg",
+              "title": "bookshelf · object 5",
+              "subtitle": "panocam/27dc178a3d/0.jpg",
+              "image": "assets/scannetpp/panocam/valid/06.webp",
+              "tag": "accepted",
+              "reason": "Passed official sensor geometry and visible-containment checks",
+              "metrics": {
+                "objects": 1,
+                "medianIoU": 0.902,
+                "centerError": 0.0037,
+                "visibleContainment": 1.0,
+                "depthRangeM": [
+                  1.107568330327162,
+                  2.207354544483902
+                ]
+              }
+            }
+          ],
+          "reviewCases": [],
+          "errorCases": [],
+          "emptyMessage": "No 360 Panorama case is rejected by the current official-sensor audit.",
+          "emptyMessageZh": "当前使用官方传感器模型的审查没有拒绝任何 360 Panorama case。"
+        }
+      ],
+      "validCases": [],
+      "reviewCases": [],
+      "errorCases": [],
+      "emptyMessage": "Choose a ScanNet++ sensor tab to view its cases."
     }
   ]
 };

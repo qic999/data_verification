@@ -1069,6 +1069,64 @@ td:first-child {
   display: none;
 }
 
+.sensor-nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 12px;
+  padding: 12px 18px;
+  border: 1px solid rgba(97, 174, 255, 0.2);
+  border-radius: 16px;
+  background: rgba(97, 174, 255, 0.045);
+}
+
+.sensor-nav[hidden] {
+  display: none;
+}
+
+.sensor-nav-label {
+  min-width: 124px;
+}
+
+.sensor-tabs {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.sensor-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.sensor-tab {
+  flex: 1 1 0;
+  min-width: 150px;
+  padding: 12px 18px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--muted-strong);
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 720;
+  transition: 160ms ease;
+}
+
+.sensor-tab:hover {
+  color: var(--text);
+  border-color: rgba(97, 174, 255, 0.42);
+}
+
+.sensor-tab.active {
+  color: #061726;
+  border-color: #76b9ff;
+  background: #76b9ff;
+  box-shadow: 0 7px 22px rgba(97, 174, 255, 0.18);
+}
+
 .dataset-tab {
   flex: 1 0 auto;
   padding: 11px 16px;
@@ -1692,10 +1750,19 @@ dialog::backdrop {
     text-align: left;
   }
 
-  .dataset-nav {
+  .dataset-nav,
+  .sensor-nav {
     align-items: stretch;
     flex-direction: column;
     gap: 8px;
+  }
+
+  .sensor-tabs {
+    width: 100%;
+  }
+
+  .sensor-tab {
+    min-width: 135px;
   }
 
   .nav-label {

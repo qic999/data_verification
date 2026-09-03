@@ -186,6 +186,10 @@
       visible: { source: "official visible box", sourceZh: "官方可见框", coverage: 1450396, review: 153569, hard: 1403 },
       projected: { source: "official / recomputed projection", sourceZh: "官方 / 重算投影", coverage: 1450396, review: 0, hard: 0, known: 0, hideKnownErrors: true },
     },
+    scannetpp: {
+      visible: { source: "derived from official annotated mesh", sourceZh: "由官方标注 mesh 派生", coverage: 4281562, review: 1, hard: 0 },
+      projected: { source: "derived from official metric OBB", sourceZh: "由官方 metric OBB 投影", coverage: 4281562, review: 0, hard: 0 },
+    },
   };
 
 
@@ -285,6 +289,11 @@
     atek: {
       description: "具有可见 2D 框、米制相机坐标系 3D 框、RGB、深度和相机标定的第一视角室内视频。",
       statusDetail: "审查的 1,450,396 个物体帧中，1,295,424 个通过，153,569 个需要人工确认，1,403 个被可见区域包含率规则拒绝；存储投影与重算投影的误差均不超过 1 像素。",
+    },
+    scannetpp: {
+      description: "包含官方 metric 物体框和相机的室内 DSLR 图像、iPhone 视频与 360 RGB-D 全景。",
+      statusDetail: "完整审查覆盖 906 个 DSLR 场景、968 个 iPhone 场景和 956 个全景场景。当前没有 hard error；一个 DSLR table 帧需要人工确认。",
+      emptyMessage: "完整审查没有发现 ScanNet++ hard error 或已确认过滤的 case；唯一边界样本位于人工复核区域。",
     },
   };
 
@@ -408,6 +417,10 @@
     statsBody: document.querySelector("#stats-body"),
     tabs: document.querySelector("#dataset-tabs"),
     datasetCount: document.querySelector("#dataset-count"),
+    sensorNav: document.querySelector("#sensor-nav"),
+    sensorTabs: document.querySelector("#sensor-tabs"),
+    sensorSelectLabel: document.querySelector("#sensor-select-label"),
+    sensorCount: document.querySelector("#sensor-count"),
     title: document.querySelector("#dataset-title"),
     datasetStatus: document.querySelector("#dataset-status"),
     description: document.querySelector("#dataset-description"),
@@ -451,7 +464,9 @@
   };
 
   const numberFormatter = new Intl.NumberFormat("en-US");
-  let currentDatasetId = location.hash.replace(/^#/, "") || data.datasets[0].id;
+  const initialHashParts = location.hash.replace(/^#/, "").split("/").filter(Boolean);
+  let currentDatasetId = initialHashParts[0] || data.datasets[0].id;
+  let currentSensorId = initialHashParts[1] || null;
   let currentLanguage = "en";
   let currentTargetMode = "visible";
   try {
@@ -506,7 +521,27 @@
     return `${percentage.toFixed(2)}%`;
   }
 
+  function datasetViewForSensor(dataset, sensor) {
+    return {
+      ...dataset,
+      ...sensor,
+      id: dataset.id,
+      parentDatasetId: dataset.id,
+      datasetName: dataset.name,
+      name: `${dataset.name} · ${sensor.name}`,
+    };
+  }
+
+  function activeDatasetView(dataset) {
+    const views = Array.isArray(dataset.sensorViews) ? dataset.sensorViews : [];
+    if (!views.length) return dataset;
+    const sensor = views.find((candidate) => candidate.id === currentSensorId) || views[0];
+    currentSensorId = sensor.id;
+    return datasetViewForSensor(dataset, sensor);
+  }
+
   function knownErrorCount(dataset) {
+    if (dataset.knownErrors != null) return Number(dataset.knownErrors);
     const profiles = targetModeDatasetStats[dataset.id];
     const modeStats = profiles && profiles[currentTargetMode];
     if (modeStats && modeStats.known != null) return Number(modeStats.known);
@@ -514,6 +549,9 @@
   }
 
   function targetStats(dataset) {
+    if (dataset.targetModeStats && dataset.targetModeStats[currentTargetMode]) {
+      return dataset.targetModeStats[currentTargetMode];
+    }
     const profiles = targetModeDatasetStats[dataset.id];
     if (!profiles) {
       return {
@@ -556,6 +594,7 @@
     "sunrgbd",
     "synscapes",
     "atek",
+    "scannetpp",
   ]);
 
   function targetModeAsset(path) {
@@ -613,6 +652,21 @@
         ? []
         : dataset.errorCases.map(projectedKnownErrorCase),
     };
+  }
+
+  function tableCasesForTargetMode(dataset) {
+    const views = Array.isArray(dataset.sensorViews) ? dataset.sensorViews : [];
+    if (!views.length) return casesForTargetMode(dataset);
+    return views.reduce(
+      (combined, sensor) => {
+        const cases = casesForTargetMode(datasetViewForSensor(dataset, sensor));
+        combined.valid.push(...cases.valid);
+        combined.review.push(...cases.review);
+        combined.error.push(...cases.error);
+        return combined;
+      },
+      { valid: [], review: [], error: [] },
+    );
   }
 
   function targetStatus(dataset, stats) {
@@ -834,7 +888,7 @@
       .map((dataset) => {
         const stats = targetStats(dataset);
         const status = targetStatus(dataset, stats);
-        const cases = casesForTargetMode(dataset);
+        const cases = tableCasesForTargetMode(dataset);
         const flagRate = targetFlagRate(dataset, stats);
         return `
           <tr data-dataset="${dataset.id}" tabindex="0" aria-label="View ${dataset.name}">
@@ -880,6 +934,34 @@
       .join("");
     elements.tabs.querySelectorAll("button").forEach((button) => {
       button.addEventListener("click", () => selectDataset(button.dataset.dataset));
+    });
+  }
+
+  function renderSensorTabs(dataset) {
+    const views = Array.isArray(dataset.sensorViews) ? dataset.sensorViews : [];
+    elements.sensorNav.hidden = views.length === 0;
+    if (!views.length) {
+      elements.sensorTabs.innerHTML = "";
+      currentSensorId = null;
+      return;
+    }
+    if (!views.some((view) => view.id === currentSensorId)) {
+      currentSensorId = views[0].id;
+    }
+    elements.sensorSelectLabel.innerHTML = localized("SELECT SENSOR", "选择传感器");
+    elements.sensorCount.innerHTML = localized(`${views.length} sources`, `${views.length} 类数据`, true);
+    elements.sensorTabs.innerHTML = views
+      .map(
+        (view) => `<button class="sensor-tab${view.id === currentSensorId ? " active" : ""}"
+          role="tab" aria-selected="${view.id === currentSensorId}"
+          data-sensor="${view.id}">${view.name}</button>`,
+      )
+      .join("");
+    elements.sensorTabs.querySelectorAll("button").forEach((button) => {
+      button.addEventListener("click", () => {
+        currentSensorId = button.dataset.sensor;
+        selectDataset(dataset.id);
+      });
     });
   }
 
@@ -951,27 +1033,33 @@
     const dataset = data.datasets.find((candidate) => candidate.id === datasetId);
     if (!dataset) return;
     currentDatasetId = dataset.id;
-    history.replaceState(null, "", `#${dataset.id}`);
+    renderSensorTabs(dataset);
+    const datasetView = activeDatasetView(dataset);
+    history.replaceState(
+      null,
+      "",
+      `#${dataset.id}${datasetView.parentDatasetId ? `/${currentSensorId}` : ""}`,
+    );
 
     const chinese = datasetChinese[dataset.id] || {};
-    const stats = targetStats(dataset);
-    const status = targetStatus(dataset, stats);
-    const modeCases = casesForTargetMode(dataset);
-    const englishDescription = `${plainLanguage(dataset.description)} 2D box used here: ${stats.source}. ${plainLanguage(dataset.statusDetail)}`;
-    const chineseDescription = [chinese.description, `这里使用的 2D 框：${stats.sourceZh}。`, chinese.statusDetail].filter(Boolean).join(" ");
+    const stats = targetStats(datasetView);
+    const status = targetStatus(datasetView, stats);
+    const modeCases = casesForTargetMode(datasetView);
+    const englishDescription = `${plainLanguage(datasetView.description)} 2D box used here: ${stats.source}. ${plainLanguage(datasetView.statusDetail)}`;
+    const chineseDescription = [datasetView.descriptionZh || chinese.description, `这里使用的 2D 框：${stats.sourceZh}。`, datasetView.statusDetailZh || chinese.statusDetail].filter(Boolean).join(" ");
     const defaultErrorExplainer = "These are archival audit visualizations retained before confirmed errors were filtered, excluded, or physically deleted. Cases needing human verification and false positives from older rules are not presented as errors.";
     const defaultErrorExplainerChinese = "这些是确认错误在被过滤、排除或物理删除前保留的审计可视化；需要人工确认的样本和旧规则 false positive 不会作为错误展示。";
     elements.errorKicker.innerHTML = localized("FILTERED / REJECTED", "已过滤 / 已拒绝");
     elements.errorTitle.innerHTML = localized("Filtered or rule-rejected cases", "已过滤或被规则拒绝的 case");
 
-    elements.title.textContent = dataset.name;
+    elements.title.textContent = datasetView.name;
     elements.datasetStatus.className = `status-pill ${status.className}`;
     elements.datasetStatus.innerHTML = localized(status.text, status.textZh, true);
     elements.description.innerHTML = localized(englishDescription, chineseDescription);
     elements.validCount.textContent = modeCases.valid.length;
     elements.reviewCount.textContent = modeCases.review.length;
     elements.errorCount.textContent = modeCases.error.length;
-    renderFacts(dataset, stats);
+    renderFacts(datasetView, stats);
     renderCards(elements.validGrid, modeCases.valid, "valid");
     renderCards(elements.reviewGrid, modeCases.review, "review");
     renderCards(elements.errorGrid, modeCases.error, "error");
@@ -1001,15 +1089,15 @@
     elements.validGrid.hidden = !hasValidCases;
     elements.validEmpty.hidden = hasValidCases;
     elements.validEmptyTitle.innerHTML = localized("No matching 2D box examples", "没有匹配的 2D 框样本");
-    if (dataset.galleryUnavailable && currentTargetMode === "projected") {
+    if (datasetView.galleryUnavailable && currentTargetMode === "projected") {
       elements.validEmptyMessage.innerHTML = localized(
-        `${dataset.name} statistics are included, but its visualization source folder is currently unavailable. No placeholder image is shown.`,
-        `${dataset.name} 的统计已加入，但可视化源目录当前不可用，因此不展示占位图片。`,
+        `${datasetView.name} statistics are included, but its visualization source folder is currently unavailable. No placeholder image is shown.`,
+        `${datasetView.name} 的统计已加入，但可视化源目录当前不可用，因此不展示占位图片。`,
       );
     } else {
       elements.validEmptyMessage.innerHTML = localized(
-        `${dataset.name} has no separate visible 2D box in the current files. A visible-box-only setup needs a new box or mask source.`,
-        `${dataset.name} 当前文件没有单独的可见 2D 框。若只使用可见框，需要补充新的框或 mask 来源。`,
+        `${datasetView.name} has no separate visible 2D box in the current files. A visible-box-only setup needs a new box or mask source.`,
+        `${datasetView.name} 当前文件没有单独的可见 2D 框。若只使用可见框，需要补充新的框或 mask 来源。`,
       );
     }
 
@@ -1028,15 +1116,15 @@
     const hasErrors = modeCases.error.length > 0;
     elements.errorGrid.hidden = !hasErrors;
     elements.errorEmpty.hidden = hasErrors;
-    elements.emptyMessage.innerHTML = localized(plainLanguage(dataset.emptyMessage || "No confirmed error cases in the current audit."), chinese.emptyMessage || "当前审查没有确认错误样本。");
+    elements.emptyMessage.innerHTML = localized(plainLanguage(datasetView.emptyMessage || "No confirmed error cases in the current audit."), datasetView.emptyMessageZh || chinese.emptyMessage || "当前审查没有确认错误样本。");
     elements.errorExplainer.innerHTML =
       currentTargetMode === "projected" && hasErrors
         ? localized(
             "These confirmed 3D or data errors remain errors. Calculating the 2D box from a bad 3D box can hide the mismatch, but it does not repair the 3D box.",
             "这些已确认的 3D 或数据错误仍然是错误。从错误 3D 框计算 2D 框会隐藏不匹配，但不会修复 3D 框。",
           )
-        : dataset.emptyMessage
-          ? localized(plainLanguage(dataset.emptyMessage), chinese.emptyMessage)
+        : datasetView.emptyMessage
+          ? localized(plainLanguage(datasetView.emptyMessage), datasetView.emptyMessageZh || chinese.emptyMessage)
           : localized(defaultErrorExplainer, defaultErrorExplainerChinese);
 
     document.querySelectorAll(".dataset-tab").forEach((tab) => {
@@ -1056,7 +1144,7 @@
 
   function openLightbox(kind, index) {
     const dataset = data.datasets.find((candidate) => candidate.id === currentDatasetId);
-    const caseData = casesForTargetMode(dataset)[kind][index];
+    const caseData = casesForTargetMode(activeDatasetView(dataset))[kind][index];
     if (!caseData) return;
 
     elements.lightboxImage.src = versionedAsset(targetModeAsset(caseData.image));
