@@ -1,33 +1,41 @@
-# 3D evidence audit pilot
+# Full 3D evidence audit
 
 Version: 3D-evidence v3 (2026-09-03)
 
-This is a deterministic 100-scene calibration pilot per available dataset/component. It adds depth-surface, backprojected-point, raw-pose, static multi-view, and free-space checks. It does not replace the existing full projection-audit totals and it does not delete data.
+This run covers every JSON scene and every object-frame in the eleven standardized dataset components listed below. It applies the depth-surface, backprojected-point, raw-pose, static multi-view, and free-space checks when their required evidence exists. It does not delete source data.
 
-| Dataset | Scenes | Object frames | Exact-mask depth | 2D-box depth proxy | 3D evidence pass | Projection-only pass | Review | Hard |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Structured3D | 100 | 1,280 | 1,280 | 0 | 1,228 | 50 | 1 | 1 |
-| 3DFront | 100 | 332 | 332 | 0 | 268 | 0 | 63 | 1 |
-| HSSD | 100 | 10,715 | 0 | 10,715 | 2,006 | 8,483 | 0 | 226 |
-| ABO | 100 | 600 | 600 | 0 | 600 | 0 | 0 | 0 |
-| ShapeNet | 100 | 600 | 600 | 0 | 600 | 0 | 0 | 0 |
-| HOI4D | 100 | 19,865 | 0 | 19,865 | 0 | 19,865 | 0 | 0 |
-| HOPEImage | 50 | 915 | 0 | 915 | 0 | 915 | 0 | 0 |
-| HOPEVideo | 10 | 2,000 | 0 | 2,000 | 0 | 2,000 | 0 | 0 |
-| SUN_RGB-D | 100 | 380 | 0 | 380 | 0 | 355 | 24 | 1 |
-| Synscapes | 100 | 1,333 | 0 | 1,333 | 0 | 1,333 | 0 | 0 |
-| ATEK | 100 | 1,990 | 0 | 1,990 | 0 | 1,767 | 223 | 0 |
-| **Overall pilot** | **960** | **40,010** | **2,812** | **37,198** | **4,702** | **34,768** | **311** | **229** |
+| Dataset | Scenes | Object frames | Exact-mask depth | 2D-box depth proxy | 3D evidence pass | Projection-only pass | Review | Hard | Scene errors |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Structured3D | 18,083 | 252,345 | 252,345 | 0 | 242,347 | 9,541 | 419 | 38 | 0 |
+| 3DFront | 7,938 | 24,704 | 24,704 | 0 | 19,271 | 12 | 5,154 | 267 | 0 |
+| HSSD | 167 | 20,475 | 0 | 20,475 | 4,169 | 15,927 | 0 | 379 | 0 |
+| ABO | 7,953 | 47,718 | 47,716 | 2 | 44,774 | 0 | 2,790 | 154 | 0 |
+| ShapeNet | 53,730 | 322,380 | 322,378 | 2 | 322,360 | 0 | 16 | 4 | 0 |
+| HOI4D | 522 | 206,263 | 0 | 206,263 | 0 | 206,263 | 0 | 0 | 0 |
+| HOPEImage | 50 | 915 | 0 | 915 | 0 | 915 | 0 | 0 | 0 |
+| HOPEVideo | 10 | 12,949 | 0 | 12,949 | 0 | 12,949 | 0 | 0 | 0 |
+| SUN RGB-D | 9,968 | 45,155 | 0 | 45,155 | 0 | 42,569 | 2,189 | 397 | 0 |
+| Synscapes | 24,991 | 326,756 | 0 | 326,756 | 0 | 326,703 | 53 | 0 | 0 |
+| ATEK | 965 | 1,450,396 | 0 | 1,450,396 | 0 | 1,295,424 | 153,569 | 1,403 | 0 |
+| **Overall full run** | **124,377** | **2,710,056** | **647,143** | **2,062,913** | **632,921** | **1,910,303** | **164,190** | **2,642** | **0** |
 
-## How to read the labels
+## Cases missed by the previous projection rule
 
-- **3D evidence pass:** projection rules pass and at least one independent exact-depth or valid static multi-view check passes.
-- **Projection-only pass:** projection rules pass, but the current package does not supply independent exact 3D evidence for this case.
-- **Review / Hard:** at least one applicable v3 threshold fires. Hard rows can also include the already-existing invalid geometry/projection rule; inspect each record's `projection_decision`, `depth_evidence`, and `multiview_evidence` to identify the source.
+A missed case is defined exactly as `projection_decision = accept` and the new final label being `review` or `hard_reject`. These cases looked internally consistent in 2D projection, but independent 3D evidence found a problem.
 
-## Calibration notes
+| Dataset | Missed total | New review | New hard | New evidence |
+| --- | ---: | ---: | ---: | --- |
+| 3DFront | 5,421 | 5,154 | 267 | backprojected_points: 5,421, depth_surface: 5,421 |
+| ShapeNet | 2 | 2 | 0 | multi_view: 2 |
+| Structured3D | 192 | 157 | 35 | backprojected_points: 192, depth_surface: 192, free_space: 82 |
+| **Overall** | **5,615** | **5,313** | **302** | |
 
-- A visible 2D box is not an instance mask. Depth selected only by that box remains diagnostic and cannot automatically reject a case.
-- Transparent/reflective objects (for example windows, glass, and mirrors) remain diagnostic even with an exact instance mask because the depth can come from a surface behind the object.
-- Static multi-view consistency is disabled for moving/manipulated datasets and for identity or placeholder camera poses.
-- The detailed machine-readable results are in each dataset directory's `summary.json` and `records.jsonl.gz`.
+## Interpretation
+
+- `3d_evidence_pass` requires an independent exact-depth or valid static multi-view pass in addition to projection checks.
+- `projection_only_pass` means the projection is internally consistent, but this package does not contain enough independent 3D evidence to verify physical placement.
+- A visible 2D box used as a depth selector remains diagnostic only and cannot automatically reject a case.
+- `review` is not a deletion decision. `hard_reject` records are candidates for confirmation; this run does not alter source data.
+- ScanNet++ keeps its separate complete official mesh/camera audit. Datasets that do not expose standardized JSON plus the required evidence remain explicitly outside this run instead of being marked as passed.
+
+Machine-readable per-dataset summaries and candidate records are stored beside this report. The local delta directory contains separate review/hard manifests and two-mode visual galleries.

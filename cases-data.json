@@ -1069,32 +1069,33 @@
       "currentHard": 0,
       "storageBytes": 728417653488,
       "evidenceAudit": {
-        "status": "pilot",
-        "scope": "deterministic 100-scene pilot per component",
-        "observations": 1280,
+        "status": "full",
+        "scope": "all standardized JSON scenes and object frames",
+        "observations": 252345,
         "counts": {
-          "3d_evidence_pass": 1228,
-          "projection_only_pass": 50,
-          "hard_reject": 1,
-          "review": 1
+          "3d_evidence_pass": 242347,
+          "projection_only_pass": 9541,
+          "review": 419,
+          "hard_reject": 38
         },
         "depthStatusCounts": {
-          "pass": 1183,
-          "diagnostic_only": 95,
-          "hard_reject": 1,
-          "review": 1
+          "pass": 233855,
+          "diagnostic_only": 17805,
+          "review": 162,
+          "unavailable": 485,
+          "hard_reject": 38
         },
         "multiViewStatusCounts": {
-          "unavailable": 726,
-          "pass": 554
+          "unavailable": 151065,
+          "pass": 101280
         },
         "maskEvidenceCounts": {
-          "exact_instance_mask": 1280
+          "exact_instance_mask": 252345
         },
         "components": [
           "Structured3D"
         ],
-        "note": "Pilot counts are shown separately and do not replace the full projection-audit totals."
+        "note": "Full v3 counts are shown separately and do not replace the legacy projection-audit totals."
       },
       "filteredRate": 0.0003248463912339013,
       "validCases": [
@@ -1425,29 +1426,31 @@
       "currentHard": 0,
       "storageBytes": 1974452303740,
       "evidenceAudit": {
-        "status": "pilot",
-        "scope": "deterministic 100-scene pilot per component",
-        "observations": 332,
+        "status": "full",
+        "scope": "all standardized JSON scenes and object frames",
+        "observations": 24704,
         "counts": {
-          "3d_evidence_pass": 268,
-          "review": 63,
-          "hard_reject": 1
+          "3d_evidence_pass": 19271,
+          "review": 5154,
+          "hard_reject": 267,
+          "projection_only_pass": 12
         },
         "depthStatusCounts": {
-          "pass": 268,
-          "review": 63,
-          "hard_reject": 1
+          "pass": 19271,
+          "review": 5154,
+          "hard_reject": 267,
+          "unavailable": 12
         },
         "multiViewStatusCounts": {
-          "unavailable": 332
+          "unavailable": 24704
         },
         "maskEvidenceCounts": {
-          "exact_instance_mask": 332
+          "exact_instance_mask": 24704
         },
         "components": [
           "3DFront"
         ],
-        "note": "Pilot counts are shown separately and do not replace the full projection-audit totals."
+        "note": "Full v3 counts are shown separately and do not replace the legacy projection-audit totals."
       },
       "filteredRate": 0.0,
       "validCases": [
@@ -2782,29 +2785,29 @@
       "currentHard": 0,
       "storageBytes": 6383072099,
       "evidenceAudit": {
-        "status": "pilot",
-        "scope": "deterministic 100-scene pilot per component",
-        "observations": 10715,
+        "status": "full",
+        "scope": "all standardized JSON scenes and object frames",
+        "observations": 20475,
         "counts": {
-          "projection_only_pass": 8483,
-          "hard_reject": 226,
-          "3d_evidence_pass": 2006
+          "projection_only_pass": 15927,
+          "hard_reject": 379,
+          "3d_evidence_pass": 4169
         },
         "depthStatusCounts": {
-          "diagnostic_only": 10523,
-          "unavailable": 192
+          "diagnostic_only": 19867,
+          "unavailable": 608
         },
         "multiViewStatusCounts": {
-          "unavailable": 8651,
-          "pass": 2064
+          "unavailable": 16229,
+          "pass": 4246
         },
         "maskEvidenceCounts": {
-          "box_proxy": 10715
+          "box_proxy": 20475
         },
         "components": [
           "HSSD"
         ],
-        "note": "Pilot counts are shown separately and do not replace the full projection-audit totals."
+        "note": "Full v3 counts are shown separately and do not replace the legacy projection-audit totals."
       },
       "validCases": [
         {
@@ -3007,25 +3010,29 @@
       "currentHard": 0,
       "storageBytes": 59483977905,
       "evidenceAudit": {
-        "status": "pilot",
-        "scope": "deterministic 100-scene pilot per component",
-        "observations": 600,
+        "status": "full",
+        "scope": "all standardized JSON scenes and object frames",
+        "observations": 47718,
         "counts": {
-          "3d_evidence_pass": 600
+          "3d_evidence_pass": 44774,
+          "review": 2790,
+          "hard_reject": 154
         },
         "depthStatusCounts": {
-          "pass": 600
+          "pass": 47679,
+          "unavailable": 39
         },
         "multiViewStatusCounts": {
-          "pass": 600
+          "pass": 47718
         },
         "maskEvidenceCounts": {
-          "exact_instance_mask": 600
+          "exact_instance_mask": 47716,
+          "box_proxy": 2
         },
         "components": [
           "ABO"
         ],
-        "note": "Pilot counts are shown separately and do not replace the full projection-audit totals."
+        "note": "Full v3 counts are shown separately and do not replace the legacy projection-audit totals."
       },
       "validCases": [
         {
@@ -3253,25 +3260,31 @@
       "currentHard": 0,
       "storageBytes": 400907684165,
       "evidenceAudit": {
-        "status": "pilot",
-        "scope": "deterministic 100-scene pilot per component",
-        "observations": 600,
+        "status": "full",
+        "scope": "all standardized JSON scenes and object frames",
+        "observations": 322380,
         "counts": {
-          "3d_evidence_pass": 600
+          "3d_evidence_pass": 322360,
+          "review": 16,
+          "hard_reject": 4
         },
         "depthStatusCounts": {
-          "pass": 600
+          "pass": 322374,
+          "unavailable": 2,
+          "hard_reject": 4
         },
         "multiViewStatusCounts": {
-          "pass": 600
+          "pass": 322374,
+          "review": 6
         },
         "maskEvidenceCounts": {
-          "exact_instance_mask": 600
+          "exact_instance_mask": 322378,
+          "box_proxy": 2
         },
         "components": [
           "ShapeNet"
         ],
-        "note": "Pilot counts are shown separately and do not replace the full projection-audit totals."
+        "note": "Full v3 counts are shown separately and do not replace the legacy projection-audit totals."
       },
       "validCases": [
         {
@@ -3801,25 +3814,25 @@
       "statusDetail": "With visible 2D boxes, 74,469 object frames need review and 7,978 are rejected by the containment rule. When the 2D box is calculated from the 3D cuboid, all 206,263 observations pass the projection-consistency check.",
       "storageBytes": 69950452236,
       "evidenceAudit": {
-        "status": "pilot",
-        "scope": "deterministic 100-scene pilot per component",
-        "observations": 19865,
+        "status": "full",
+        "scope": "all standardized JSON scenes and object frames",
+        "observations": 206263,
         "counts": {
-          "projection_only_pass": 19865
+          "projection_only_pass": 206263
         },
         "depthStatusCounts": {
-          "diagnostic_only": 19865
+          "diagnostic_only": 206263
         },
         "multiViewStatusCounts": {
-          "unavailable": 19865
+          "unavailable": 206263
         },
         "maskEvidenceCounts": {
-          "box_proxy": 19865
+          "box_proxy": 206263
         },
         "components": [
           "HOI4D"
         ],
-        "note": "Pilot counts are shown separately and do not replace the full projection-audit totals."
+        "note": "Full v3 counts are shown separately and do not replace the legacy projection-audit totals."
       },
       "validCases": [
         {
@@ -4126,27 +4139,27 @@
       "currentHard": 0,
       "storageBytes": 374021620,
       "evidenceAudit": {
-        "status": "pilot",
-        "scope": "deterministic 100-scene pilot per component",
-        "observations": 2915,
+        "status": "full",
+        "scope": "all standardized JSON scenes and object frames",
+        "observations": 13864,
         "counts": {
-          "projection_only_pass": 2915
+          "projection_only_pass": 13864
         },
         "depthStatusCounts": {
-          "diagnostic_only": 2908,
-          "unavailable": 7
+          "diagnostic_only": 13855,
+          "unavailable": 9
         },
         "multiViewStatusCounts": {
-          "unavailable": 2915
+          "unavailable": 13864
         },
         "maskEvidenceCounts": {
-          "box_proxy": 2915
+          "box_proxy": 13864
         },
         "components": [
           "HOPEImage",
           "HOPEVideo"
         ],
-        "note": "Pilot counts are shown separately and do not replace the full projection-audit totals."
+        "note": "Full v3 counts are shown separately and do not replace the legacy projection-audit totals."
       },
       "validCases": [
         {
@@ -4493,27 +4506,28 @@
       "statusDetail": "With visible 2D boxes, 2,129 objects need review and 436 are rejected by the containment rule. The separately recomputed 3D projections are internally consistent.",
       "storageBytes": 2302818997,
       "evidenceAudit": {
-        "status": "pilot",
-        "scope": "deterministic 100-scene pilot per component",
-        "observations": 380,
+        "status": "full",
+        "scope": "all standardized JSON scenes and object frames",
+        "observations": 45155,
         "counts": {
-          "projection_only_pass": 355,
-          "review": 24,
-          "hard_reject": 1
+          "projection_only_pass": 42569,
+          "review": 2189,
+          "hard_reject": 397
         },
         "depthStatusCounts": {
-          "diagnostic_only": 380
+          "diagnostic_only": 45088,
+          "unavailable": 67
         },
         "multiViewStatusCounts": {
-          "unavailable": 380
+          "unavailable": 45155
         },
         "maskEvidenceCounts": {
-          "box_proxy": 380
+          "box_proxy": 45155
         },
         "components": [
           "SUN_RGB-D"
         ],
-        "note": "Pilot counts are shown separately and do not replace the full projection-audit totals."
+        "note": "Full v3 counts are shown separately and do not replace the legacy projection-audit totals."
       },
       "validCases": [
         {
@@ -4820,25 +4834,26 @@
       "statusDetail": "With visible 2D boxes, 26,346 objects need review and 2,782 are rejected by the visible-box rule. The projected 2D envelopes are internally consistent with the 3D boxes.",
       "storageBytes": 182082533497,
       "evidenceAudit": {
-        "status": "pilot",
-        "scope": "deterministic 100-scene pilot per component",
-        "observations": 1333,
+        "status": "full",
+        "scope": "all standardized JSON scenes and object frames",
+        "observations": 326756,
         "counts": {
-          "projection_only_pass": 1333
+          "projection_only_pass": 326703,
+          "review": 53
         },
         "depthStatusCounts": {
-          "diagnostic_only": 1333
+          "diagnostic_only": 326756
         },
         "multiViewStatusCounts": {
-          "unavailable": 1333
+          "unavailable": 326756
         },
         "maskEvidenceCounts": {
-          "box_proxy": 1333
+          "box_proxy": 326756
         },
         "components": [
           "Synscapes"
         ],
-        "note": "Pilot counts are shown separately and do not replace the full projection-audit totals."
+        "note": "Full v3 counts are shown separately and do not replace the legacy projection-audit totals."
       },
       "validCases": [
         {
@@ -5145,26 +5160,27 @@
       "statusDetail": "Of 1,450,396 audited object frames, 1,295,424 pass, 153,569 need human review, and 1,403 are rejected by the visible-containment rule. Stored and recomputed 3D projections agree within 1 px.",
       "storageBytes": 538426855640,
       "evidenceAudit": {
-        "status": "pilot",
-        "scope": "deterministic 100-scene pilot per component",
-        "observations": 1990,
+        "status": "full",
+        "scope": "all standardized JSON scenes and object frames",
+        "observations": 1450396,
         "counts": {
-          "projection_only_pass": 1767,
-          "review": 223
+          "projection_only_pass": 1295424,
+          "review": 153569,
+          "hard_reject": 1403
         },
         "depthStatusCounts": {
-          "diagnostic_only": 1990
+          "diagnostic_only": 1450396
         },
         "multiViewStatusCounts": {
-          "unavailable": 1990
+          "unavailable": 1450396
         },
         "maskEvidenceCounts": {
-          "box_proxy": 1990
+          "box_proxy": 1450396
         },
         "components": [
           "ATEK"
         ],
-        "note": "Pilot counts are shown separately and do not replace the full projection-audit totals."
+        "note": "Full v3 counts are shown separately and do not replace the legacy projection-audit totals."
       },
       "validCases": [
         {

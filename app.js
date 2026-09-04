@@ -751,9 +751,13 @@
     const projectionOnly = Number(counts["projection_only_pass"] || 0);
     const review = Number(counts.review || 0);
     const hard = Number(counts.hard_reject || 0);
-    const scope = audit.status === "pilot"
-      ? localized("pilot", "试运行", true)
-      : localized("exact audit", "精确审查", true);
+    const scope = audit.status === "full"
+      ? localized("full audit", "全量审查", true)
+      : audit.status === "pilot"
+        ? localized("pilot", "试运行", true)
+        : audit.status === "partial"
+          ? localized("partial run", "部分运行", true)
+          : localized("exact audit", "精确审查", true);
     return `<span class="evidence-summary" title="${plainLanguage(audit.scope || "")}"><strong>n=${formatNumber(audit.observations || 0)}</strong><small>${scope}: 3D pass ${formatNumber(pass)} · 2D-only ${formatNumber(projectionOnly)} · review ${formatNumber(review)} · hard ${formatNumber(hard)}</small></span>`;
   }
 
@@ -1123,12 +1127,12 @@
 
     const note =
       currentTargetMode === "visible"
-        ? "Visible-box checks use one-way containment where possible. CA-1M has no separate visible 2D box in the current files, and Omni3D mixes visible boxes with boxes projected from 3D. Approx. storage is the current local dataset/package size in decimal units. The 3D-evidence column is a separate v3 pilot and does not replace the full projection totals. ‘3D pass’ has independent depth/multi-view evidence; ‘2D-only’ has only projection agreement."
-        : "These 2D boxes come from the same 3D boxes. Fewer warnings only mean fewer geometry or conversion failures; they do not prove that the 3D boxes fit the objects. Approx. storage is the current local dataset/package size in decimal units. The 3D-evidence column is a separate v3 pilot and does not replace the full projection totals. ‘3D pass’ has independent depth/multi-view evidence; ‘2D-only’ has only projection agreement.";
+        ? "Visible-box checks use one-way containment where possible. CA-1M has no separate visible 2D box in the current files, and Omni3D mixes visible boxes with boxes projected from 3D. Approx. storage is the current local dataset/package size in decimal units. The 3D-evidence column is a separate v3 full audit and does not replace the legacy projection totals. ‘3D pass’ has independent depth/multi-view evidence; ‘2D-only’ has only projection agreement."
+        : "These 2D boxes come from the same 3D boxes. Fewer warnings only mean fewer geometry or conversion failures; they do not prove that the 3D boxes fit the objects. Approx. storage is the current local dataset/package size in decimal units. The 3D-evidence column is a separate v3 full audit and does not replace the legacy projection totals. ‘3D pass’ has independent depth/multi-view evidence; ‘2D-only’ has only projection agreement.";
     const noteZh =
       currentTargetMode === "visible"
-        ? "可见 2D 框模式尽量使用单向包含率。当前 CA-1M 文件没有单独的可见 2D 框；Omni3D 混合了可见框和由 3D 计算的 2D 框。大致存储空间按当前本地数据目录或数据包计算，使用十进制单位。3D 证据列是单独的 v3 试运行，不替换完整投影审查总数。‘3D pass’ 有独立深度或多视角证据；‘2D-only’ 只有投影一致性。"
-        : "这些 2D 框来自同一个 3D 框。更少的告警只表示几何或转换失败更少，不能说明 3D 框一定贴合物体。大致存储空间按当前本地数据目录或数据包计算，使用十进制单位。3D 证据列是单独的 v3 试运行，不替换完整投影审查总数。‘3D pass’ 有独立深度或多视角证据；‘2D-only’ 只有投影一致性。";
+        ? "可见 2D 框模式尽量使用单向包含率。当前 CA-1M 文件没有单独的可见 2D 框；Omni3D 混合了可见框和由 3D 计算的 2D 框。大致存储空间按当前本地数据目录或数据包计算，使用十进制单位。3D 证据列是单独的 v3 全量审查，不替换旧的投影审查总数。‘3D pass’ 有独立深度或多视角证据；‘2D-only’ 只有投影一致性。"
+        : "这些 2D 框来自同一个 3D 框。更少的告警只表示几何或转换失败更少，不能说明 3D 框一定贴合物体。大致存储空间按当前本地数据目录或数据包计算，使用十进制单位。3D 证据列是单独的 v3 全量审查，不替换旧的投影审查总数。‘3D pass’ 有独立深度或多视角证据；‘2D-only’ 只有投影一致性。";
     elements.tableNote.innerHTML = localized(note, noteZh);
   }
 
@@ -1215,7 +1219,7 @@
         <td class="numeric">${formatNumber(totals.hard)}</td>
         <td class="numeric">${overallRate == null ? "—" : formatRate(overallRate)}</td>
         <td class="numeric">${formatNumber(totals.known)}</td>
-        <td>${format3dEvidence({status: "pilot", scope: "combined available 3D-evidence audits", observations: totals.evidenceObservations, counts: {"3d_evidence_pass": totals.evidencePass, "projection_only_pass": totals.evidenceProjectionOnly, review: totals.evidenceReview, hard_reject: totals.evidenceHard}})}</td>
+        <td>${format3dEvidence({status: "full", scope: "combined available full 3D-evidence audits", observations: totals.evidenceObservations, counts: {"3d_evidence_pass": totals.evidencePass, "projection_only_pass": totals.evidenceProjectionOnly, review: totals.evidenceReview, hard_reject: totals.evidenceHard}})}</td>
         <td class="numeric">${totals.validGallery} / ${totals.reviewGallery} / ${totals.errorGallery}</td>
         <td><span class="table-status">${localized("Combined total", "全部汇总", true)}</span></td>
       </tr>`;
